@@ -53,6 +53,7 @@ import com.twitter.clientlib.model.MultiTweetLookupResponse;
 import com.twitter.clientlib.model.MultiUserLookupResponse;
 import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
+import com.twitter.clientlib.model.QuoteTweetLookupResponse;
 import java.util.Set;
 import com.twitter.clientlib.model.SingleTweetLookupResponse;
 import com.twitter.clientlib.model.StreamingTweet;
@@ -848,6 +849,196 @@ public class TweetsApi extends ApiCommon {
 
         okhttp3.Call localVarCall = findTweetsByIdValidateBeforeCall(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
         Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for findTweetsThatQuoteATweet
+     * @param id The ID of the Quoted Tweet. (required)
+     * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call findTweetsThatQuoteATweetCall(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/tweets/{id}/quote_tweets"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (maxResults != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (mediaFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        }
+
+        if (pollFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarHeaderParams != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken", "UserToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call findTweetsThatQuoteATweetValidateBeforeCall(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling findTweetsThatQuoteATweet(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Retrieve tweets that quote a tweet.
+     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+     * @param id The ID of the Quoted Tweet. (required)
+     * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @return QuoteTweetLookupResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        ApiResponse<QuoteTweetLookupResponse> localVarResp;
+        try{
+          localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
+            refreshToken();
+            localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+    /**
+     * Retrieve tweets that quote a tweet.
+     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+     * @param id The ID of the Quoted Tweet. (required)
+     * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @return ApiResponse&lt;QuoteTweetLookupResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<QuoteTweetLookupResponse> findTweetsThatQuoteATweetWithHttpInfo(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+        try {
+            Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
+            return localVarApiClient.execute(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
+            throw e;
+        }
+    }
+
+    /**
+     * Retrieve tweets that quote a tweet. (asynchronously)
+     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+     * @param id The ID of the Quoted Tweet. (required)
+     * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call findTweetsThatQuoteATweetAsync(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<QuoteTweetLookupResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

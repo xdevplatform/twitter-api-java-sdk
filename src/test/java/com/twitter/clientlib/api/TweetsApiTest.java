@@ -39,6 +39,7 @@ import com.twitter.clientlib.model.MultiTweetLookupResponse;
 import com.twitter.clientlib.model.MultiUserLookupResponse;
 import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
+import com.twitter.clientlib.model.QuoteTweetLookupResponse;
 import java.util.Set;
 import com.twitter.clientlib.model.SingleTweetLookupResponse;
 import com.twitter.clientlib.model.StreamingTweet;
@@ -156,6 +157,28 @@ public class TweetsApiTest {
         Set<String> placeFields = null;
         Set<String> pollFields = null;
                 MultiTweetLookupResponse response = apiInstance.tweets().findTweetsById(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        // TODO: test validations
+    }
+    
+    /**
+     * Retrieve tweets that quote a tweet.
+     *
+     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void findTweetsThatQuoteATweetTest() throws ApiException {
+        String id = null;
+        Integer maxResults = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+        Set<String> userFields = null;
+        Set<String> mediaFields = null;
+        Set<String> placeFields = null;
+        Set<String> pollFields = null;
+                QuoteTweetLookupResponse response = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
     

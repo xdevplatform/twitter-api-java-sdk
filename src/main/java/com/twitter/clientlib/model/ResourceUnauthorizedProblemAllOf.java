@@ -129,7 +129,11 @@ public class ResourceUnauthorizedProblemAllOf {
     
     USER("user"),
     
-    MEDIA("media");
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 

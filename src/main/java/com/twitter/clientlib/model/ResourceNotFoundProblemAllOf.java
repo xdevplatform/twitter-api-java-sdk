@@ -80,7 +80,9 @@ public class ResourceNotFoundProblemAllOf {
     
     MEDIA("media"),
     
-    LIST("list");
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 

@@ -136,7 +136,13 @@ public class FieldUnauthorizedProblem extends Problem {
   public enum ResourceTypeEnum {
     TWEET("tweet"),
     
-    MEDIA("media");
+    USER("user"),
+    
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 

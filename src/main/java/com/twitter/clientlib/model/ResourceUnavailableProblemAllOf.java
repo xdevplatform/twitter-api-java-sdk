@@ -74,7 +74,11 @@ public class ResourceUnavailableProblemAllOf {
     
     TWEET("tweet"),
     
-    MEDIA("media");
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 

@@ -73,7 +73,7 @@ public class OAuth20GetAccessToken {
         credentials.getTwitterOauth2ClientId(),
         credentials.getTwitterOAuth2ClientSecret(),
         "http://twitter.com",
-        "offline.access tweet.read users.read like.write space.read list.read tweet.write like.read follows.read mute.write block.write follows.write block.read mute.read list.write");
+        "offline.access tweet.read");
 
     OAuth2AccessToken accessToken = null;
     try {

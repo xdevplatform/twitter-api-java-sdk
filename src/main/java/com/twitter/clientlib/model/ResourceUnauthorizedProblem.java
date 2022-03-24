@@ -150,7 +150,11 @@ public class ResourceUnauthorizedProblem extends Problem {
     
     USER("user"),
     
-    MEDIA("media");
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 
