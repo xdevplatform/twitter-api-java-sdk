@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**deleteTweetById**](TweetsApi.md#deleteTweetById) | **DELETE** /2/tweets/{id} | Tweet delete by Tweet ID
 [**findTweetById**](TweetsApi.md#findTweetById) | **GET** /2/tweets/{id} | Tweet lookup by Tweet ID
 [**findTweetsById**](TweetsApi.md#findTweetsById) | **GET** /2/tweets | Tweet lookup by Tweet IDs
+[**findTweetsThatQuoteATweet**](TweetsApi.md#findTweetsThatQuoteATweet) | **GET** /2/tweets/{id}/quote_tweets | Retrieve tweets that quote a tweet.
 [**getRules**](TweetsApi.md#getRules) | **GET** /2/tweets/search/stream/rules | Rules lookup
 [**hideReplyById**](TweetsApi.md#hideReplyById) | **PUT** /2/tweets/{id}/hidden | Hide replies
 [**listsIdTweets**](TweetsApi.md#listsIdTweets) | **GET** /2/lists/{id}/tweets | List Tweets timeline by List ID
@@ -414,6 +415,95 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MultiTweetLookupResponse**](MultiTweetLookupResponse.md)
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken), [OAuth2UserToken](../README.md#OAuth2UserToken), [UserToken](../README.md#UserToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/jsonapplication/problem+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The request was successful |  -  |
+**0** | The request has failed. |  -  |
+
+<a name="findTweetsThatQuoteATweet"></a>
+# **findTweetsThatQuoteATweet**
+> QuoteTweetLookupResponse findTweetsThatQuoteATweet(idmaxResultsexpansionstweetFieldsuserFieldsmediaFieldsplaceFieldspollFields)
+
+Retrieve tweets that quote a tweet.
+
+Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+
+### Example
+```java
+// Import classes:
+import com.twitter.clientlib.ApiClient;
+import com.twitter.clientlib.ApiException;
+import com.twitter.clientlib.Configuration;
+import com.twitter.clientlib.auth.*;
+import com.twitter.clientlib.model.*;
+import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
+import com.twitter.clientlib.TwitterCredentialsOAuth1;
+import com.twitter.clientlib.api.TwitterApi;
+
+import com.twitter.clientlib.api.TweetsApi;
+import java.util.List;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.time.OffsetDateTime;
+
+public class Example {
+  public static void main(String[] args) {
+    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    TwitterApi apiInstance = new TwitterApi();
+    apiInstance.setTwitterCredentials(credentials);
+    // Set the params values
+    String id = "id_example"; // String | The ID of the Quoted Tweet.
+    Integer maxResults = 10; // Integer | The maximum number of results to be returned.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
+    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
+    Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
+    try {
+           QuoteTweetLookupResponse result = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TweetsApi#findTweetsThatQuoteATweet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The ID of the Quoted Tweet. |
+ **maxResults** | **Integer**| The maximum number of results to be returned. | [optional] [default to 10]
+ **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: author_id, referenced_tweets.id, in_reply_to_user_id, geo.place_id, attachments.media_keys, attachments.poll_ids, entities.mentions.username, referenced_tweets.id.author_id]
+ **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
+ **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+ **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: media_key, duration_ms, height, preview_image_url, type, url, width, public_metrics, non_public_metrics, organic_metrics, promoted_metrics, alt_text]
+ **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: id, name, country_code, place_type, full_name, country, contained_within, geo]
+ **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: id, options, voting_status, end_datetime, duration_minutes]
+
+### Return type
+
+[**QuoteTweetLookupResponse**](QuoteTweetLookupResponse.md)
 
 ### Authorization
 

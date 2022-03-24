@@ -41,6 +41,7 @@ import com.twitter.clientlib.model.GenericMultipleUsersLookupResponse;
 import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
 import com.twitter.clientlib.model.InvalidRequestProblem;
 import com.twitter.clientlib.model.MultiTweetLookupResponse;
+import com.twitter.clientlib.model.QuoteTweetLookupResponse;
 import com.twitter.clientlib.model.RuleNoId;
 import com.twitter.clientlib.model.SingleTweetLookupResponse;
 import com.twitter.clientlib.model.TweetCountsResponse;
@@ -78,26 +79,6 @@ public class ApiTweetTester extends ApiTester {
   @BeforeAll
   public void init() {
     initApiInstance();
-  }
-
-  private AddOrDeleteRulesResponse addRule(String ruleStrValue) throws ApiException {
-    AddOrDeleteRulesRequest request = new AddOrDeleteRulesRequest();
-    AddRulesRequest add = new AddRulesRequest();
-    RuleNoId rule = new RuleNoId();
-    rule.setValue(ruleStrValue);
-    add.addAddItem(rule);
-    request.setActualInstance(add);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
-  }
-
-  private AddOrDeleteRulesResponse deleteRule(String ruleStrValue) throws ApiException {
-    AddOrDeleteRulesRequest request = new AddOrDeleteRulesRequest();
-    DeleteRulesRequest dr = new DeleteRulesRequest();
-    DeleteRulesRequestDelete drd = new DeleteRulesRequestDelete();
-    drd.setValues(Arrays.asList(ruleStrValue));
-    dr.setDelete(drd);
-    request.setActualInstance(dr);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
   }
 
   @Test
@@ -267,30 +248,6 @@ public class ApiTweetTester extends ApiTester {
   }
 
   @Test
-  public void tweetCountsRecentSearchTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, null, null,
-        null, null, null, null, null);
-    checkErrors(false, result.getErrors());
-    assertNotNull(result.getData());
-    assertNotNull(result.getData().get(0));
-    assertNotNull(result.getMeta());
-    assertTrue(result.getMeta().getTotalTweetCount() > 0);
-  }
-
-  @Test
-  public void tweetCountsRecentSearchNotFoundTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(queryNotFound, null,
-        null,
-        null, null, null, null, null);
-    checkErrors(false, result.getErrors());
-    assertNotNull(result.getData());
-    assertNotNull(result.getData().get(0));
-    assertEquals(0, (int) result.getData().get(0).getTweetCount());
-    assertNotNull(result.getMeta());
-    assertEquals(0, (int) result.getMeta().getTotalTweetCount());
-  }
-
-  @Test
   public void tweetsIdRetweetingUsersTest() throws ApiException {
     GenericMultipleUsersLookupResponse result = apiInstance.users().tweetsIdRetweetingUsers(
         tweetIdPopular,
@@ -446,92 +403,6 @@ public class ApiTweetTester extends ApiTester {
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user [" + userId + "]",
         "Invalid Request", "One or more parameters to your request was invalid.");
-  }
-
-  // TODO Wait for RulesResponseMetadata.result_count
-//  @Test
-//  public void getRulesAllTest() throws ApiException {
-//    GetRulesResponse result = apiInstance.tweets().getRules(null, null, null);
-//    assertNotNull(result.getData());
-//    assertNotNull(result.getData().get(0));
-//    assertNotNull(result.getData().get(0).getValue());
-//    assertNotNull(result.getData().get(0).getId());
-//    assertNotNull(result.getMeta());
-//    assertNotNull(result.getMeta().getSent());
-//    assertTrue(result.getMeta().getResultCount() > 0);
-//  }
-
-  @Test
-  public void addOrDeleteRulesAddTest() throws ApiException {
-    try {
-      AddOrDeleteRulesResponse result = addRule(ruleValue);
-      assertNotNull(result.getData());
-      assertNotNull(result.getData().get(0));
-      assertEquals(result.getData().get(0).getValue(), ruleValue);
-      assertNotNull(result.getMeta());
-      assertNotNull(result.getMeta().getSent());
-    } finally {
-      deleteRule(ruleValue);
-    }
-  }
-
-  @Test
-  public void addOrDeleteRulesAddDuplicateTest() throws ApiException {
-    try {
-      addRule(ruleValue);
-      AddOrDeleteRulesResponse result = addRule(ruleValue);
-      checkErrors(true, result.getErrors());
-      assertNull(result.getData());
-      assertNotNull(result.getMeta());
-      assertNotNull(result.getMeta().getSent());
-      assertNotNull(result.getMeta().getSummary());
-      assertNotNull(result.getMeta().getSummary().getRulesRequestSummaryOneOf());
-      assertTrue(result.getMeta().getSummary().getRulesRequestSummaryOneOf().getInvalid() > 0);
-      assertTrue(result.getMeta().getSummary().getRulesRequestSummaryOneOf().getNotCreated() > 0);
-      checkDuplicateRuleProblem(result.getErrors().get(0), null, ruleValue);
-    } finally {
-      deleteRule(ruleValue);
-    }
-  }
-
-  @Test
-  public void addOrDeleteRulesDeleteTest() throws ApiException {
-    try {
-      addRule(ruleValue);
-      AddOrDeleteRulesResponse result = deleteRule(ruleValue);
-      checkErrors(false, result.getErrors());
-      assertNull(result.getData());
-      assertNotNull(result.getMeta());
-      assertNotNull(result.getMeta().getSent());
-      assertNotNull(result.getMeta().getSummary());
-      assertNotNull(result.getMeta().getSummary().getRulesRequestSummaryOneOf1());
-      assertEquals((int) result.getMeta().getSummary().getRulesRequestSummaryOneOf1().getDeleted(),
-          1);
-    } finally {
-      deleteRule(ruleValue);
-    }
-  }
-
-  @Test
-  public void addOrDeleteRulesDoubleDeleteTest() throws ApiException {
-    try {
-      addRule(ruleValue);
-      deleteRule(ruleValue);
-      AddOrDeleteRulesResponse result = deleteRule(ruleValue);
-      checkErrors(true, result.getErrors());
-      assertNull(result.getData());
-      assertNotNull(result.getMeta());
-      assertNotNull(result.getMeta().getSent());
-      assertNotNull(result.getMeta().getSummary());
-      assertNotNull(result.getMeta().getSummary().getRulesRequestSummaryOneOf1());
-      assertEquals((int) result.getMeta().getSummary().getRulesRequestSummaryOneOf1().getDeleted(),
-          0);
-      checkInvalidRequestProblem(result.getErrors().get(0),
-          "One or more parameters to your request was invalid.",
-          "Invalid Request", "Rule does not exist");
-    } finally {
-      deleteRule(ruleValue);
-    }
   }
 
   /* Does not work for now

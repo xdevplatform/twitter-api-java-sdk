@@ -5,7 +5,7 @@
     <artifactId>twitter-api-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>twitter-api-java-sdk</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <url>https://github.com/twitterdev/twitter-api-java-sdk</url>
     <description>Twitter API v2 available endpoints</description>
     <scm>
@@ -14,11 +14,12 @@
       <url>scm:git:git://github.com/twitterdev/twitter-api-java-sdk.git</url>
     </scm>
     <developers>
-        <developer>
-            <name>twitterdev</name>
-            <email>noreply@twitter.com</email>
-        </developer>
+      <developer>
+        <name>twitterdev</name>
+        <email>noreply@twitter.com</email>
+      </developer>
     </developers>
+
     <licenses>
         <license>
             <name>Unlicense</name>
@@ -27,28 +28,28 @@
         </license>
     </licenses>
     <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype Snapshots OSSRH</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-staging</id>
-            <name>Sonatype Staging OSSRH</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+      <snapshotRepository>
+        <id>sonatype-snapshots</id>
+        <name>Sonatype Snapshots OSSRH</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+        <id>sonatype-staging</id>
+        <name>Sonatype Staging OSSRH</name>
+        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
     </distributionManagement>
     <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
+      <repository>
+        <id>sonatype-nexus-snapshots</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <releases>
+          <enabled>false</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
     </repositories>
     <build>
         <plugins>

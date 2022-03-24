@@ -35,13 +35,13 @@ import com.twitter.clientlib.TwitterCredentialsOAuth2;
 
 
 public class TwitterApi {
-  private final TweetsApi tweets = new TweetsApi();
-  private final UsersApi users = new UsersApi();
+  private final BookmarksApi bookmarks = new BookmarksApi();
+  private final ComplianceApi compliance = new ComplianceApi();
+  private final GeneralApi general = new GeneralApi();
   private final ListsApi lists = new ListsApi();
   private final SpacesApi spaces = new SpacesApi();
-  private final GeneralApi general = new GeneralApi();
-  private final ComplianceApi compliance = new ComplianceApi();
-
+  private final TweetsApi tweets = new TweetsApi();
+  private final UsersApi users = new UsersApi();
   private ApiClient localVarApiClient = new ApiClient();
 
   public TwitterApi() {
@@ -80,36 +80,35 @@ public class TwitterApi {
   }
 
   private void initApis() {
-    tweets.setClient(localVarApiClient);
-    users.setClient(localVarApiClient);
+    bookmarks.setClient(localVarApiClient);
+    compliance.setClient(localVarApiClient);
+    general.setClient(localVarApiClient);
     lists.setClient(localVarApiClient);
     spaces.setClient(localVarApiClient);
-    general.setClient(localVarApiClient);
-    compliance.setClient(localVarApiClient);
+    tweets.setClient(localVarApiClient);
+    users.setClient(localVarApiClient);
   }
 
-  public TweetsApi tweets() {
-    return tweets;
+  public BookmarksApi bookmarks() {
+    return bookmarks;
   }
-
-  public UsersApi users() {
-    return users;
+  public ComplianceApi compliance() {
+    return compliance;
   }
-
-  public ListsApi lists() {
-    return lists;
-  }
-
-  public SpacesApi spaces() {
-    return spaces;
-  }
-
   public GeneralApi general() {
     return general;
   }
-
-  public ComplianceApi compliance() {
-    return compliance;
+  public ListsApi lists() {
+    return lists;
+  }
+  public SpacesApi spaces() {
+    return spaces;
+  }
+  public TweetsApi tweets() {
+    return tweets;
+  }
+  public UsersApi users() {
+    return users;
   }
 
   public OAuth2AccessToken refreshToken() throws ApiException {

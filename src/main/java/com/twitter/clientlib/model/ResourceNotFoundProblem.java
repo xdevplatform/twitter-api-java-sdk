@@ -101,7 +101,9 @@ public class ResourceNotFoundProblem extends Problem {
     
     MEDIA("media"),
     
-    LIST("list");
+    LIST("list"),
+    
+    SPACE("space");
 
     private String value;
 

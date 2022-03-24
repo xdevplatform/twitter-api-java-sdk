@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
 </dependency>
 ```
 
@@ -53,7 +53,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.twitter:twitter-api-java-sdk:1.1.0"
+implementation "com.twitter:twitter-api-java-sdk:1.1.1"
 ```
 
 ### Others
@@ -66,7 +66,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/twitter-api-java-sdk-1.1.0.jar`
+- `target/twitter-api-java-sdk-1.1.1.jar`
 - `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -208,6 +208,9 @@ All URIs are relative to *https://api.twitter.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BookmarksApi* | [**getUsersIdBookmarks**](docs/BookmarksApi.md#getUsersIdBookmarks) | **GET** /2/users/{id}/bookmarks | Bookmarks by User
+*BookmarksApi* | [**postUsersIdBookmarks**](docs/BookmarksApi.md#postUsersIdBookmarks) | **POST** /2/users/{id}/bookmarks | Add Tweet to Bookmarks
+*BookmarksApi* | [**usersIdBookmarksDelete**](docs/BookmarksApi.md#usersIdBookmarksDelete) | **DELETE** /2/users/{id}/bookmarks/{tweet_id} | Remove a bookmarked Tweet
 *ComplianceApi* | [**createBatchComplianceJob**](docs/ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job
 *ComplianceApi* | [**getBatchComplianceJob**](docs/ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get compliance job
 *ComplianceApi* | [**listBatchComplianceJobs**](docs/ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List compliance jobs
@@ -237,6 +240,7 @@ Class | Method | HTTP request | Description
 *TweetsApi* | [**deleteTweetById**](docs/TweetsApi.md#deleteTweetById) | **DELETE** /2/tweets/{id} | Tweet delete by Tweet ID
 *TweetsApi* | [**findTweetById**](docs/TweetsApi.md#findTweetById) | **GET** /2/tweets/{id} | Tweet lookup by Tweet ID
 *TweetsApi* | [**findTweetsById**](docs/TweetsApi.md#findTweetsById) | **GET** /2/tweets | Tweet lookup by Tweet IDs
+*TweetsApi* | [**findTweetsThatQuoteATweet**](docs/TweetsApi.md#findTweetsThatQuoteATweet) | **GET** /2/tweets/{id}/quote_tweets | Retrieve tweets that quote a tweet.
 *TweetsApi* | [**getRules**](docs/TweetsApi.md#getRules) | **GET** /2/tweets/search/stream/rules | Rules lookup
 *TweetsApi* | [**hideReplyById**](docs/TweetsApi.md#hideReplyById) | **PUT** /2/tweets/{id}/hidden | Hide replies
 *TweetsApi* | [**listsIdTweets**](docs/TweetsApi.md#listsIdTweets) | **GET** /2/lists/{id}/tweets | List Tweets timeline by List ID
@@ -278,11 +282,14 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AddBookmarkRequest](docs/AddBookmarkRequest.md)
  - [AddOrDeleteRulesRequest](docs/AddOrDeleteRulesRequest.md)
  - [AddOrDeleteRulesResponse](docs/AddOrDeleteRulesResponse.md)
  - [AddRulesRequest](docs/AddRulesRequest.md)
  - [AnimatedGif](docs/AnimatedGif.md)
  - [AnimatedGifAllOf](docs/AnimatedGifAllOf.md)
+ - [BookmarkMutationResponse](docs/BookmarkMutationResponse.md)
+ - [BookmarkMutationResponseData](docs/BookmarkMutationResponseData.md)
  - [CashtagEntity](docs/CashtagEntity.md)
  - [CashtagFields](docs/CashtagFields.md)
  - [ClientDisconnectedProblem](docs/ClientDisconnectedProblem.md)
@@ -381,6 +388,8 @@ Class | Method | HTTP request | Description
  - [PollOption](docs/PollOption.md)
  - [Problem](docs/Problem.md)
  - [ProblemOrError](docs/ProblemOrError.md)
+ - [QuoteTweetLookupResponse](docs/QuoteTweetLookupResponse.md)
+ - [QuoteTweetLookupResponseMeta](docs/QuoteTweetLookupResponseMeta.md)
  - [ReplySettings](docs/ReplySettings.md)
  - [ResourceNotFoundProblem](docs/ResourceNotFoundProblem.md)
  - [ResourceNotFoundProblemAllOf](docs/ResourceNotFoundProblemAllOf.md)
@@ -460,6 +469,7 @@ Class | Method | HTTP request | Description
  - [VideoAllOfOrganicMetrics](docs/VideoAllOfOrganicMetrics.md)
  - [VideoAllOfPromotedMetrics](docs/VideoAllOfPromotedMetrics.md)
  - [VideoAllOfPublicMetrics](docs/VideoAllOfPublicMetrics.md)
+
 
 
 
