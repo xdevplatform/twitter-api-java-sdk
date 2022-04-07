@@ -146,6 +146,24 @@ public class ComplianceApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleComplianceJobResponse createBatchComplianceJob(Integer retries, CreateBatchComplianceJobRequest createBatchComplianceJobRequest) throws ApiException {
+        SingleComplianceJobResponse localVarResp;
+        try{
+          localVarResp = createBatchComplianceJob(createBatchComplianceJobRequest);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return createBatchComplianceJob(retries - 1, createBatchComplianceJobRequest);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Create compliance job
      * Creates a compliance for the given job type
@@ -278,6 +296,24 @@ public class ComplianceApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleComplianceJobResponse getBatchComplianceJob(Integer retries, String id) throws ApiException {
+        SingleComplianceJobResponse localVarResp;
+        try{
+          localVarResp = getBatchComplianceJob(id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return getBatchComplianceJob(retries - 1, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -421,6 +457,24 @@ public class ComplianceApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiComplianceJobResponse listBatchComplianceJobs(Integer retries, ComplianceJobType type, ComplianceJobStatus status) throws ApiException {
+        MultiComplianceJobResponse localVarResp;
+        try{
+          localVarResp = listBatchComplianceJobs(type, status);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listBatchComplianceJobs(retries - 1, type, status);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**

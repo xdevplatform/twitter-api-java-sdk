@@ -194,6 +194,24 @@ public class BookmarksApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericTweetsTimelineResponse getUsersIdBookmarks(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        GenericTweetsTimelineResponse localVarResp;
+        try{
+          localVarResp = getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return getUsersIdBookmarks(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Bookmarks by User
      * Returns Tweet objects that have been bookmarked by the requesting user
@@ -351,6 +369,24 @@ public class BookmarksApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public BookmarkMutationResponse postUsersIdBookmarks(Integer retries, AddBookmarkRequest addBookmarkRequest, String id) throws ApiException {
+        BookmarkMutationResponse localVarResp;
+        try{
+          localVarResp = postUsersIdBookmarks(addBookmarkRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return postUsersIdBookmarks(retries - 1, addBookmarkRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Add Tweet to Bookmarks
      * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
@@ -493,6 +529,24 @@ public class BookmarksApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public BookmarkMutationResponse usersIdBookmarksDelete(Integer retries, String id, String tweetId) throws ApiException {
+        BookmarkMutationResponse localVarResp;
+        try{
+          localVarResp = usersIdBookmarksDelete(id, tweetId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdBookmarksDelete(retries - 1, id, tweetId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**

@@ -130,6 +130,24 @@ public class GeneralApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public Object getOpenApiSpec(Integer retries) throws ApiException {
+        Object localVarResp;
+        try{
+          localVarResp = getOpenApiSpec();
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return getOpenApiSpec(retries - 1);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns the open api spec document.
      * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
