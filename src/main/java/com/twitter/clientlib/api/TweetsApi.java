@@ -175,6 +175,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public AddOrDeleteRulesResponse addOrDeleteRules(Integer retries, AddOrDeleteRulesRequest addOrDeleteRulesRequest, Boolean dryRun) throws ApiException {
+        AddOrDeleteRulesResponse localVarResp;
+        try{
+          localVarResp = addOrDeleteRules(addOrDeleteRulesRequest, dryRun);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return addOrDeleteRules(retries - 1, addOrDeleteRulesRequest, dryRun);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Add/Delete rules
      * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
@@ -303,6 +321,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetCreateResponse createTweet(Integer retries, CreateTweetRequest createTweetRequest) throws ApiException {
+        TweetCreateResponse localVarResp;
+        try{
+          localVarResp = createTweet(createTweetRequest);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return createTweet(retries - 1, createTweetRequest);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -437,6 +473,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetDeleteResponse deleteTweetById(Integer retries, String id) throws ApiException {
+        TweetDeleteResponse localVarResp;
+        try{
+          localVarResp = deleteTweetById(id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return deleteTweetById(retries - 1, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -607,6 +661,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleTweetLookupResponse findTweetById(Integer retries, String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        SingleTweetLookupResponse localVarResp;
+        try{
+          localVarResp = findTweetById(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findTweetById(retries - 1, id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -792,6 +864,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiTweetLookupResponse findTweetsById(Integer retries, List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        MultiTweetLookupResponse localVarResp;
+        try{
+          localVarResp = findTweetsById(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findTweetsById(retries - 1, ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -982,6 +1072,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(Integer retries, String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        QuoteTweetLookupResponse localVarResp;
+        try{
+          localVarResp = findTweetsThatQuoteATweet(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findTweetsThatQuoteATweet(retries - 1, id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Retrieve tweets that quote a tweet.
      * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
@@ -1140,6 +1248,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GetRulesResponse getRules(Integer retries, List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
+        GetRulesResponse localVarResp;
+        try{
+          localVarResp = getRules(ids, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return getRules(retries - 1, ids, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Rules lookup
      * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
@@ -1278,6 +1404,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public HideReplyByIdResponse hideReplyById(Integer retries, HideReplyByIdRequest hideReplyByIdRequest, String id) throws ApiException {
+        HideReplyByIdResponse localVarResp;
+        try{
+          localVarResp = hideReplyById(hideReplyByIdRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return hideReplyById(retries - 1, hideReplyByIdRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1464,6 +1608,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListsIdTweetsResponse listsIdTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        ListsIdTweetsResponse localVarResp;
+        try{
+          localVarResp = listsIdTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listsIdTweets(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * List Tweets timeline by List ID
      * Returns a list of Tweets associated with the provided List ID
@@ -1639,6 +1801,26 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
+     * Calls the API using a retry mechanism to handle rate limits errors.
+     *
+     */
+    public InputStream sampleStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+        InputStream localVarResp;
+        try{
+          localVarResp = sampleStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+        }
+        catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return sampleStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
+
+    /**
      * Sample stream
      * Streams a deterministic 1% of public Tweets.
      * @param expansions A comma separated list of fields to expand. (optional)
@@ -1809,6 +1991,26 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
+     * Calls the API using a retry mechanism to handle rate limits errors.
+     *
+     */
+    public InputStream searchStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+        InputStream localVarResp;
+        try{
+          localVarResp = searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+        }
+        catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return searchStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
+
+    /**
      * Filtered stream
      * Streams Tweets matching the stream&#39;s active rule set.
      * @param expansions A comma separated list of fields to expand. (optional)
@@ -1960,6 +2162,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiUserLookupResponse spaceBuyers(Integer retries, String id, Set<String> userFields) throws ApiException {
+        MultiUserLookupResponse localVarResp;
+        try{
+          localVarResp = spaceBuyers(id, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return spaceBuyers(retries - 1, id, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Retrieve the list of users who purchased a ticket to the given space
      * Retrieves the list of users who purchased a ticket to the given space
@@ -2106,6 +2326,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiTweetLookupResponse spaceTweets(Integer retries, Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
+        MultiTweetLookupResponse localVarResp;
+        try{
+          localVarResp = spaceTweets(maxResults, id, tweetFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return spaceTweets(retries - 1, maxResults, id, tweetFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2289,6 +2527,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetCountsResponse tweetCountsFullArchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
+        TweetCountsResponse localVarResp;
+        try{
+          localVarResp = tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetCountsFullArchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2482,6 +2738,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetCountsResponse tweetCountsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
+        TweetCountsResponse localVarResp;
+        try{
+          localVarResp = tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetCountsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2717,6 +2991,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetSearchResponse tweetsFullarchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        TweetSearchResponse localVarResp;
+        try{
+          localVarResp = tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetsFullarchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2968,6 +3260,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public TweetSearchResponse tweetsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        TweetSearchResponse localVarResp;
+        try{
+          localVarResp = tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Recent search
      * Returns Tweets from the last 7 days that match a search query.
@@ -3130,6 +3440,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersLikesCreateResponse usersIdLike(Integer retries, UsersLikesCreateRequest usersLikesCreateRequest, String id) throws ApiException {
+        UsersLikesCreateResponse localVarResp;
+        try{
+          localVarResp = usersIdLike(usersLikesCreateRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdLike(retries - 1, usersLikesCreateRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -3314,6 +3642,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersIdLikedTweetsResponse usersIdLikedTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        UsersIdLikedTweetsResponse localVarResp;
+        try{
+          localVarResp = usersIdLikedTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdLikedTweets(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -3538,6 +3884,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericTweetsTimelineResponse usersIdMentions(Integer retries, String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        GenericTweetsTimelineResponse localVarResp;
+        try{
+          localVarResp = usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdMentions(retries - 1, id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * User mention timeline by User ID
      * Returns Tweet objects that mention username associated to the provided User ID
@@ -3696,6 +4060,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersRetweetsCreateResponse usersIdRetweets(Integer retries, UsersRetweetsCreateRequest usersRetweetsCreateRequest, String id) throws ApiException {
+        UsersRetweetsCreateResponse localVarResp;
+        try{
+          localVarResp = usersIdRetweets(usersRetweetsCreateRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdRetweets(retries - 1, usersRetweetsCreateRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -3912,6 +4294,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericTweetsTimelineResponse usersIdTweets(Integer retries, String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        GenericTweetsTimelineResponse localVarResp;
+        try{
+          localVarResp = usersIdTweets(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdTweets(retries - 1, id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * User Tweets timeline by User ID
      * Returns a list of Tweets authored by the provided User ID
@@ -4080,6 +4480,24 @@ public class TweetsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersLikesDeleteResponse usersIdUnlike(Integer retries, String id, String tweetId) throws ApiException {
+        UsersLikesDeleteResponse localVarResp;
+        try{
+          localVarResp = usersIdUnlike(id, tweetId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdUnlike(retries - 1, id, tweetId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Causes the user (in the path) to unlike the specified tweet
      * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
@@ -4222,6 +4640,24 @@ public class TweetsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersRetweetsDeleteResponse usersIdUnretweets(Integer retries, String id, String sourceTweetId) throws ApiException {
+        UsersRetweetsDeleteResponse localVarResp;
+        try{
+          localVarResp = usersIdUnretweets(id, sourceTweetId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdUnretweets(retries - 1, id, sourceTweetId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**

@@ -165,6 +165,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleUserLookupResponse findMyUser(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        SingleUserLookupResponse localVarResp;
+        try{
+          localVarResp = findMyUser(expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findMyUser(retries - 1, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * User lookup me
      * This endpoint returns information about the requesting user.
@@ -319,6 +337,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleUserLookupResponse findUserById(Integer retries, String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        SingleUserLookupResponse localVarResp;
+        try{
+          localVarResp = findUserById(id, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findUserById(retries - 1, id, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -477,6 +513,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleUserLookupResponse findUserByUsername(Integer retries, String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        SingleUserLookupResponse localVarResp;
+        try{
+          localVarResp = findUserByUsername(username, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findUserByUsername(retries - 1, username, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -640,6 +694,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiUserLookupResponse findUsersById(Integer retries, List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        MultiUserLookupResponse localVarResp;
+        try{
+          localVarResp = findUsersById(ids, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findUsersById(retries - 1, ids, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * User lookup by IDs
      * This endpoint returns information about users. Specify users by their ID.
@@ -799,6 +871,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiUserLookupResponse findUsersByUsername(Integer retries, List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        MultiUserLookupResponse localVarResp;
+        try{
+          localVarResp = findUsersByUsername(usernames, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findUsersByUsername(retries - 1, usernames, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -969,6 +1059,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListLookupMultipleUsersLookupResponse listGetFollowers(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        ListLookupMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listGetFollowers(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1145,6 +1253,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListLookupMultipleUsersLookupResponse listGetMembers(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
+        ListLookupMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listGetMembers(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns user objects that are members of a List by the provided List ID
      * Returns a list of users that are members of a List by the provided List ID
@@ -1301,6 +1427,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericMultipleUsersLookupResponse tweetsIdLikingUsers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        GenericMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = tweetsIdLikingUsers(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetsIdLikingUsers(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns user objects that have liked the provided Tweet ID
      * Returns a list of users that have liked the provided Tweet ID
@@ -1451,6 +1595,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        GenericMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = tweetsIdRetweetingUsers(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return tweetsIdRetweetingUsers(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns user objects that have retweeted the provided Tweet ID
      * Returns a list of users that have retweeted the provided Tweet ID
@@ -1589,6 +1751,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersBlockingMutationResponse usersIdBlock(Integer retries, UsersIdBlockRequest usersIdBlockRequest, String id) throws ApiException {
+        UsersBlockingMutationResponse localVarResp;
+        try{
+          localVarResp = usersIdBlock(usersIdBlockRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdBlock(retries - 1, usersIdBlockRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1739,6 +1919,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericMultipleUsersLookupResponse usersIdBlocking(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        GenericMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = usersIdBlocking(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdBlocking(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns user objects that are blocked by provided user ID
      * Returns a list of users that are blocked by the provided user ID
@@ -1877,6 +2075,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersFollowingCreateResponse usersIdFollow(Integer retries, UsersIdFollowRequest usersIdFollowRequest, String id) throws ApiException {
+        UsersFollowingCreateResponse localVarResp;
+        try{
+          localVarResp = usersIdFollow(usersIdFollowRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdFollow(retries - 1, usersIdFollowRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2025,6 +2241,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericMultipleUsersLookupResponse usersIdFollowers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        GenericMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = usersIdFollowers(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdFollowers(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2177,6 +2411,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersFollowingLookupResponse usersIdFollowing(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        UsersFollowingLookupResponse localVarResp;
+        try{
+          localVarResp = usersIdFollowing(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdFollowing(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Following by User ID
      * Returns a list of users that are being followed by the provided user ID
@@ -2315,6 +2567,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersMutingMutationResponse usersIdMute(Integer retries, UsersIdMuteRequest usersIdMuteRequest, String id) throws ApiException {
+        UsersMutingMutationResponse localVarResp;
+        try{
+          localVarResp = usersIdMute(usersIdMuteRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdMute(retries - 1, usersIdMuteRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2465,6 +2735,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public GenericMultipleUsersLookupResponse usersIdMuting(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
+        GenericMultipleUsersLookupResponse localVarResp;
+        try{
+          localVarResp = usersIdMuting(id, maxResults, paginationToken);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdMuting(retries - 1, id, maxResults, paginationToken);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Returns user objects that are muted by the provided user ID
      * Returns a list of users that are muted by the provided user ID
@@ -2611,6 +2899,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersBlockingMutationResponse usersIdUnblock(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
+        UsersBlockingMutationResponse localVarResp;
+        try{
+          localVarResp = usersIdUnblock(sourceUserId, targetUserId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdUnblock(retries - 1, sourceUserId, targetUserId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Unblock User by User ID
      * Causes the source user to unblock the target user. The source user must match the user context authorizing the request
@@ -2755,6 +3061,24 @@ public class UsersApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersFollowingDeleteResponse usersIdUnfollow(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
+        UsersFollowingDeleteResponse localVarResp;
+        try{
+          localVarResp = usersIdUnfollow(sourceUserId, targetUserId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdUnfollow(retries - 1, sourceUserId, targetUserId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Unfollow User
      * Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
@@ -2897,6 +3221,24 @@ public class UsersApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public UsersMutingMutationResponse usersIdUnmute(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
+        UsersMutingMutationResponse localVarResp;
+        try{
+          localVarResp = usersIdUnmute(sourceUserId, targetUserId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return usersIdUnmute(retries - 1, sourceUserId, targetUserId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**

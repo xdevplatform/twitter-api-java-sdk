@@ -232,7 +232,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("twitter-api-java-sdk/1.1.1");
+        setUserAgent("twitter-api-java-sdk/1.1.2");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -1058,7 +1058,7 @@ public class ApiClient {
         try {
              Response response = call.execute();
              if (!response.isSuccessful()) {
-                 throw new ApiException(response.code(), response.message());
+                 throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), null);
              }
              if (response.body() == null) {
                  return null;

@@ -24,6 +24,9 @@ package com.twitter.clientlib.api;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import java.util.Calendar;
+import java.util.List;
+
 import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
 
@@ -44,6 +47,39 @@ public class ApiCommon {
 
   protected boolean isOAUth2AutoRefreshToken() {
     return localVarApiClient.isOAUth2AutoRefreshToken();
+  }
+
+  public boolean handleRateLimit(ApiException e, Integer retries) throws ApiException {
+    boolean retryCall = false;
+    if (e.getCode() == 429 && retries > 0) {
+      long timeToWait = getTimeToWait(e);
+      try {
+        Thread.sleep(timeToWait);
+      } catch (InterruptedException ex) {
+        ex.printStackTrace();
+      }
+      retryCall = true;
+    }
+    return retryCall;
+  }
+
+  long getTimeToWait(ApiException e) {
+    long timeToWait = 1000;
+
+    if (isRateLimitRemaining(e)) {
+      List<String> xRateLimitReset = e.getResponseHeaders().get("x-rate-limit-reset");
+      if (xRateLimitReset != null && xRateLimitReset.get(0) != null) {
+        timeToWait = Long.parseLong(
+            xRateLimitReset.get(0)) * 1000 - Calendar.getInstance().getTimeInMillis();
+      }
+    }
+    return timeToWait;
+  }
+
+  boolean isRateLimitRemaining(ApiException e) {
+    List<String> xRateLimitRemaining = e.getResponseHeaders().get("x-rate-limit-remaining");
+    return xRateLimitRemaining != null && xRateLimitRemaining.get(0) != null
+        && Long.parseLong(xRateLimitRemaining.get(0)) == 0;
   }
 }
 

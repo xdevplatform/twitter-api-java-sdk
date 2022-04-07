@@ -75,6 +75,11 @@ public class HelloWorldStreaming {
 //         BufferedReader reader = new BufferedReader(new InputStreamReader(streamResult));
 //         String line = reader.readLine();
 //         while (line != null) {
+//           if(line.isEmpty()) {
+//             System.err.println("==> " + line.isEmpty());
+//             line = reader.readLine();
+//             continue;
+//            }
 //           System.out.println(json.getGson().fromJson(line, localVarReturnType).toString());
 //           line = reader.readLine();
 //         }

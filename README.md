@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
 </dependency>
 ```
 
@@ -53,7 +53,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.twitter:twitter-api-java-sdk:1.1.1"
+implementation "com.twitter:twitter-api-java-sdk:1.1.2"
 ```
 
 ### Others
@@ -66,7 +66,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/twitter-api-java-sdk-1.1.1.jar`
+- `target/twitter-api-java-sdk-1.1.2.jar`
 - `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -200,6 +200,28 @@ You can implement the callback `ApiClientCallback.onAfterRefreshToken()` in orde
 
 Check this [example](examples/src/main/java/com/twitter/clientlib/auth/OAuth20RefreshToken.java) of implementing `ApiClientCallback`
 
+
+## Rate limits retry mechanism
+
+
+Everyday many thousands of developers make requests to the Twitter developer platform. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide the reliable and scalable API that our developer community relies on.
+
+Each of our APIs use rate limits in different ways. To learn more about these differences between platforms, please review the specific rate limit pages within our specific API sections.
+
+To check connection limits response will return [three headers](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/handling-disconnections#:~:text=Rate%20limits%20and%20usage). This is useful to understand how many times you can use the rule endpoint, and how many reconnections attempts are allowed for the streaming endpoint.
+
+The Java SDK provides APIs with a build-in retry mechanism to handle the rate limits. In case of getting an http error code 429, the API will check the response headers and will wait until the rate limit is reset.
+
+In order to use the retry mechanism call the APIs with an additional parameter `retries` as a first argument, check the following example:
+
+
+```java
+  int retries = 4;
+  streamResult = apiInstance.tweets().sampleStream(retries, null, tweetFields, null, null, null, null, 0);
+
+```
+  
+Read more about Filtered stream and [rate limits](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/handling-disconnections)
 
 
 ## Documentation for API Endpoints

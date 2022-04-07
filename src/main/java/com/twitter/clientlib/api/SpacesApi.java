@@ -159,6 +159,24 @@ public class SpacesApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleSpaceLookupResponse findSpaceById(Integer retries, String id, Set<String> spaceFields, Set<String> expansions) throws ApiException {
+        SingleSpaceLookupResponse localVarResp;
+        try{
+          localVarResp = findSpaceById(id, spaceFields, expansions);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findSpaceById(retries - 1, id, spaceFields, expansions);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Space lookup by Space ID
      * Returns a variety of information about the Space specified by the requested ID
@@ -312,6 +330,24 @@ public class SpacesApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiSpaceLookupResponse findSpacesByCreatorIds(Integer retries, List<String> userIds, Set<String> spaceFields, Set<String> expansions) throws ApiException {
+        MultiSpaceLookupResponse localVarResp;
+        try{
+          localVarResp = findSpacesByCreatorIds(userIds, spaceFields, expansions);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findSpacesByCreatorIds(retries - 1, userIds, spaceFields, expansions);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Space lookup by their creators
      * Returns a variety of information about the Spaces created by the provided User IDs
@@ -463,6 +499,24 @@ public class SpacesApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiSpaceLookupResponse findSpacesByIds(Integer retries, List<String> ids, Set<String> spaceFields, Set<String> expansions) throws ApiException {
+        MultiSpaceLookupResponse localVarResp;
+        try{
+          localVarResp = findSpacesByIds(ids, spaceFields, expansions);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return findSpacesByIds(retries - 1, ids, spaceFields, expansions);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -630,6 +684,24 @@ public class SpacesApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiSpaceLookupResponse searchSpaces(Integer retries, String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions) throws ApiException {
+        MultiSpaceLookupResponse localVarResp;
+        try{
+          localVarResp = searchSpaces(query, state, maxResults, spaceFields, expansions);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return searchSpaces(retries - 1, query, state, maxResults, spaceFields, expansions);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Search for Spaces
      * Returns Spaces that match the provided query.
@@ -778,6 +850,24 @@ public class SpacesApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiUserLookupResponse spaceBuyers(Integer retries, String id, Set<String> userFields) throws ApiException {
+        MultiUserLookupResponse localVarResp;
+        try{
+          localVarResp = spaceBuyers(id, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return spaceBuyers(retries - 1, id, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Retrieve the list of users who purchased a ticket to the given space
      * Retrieves the list of users who purchased a ticket to the given space
@@ -924,6 +1014,24 @@ public class SpacesApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiTweetLookupResponse spaceTweets(Integer retries, Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
+        MultiTweetLookupResponse localVarResp;
+        try{
+          localVarResp = spaceTweets(maxResults, id, tweetFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return spaceTweets(retries - 1, maxResults, id, tweetFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**

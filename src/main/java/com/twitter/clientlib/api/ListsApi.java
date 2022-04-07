@@ -187,6 +187,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiListResponse getUserListMemberships(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+        MultiListResponse localVarResp;
+        try{
+          localVarResp = getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return getUserListMemberships(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Get a User&#39;s List Memberships
      * Get a User&#39;s List Memberships.
@@ -333,6 +351,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListMemberResponse listAddMember(Integer retries, ListAddMemberRequest listAddMemberRequest, String id) throws ApiException {
+        ListMemberResponse localVarResp;
+        try{
+          localVarResp = listAddMember(listAddMemberRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listAddMember(retries - 1, listAddMemberRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Add a List member
      * Causes a user to become a member of a List.
@@ -461,6 +497,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListCreateResponse listIdCreate(Integer retries, ListCreateRequest listCreateRequest) throws ApiException {
+        ListCreateResponse localVarResp;
+        try{
+          localVarResp = listIdCreate(listCreateRequest);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listIdCreate(retries - 1, listCreateRequest);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -595,6 +649,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListDeleteResponse listIdDelete(Integer retries, String id) throws ApiException {
+        ListDeleteResponse localVarResp;
+        try{
+          localVarResp = listIdDelete(id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listIdDelete(retries - 1, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -749,6 +821,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public SingleListLookupResponse listIdGet(Integer retries, String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+        SingleListLookupResponse localVarResp;
+        try{
+          localVarResp = listIdGet(id, listFields, expansions, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listIdGet(retries - 1, id, listFields, expansions, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * List lookup by List ID
      * Returns a List
@@ -889,6 +979,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListUpdateResponse listIdUpdate(Integer retries, ListUpdateRequest listUpdateRequest, String id) throws ApiException {
+        ListUpdateResponse localVarResp;
+        try{
+          localVarResp = listIdUpdate(listUpdateRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listIdUpdate(retries - 1, listUpdateRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1035,6 +1143,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListMemberResponse listRemoveMember(Integer retries, String id, String userId) throws ApiException {
+        ListMemberResponse localVarResp;
+        try{
+          localVarResp = listRemoveMember(id, userId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listRemoveMember(retries - 1, id, userId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Remove a List member
      * Causes a user to be removed from the members of a List.
@@ -1171,6 +1297,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListFollowedResponse listUserFollow(Integer retries, ListFollowRequest listFollowRequest, String id) throws ApiException {
+        ListFollowedResponse localVarResp;
+        try{
+          localVarResp = listUserFollow(listFollowRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserFollow(retries - 1, listFollowRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1339,6 +1483,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiListResponse listUserOwnedLists(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+        MultiListResponse localVarResp;
+        try{
+          localVarResp = listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserOwnedLists(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Get a User&#39;s Owned Lists
      * Get a User&#39;s Owned Lists.
@@ -1483,6 +1645,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListPinnedResponse listUserPin(Integer retries, ListPinRequest listPinRequest, String id) throws ApiException {
+        ListPinnedResponse localVarResp;
+        try{
+          localVarResp = listUserPin(listPinRequest, id);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserPin(retries - 1, listPinRequest, id);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -1639,6 +1819,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiListNoPaginationResponse listUserPinnedLists(Integer retries, String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+        MultiListNoPaginationResponse localVarResp;
+        try{
+          localVarResp = listUserPinnedLists(id, listFields, expansions, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserPinnedLists(retries - 1, id, listFields, expansions, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Get a User&#39;s Pinned Lists
      * Get a User&#39;s Pinned Lists.
@@ -1787,6 +1985,24 @@ public class ListsApi extends ApiCommon {
         return localVarResp != null ? localVarResp.getData() : null;
     }
 
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListFollowedResponse listUserUnfollow(Integer retries, String id, String listId) throws ApiException {
+        ListFollowedResponse localVarResp;
+        try{
+          localVarResp = listUserUnfollow(id, listId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserUnfollow(retries - 1, id, listId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
     /**
      * Unfollow a List
      * Causes a user to unfollow a List.
@@ -1929,6 +2145,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public ListPinnedResponse listUserUnpin(Integer retries, String id, String listId) throws ApiException {
+        ListPinnedResponse localVarResp;
+        try{
+          localVarResp = listUserUnpin(id, listId);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return listUserUnpin(retries - 1, id, listId);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
@@ -2095,6 +2329,24 @@ public class ListsApi extends ApiCommon {
           }
         }
         return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public MultiListResponse userFollowedLists(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+        MultiListResponse localVarResp;
+        try{
+          localVarResp = userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return userFollowedLists(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
     }
 
     /**
