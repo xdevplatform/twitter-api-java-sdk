@@ -80,7 +80,7 @@ public class ApiTweetBearerTester extends ApiTester {
   }
 
 
-  /* @Test
+  @Test
   public void getRulesAllTest() throws ApiException {
     GetRulesResponse result = apiInstance.tweets().getRules(null, null, null);
     assertNotNull(result.getData());
@@ -90,7 +90,7 @@ public class ApiTweetBearerTester extends ApiTester {
     assertNotNull(result.getMeta());
     assertNotNull(result.getMeta().getSent());
     assertTrue(result.getMeta().getResultCount() > 0);
-  } */
+  }
 
   @Test
   public void addOrDeleteRulesAddTest() throws ApiException {

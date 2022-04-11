@@ -66,6 +66,10 @@ public class RulesResponseMetadata {
   @SerializedName(SERIALIZED_NAME_SUMMARY)
   private RulesRequestSummary summary;
 
+  public static final String SERIALIZED_NAME_RESULT_COUNT = "result_count";
+  @SerializedName(SERIALIZED_NAME_RESULT_COUNT)
+  private Integer resultCount;
+
   public RulesResponseMetadata() { 
   }
 
@@ -115,6 +119,29 @@ public class RulesResponseMetadata {
   }
 
 
+  public RulesResponseMetadata resultCount(Integer resultCount) {
+    
+    this.resultCount = resultCount;
+    return this;
+  }
+
+   /**
+   * The number of rules results returned in this response
+   * @return resultCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The number of rules results returned in this response")
+
+  public Integer getResultCount() {
+    return resultCount;
+  }
+
+
+  public void setResultCount(Integer resultCount) {
+    this.resultCount = resultCount;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -125,12 +152,13 @@ public class RulesResponseMetadata {
     }
     RulesResponseMetadata rulesResponseMetadata = (RulesResponseMetadata) o;
     return Objects.equals(this.sent, rulesResponseMetadata.sent) &&
-        Objects.equals(this.summary, rulesResponseMetadata.summary);
+        Objects.equals(this.summary, rulesResponseMetadata.summary) &&
+        Objects.equals(this.resultCount, rulesResponseMetadata.resultCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sent, summary);
+    return Objects.hash(sent, summary, resultCount);
   }
 
   @Override
@@ -139,6 +167,7 @@ public class RulesResponseMetadata {
     sb.append("class RulesResponseMetadata {\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
+    sb.append("    resultCount: ").append(toIndentedString(resultCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -163,6 +192,7 @@ public class RulesResponseMetadata {
     openapiFields = new HashSet<String>();
     openapiFields.add("sent");
     openapiFields.add("summary");
+    openapiFields.add("result_count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

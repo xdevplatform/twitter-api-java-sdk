@@ -66,4 +66,12 @@ public class RulesResponseMetadataTest {
         // TODO: test summary
     }
 
+    /**
+     * Test the property 'resultCount'
+     */
+    @Test
+    public void resultCountTest() {
+        // TODO: test resultCount
+    }
+
 }
