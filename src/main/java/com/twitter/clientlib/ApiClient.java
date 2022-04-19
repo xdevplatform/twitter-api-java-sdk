@@ -223,7 +223,9 @@ public class ApiClient {
             builder.addInterceptor(interceptor);
         }
 
-        httpClient = builder.build();
+        httpClient = builder.connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS).build();
     }
 
     private void init() {
@@ -232,7 +234,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("twitter-api-java-sdk/1.1.3");
+        setUserAgent("twitter-api-java-sdk/1.1.4");
 
         authentications = new HashMap<String, Authentication>();
     }
