@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.1.3</version>
+  <version>1.1.4</version>
 </dependency>
 ```
 
@@ -53,7 +53,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.twitter:twitter-api-java-sdk:1.1.3"
+implementation "com.twitter:twitter-api-java-sdk:1.1.4"
 ```
 
 ### Others
@@ -66,7 +66,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/twitter-api-java-sdk-1.1.3.jar`
+- `target/twitter-api-java-sdk-1.1.4.jar`
 - `target/lib/*.jar`
 
 ## Twitter Credentials
