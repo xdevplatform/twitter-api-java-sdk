@@ -766,6 +766,7 @@ public class JSON {
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.MentionFields.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.ModelList.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.MultiComplianceJobResponse.CustomTypeAdapterFactory())
+            .registerTypeAdapterFactory(new com.twitter.clientlib.model.MultiComplianceJobResponseMeta.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.MultiListNoPaginationResponse.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.MultiListNoPaginationResponseMeta.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.MultiListResponse.CustomTypeAdapterFactory())
@@ -864,6 +865,7 @@ public class JSON {
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.VideoAllOfOrganicMetrics.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.VideoAllOfPromotedMetrics.CustomTypeAdapterFactory())
             .registerTypeAdapterFactory(new com.twitter.clientlib.model.VideoAllOfPublicMetrics.CustomTypeAdapterFactory())
+            .registerTypeAdapterFactory(new com.twitter.clientlib.model.VideoAllOfVariants.CustomTypeAdapterFactory())
             .create();
     }
 

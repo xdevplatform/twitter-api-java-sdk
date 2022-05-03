@@ -38,10 +38,13 @@ import com.twitter.clientlib.model.VideoAllOfNonPublicMetrics;
 import com.twitter.clientlib.model.VideoAllOfOrganicMetrics;
 import com.twitter.clientlib.model.VideoAllOfPromotedMetrics;
 import com.twitter.clientlib.model.VideoAllOfPublicMetrics;
+import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,6 +58,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -74,6 +78,10 @@ public class Video extends Media {
   public static final String SERIALIZED_NAME_DURATION_MS = "duration_ms";
   @SerializedName(SERIALIZED_NAME_DURATION_MS)
   private Integer durationMs;
+
+  public static final String SERIALIZED_NAME_VARIANTS = "variants";
+  @SerializedName(SERIALIZED_NAME_VARIANTS)
+  private List<VideoAllOfVariants> variants = null;
 
   public static final String SERIALIZED_NAME_PUBLIC_METRICS = "public_metrics";
   @SerializedName(SERIALIZED_NAME_PUBLIC_METRICS)
@@ -138,6 +146,37 @@ public class Video extends Media {
 
   public void setDurationMs(Integer durationMs) {
     this.durationMs = durationMs;
+  }
+
+
+  public Video variants(List<VideoAllOfVariants> variants) {
+    
+    this.variants = variants;
+    return this;
+  }
+
+  public Video addVariantsItem(VideoAllOfVariants variantsItem) {
+    if (this.variants == null) {
+      this.variants = new ArrayList<>();
+    }
+    this.variants.add(variantsItem);
+    return this;
+  }
+
+   /**
+   * An array of all available variants of the media
+   * @return variants
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of all available variants of the media")
+
+  public List<VideoAllOfVariants> getVariants() {
+    return variants;
+  }
+
+
+  public void setVariants(List<VideoAllOfVariants> variants) {
+    this.variants = variants;
   }
 
 
@@ -233,6 +272,7 @@ public class Video extends Media {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -244,6 +284,7 @@ public class Video extends Media {
     Video video = (Video) o;
     return Objects.equals(this.previewImageUrl, video.previewImageUrl) &&
         Objects.equals(this.durationMs, video.durationMs) &&
+        Objects.equals(this.variants, video.variants) &&
         Objects.equals(this.publicMetrics, video.publicMetrics) &&
         Objects.equals(this.nonPublicMetrics, video.nonPublicMetrics) &&
         Objects.equals(this.organicMetrics, video.organicMetrics) &&
@@ -253,7 +294,7 @@ public class Video extends Media {
 
   @Override
   public int hashCode() {
-    return Objects.hash(previewImageUrl, durationMs, publicMetrics, nonPublicMetrics, organicMetrics, promotedMetrics, super.hashCode());
+    return Objects.hash(previewImageUrl, durationMs, variants, publicMetrics, nonPublicMetrics, organicMetrics, promotedMetrics, super.hashCode());
   }
 
   @Override
@@ -263,6 +304,7 @@ public class Video extends Media {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    previewImageUrl: ").append(toIndentedString(previewImageUrl)).append("\n");
     sb.append("    durationMs: ").append(toIndentedString(durationMs)).append("\n");
+    sb.append("    variants: ").append(toIndentedString(variants)).append("\n");
     sb.append("    publicMetrics: ").append(toIndentedString(publicMetrics)).append("\n");
     sb.append("    nonPublicMetrics: ").append(toIndentedString(nonPublicMetrics)).append("\n");
     sb.append("    organicMetrics: ").append(toIndentedString(organicMetrics)).append("\n");
@@ -295,6 +337,7 @@ public class Video extends Media {
     openapiFields.add("width");
     openapiFields.add("preview_image_url");
     openapiFields.add("duration_ms");
+    openapiFields.add("variants");
     openapiFields.add("public_metrics");
     openapiFields.add("non_public_metrics");
     openapiFields.add("organic_metrics");
@@ -312,20 +355,14 @@ public class Video extends Media {
   * @throws IOException if the JSON Object is invalid with respect to Video
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (Video.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Video is not found in the empty JSON string", Video.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!Video.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Video` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (Video.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in Video is not found in the empty JSON string", Video.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Video.openapiRequiredFields) {

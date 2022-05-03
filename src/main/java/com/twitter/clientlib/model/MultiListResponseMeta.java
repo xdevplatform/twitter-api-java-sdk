@@ -45,6 +45,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -141,6 +142,7 @@ public class MultiListResponseMeta {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -204,19 +206,19 @@ public class MultiListResponseMeta {
   * @throws IOException if the JSON Object is invalid with respect to MultiListResponseMeta
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MultiListResponseMeta.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MultiListResponseMeta is not found in the empty JSON string", MultiListResponseMeta.openapiRequiredFields.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (MultiListResponseMeta.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in MultiListResponseMeta is not found in the empty JSON string", MultiListResponseMeta.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      if (jsonObj.get("previous_token") != null && !jsonObj.get("previous_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `previous_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("previous_token").toString()));
       }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!MultiListResponseMeta.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MultiListResponseMeta` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+      if (jsonObj.get("next_token") != null && !jsonObj.get("next_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `next_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("next_token").toString()));
       }
   }
 

@@ -6,7 +6,7 @@ You can find examples of using the SDK under the [examples/](examples/) director
 
 **Note: Only Twitter API V2 is supported**
 
-
+- API version: 2.42
 
 Twitter API v2 available endpoints
 
@@ -16,9 +16,8 @@ Twitter API v2 available endpoints
 ## Requirements
 
 Building the API client library requires:
-
 1. Java 1.8+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -44,7 +43,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.1.4</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -53,7 +52,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.twitter:twitter-api-java-sdk:1.1.4"
+repositories {
+mavenCentral()     // Needed if the 'twitter-api-java-sdk' jar has been published to maven central.
+mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been published to the local maven repo.
+}
+
+dependencies {
+implementation "com.twitter:twitter-api-java-sdk:1.2.0"
+}
 ```
 
 ### Others
@@ -66,8 +72,8 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/twitter-api-java-sdk-1.1.4.jar`
-- `target/lib/*.jar`
+* `target/twitter-api-java-sdk-1.2.0.jar`
+* `target/lib/*.jar`
 
 ## Twitter Credentials
 
@@ -89,20 +95,10 @@ TWITTER_OAUTH2_IS_AUTO_REFRESH_TOKEN - default value is `false`
 
 TWITTER_BEARER_TOKEN
 
-* OAuth 1.0a
-
-TWITTER_CONSUMER_KEY
-
-TWITTER_CONSUMER_SECRET
-
-TWITTER_TOKEN
-
-TWITTER_TOKEN_SECRET
-
 
 
 You can use the following objects in order to set the credentials:
-`TwitterCredentialsOAuth2`, `TwitterCredentialsBearer` & `TwitterCredentialsOAuth1`.
+`TwitterCredentialsOAuth2` & `TwitterCredentialsBearer`.
 
 
 ```java
@@ -121,7 +117,7 @@ Check the `security` tag of the required APIs in https://api.twitter.com/2/opena
 
 ## Getting Started
 
-Please follow the [installation](#installation) instructions and execute the following Java code:
+Please follow the [installation](#installation) instruction and execute the following Java code:
 
 ```java
 
@@ -137,7 +133,7 @@ public class TwitterApiExample {
   public static void main(String[] args) {
     /**
      * Set the credentials for the required APIs.
-     * The Java SDK supports TwitterCredentialsOAuth2, TwitterCredentialsBearer & TwitterCredentialsOAuth1.
+     * The Java SDK supports TwitterCredentialsOAuth2 & TwitterCredentialsBearer.
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
@@ -390,6 +386,7 @@ Class | Method | HTTP request | Description
  - [MentionFields](docs/MentionFields.md)
  - [ModelList](docs/ModelList.md)
  - [MultiComplianceJobResponse](docs/MultiComplianceJobResponse.md)
+ - [MultiComplianceJobResponseMeta](docs/MultiComplianceJobResponseMeta.md)
  - [MultiListNoPaginationResponse](docs/MultiListNoPaginationResponse.md)
  - [MultiListNoPaginationResponseMeta](docs/MultiListNoPaginationResponseMeta.md)
  - [MultiListResponse](docs/MultiListResponse.md)
@@ -491,12 +488,7 @@ Class | Method | HTTP request | Description
  - [VideoAllOfOrganicMetrics](docs/VideoAllOfOrganicMetrics.md)
  - [VideoAllOfPromotedMetrics](docs/VideoAllOfPromotedMetrics.md)
  - [VideoAllOfPublicMetrics](docs/VideoAllOfPublicMetrics.md)
-
-
-
-
-
-
+ - [VideoAllOfVariants](docs/VideoAllOfVariants.md)
 
 
 

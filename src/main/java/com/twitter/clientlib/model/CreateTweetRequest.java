@@ -49,6 +49,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -354,6 +355,7 @@ public class CreateTweetRequest {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -435,19 +437,22 @@ public class CreateTweetRequest {
   * @throws IOException if the JSON Object is invalid with respect to CreateTweetRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateTweetRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequest is not found in the empty JSON string", CreateTweetRequest.openapiRequiredFields.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (CreateTweetRequest.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequest is not found in the empty JSON string", CreateTweetRequest.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      if (jsonObj.get("text") != null && !jsonObj.get("text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
       }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateTweetRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateTweetRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+      if (jsonObj.get("direct_message_deep_link") != null && !jsonObj.get("direct_message_deep_link").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `direct_message_deep_link` to be a primitive type in the JSON string but got `%s`", jsonObj.get("direct_message_deep_link").toString()));
+      }
+      if (jsonObj.get("quote_tweet_id") != null && !jsonObj.get("quote_tweet_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `quote_tweet_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("quote_tweet_id").toString()));
       }
       // validate the optional field `reply`
       if (jsonObj.getAsJsonObject("reply") != null) {
@@ -460,6 +465,9 @@ public class CreateTweetRequest {
       // validate the optional field `poll`
       if (jsonObj.getAsJsonObject("poll") != null) {
         CreateTweetRequestPoll.validateJsonObject(jsonObj.getAsJsonObject("poll"));
+      }
+      if (jsonObj.get("reply_settings") != null && !jsonObj.get("reply_settings").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `reply_settings` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reply_settings").toString()));
       }
       // validate the optional field `geo`
       if (jsonObj.getAsJsonObject("geo") != null) {

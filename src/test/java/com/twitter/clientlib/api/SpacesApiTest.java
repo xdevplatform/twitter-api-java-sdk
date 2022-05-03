@@ -31,8 +31,8 @@ import com.twitter.clientlib.model.MultiUserLookupResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
 import com.twitter.clientlib.model.SingleSpaceLookupResponse;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ import java.io.InputStream;
 /**
  * API tests for SpacesApi
  */
-@Ignore
+@Disabled
 public class SpacesApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi();
@@ -54,8 +54,7 @@ public class SpacesApiTest {
      *
      * Returns a variety of information about the Space specified by the requested ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findSpaceByIdTest() throws ApiException {
@@ -65,14 +64,14 @@ public class SpacesApiTest {
                 SingleSpaceLookupResponse response = apiInstance.spaces().findSpaceById(id, spaceFields, expansions);
         // TODO: test validations
     }
-    
+
+
     /**
      * Space lookup by their creators
      *
      * Returns a variety of information about the Spaces created by the provided User IDs
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findSpacesByCreatorIdsTest() throws ApiException {
@@ -82,14 +81,14 @@ public class SpacesApiTest {
                 MultiSpaceLookupResponse response = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions);
         // TODO: test validations
     }
-    
+
+
     /**
      * Space lookup up Space IDs
      *
      * Returns a variety of information about the Spaces specified by the requested IDs
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findSpacesByIdsTest() throws ApiException {
@@ -99,14 +98,14 @@ public class SpacesApiTest {
                 MultiSpaceLookupResponse response = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions);
         // TODO: test validations
     }
-    
+
+
     /**
      * Search for Spaces
      *
      * Returns Spaces that match the provided query.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void searchSpacesTest() throws ApiException {
@@ -118,14 +117,14 @@ public class SpacesApiTest {
                 MultiSpaceLookupResponse response = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions);
         // TODO: test validations
     }
-    
+
+
     /**
      * Retrieve the list of users who purchased a ticket to the given space
      *
      * Retrieves the list of users who purchased a ticket to the given space
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceBuyersTest() throws ApiException {
@@ -134,14 +133,14 @@ public class SpacesApiTest {
                 MultiUserLookupResponse response = apiInstance.spaces().spaceBuyers(id, userFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Retrieve tweets from a Space
      *
      * Retrieves tweets shared in the specified space
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceTweetsTest() throws ApiException {
@@ -151,5 +150,5 @@ public class SpacesApiTest {
                 MultiTweetLookupResponse response = apiInstance.spaces().spaceTweets(maxResults, id, tweetFields);
         // TODO: test validations
     }
-    
+
 }

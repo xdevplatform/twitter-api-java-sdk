@@ -54,8 +54,8 @@ import com.twitter.clientlib.model.UsersLikesDeleteResponse;
 import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
 import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
 import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +66,7 @@ import java.io.InputStream;
 /**
  * API tests for TweetsApi
  */
-@Ignore
+@Disabled
 public class TweetsApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi();
@@ -77,8 +77,7 @@ public class TweetsApiTest {
      *
      * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void addOrDeleteRulesTest() throws ApiException {
@@ -87,14 +86,14 @@ public class TweetsApiTest {
                 AddOrDeleteRulesResponse response = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest, dryRun);
         // TODO: test validations
     }
-    
+
+
     /**
      * Creation of a Tweet
      *
      * Causes the user to create a tweet under the authorized account.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void createTweetTest() throws ApiException {
@@ -102,14 +101,14 @@ public class TweetsApiTest {
                 TweetCreateResponse response = apiInstance.tweets().createTweet(createTweetRequest);
         // TODO: test validations
     }
-    
+
+
     /**
      * Tweet delete by Tweet ID
      *
      * Delete specified Tweet (in the path) by ID.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void deleteTweetByIdTest() throws ApiException {
@@ -117,14 +116,14 @@ public class TweetsApiTest {
                 TweetDeleteResponse response = apiInstance.tweets().deleteTweetById(id);
         // TODO: test validations
     }
-    
+
+
     /**
      * Tweet lookup by Tweet ID
      *
      * Returns a variety of information about the Tweet specified by the requested ID.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findTweetByIdTest() throws ApiException {
@@ -138,14 +137,14 @@ public class TweetsApiTest {
                 SingleTweetLookupResponse response = apiInstance.tweets().findTweetById(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Tweet lookup by Tweet IDs
      *
      * Returns a variety of information about the Tweet specified by the requested ID.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findTweetsByIdTest() throws ApiException {
@@ -159,36 +158,37 @@ public class TweetsApiTest {
                 MultiTweetLookupResponse response = apiInstance.tweets().findTweetsById(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Retrieve tweets that quote a tweet.
      *
      * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void findTweetsThatQuoteATweetTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
+        Set<String> exclude = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
         Set<String> userFields = null;
         Set<String> mediaFields = null;
         Set<String> placeFields = null;
         Set<String> pollFields = null;
-                QuoteTweetLookupResponse response = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+                QuoteTweetLookupResponse response = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Rules lookup
      *
      * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void getRulesTest() throws ApiException {
@@ -198,14 +198,14 @@ public class TweetsApiTest {
                 GetRulesResponse response = apiInstance.tweets().getRules(ids, maxResults, paginationToken);
         // TODO: test validations
     }
-    
+
+
     /**
      * Hide replies
      *
      * Hides or unhides a reply to an owned conversation.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void hideReplyByIdTest() throws ApiException {
@@ -214,14 +214,14 @@ public class TweetsApiTest {
                 HideReplyByIdResponse response = apiInstance.tweets().hideReplyById(hideReplyByIdRequest, id);
         // TODO: test validations
     }
-    
+
+
     /**
      * List Tweets timeline by List ID
      *
      * Returns a list of Tweets associated with the provided List ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void listsIdTweetsTest() throws ApiException {
@@ -237,14 +237,14 @@ public class TweetsApiTest {
                 ListsIdTweetsResponse response = apiInstance.tweets().listsIdTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Sample stream
      *
      * Streams a deterministic 1% of public Tweets.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void sampleStreamTest() throws ApiException {
@@ -258,14 +258,14 @@ public class TweetsApiTest {
                 InputStream response = apiInstance.tweets().sampleStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
         // TODO: test validations
     }
-    
+
+
     /**
      * Filtered stream
      *
      * Streams Tweets matching the stream&#39;s active rule set.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void searchStreamTest() throws ApiException {
@@ -279,14 +279,14 @@ public class TweetsApiTest {
                 InputStream response = apiInstance.tweets().searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
         // TODO: test validations
     }
-    
+
+
     /**
      * Retrieve the list of users who purchased a ticket to the given space
      *
      * Retrieves the list of users who purchased a ticket to the given space
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceBuyersTest() throws ApiException {
@@ -295,14 +295,14 @@ public class TweetsApiTest {
                 MultiUserLookupResponse response = apiInstance.spaces().spaceBuyers(id, userFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Retrieve tweets from a Space
      *
      * Retrieves tweets shared in the specified space
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceTweetsTest() throws ApiException {
@@ -312,14 +312,14 @@ public class TweetsApiTest {
                 MultiTweetLookupResponse response = apiInstance.spaces().spaceTweets(maxResults, id, tweetFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Full archive search counts
      *
      * Returns Tweet Counts that match a search query.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void tweetCountsFullArchiveSearchTest() throws ApiException {
@@ -334,14 +334,14 @@ public class TweetsApiTest {
                 TweetCountsResponse response = apiInstance.tweets().tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
         // TODO: test validations
     }
-    
+
+
     /**
      * Recent search counts
      *
      * Returns Tweet Counts from the last 7 days that match a search query.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void tweetCountsRecentSearchTest() throws ApiException {
@@ -356,14 +356,14 @@ public class TweetsApiTest {
                 TweetCountsResponse response = apiInstance.tweets().tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
         // TODO: test validations
     }
-    
+
+
     /**
      * Full-archive search
      *
      * Returns Tweets that match a search query.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void tweetsFullarchiveSearchTest() throws ApiException {
@@ -385,14 +385,14 @@ public class TweetsApiTest {
                 TweetSearchResponse response = apiInstance.tweets().tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Recent search
      *
      * Returns Tweets from the last 7 days that match a search query.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void tweetsRecentSearchTest() throws ApiException {
@@ -414,14 +414,14 @@ public class TweetsApiTest {
                 TweetSearchResponse response = apiInstance.tweets().tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Causes the user (in the path) to like the specified tweet
      *
      * Causes the user (in the path) to like the specified tweet. The user in the path must match the user context authorizing the request.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdLikeTest() throws ApiException {
@@ -430,14 +430,14 @@ public class TweetsApiTest {
                 UsersLikesCreateResponse response = apiInstance.tweets().usersIdLike(usersLikesCreateRequest, id);
         // TODO: test validations
     }
-    
+
+
     /**
      * Returns Tweet objects liked by the provided User ID
      *
      * Returns a list of Tweets liked by the provided User ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdLikedTweetsTest() throws ApiException {
@@ -453,14 +453,14 @@ public class TweetsApiTest {
                 UsersIdLikedTweetsResponse response = apiInstance.tweets().usersIdLikedTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * User mention timeline by User ID
      *
      * Returns Tweet objects that mention username associated to the provided User ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdMentionsTest() throws ApiException {
@@ -480,14 +480,14 @@ public class TweetsApiTest {
                 GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Causes the user (in the path) to retweet the specified tweet
      *
      * Causes the user (in the path) to retweet the specified tweet. The user in the path must match the user context authorizing the request.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdRetweetsTest() throws ApiException {
@@ -496,14 +496,14 @@ public class TweetsApiTest {
                 UsersRetweetsCreateResponse response = apiInstance.tweets().usersIdRetweets(usersRetweetsCreateRequest, id);
         // TODO: test validations
     }
-    
+
+
     /**
      * User Tweets timeline by User ID
      *
      * Returns a list of Tweets authored by the provided User ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdTweetsTest() throws ApiException {
@@ -524,14 +524,14 @@ public class TweetsApiTest {
                 GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdTweets(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Causes the user (in the path) to unlike the specified tweet
      *
      * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdUnlikeTest() throws ApiException {
@@ -540,14 +540,14 @@ public class TweetsApiTest {
                 UsersLikesDeleteResponse response = apiInstance.tweets().usersIdUnlike(id, tweetId);
         // TODO: test validations
     }
-    
+
+
     /**
      * Causes the user (in the path) to unretweet the specified tweet
      *
      * Causes the user (in the path) to unretweet the specified tweet. The user must match the user context authorizing the request
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdUnretweetsTest() throws ApiException {
@@ -556,5 +556,5 @@ public class TweetsApiTest {
                 UsersRetweetsDeleteResponse response = apiInstance.tweets().usersIdUnretweets(id, sourceTweetId);
         // TODO: test validations
     }
-    
+
 }

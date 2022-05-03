@@ -48,6 +48,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -96,6 +97,7 @@ public class SingleListLookupResponseIncludes {
   public void setUsers(List<User> users) {
     this.users = users;
   }
+
 
 
   @Override
@@ -155,23 +157,22 @@ public class SingleListLookupResponseIncludes {
   * @throws IOException if the JSON Object is invalid with respect to SingleListLookupResponseIncludes
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (SingleListLookupResponseIncludes.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SingleListLookupResponseIncludes is not found in the empty JSON string", SingleListLookupResponseIncludes.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!SingleListLookupResponseIncludes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SingleListLookupResponseIncludes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (SingleListLookupResponseIncludes.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in SingleListLookupResponseIncludes is not found in the empty JSON string", SingleListLookupResponseIncludes.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
-      // validate the optional field `users` (array)
       if (jsonArrayusers != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("users").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
+        }
+
+        // validate the optional field `users` (array)
         for (int i = 0; i < jsonArrayusers.size(); i++) {
           User.validateJsonObject(jsonArrayusers.get(i).getAsJsonObject());
         };

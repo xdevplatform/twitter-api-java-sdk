@@ -2,27 +2,27 @@
 
 All URIs are relative to *https://api.twitter.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getUserListMemberships**](ListsApi.md#getUserListMemberships) | **GET** /2/users/{id}/list_memberships | Get a User&#39;s List Memberships
-[**listAddMember**](ListsApi.md#listAddMember) | **POST** /2/lists/{id}/members | Add a List member
-[**listIdCreate**](ListsApi.md#listIdCreate) | **POST** /2/lists | Create List
-[**listIdDelete**](ListsApi.md#listIdDelete) | **DELETE** /2/lists/{id} | Delete List
-[**listIdGet**](ListsApi.md#listIdGet) | **GET** /2/lists/{id} | List lookup by List ID
-[**listIdUpdate**](ListsApi.md#listIdUpdate) | **PUT** /2/lists/{id} | Update List
-[**listRemoveMember**](ListsApi.md#listRemoveMember) | **DELETE** /2/lists/{id}/members/{user_id} | Remove a List member
-[**listUserFollow**](ListsApi.md#listUserFollow) | **POST** /2/users/{id}/followed_lists | Follow a List
-[**listUserOwnedLists**](ListsApi.md#listUserOwnedLists) | **GET** /2/users/{id}/owned_lists | Get a User&#39;s Owned Lists
-[**listUserPin**](ListsApi.md#listUserPin) | **POST** /2/users/{id}/pinned_lists | Pin a List
-[**listUserPinnedLists**](ListsApi.md#listUserPinnedLists) | **GET** /2/users/{id}/pinned_lists | Get a User&#39;s Pinned Lists
-[**listUserUnfollow**](ListsApi.md#listUserUnfollow) | **DELETE** /2/users/{id}/followed_lists/{list_id} | Unfollow a List
-[**listUserUnpin**](ListsApi.md#listUserUnpin) | **DELETE** /2/users/{id}/pinned_lists/{list_id} | Unpin a List
-[**userFollowedLists**](ListsApi.md#userFollowedLists) | **GET** /2/users/{id}/followed_lists | Get User&#39;s Followed Lists
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getUserListMemberships**](ListsApi.md#getUserListMemberships) | **GET** /2/users/{id}/list_memberships | Get a User&#39;s List Memberships |
+| [**listAddMember**](ListsApi.md#listAddMember) | **POST** /2/lists/{id}/members | Add a List member |
+| [**listIdCreate**](ListsApi.md#listIdCreate) | **POST** /2/lists | Create List |
+| [**listIdDelete**](ListsApi.md#listIdDelete) | **DELETE** /2/lists/{id} | Delete List |
+| [**listIdGet**](ListsApi.md#listIdGet) | **GET** /2/lists/{id} | List lookup by List ID |
+| [**listIdUpdate**](ListsApi.md#listIdUpdate) | **PUT** /2/lists/{id} | Update List |
+| [**listRemoveMember**](ListsApi.md#listRemoveMember) | **DELETE** /2/lists/{id}/members/{user_id} | Remove a List member |
+| [**listUserFollow**](ListsApi.md#listUserFollow) | **POST** /2/users/{id}/followed_lists | Follow a List |
+| [**listUserOwnedLists**](ListsApi.md#listUserOwnedLists) | **GET** /2/users/{id}/owned_lists | Get a User&#39;s Owned Lists |
+| [**listUserPin**](ListsApi.md#listUserPin) | **POST** /2/users/{id}/pinned_lists | Pin a List |
+| [**listUserPinnedLists**](ListsApi.md#listUserPinnedLists) | **GET** /2/users/{id}/pinned_lists | Get a User&#39;s Pinned Lists |
+| [**listUserUnfollow**](ListsApi.md#listUserUnfollow) | **DELETE** /2/users/{id}/followed_lists/{list_id} | Unfollow a List |
+| [**listUserUnpin**](ListsApi.md#listUserUnpin) | **DELETE** /2/users/{id}/pinned_lists/{list_id} | Unpin a List |
+| [**userFollowedLists**](ListsApi.md#userFollowedLists) | **GET** /2/users/{id}/followed_lists | Get User&#39;s Followed Lists |
 
 
 <a name="getUserListMemberships"></a>
 # **getUserListMemberships**
-> MultiListResponse getUserListMemberships(idmaxResultspaginationTokenlistFieldsexpansionsuserFields)
+> MultiListResponse getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields)
 
 Get a User&#39;s List Memberships
 
@@ -38,7 +38,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -72,19 +71,18 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional]
- **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -97,17 +95,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listAddMember"></a>
 # **listAddMember**
-> ListMemberResponse listAddMember(listAddMemberRequestid)
+> ListMemberResponse listAddMember(listAddMemberRequest, id)
 
 Add a List member
 
@@ -123,7 +121,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -153,15 +150,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **listAddMemberRequest** | [**ListAddMemberRequest**](ListAddMemberRequest.md)|  | [optional]
- **id** | **String**| The ID of the List to add a member |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listAddMemberRequest** | [**ListAddMemberRequest**](ListAddMemberRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the List to add a member | |
 
 ### Return type
 
@@ -174,13 +170,13 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listIdCreate"></a>
 # **listIdCreate**
@@ -200,7 +196,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -229,14 +224,13 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **listCreateRequest** | [**ListCreateRequest**](ListCreateRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listCreateRequest** | [**ListCreateRequest**](ListCreateRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -249,13 +243,13 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listIdDelete"></a>
 # **listIdDelete**
@@ -275,7 +269,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -304,14 +297,13 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the List to delete |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the List to delete | |
 
 ### Return type
 
@@ -324,17 +316,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listIdGet"></a>
 # **listIdGet**
-> SingleListLookupResponse listIdGet(idlistFieldsexpansionsuserFields)
+> SingleListLookupResponse listIdGet(id, listFields, expansions, userFields)
 
 List lookup by List ID
 
@@ -350,7 +342,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -382,17 +373,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the List to get |
- **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the List to get | |
+| **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -405,17 +395,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listIdUpdate"></a>
 # **listIdUpdate**
-> ListUpdateResponse listIdUpdate(listUpdateRequestid)
+> ListUpdateResponse listIdUpdate(listUpdateRequest, id)
 
 Update List
 
@@ -431,7 +421,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -461,15 +450,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **listUpdateRequest** | [**ListUpdateRequest**](ListUpdateRequest.md)|  | [optional]
- **id** | **String**| The ID of the List to modify |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listUpdateRequest** | [**ListUpdateRequest**](ListUpdateRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the List to modify | |
 
 ### Return type
 
@@ -482,17 +470,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listRemoveMember"></a>
 # **listRemoveMember**
-> ListMemberResponse listRemoveMember(iduserId)
+> ListMemberResponse listRemoveMember(id, userId)
 
 Remove a List member
 
@@ -508,7 +496,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -538,15 +525,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the List to remove a member |
- **userId** | **String**| The ID of user that will be removed from the List |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the List to remove a member | |
+| **userId** | **String**| The ID of user that will be removed from the List | |
 
 ### Return type
 
@@ -559,17 +545,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserFollow"></a>
 # **listUserFollow**
-> ListFollowedResponse listUserFollow(listFollowRequestid)
+> ListFollowedResponse listUserFollow(listFollowRequest, id)
 
 Follow a List
 
@@ -585,7 +571,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -615,15 +600,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **listFollowRequest** | [**ListFollowRequest**](ListFollowRequest.md)|  | [optional]
- **id** | **String**| The ID of the authenticated source user that will follow the List |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listFollowRequest** | [**ListFollowRequest**](ListFollowRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the authenticated source user that will follow the List | |
 
 ### Return type
 
@@ -636,17 +620,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserOwnedLists"></a>
 # **listUserOwnedLists**
-> MultiListResponse listUserOwnedLists(idmaxResultspaginationTokenlistFieldsexpansionsuserFields)
+> MultiListResponse listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields)
 
 Get a User&#39;s Owned Lists
 
@@ -662,7 +646,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -696,19 +679,18 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional]
- **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -721,17 +703,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserPin"></a>
 # **listUserPin**
-> ListPinnedResponse listUserPin(listPinRequestid)
+> ListPinnedResponse listUserPin(listPinRequest, id)
 
 Pin a List
 
@@ -747,7 +729,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -777,15 +758,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **listPinRequest** | [**ListPinRequest**](ListPinRequest.md)|  | [optional]
- **id** | **String**| The ID of the authenticated source user that will pin the List |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listPinRequest** | [**ListPinRequest**](ListPinRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the authenticated source user that will pin the List | |
 
 ### Return type
 
@@ -798,17 +778,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserPinnedLists"></a>
 # **listUserPinnedLists**
-> MultiListNoPaginationResponse listUserPinnedLists(idlistFieldsexpansionsuserFields)
+> MultiListNoPaginationResponse listUserPinnedLists(id, listFields, expansions, userFields)
 
 Get a User&#39;s Pinned Lists
 
@@ -824,7 +804,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -856,17 +835,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -879,17 +857,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserUnfollow"></a>
 # **listUserUnfollow**
-> ListFollowedResponse listUserUnfollow(idlistId)
+> ListFollowedResponse listUserUnfollow(id, listId)
 
 Unfollow a List
 
@@ -905,7 +883,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -935,15 +912,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the authenticated source user that will unfollow the List |
- **listId** | **String**| The ID of the List to unfollow |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the authenticated source user that will unfollow the List | |
+| **listId** | **String**| The ID of the List to unfollow | |
 
 ### Return type
 
@@ -956,17 +932,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listUserUnpin"></a>
 # **listUserUnpin**
-> ListPinnedResponse listUserUnpin(idlistId)
+> ListPinnedResponse listUserUnpin(id, listId)
 
 Unpin a List
 
@@ -982,7 +958,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -1012,15 +987,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the authenticated source user that will remove the pinned List |
- **listId** | **String**| The ID of the List to unpin |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the authenticated source user that will remove the pinned List | |
+| **listId** | **String**| The ID of the List to unpin | |
 
 ### Return type
 
@@ -1033,17 +1007,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="userFollowedLists"></a>
 # **userFollowedLists**
-> MultiListResponse userFollowedLists(idmaxResultspaginationTokenlistFieldsexpansionsuserFields)
+> MultiListResponse userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields)
 
 Get User&#39;s Followed Lists
 
@@ -1059,7 +1033,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ListsApi;
@@ -1093,19 +1066,18 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional]
- **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **listFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of List fields to display. | [optional] [enum: created_at, description, follower_count, id, member_count, name, owner_id, private] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: owner_id] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -1118,11 +1090,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **title** | **String** | Title of the page the URL points to. |  [optional]
 **description** | **String** | Description of the URL landing page. |  [optional]
 **images** | [**List&lt;URLImage&gt;**](URLImage.md) |  |  [optional]
+**mediaKey** | **String** | The Media Key identifier for this attachment. |  [optional]
 
 
 

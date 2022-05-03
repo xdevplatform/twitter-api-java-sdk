@@ -45,6 +45,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -87,8 +88,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been viewed.
    * @return impressionCount
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been viewed.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of times this Tweet has been viewed.")
 
   public Integer getImpressionCount() {
     return impressionCount;
@@ -110,8 +111,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been Retweeted.
    * @return retweetCount
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been Retweeted.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of times this Tweet has been Retweeted.")
 
   public Integer getRetweetCount() {
     return retweetCount;
@@ -133,8 +134,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been replied to.
    * @return replyCount
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been replied to.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of times this Tweet has been replied to.")
 
   public Integer getReplyCount() {
     return replyCount;
@@ -156,8 +157,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been liked.
    * @return likeCount
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been liked.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of times this Tweet has been liked.")
 
   public Integer getLikeCount() {
     return likeCount;
@@ -167,6 +168,7 @@ public class TweetOrganicMetrics {
   public void setLikeCount(Integer likeCount) {
     this.likeCount = likeCount;
   }
+
 
 
   @Override
@@ -226,10 +228,6 @@ public class TweetOrganicMetrics {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("impression_count");
-    openapiRequiredFields.add("retweet_count");
-    openapiRequiredFields.add("reply_count");
-    openapiRequiredFields.add("like_count");
   }
 
  /**
@@ -239,27 +237,14 @@ public class TweetOrganicMetrics {
   * @throws IOException if the JSON Object is invalid with respect to TweetOrganicMetrics
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (TweetOrganicMetrics.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in TweetOrganicMetrics is not found in the empty JSON string", TweetOrganicMetrics.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!TweetOrganicMetrics.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TweetOrganicMetrics` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (TweetOrganicMetrics.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetOrganicMetrics is not found in the empty JSON string", TweetOrganicMetrics.openapiRequiredFields.toString()));
+     //   }
+     // }
 
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : TweetOrganicMetrics.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

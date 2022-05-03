@@ -39,7 +39,6 @@ import com.twitter.clientlib.model.SingleTweetLookupResponse;
  * If the API has several options for authentication, the client will use the following order in order to authenticate:
  * 1. If defined use OAuth2 'OAuth2UserToken'
  * 2. If defined use OAuth2 app-only 'BearerToken'
- * 3. If defined use OAuth1 'UserToken'
  */
 public class MultiCredentialTypes {
 

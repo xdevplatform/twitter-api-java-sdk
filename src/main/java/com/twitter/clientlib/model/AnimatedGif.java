@@ -34,10 +34,13 @@ import com.twitter.clientlib.model.AnimatedGifAllOf;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
 import com.twitter.clientlib.model.Video;
+import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,6 +54,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -66,6 +70,10 @@ public class AnimatedGif extends Media {
   public static final String SERIALIZED_NAME_PREVIEW_IMAGE_URL = "preview_image_url";
   @SerializedName(SERIALIZED_NAME_PREVIEW_IMAGE_URL)
   private URI previewImageUrl;
+
+  public static final String SERIALIZED_NAME_VARIANTS = "variants";
+  @SerializedName(SERIALIZED_NAME_VARIANTS)
+  private List<VideoAllOfVariants> variants = null;
 
   public AnimatedGif() { 
     this.type = this.getClass().getSimpleName();
@@ -94,6 +102,38 @@ public class AnimatedGif extends Media {
   }
 
 
+  public AnimatedGif variants(List<VideoAllOfVariants> variants) {
+    
+    this.variants = variants;
+    return this;
+  }
+
+  public AnimatedGif addVariantsItem(VideoAllOfVariants variantsItem) {
+    if (this.variants == null) {
+      this.variants = new ArrayList<>();
+    }
+    this.variants.add(variantsItem);
+    return this;
+  }
+
+   /**
+   * An array of all available variants of the media
+   * @return variants
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of all available variants of the media")
+
+  public List<VideoAllOfVariants> getVariants() {
+    return variants;
+  }
+
+
+  public void setVariants(List<VideoAllOfVariants> variants) {
+    this.variants = variants;
+  }
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -104,12 +144,13 @@ public class AnimatedGif extends Media {
     }
     AnimatedGif animatedGif = (AnimatedGif) o;
     return Objects.equals(this.previewImageUrl, animatedGif.previewImageUrl) &&
+        Objects.equals(this.variants, animatedGif.variants) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(previewImageUrl, super.hashCode());
+    return Objects.hash(previewImageUrl, variants, super.hashCode());
   }
 
   @Override
@@ -118,6 +159,7 @@ public class AnimatedGif extends Media {
     sb.append("class AnimatedGif {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    previewImageUrl: ").append(toIndentedString(previewImageUrl)).append("\n");
+    sb.append("    variants: ").append(toIndentedString(variants)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -145,6 +187,7 @@ public class AnimatedGif extends Media {
     openapiFields.add("height");
     openapiFields.add("width");
     openapiFields.add("preview_image_url");
+    openapiFields.add("variants");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -158,20 +201,14 @@ public class AnimatedGif extends Media {
   * @throws IOException if the JSON Object is invalid with respect to AnimatedGif
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (AnimatedGif.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AnimatedGif is not found in the empty JSON string", AnimatedGif.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!AnimatedGif.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AnimatedGif` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (AnimatedGif.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in AnimatedGif is not found in the empty JSON string", AnimatedGif.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : AnimatedGif.openapiRequiredFields) {

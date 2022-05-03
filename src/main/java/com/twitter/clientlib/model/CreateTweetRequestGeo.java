@@ -45,6 +45,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -86,6 +87,7 @@ public class CreateTweetRequestGeo {
   public void setPlaceId(String placeId) {
     this.placeId = placeId;
   }
+
 
 
   @Override
@@ -145,19 +147,16 @@ public class CreateTweetRequestGeo {
   * @throws IOException if the JSON Object is invalid with respect to CreateTweetRequestGeo
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateTweetRequestGeo.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequestGeo is not found in the empty JSON string", CreateTweetRequestGeo.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateTweetRequestGeo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateTweetRequestGeo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (CreateTweetRequestGeo.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequestGeo is not found in the empty JSON string", CreateTweetRequestGeo.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      if (jsonObj.get("place_id") != null && !jsonObj.get("place_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `place_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("place_id").toString()));
       }
   }
 

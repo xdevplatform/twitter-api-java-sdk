@@ -2,32 +2,32 @@
 
 All URIs are relative to *https://api.twitter.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**findMyUser**](UsersApi.md#findMyUser) | **GET** /2/users/me | User lookup me
-[**findUserById**](UsersApi.md#findUserById) | **GET** /2/users/{id} | User lookup by ID
-[**findUserByUsername**](UsersApi.md#findUserByUsername) | **GET** /2/users/by/username/{username} | User lookup by username
-[**findUsersById**](UsersApi.md#findUsersById) | **GET** /2/users | User lookup by IDs
-[**findUsersByUsername**](UsersApi.md#findUsersByUsername) | **GET** /2/users/by | User lookup by usernames
-[**listGetFollowers**](UsersApi.md#listGetFollowers) | **GET** /2/lists/{id}/followers | Returns user objects that follow a List by the provided List ID
-[**listGetMembers**](UsersApi.md#listGetMembers) | **GET** /2/lists/{id}/members | Returns user objects that are members of a List by the provided List ID
-[**tweetsIdLikingUsers**](UsersApi.md#tweetsIdLikingUsers) | **GET** /2/tweets/{id}/liking_users | Returns user objects that have liked the provided Tweet ID
-[**tweetsIdRetweetingUsers**](UsersApi.md#tweetsIdRetweetingUsers) | **GET** /2/tweets/{id}/retweeted_by | Returns user objects that have retweeted the provided Tweet ID
-[**usersIdBlock**](UsersApi.md#usersIdBlock) | **POST** /2/users/{id}/blocking | Block User by User ID
-[**usersIdBlocking**](UsersApi.md#usersIdBlocking) | **GET** /2/users/{id}/blocking | Returns user objects that are blocked by provided user ID
-[**usersIdFollow**](UsersApi.md#usersIdFollow) | **POST** /2/users/{id}/following | Follow User
-[**usersIdFollowers**](UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Returns user objects that follow the provided user ID
-[**usersIdFollowing**](UsersApi.md#usersIdFollowing) | **GET** /2/users/{id}/following | Following by User ID
-[**usersIdMute**](UsersApi.md#usersIdMute) | **POST** /2/users/{id}/muting | Mute User by User ID
-[**usersIdMuting**](UsersApi.md#usersIdMuting) | **GET** /2/users/{id}/muting | Returns user objects that are muted by the provided user ID
-[**usersIdUnblock**](UsersApi.md#usersIdUnblock) | **DELETE** /2/users/{source_user_id}/blocking/{target_user_id} | Unblock User by User ID
-[**usersIdUnfollow**](UsersApi.md#usersIdUnfollow) | **DELETE** /2/users/{source_user_id}/following/{target_user_id} | Unfollow User
-[**usersIdUnmute**](UsersApi.md#usersIdUnmute) | **DELETE** /2/users/{source_user_id}/muting/{target_user_id} | Unmute User by User ID
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**findMyUser**](UsersApi.md#findMyUser) | **GET** /2/users/me | User lookup me |
+| [**findUserById**](UsersApi.md#findUserById) | **GET** /2/users/{id} | User lookup by ID |
+| [**findUserByUsername**](UsersApi.md#findUserByUsername) | **GET** /2/users/by/username/{username} | User lookup by username |
+| [**findUsersById**](UsersApi.md#findUsersById) | **GET** /2/users | User lookup by IDs |
+| [**findUsersByUsername**](UsersApi.md#findUsersByUsername) | **GET** /2/users/by | User lookup by usernames |
+| [**listGetFollowers**](UsersApi.md#listGetFollowers) | **GET** /2/lists/{id}/followers | Returns user objects that follow a List by the provided List ID |
+| [**listGetMembers**](UsersApi.md#listGetMembers) | **GET** /2/lists/{id}/members | Returns user objects that are members of a List by the provided List ID |
+| [**tweetsIdLikingUsers**](UsersApi.md#tweetsIdLikingUsers) | **GET** /2/tweets/{id}/liking_users | Returns user objects that have liked the provided Tweet ID |
+| [**tweetsIdRetweetingUsers**](UsersApi.md#tweetsIdRetweetingUsers) | **GET** /2/tweets/{id}/retweeted_by | Returns user objects that have retweeted the provided Tweet ID |
+| [**usersIdBlock**](UsersApi.md#usersIdBlock) | **POST** /2/users/{id}/blocking | Block User by User ID |
+| [**usersIdBlocking**](UsersApi.md#usersIdBlocking) | **GET** /2/users/{id}/blocking | Returns user objects that are blocked by provided user ID |
+| [**usersIdFollow**](UsersApi.md#usersIdFollow) | **POST** /2/users/{id}/following | Follow User |
+| [**usersIdFollowers**](UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Returns user objects that follow the provided user ID |
+| [**usersIdFollowing**](UsersApi.md#usersIdFollowing) | **GET** /2/users/{id}/following | Following by User ID |
+| [**usersIdMute**](UsersApi.md#usersIdMute) | **POST** /2/users/{id}/muting | Mute User by User ID |
+| [**usersIdMuting**](UsersApi.md#usersIdMuting) | **GET** /2/users/{id}/muting | Returns user objects that are muted by the provided user ID |
+| [**usersIdUnblock**](UsersApi.md#usersIdUnblock) | **DELETE** /2/users/{source_user_id}/blocking/{target_user_id} | Unblock User by User ID |
+| [**usersIdUnfollow**](UsersApi.md#usersIdUnfollow) | **DELETE** /2/users/{source_user_id}/following/{target_user_id} | Unfollow User |
+| [**usersIdUnmute**](UsersApi.md#usersIdUnmute) | **DELETE** /2/users/{source_user_id}/muting/{target_user_id} | Unmute User by User ID |
 
 
 <a name="findMyUser"></a>
 # **findMyUser**
-> SingleUserLookupResponse findMyUser(expansionstweetFieldsuserFields)
+> SingleUserLookupResponse findMyUser(expansions, tweetFields, userFields)
 
 User lookup me
 
@@ -43,7 +43,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -74,16 +73,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -96,17 +94,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="findUserById"></a>
 # **findUserById**
-> SingleUserLookupResponse findUserById(idexpansionstweetFieldsuserFields)
+> SingleUserLookupResponse findUserById(id, expansions, tweetFields, userFields)
 
 User lookup by ID
 
@@ -122,7 +120,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -154,17 +151,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Required. A User ID. |
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Required. A User ID. | |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -177,17 +173,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="findUserByUsername"></a>
 # **findUserByUsername**
-> SingleUserLookupResponse findUserByUsername(usernameexpansionstweetFieldsuserFields)
+> SingleUserLookupResponse findUserByUsername(username, expansions, tweetFields, userFields)
 
 User lookup by username
 
@@ -203,7 +199,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -235,17 +230,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **username** | **String**| Required. A username. |
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **username** | **String**| Required. A username. | |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -258,17 +252,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="findUsersById"></a>
 # **findUsersById**
-> MultiUserLookupResponse findUsersById(idsexpansionstweetFieldsuserFields)
+> MultiUserLookupResponse findUsersById(ids, expansions, tweetFields, userFields)
 
 User lookup by IDs
 
@@ -284,7 +278,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -316,17 +309,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ids** | [**List&lt;String&gt;**](String.md)| Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. |
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ids** | [**List&lt;String&gt;**](String.md)| Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. | |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -339,17 +331,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="findUsersByUsername"></a>
 # **findUsersByUsername**
-> MultiUserLookupResponse findUsersByUsername(usernamesexpansionstweetFieldsuserFields)
+> MultiUserLookupResponse findUsersByUsername(usernames, expansions, tweetFields, userFields)
 
 User lookup by usernames
 
@@ -365,7 +357,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -397,17 +388,16 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **usernames** | [**List&lt;String&gt;**](String.md)| Required . A list of usernames, comma-separated. You can specify up to 100 usernames. |
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **usernames** | [**List&lt;String&gt;**](String.md)| Required . A list of usernames, comma-separated. You can specify up to 100 usernames. | |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -420,17 +410,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listGetFollowers"></a>
 # **listGetFollowers**
-> ListLookupMultipleUsersLookupResponse listGetFollowers(idmaxResultspaginationTokenexpansionstweetFieldsuserFields)
+> ListLookupMultipleUsersLookupResponse listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields)
 
 Returns user objects that follow a List by the provided List ID
 
@@ -446,7 +436,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -480,19 +469,18 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the List for which to return followers |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the List for which to return followers | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -505,17 +493,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listGetMembers"></a>
 # **listGetMembers**
-> ListLookupMultipleUsersLookupResponse listGetMembers(idmaxResultspaginationTokenexpansionstweetFieldsuserFields)
+> ListLookupMultipleUsersLookupResponse listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields)
 
 Returns user objects that are members of a List by the provided List ID
 
@@ -531,7 +519,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -565,19 +552,18 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the List for which to return members |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional]
- **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id]
- **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings]
- **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the List for which to return members | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
 
 ### Return type
 
@@ -590,17 +576,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="tweetsIdLikingUsers"></a>
 # **tweetsIdLikingUsers**
-> GenericMultipleUsersLookupResponse tweetsIdLikingUsers(idmaxResultspaginationToken)
+> GenericMultipleUsersLookupResponse tweetsIdLikingUsers(id, maxResults, paginationToken)
 
 Returns user objects that have liked the provided Tweet ID
 
@@ -616,7 +602,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -647,16 +632,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the Tweet for which to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the Tweet for which to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
 
 ### Return type
 
@@ -669,17 +653,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="tweetsIdRetweetingUsers"></a>
 # **tweetsIdRetweetingUsers**
-> GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(idmaxResultspaginationToken)
+> GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(id, maxResults, paginationToken)
 
 Returns user objects that have retweeted the provided Tweet ID
 
@@ -695,7 +679,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -726,16 +709,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the Tweet for which to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the Tweet for which to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
 
 ### Return type
 
@@ -748,17 +730,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdBlock"></a>
 # **usersIdBlock**
-> UsersBlockingMutationResponse usersIdBlock(usersIdBlockRequestid)
+> UsersBlockingMutationResponse usersIdBlock(usersIdBlockRequest, id)
 
 Block User by User ID
 
@@ -774,7 +756,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -804,15 +785,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **usersIdBlockRequest** | [**UsersIdBlockRequest**](UsersIdBlockRequest.md)|  | [optional]
- **id** | **String**| The ID of the user that is requesting to block the target user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **usersIdBlockRequest** | [**UsersIdBlockRequest**](UsersIdBlockRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the user that is requesting to block the target user | |
 
 ### Return type
 
@@ -825,17 +805,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdBlocking"></a>
 # **usersIdBlocking**
-> GenericMultipleUsersLookupResponse usersIdBlocking(idmaxResultspaginationToken)
+> GenericMultipleUsersLookupResponse usersIdBlocking(id, maxResults, paginationToken)
 
 Returns user objects that are blocked by provided user ID
 
@@ -851,7 +831,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -882,16 +861,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional]
- **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] |
+| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
 
 ### Return type
 
@@ -904,17 +882,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdFollow"></a>
 # **usersIdFollow**
-> UsersFollowingCreateResponse usersIdFollow(usersIdFollowRequestid)
+> UsersFollowingCreateResponse usersIdFollow(usersIdFollowRequest, id)
 
 Follow User
 
@@ -930,7 +908,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -960,15 +937,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **usersIdFollowRequest** | [**UsersIdFollowRequest**](UsersIdFollowRequest.md)|  | [optional]
- **id** | **String**| The ID of the user that is requesting to follow the target user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **usersIdFollowRequest** | [**UsersIdFollowRequest**](UsersIdFollowRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the user that is requesting to follow the target user | |
 
 ### Return type
 
@@ -981,17 +957,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdFollowers"></a>
 # **usersIdFollowers**
-> GenericMultipleUsersLookupResponse usersIdFollowers(idmaxResultspaginationToken)
+> GenericMultipleUsersLookupResponse usersIdFollowers(id, maxResults, paginationToken)
 
 Returns user objects that follow the provided user ID
 
@@ -1007,7 +983,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1038,16 +1013,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional]
- **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] |
+| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
 
 ### Return type
 
@@ -1060,17 +1034,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdFollowing"></a>
 # **usersIdFollowing**
-> UsersFollowingLookupResponse usersIdFollowing(idmaxResultspaginationToken)
+> UsersFollowingLookupResponse usersIdFollowing(id, maxResults, paginationToken)
 
 Following by User ID
 
@@ -1086,7 +1060,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1117,16 +1090,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional]
- **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] |
+| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
 
 ### Return type
 
@@ -1139,17 +1111,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdMute"></a>
 # **usersIdMute**
-> UsersMutingMutationResponse usersIdMute(usersIdMuteRequestid)
+> UsersMutingMutationResponse usersIdMute(usersIdMuteRequest, id)
 
 Mute User by User ID
 
@@ -1165,7 +1137,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1195,15 +1166,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **usersIdMuteRequest** | [**UsersIdMuteRequest**](UsersIdMuteRequest.md)|  | [optional]
- **id** | **String**| The ID of the user that is requesting to mute the target user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **usersIdMuteRequest** | [**UsersIdMuteRequest**](UsersIdMuteRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the user that is requesting to mute the target user | |
 
 ### Return type
 
@@ -1216,17 +1186,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdMuting"></a>
 # **usersIdMuting**
-> GenericMultipleUsersLookupResponse usersIdMuting(idmaxResultspaginationToken)
+> GenericMultipleUsersLookupResponse usersIdMuting(id, maxResults, paginationToken)
 
 Returns user objects that are muted by the provided user ID
 
@@ -1242,7 +1212,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1273,16 +1242,15 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The ID of the user for whom to return results |
- **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100]
- **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the user for whom to return results | |
+| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
 
 ### Return type
 
@@ -1295,17 +1263,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdUnblock"></a>
 # **usersIdUnblock**
-> UsersBlockingMutationResponse usersIdUnblock(sourceUserIdtargetUserId)
+> UsersBlockingMutationResponse usersIdUnblock(sourceUserId, targetUserId)
 
 Unblock User by User ID
 
@@ -1321,7 +1289,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1351,15 +1318,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sourceUserId** | **String**| The ID of the user that is requesting to unblock the target user |
- **targetUserId** | **String**| The ID of the user that the source user is requesting to unblock |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sourceUserId** | **String**| The ID of the user that is requesting to unblock the target user | |
+| **targetUserId** | **String**| The ID of the user that the source user is requesting to unblock | |
 
 ### Return type
 
@@ -1372,17 +1338,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdUnfollow"></a>
 # **usersIdUnfollow**
-> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserIdtargetUserId)
+> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserId, targetUserId)
 
 Unfollow User
 
@@ -1398,7 +1364,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1428,15 +1393,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sourceUserId** | **String**| The ID of the user that is requesting to unfollow the target user |
- **targetUserId** | **String**| The ID of the user that the source user is requesting to unfollow |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sourceUserId** | **String**| The ID of the user that is requesting to unfollow the target user | |
+| **targetUserId** | **String**| The ID of the user that the source user is requesting to unfollow | |
 
 ### Return type
 
@@ -1449,17 +1413,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="usersIdUnmute"></a>
 # **usersIdUnmute**
-> UsersMutingMutationResponse usersIdUnmute(sourceUserIdtargetUserId)
+> UsersMutingMutationResponse usersIdUnmute(sourceUserId, targetUserId)
 
 Unmute User by User ID
 
@@ -1475,7 +1439,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.UsersApi;
@@ -1505,15 +1468,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sourceUserId** | **String**| The ID of the user that is requesting to unmute the target user |
- **targetUserId** | **String**| The ID of the user that the source user is requesting to unmute |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sourceUserId** | **String**| The ID of the user that is requesting to unmute the target user | |
+| **targetUserId** | **String**| The ID of the user that the source user is requesting to unmute | |
 
 ### Return type
 
@@ -1526,11 +1488,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 

@@ -31,8 +31,8 @@ import com.twitter.clientlib.model.Error;
 import com.twitter.clientlib.model.MultiComplianceJobResponse;
 import com.twitter.clientlib.model.Problem;
 import com.twitter.clientlib.model.SingleComplianceJobResponse;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ import java.io.InputStream;
 /**
  * API tests for ComplianceApi
  */
-@Ignore
+@Disabled
 public class ComplianceApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi();
@@ -54,8 +54,7 @@ public class ComplianceApiTest {
      *
      * Creates a compliance for the given job type
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void createBatchComplianceJobTest() throws ApiException {
@@ -63,14 +62,14 @@ public class ComplianceApiTest {
                 SingleComplianceJobResponse response = apiInstance.compliance().createBatchComplianceJob(createBatchComplianceJobRequest);
         // TODO: test validations
     }
-    
+
+
     /**
      * Get compliance job
      *
      * Returns a single compliance job by ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void getBatchComplianceJobTest() throws ApiException {
@@ -78,14 +77,14 @@ public class ComplianceApiTest {
                 SingleComplianceJobResponse response = apiInstance.compliance().getBatchComplianceJob(id);
         // TODO: test validations
     }
-    
+
+
     /**
      * List compliance jobs
      *
      * Returns recent compliance jobs for a given job type and optional job status
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void listBatchComplianceJobsTest() throws ApiException {
@@ -94,5 +93,5 @@ public class ComplianceApiTest {
                 MultiComplianceJobResponse response = apiInstance.compliance().listBatchComplianceJobs(type, status);
         // TODO: test validations
     }
-    
+
 }

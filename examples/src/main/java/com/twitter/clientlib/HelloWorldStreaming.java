@@ -39,7 +39,7 @@ public class HelloWorldStreaming {
   public static void main(String[] args) {
     /**
      * Set the credentials for the required APIs.
-     * The Java SDK supports TwitterCredentialsOAuth2, TwitterCredentialsBearer & TwitterCredentialsOAuth1.
+     * The Java SDK supports TwitterCredentialsOAuth2 & TwitterCredentialsBearer.
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */

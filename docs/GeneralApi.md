@@ -2,9 +2,9 @@
 
 All URIs are relative to *https://api.twitter.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the open api spec document.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the open api spec document. |
 
 
 <a name="getOpenApiSpec"></a>
@@ -24,7 +24,6 @@ import com.twitter.clientlib.Configuration;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.GeneralApi;
@@ -52,7 +51,6 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
@@ -74,5 +72,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
+| **200** | The request was successful |  -  |
 

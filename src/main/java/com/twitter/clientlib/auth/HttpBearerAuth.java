@@ -22,8 +22,10 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.auth;
 
+import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.Pair;
 
+import java.net.URI;
 import java.util.Map;
 import java.util.List;
 
@@ -55,8 +57,9 @@ public class HttpBearerAuth implements Authentication {
   }
 
   @Override
-  public void applyToParams(String path, String method, List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
-    if(bearerToken == null) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
+                            String payload, String method, URI uri) throws ApiException {
+    if (bearerToken == null) {
       return;
     }
 

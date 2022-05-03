@@ -30,14 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
-import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
-import com.twitter.clientlib.model.AddRulesRequest;
-import com.twitter.clientlib.model.DeleteRulesRequest;
-import com.twitter.clientlib.model.DeleteRulesRequestDelete;
-import com.twitter.clientlib.model.GetRulesResponse;
-import com.twitter.clientlib.model.RuleNoId;
-import com.twitter.clientlib.model.TweetCountsResponse;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

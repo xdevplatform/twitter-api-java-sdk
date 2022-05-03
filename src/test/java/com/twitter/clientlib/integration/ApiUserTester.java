@@ -30,18 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.GenericMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.InvalidRequestProblem;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
-import com.twitter.clientlib.model.SingleUserLookupResponse;
-import com.twitter.clientlib.model.UsersBlockingMutationResponse;
-import com.twitter.clientlib.model.UsersFollowingCreateResponse;
-import com.twitter.clientlib.model.UsersFollowingDeleteResponse;
-import com.twitter.clientlib.model.UsersFollowingLookupResponse;
-import com.twitter.clientlib.model.UsersIdBlockRequest;
-import com.twitter.clientlib.model.UsersIdFollowRequest;
-import com.twitter.clientlib.model.UsersIdMuteRequest;
-import com.twitter.clientlib.model.UsersMutingMutationResponse;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

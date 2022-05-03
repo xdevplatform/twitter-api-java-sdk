@@ -48,6 +48,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -174,6 +175,7 @@ public class Media {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -241,13 +243,13 @@ public class Media {
   * @throws IOException if the JSON Object is invalid with respect to Media
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (Media.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Media is not found in the empty JSON string", Media.openapiRequiredFields.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (Media.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in Media is not found in the empty JSON string", Media.openapiRequiredFields.toString()));
+     //   }
+     // }
 
       String discriminatorValue = jsonObj.get("type").getAsString();
       switch (discriminatorValue) {
@@ -269,7 +271,7 @@ public class Media {
         case "video":
           Video.validateJsonObject(jsonObj);
           break;
-        default: 
+        default:
           throw new IllegalArgumentException(String.format("The value of the `type` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }

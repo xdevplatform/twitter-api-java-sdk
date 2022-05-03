@@ -50,6 +50,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -444,6 +445,7 @@ public class User {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -543,20 +545,14 @@ public class User {
   * @throws IOException if the JSON Object is invalid with respect to User
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (User.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in User is not found in the empty JSON string", User.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!User.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `User` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (User.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in User is not found in the empty JSON string", User.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : User.openapiRequiredFields) {
@@ -564,13 +560,37 @@ public class User {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
+      }
       // validate the optional field `withheld`
       if (jsonObj.getAsJsonObject("withheld") != null) {
         UserWithheld.validateJsonObject(jsonObj.getAsJsonObject("withheld"));
       }
+      if (jsonObj.get("profile_image_url") != null && !jsonObj.get("profile_image_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `profile_image_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profile_image_url").toString()));
+      }
+      if (jsonObj.get("location") != null && !jsonObj.get("location").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `location` to be a primitive type in the JSON string but got `%s`", jsonObj.get("location").toString()));
+      }
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
+      }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       // validate the optional field `entities`
       if (jsonObj.getAsJsonObject("entities") != null) {
         UserEntities.validateJsonObject(jsonObj.getAsJsonObject("entities"));
+      }
+      if (jsonObj.get("pinned_tweet_id") != null && !jsonObj.get("pinned_tweet_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `pinned_tweet_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pinned_tweet_id").toString()));
       }
       // validate the optional field `public_metrics`
       if (jsonObj.getAsJsonObject("public_metrics") != null) {

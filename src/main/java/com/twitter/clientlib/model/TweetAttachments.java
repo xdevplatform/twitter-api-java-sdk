@@ -47,6 +47,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -133,6 +134,7 @@ public class TweetAttachments {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,19 +195,21 @@ public class TweetAttachments {
   * @throws IOException if the JSON Object is invalid with respect to TweetAttachments
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (TweetAttachments.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in TweetAttachments is not found in the empty JSON string", TweetAttachments.openapiRequiredFields.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (TweetAttachments.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetAttachments is not found in the empty JSON string", TweetAttachments.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      // ensure the json data is an array
+      if (jsonObj.get("media_keys") != null && !jsonObj.get("media_keys").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `media_keys` to be an array in the JSON string but got `%s`", jsonObj.get("media_keys").toString()));
       }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!TweetAttachments.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TweetAttachments` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+      // ensure the json data is an array
+      if (jsonObj.get("poll_ids") != null && !jsonObj.get("poll_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `poll_ids` to be an array in the JSON string but got `%s`", jsonObj.get("poll_ids").toString()));
       }
   }
 
