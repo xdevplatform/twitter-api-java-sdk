@@ -50,6 +50,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -152,6 +153,7 @@ public class FilteredStreamingTweetOneOf {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -217,20 +219,14 @@ public class FilteredStreamingTweetOneOf {
   * @throws IOException if the JSON Object is invalid with respect to FilteredStreamingTweetOneOf
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (FilteredStreamingTweetOneOf.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in FilteredStreamingTweetOneOf is not found in the empty JSON string", FilteredStreamingTweetOneOf.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!FilteredStreamingTweetOneOf.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FilteredStreamingTweetOneOf` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (FilteredStreamingTweetOneOf.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in FilteredStreamingTweetOneOf is not found in the empty JSON string", FilteredStreamingTweetOneOf.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : FilteredStreamingTweetOneOf.openapiRequiredFields) {
@@ -243,8 +239,13 @@ public class FilteredStreamingTweetOneOf {
         Tweet.validateJsonObject(jsonObj.getAsJsonObject("data"));
       }
       JsonArray jsonArraymatchingRules = jsonObj.getAsJsonArray("matching_rules");
-      // validate the optional field `matching_rules` (array)
       if (jsonArraymatchingRules != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("matching_rules").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `matching_rules` to be an array in the JSON string but got `%s`", jsonObj.get("matching_rules").toString()));
+        }
+
+        // validate the optional field `matching_rules` (array)
         for (int i = 0; i < jsonArraymatchingRules.size(); i++) {
           FilteredStreamingTweetOneOfMatchingRules.validateJsonObject(jsonArraymatchingRules.get(i).getAsJsonObject());
         };

@@ -32,11 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.InvalidRequestProblem;
-import com.twitter.clientlib.model.MultiSpaceLookupResponse;
-import com.twitter.clientlib.model.MultiTweetLookupResponse;
-import com.twitter.clientlib.model.SingleSpaceLookupResponse;
-import com.twitter.clientlib.model.Space;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

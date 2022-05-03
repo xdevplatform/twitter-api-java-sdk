@@ -49,6 +49,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -604,6 +605,7 @@ public class Space {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -711,20 +713,14 @@ public class Space {
   * @throws IOException if the JSON Object is invalid with respect to Space
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (Space.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Space is not found in the empty JSON string", Space.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!Space.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Space` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (Space.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in Space is not found in the empty JSON string", Space.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Space.openapiRequiredFields) {
@@ -732,9 +728,41 @@ public class Space {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("state") != null && !jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
+      }
+      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      // ensure the json data is an array
+      if (jsonObj.get("host_ids") != null && !jsonObj.get("host_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `host_ids` to be an array in the JSON string but got `%s`", jsonObj.get("host_ids").toString()));
+      }
+      if (jsonObj.get("creator_id") != null && !jsonObj.get("creator_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creator_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creator_id").toString()));
+      }
+      if (jsonObj.get("lang") != null && !jsonObj.get("lang").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lang` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lang").toString()));
+      }
+      // ensure the json data is an array
+      if (jsonObj.get("speaker_ids") != null && !jsonObj.get("speaker_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `speaker_ids` to be an array in the JSON string but got `%s`", jsonObj.get("speaker_ids").toString()));
+      }
+      // ensure the json data is an array
+      if (jsonObj.get("invited_user_ids") != null && !jsonObj.get("invited_user_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invited_user_ids` to be an array in the JSON string but got `%s`", jsonObj.get("invited_user_ids").toString()));
+      }
       JsonArray jsonArraytopics = jsonObj.getAsJsonArray("topics");
-      // validate the optional field `topics` (array)
       if (jsonArraytopics != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("topics").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `topics` to be an array in the JSON string but got `%s`", jsonObj.get("topics").toString()));
+        }
+
+        // validate the optional field `topics` (array)
         for (int i = 0; i < jsonArraytopics.size(); i++) {
           SpaceTopics.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
         };

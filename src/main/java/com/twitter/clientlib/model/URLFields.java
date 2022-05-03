@@ -49,6 +49,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -93,6 +94,10 @@ public class URLFields {
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
   private List<URLImage> images = null;
+
+  public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
+  @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
+  private String mediaKey;
 
   public URLFields() { 
   }
@@ -291,6 +296,30 @@ public class URLFields {
   }
 
 
+  public URLFields mediaKey(String mediaKey) {
+    
+    this.mediaKey = mediaKey;
+    return this;
+  }
+
+   /**
+   * The Media Key identifier for this attachment.
+   * @return mediaKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Media Key identifier for this attachment.")
+
+  public String getMediaKey() {
+    return mediaKey;
+  }
+
+
+  public void setMediaKey(String mediaKey) {
+    this.mediaKey = mediaKey;
+  }
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -307,12 +336,13 @@ public class URLFields {
         Objects.equals(this.status, urLFields.status) &&
         Objects.equals(this.title, urLFields.title) &&
         Objects.equals(this.description, urLFields.description) &&
-        Objects.equals(this.images, urLFields.images);
+        Objects.equals(this.images, urLFields.images) &&
+        Objects.equals(this.mediaKey, urLFields.mediaKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, expandedUrl, displayUrl, unwoundUrl, status, title, description, images);
+    return Objects.hash(url, expandedUrl, displayUrl, unwoundUrl, status, title, description, images, mediaKey);
   }
 
   @Override
@@ -327,6 +357,7 @@ public class URLFields {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
+    sb.append("    mediaKey: ").append(toIndentedString(mediaKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -357,6 +388,7 @@ public class URLFields {
     openapiFields.add("title");
     openapiFields.add("description");
     openapiFields.add("images");
+    openapiFields.add("media_key");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -370,20 +402,14 @@ public class URLFields {
   * @throws IOException if the JSON Object is invalid with respect to URLFields
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (URLFields.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in URLFields is not found in the empty JSON string", URLFields.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!URLFields.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `URLFields` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (URLFields.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in URLFields is not found in the empty JSON string", URLFields.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : URLFields.openapiRequiredFields) {
@@ -391,12 +417,38 @@ public class URLFields {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
+      }
+      if (jsonObj.get("expanded_url") != null && !jsonObj.get("expanded_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expanded_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expanded_url").toString()));
+      }
+      if (jsonObj.get("display_url") != null && !jsonObj.get("display_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `display_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_url").toString()));
+      }
+      if (jsonObj.get("unwound_url") != null && !jsonObj.get("unwound_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `unwound_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unwound_url").toString()));
+      }
+      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       JsonArray jsonArrayimages = jsonObj.getAsJsonArray("images");
-      // validate the optional field `images` (array)
       if (jsonArrayimages != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("images").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
+        }
+
+        // validate the optional field `images` (array)
         for (int i = 0; i < jsonArrayimages.size(); i++) {
           URLImage.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
         };
+      }
+      if (jsonObj.get("media_key") != null && !jsonObj.get("media_key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `media_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("media_key").toString()));
       }
   }
 

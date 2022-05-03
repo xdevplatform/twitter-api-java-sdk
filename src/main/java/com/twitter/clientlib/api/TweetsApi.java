@@ -124,7 +124,7 @@ public class TweetsApi extends ApiCommon {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -278,7 +278,7 @@ public class TweetsApi extends ApiCommon {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -425,7 +425,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -607,7 +607,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -810,7 +810,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -946,6 +946,7 @@ public class TweetsApi extends ApiCommon {
      * Build call for findTweetsThatQuoteATweet
      * @param id The ID of the Quoted Tweet. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param userFields A comma separated list of User fields to display. (optional)
@@ -962,7 +963,7 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsThatQuoteATweetCall(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findTweetsThatQuoteATweetCall(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -977,6 +978,10 @@ public class TweetsApi extends ApiCommon {
 
         if (maxResults != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
 
         if (expansions != null) {
@@ -1015,7 +1020,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1024,7 +1029,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findTweetsThatQuoteATweetValidateBeforeCall(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findTweetsThatQuoteATweetValidateBeforeCall(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1032,7 +1037,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
         return localVarCall;
 
     }
@@ -1042,6 +1047,7 @@ public class TweetsApi extends ApiCommon {
      * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
      * @param id The ID of the Quoted Tweet. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param userFields A comma separated list of User fields to display. (optional)
@@ -1057,14 +1063,14 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
         ApiResponse<QuoteTweetLookupResponse> localVarResp;
         try{
-          localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         } catch (ApiException e) {
           if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
             refreshToken();
-            localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
           } else {
             throw e;
           }
@@ -1076,13 +1082,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(Integer retries, String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(Integer retries, String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
         QuoteTweetLookupResponse localVarResp;
         try{
-          localVarResp = findTweetsThatQuoteATweet(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = findTweetsThatQuoteATweet(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findTweetsThatQuoteATweet(retries - 1, id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return findTweetsThatQuoteATweet(retries - 1, id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
           } else {
             throw e;
           }
@@ -1095,6 +1101,7 @@ public class TweetsApi extends ApiCommon {
      * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
      * @param id The ID of the Quoted Tweet. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param userFields A comma separated list of User fields to display. (optional)
@@ -1110,8 +1117,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QuoteTweetLookupResponse> findTweetsThatQuoteATweetWithHttpInfo(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<QuoteTweetLookupResponse> findTweetsThatQuoteATweetWithHttpInfo(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
         try {
             Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1127,6 +1134,7 @@ public class TweetsApi extends ApiCommon {
      * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
      * @param id The ID of the Quoted Tweet. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param userFields A comma separated list of User fields to display. (optional)
@@ -1143,9 +1151,9 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsThatQuoteATweetAsync(String id, Integer maxResults, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<QuoteTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findTweetsThatQuoteATweetAsync(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<QuoteTweetLookupResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
         Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1201,7 +1209,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1355,7 +1363,7 @@ public class TweetsApi extends ApiCommon {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1550,7 +1558,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1759,7 +1767,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -1949,7 +1957,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -2111,7 +2119,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -2276,7 +2284,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -2472,7 +2480,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -2683,7 +2691,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -2929,7 +2937,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -3196,7 +3204,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -3391,7 +3399,7 @@ public class TweetsApi extends ApiCommon {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -3586,7 +3594,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -3822,7 +3830,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -4011,7 +4019,7 @@ public class TweetsApi extends ApiCommon {
             "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -4231,7 +4239,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -4424,7 +4432,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
@@ -4586,7 +4594,7 @@ public class TweetsApi extends ApiCommon {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarHeaderParams != null) {
+        if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 

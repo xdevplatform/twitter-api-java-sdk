@@ -2,11 +2,11 @@
 
 All URIs are relative to *https://api.twitter.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createBatchComplianceJob**](ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job
-[**getBatchComplianceJob**](ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get compliance job
-[**listBatchComplianceJobs**](ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List compliance jobs
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createBatchComplianceJob**](ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job |
+| [**getBatchComplianceJob**](ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get compliance job |
+| [**listBatchComplianceJobs**](ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List compliance jobs |
 
 
 <a name="createBatchComplianceJob"></a>
@@ -27,7 +27,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ComplianceApi;
@@ -56,14 +55,13 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createBatchComplianceJobRequest** | [**CreateBatchComplianceJobRequest**](CreateBatchComplianceJobRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createBatchComplianceJobRequest** | [**CreateBatchComplianceJobRequest**](CreateBatchComplianceJobRequest.md)|  | |
 
 ### Return type
 
@@ -76,13 +74,13 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="getBatchComplianceJob"></a>
 # **getBatchComplianceJob**
@@ -102,7 +100,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ComplianceApi;
@@ -131,14 +128,13 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the compliance job to retrieve. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID of the compliance job to retrieve. | |
 
 ### Return type
 
@@ -151,17 +147,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The request was successful |  -  |
-**0** | The request has failed. |  -  |
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
 
 <a name="listBatchComplianceJobs"></a>
 # **listBatchComplianceJobs**
-> MultiComplianceJobResponse listBatchComplianceJobs(typestatus)
+> MultiComplianceJobResponse listBatchComplianceJobs(type, status)
 
 List compliance jobs
 
@@ -177,7 +173,6 @@ import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.ComplianceApi;
@@ -207,15 +202,14 @@ public class Example {
     }
   }
 }
-
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | [**ComplianceJobType**](.md)| Type of compliance job to list. | [enum: tweets, users]
- **status** | [**ComplianceJobStatus**](.md)| Status of compliance job to list. | [optional] [enum: created, in_progress, failed, complete]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **type** | [**ComplianceJobType**](.md)| Type of compliance job to list. | [enum: tweets, users] |
+| **status** | [**ComplianceJobStatus**](.md)| Status of compliance job to list. | [optional] [enum: created, in_progress, failed, complete] |
 
 ### Return type
 
@@ -228,11 +222,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/jsonapplication/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List compliance jobs response |  -  |
-**0** | The request has failed. |  -  |
+| **200** | List compliance jobs response |  -  |
+| **0** | The request has failed. |  -  |
 

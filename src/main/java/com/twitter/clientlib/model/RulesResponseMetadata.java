@@ -46,6 +46,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -65,6 +66,10 @@ public class RulesResponseMetadata {
   public static final String SERIALIZED_NAME_SUMMARY = "summary";
   @SerializedName(SERIALIZED_NAME_SUMMARY)
   private RulesRequestSummary summary;
+
+  public static final String SERIALIZED_NAME_NEXT_TOKEN = "next_token";
+  @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
+  private String nextToken;
 
   public static final String SERIALIZED_NAME_RESULT_COUNT = "result_count";
   @SerializedName(SERIALIZED_NAME_RESULT_COUNT)
@@ -119,6 +124,29 @@ public class RulesResponseMetadata {
   }
 
 
+  public RulesResponseMetadata nextToken(String nextToken) {
+    
+    this.nextToken = nextToken;
+    return this;
+  }
+
+   /**
+   * This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified.
+   * @return nextToken
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "This parameter is used to get the next 'page' of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified.")
+
+  public String getNextToken() {
+    return nextToken;
+  }
+
+
+  public void setNextToken(String nextToken) {
+    this.nextToken = nextToken;
+  }
+
+
   public RulesResponseMetadata resultCount(Integer resultCount) {
     
     this.resultCount = resultCount;
@@ -126,11 +154,11 @@ public class RulesResponseMetadata {
   }
 
    /**
-   * The number of rules results returned in this response
+   * Number of Rules in result set
    * @return resultCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The number of rules results returned in this response")
+  @ApiModelProperty(value = "Number of Rules in result set")
 
   public Integer getResultCount() {
     return resultCount;
@@ -140,6 +168,7 @@ public class RulesResponseMetadata {
   public void setResultCount(Integer resultCount) {
     this.resultCount = resultCount;
   }
+
 
 
   @Override
@@ -153,12 +182,13 @@ public class RulesResponseMetadata {
     RulesResponseMetadata rulesResponseMetadata = (RulesResponseMetadata) o;
     return Objects.equals(this.sent, rulesResponseMetadata.sent) &&
         Objects.equals(this.summary, rulesResponseMetadata.summary) &&
+        Objects.equals(this.nextToken, rulesResponseMetadata.nextToken) &&
         Objects.equals(this.resultCount, rulesResponseMetadata.resultCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sent, summary, resultCount);
+    return Objects.hash(sent, summary, nextToken, resultCount);
   }
 
   @Override
@@ -167,6 +197,7 @@ public class RulesResponseMetadata {
     sb.append("class RulesResponseMetadata {\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
+    sb.append("    nextToken: ").append(toIndentedString(nextToken)).append("\n");
     sb.append("    resultCount: ").append(toIndentedString(resultCount)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -192,6 +223,7 @@ public class RulesResponseMetadata {
     openapiFields = new HashSet<String>();
     openapiFields.add("sent");
     openapiFields.add("summary");
+    openapiFields.add("next_token");
     openapiFields.add("result_count");
 
     // a set of required properties/fields (JSON key names)
@@ -206,20 +238,14 @@ public class RulesResponseMetadata {
   * @throws IOException if the JSON Object is invalid with respect to RulesResponseMetadata
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (RulesResponseMetadata.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in RulesResponseMetadata is not found in the empty JSON string", RulesResponseMetadata.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!RulesResponseMetadata.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RulesResponseMetadata` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (RulesResponseMetadata.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in RulesResponseMetadata is not found in the empty JSON string", RulesResponseMetadata.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : RulesResponseMetadata.openapiRequiredFields) {
@@ -227,9 +253,15 @@ public class RulesResponseMetadata {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("sent") != null && !jsonObj.get("sent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sent").toString()));
+      }
       // validate the optional field `summary`
       if (jsonObj.getAsJsonObject("summary") != null) {
         RulesRequestSummary.validateJsonObject(jsonObj.getAsJsonObject("summary"));
+      }
+      if (jsonObj.get("next_token") != null && !jsonObj.get("next_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `next_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("next_token").toString()));
       }
   }
 

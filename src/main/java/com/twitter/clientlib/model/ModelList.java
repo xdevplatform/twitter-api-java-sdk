@@ -46,6 +46,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -278,6 +279,7 @@ public class ModelList {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -358,26 +360,32 @@ public class ModelList {
   * @throws IOException if the JSON Object is invalid with respect to ModelList
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (ModelList.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ModelList is not found in the empty JSON string", ModelList.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!ModelList.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ModelList` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (ModelList.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ModelList is not found in the empty JSON string", ModelList.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ModelList.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if (jsonObj.get("owner_id") != null && !jsonObj.get("owner_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `owner_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("owner_id").toString()));
       }
   }
 

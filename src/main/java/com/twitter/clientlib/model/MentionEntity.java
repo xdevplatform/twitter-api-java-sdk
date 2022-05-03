@@ -47,6 +47,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -136,8 +137,8 @@ public class MentionEntity {
    * The Twitter handle (screen name) of this user.
    * @return username
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The Twitter handle (screen name) of this user.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Twitter handle (screen name) of this user.")
 
   public String getUsername() {
     return username;
@@ -159,8 +160,8 @@ public class MentionEntity {
    * Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.
    * @return id
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2244994945", required = true, value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2244994945", value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
 
   public String getId() {
     return id;
@@ -170,6 +171,7 @@ public class MentionEntity {
   public void setId(String id) {
     this.id = id;
   }
+
 
 
   @Override
@@ -231,8 +233,6 @@ public class MentionEntity {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("start");
     openapiRequiredFields.add("end");
-    openapiRequiredFields.add("username");
-    openapiRequiredFields.add("id");
   }
 
  /**
@@ -242,26 +242,26 @@ public class MentionEntity {
   * @throws IOException if the JSON Object is invalid with respect to MentionEntity
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MentionEntity.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MentionEntity is not found in the empty JSON string", MentionEntity.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!MentionEntity.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MentionEntity` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (MentionEntity.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in MentionEntity is not found in the empty JSON string", MentionEntity.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MentionEntity.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
+      }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
   }
 

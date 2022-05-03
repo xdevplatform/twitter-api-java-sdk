@@ -8,8 +8,8 @@ Represent the portion of text recognized as a User mention, and its start and en
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**username** | **String** | The Twitter handle (screen name) of this user. | 
-**id** | **String** | Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers. | 
+**username** | **String** | The Twitter handle (screen name) of this user. |  [optional]
+**id** | **String** | Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers. |  [optional]
 
 
 

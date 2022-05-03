@@ -51,6 +51,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -206,6 +207,7 @@ public class FullTextEntities {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -272,44 +274,58 @@ public class FullTextEntities {
   * @throws IOException if the JSON Object is invalid with respect to FullTextEntities
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (FullTextEntities.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in FullTextEntities is not found in the empty JSON string", FullTextEntities.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!FullTextEntities.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FullTextEntities` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (FullTextEntities.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in FullTextEntities is not found in the empty JSON string", FullTextEntities.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArrayurls = jsonObj.getAsJsonArray("urls");
-      // validate the optional field `urls` (array)
       if (jsonArrayurls != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("urls").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
+        }
+
+        // validate the optional field `urls` (array)
         for (int i = 0; i < jsonArrayurls.size(); i++) {
           UrlEntity.validateJsonObject(jsonArrayurls.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArrayhashtags = jsonObj.getAsJsonArray("hashtags");
-      // validate the optional field `hashtags` (array)
       if (jsonArrayhashtags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("hashtags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `hashtags` to be an array in the JSON string but got `%s`", jsonObj.get("hashtags").toString()));
+        }
+
+        // validate the optional field `hashtags` (array)
         for (int i = 0; i < jsonArrayhashtags.size(); i++) {
           HashtagEntity.validateJsonObject(jsonArrayhashtags.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraymentions = jsonObj.getAsJsonArray("mentions");
-      // validate the optional field `mentions` (array)
       if (jsonArraymentions != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("mentions").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `mentions` to be an array in the JSON string but got `%s`", jsonObj.get("mentions").toString()));
+        }
+
+        // validate the optional field `mentions` (array)
         for (int i = 0; i < jsonArraymentions.size(); i++) {
           MentionEntity.validateJsonObject(jsonArraymentions.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraycashtags = jsonObj.getAsJsonArray("cashtags");
-      // validate the optional field `cashtags` (array)
       if (jsonArraycashtags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("cashtags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `cashtags` to be an array in the JSON string but got `%s`", jsonObj.get("cashtags").toString()));
+        }
+
+        // validate the optional field `cashtags` (array)
         for (int i = 0; i < jsonArraycashtags.size(); i++) {
           CashtagEntity.validateJsonObject(jsonArraycashtags.get(i).getAsJsonObject());
         };

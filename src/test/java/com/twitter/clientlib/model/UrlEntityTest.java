@@ -36,9 +36,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -133,6 +132,14 @@ public class UrlEntityTest {
     @Test
     public void imagesTest() {
         // TODO: test images
+    }
+
+    /**
+     * Test the property 'mediaKey'
+     */
+    @Test
+    public void mediaKeyTest() {
+        // TODO: test mediaKey
     }
 
 }

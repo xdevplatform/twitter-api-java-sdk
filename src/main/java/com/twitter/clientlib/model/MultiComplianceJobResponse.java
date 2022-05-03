@@ -30,6 +30,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.ComplianceJob;
+import com.twitter.clientlib.model.MultiComplianceJobResponseMeta;
 import com.twitter.clientlib.model.Problem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -49,6 +50,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -68,6 +70,10 @@ public class MultiComplianceJobResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   private List<Problem> errors = null;
+
+  public static final String SERIALIZED_NAME_META = "meta";
+  @SerializedName(SERIALIZED_NAME_META)
+  private MultiComplianceJobResponseMeta meta;
 
   public MultiComplianceJobResponse() { 
   }
@@ -134,6 +140,30 @@ public class MultiComplianceJobResponse {
   }
 
 
+  public MultiComplianceJobResponse meta(MultiComplianceJobResponseMeta meta) {
+    
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public MultiComplianceJobResponseMeta getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(MultiComplianceJobResponseMeta meta) {
+    this.meta = meta;
+  }
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -144,12 +174,13 @@ public class MultiComplianceJobResponse {
     }
     MultiComplianceJobResponse multiComplianceJobResponse = (MultiComplianceJobResponse) o;
     return Objects.equals(this.data, multiComplianceJobResponse.data) &&
-        Objects.equals(this.errors, multiComplianceJobResponse.errors);
+        Objects.equals(this.errors, multiComplianceJobResponse.errors) &&
+        Objects.equals(this.meta, multiComplianceJobResponse.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, errors);
+    return Objects.hash(data, errors, meta);
   }
 
   @Override
@@ -158,6 +189,7 @@ public class MultiComplianceJobResponse {
     sb.append("class MultiComplianceJobResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,6 +214,7 @@ public class MultiComplianceJobResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("data");
     openapiFields.add("errors");
+    openapiFields.add("meta");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -194,33 +227,41 @@ public class MultiComplianceJobResponse {
   * @throws IOException if the JSON Object is invalid with respect to MultiComplianceJobResponse
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MultiComplianceJobResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MultiComplianceJobResponse is not found in the empty JSON string", MultiComplianceJobResponse.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!MultiComplianceJobResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MultiComplianceJobResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (MultiComplianceJobResponse.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in MultiComplianceJobResponse is not found in the empty JSON string", MultiComplianceJobResponse.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      // validate the optional field `data` (array)
       if (jsonArraydata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("data").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+        }
+
+        // validate the optional field `data` (array)
         for (int i = 0; i < jsonArraydata.size(); i++) {
           ComplianceJob.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      // validate the optional field `errors` (array)
       if (jsonArrayerrors != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("errors").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+        }
+
+        // validate the optional field `errors` (array)
         for (int i = 0; i < jsonArrayerrors.size(); i++) {
           Problem.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
         };
+      }
+      // validate the optional field `meta`
+      if (jsonObj.getAsJsonObject("meta") != null) {
+        MultiComplianceJobResponseMeta.validateJsonObject(jsonObj.getAsJsonObject("meta"));
       }
   }
 

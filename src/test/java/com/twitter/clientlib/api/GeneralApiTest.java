@@ -24,8 +24,8 @@ package com.twitter.clientlib.api;
 
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.ApiException;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ import java.io.InputStream;
 /**
  * API tests for GeneralApi
  */
-@Ignore
+@Disabled
 public class GeneralApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi();
@@ -47,13 +47,12 @@ public class GeneralApiTest {
      *
      * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void getOpenApiSpecTest() throws ApiException {
                 Object response = apiInstance.general().getOpenApiSpec();
         // TODO: test validations
     }
-    
+
 }

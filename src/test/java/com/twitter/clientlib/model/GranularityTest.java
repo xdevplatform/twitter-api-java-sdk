@@ -23,9 +23,8 @@ Do not edit the class manually.
 package com.twitter.clientlib.model;
 
 import com.google.gson.annotations.SerializedName;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 
 /**

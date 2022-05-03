@@ -32,13 +32,15 @@ import com.twitter.clientlib.model.AnimatedGifAllOf;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
 import com.twitter.clientlib.model.Video;
+import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -93,6 +95,14 @@ public class AnimatedGifTest {
     @Test
     public void previewImageUrlTest() {
         // TODO: test previewImageUrl
+    }
+
+    /**
+     * Test the property 'variants'
+     */
+    @Test
+    public void variantsTest() {
+        // TODO: test variants
     }
 
 }

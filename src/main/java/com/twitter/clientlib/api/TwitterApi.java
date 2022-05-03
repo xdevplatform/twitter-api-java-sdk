@@ -30,7 +30,6 @@ import com.twitter.clientlib.ApiClientCallback;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.Configuration;
 import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TwitterCredentialsOAuth1;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 
 
@@ -62,10 +61,6 @@ public class TwitterApi {
   }
 
   public void setTwitterCredentials(TwitterCredentialsBearer credentials) {
-    localVarApiClient.setTwitterCredentials(credentials);
-  }
-
-  public void setTwitterCredentials(TwitterCredentialsOAuth1 credentials) {
     localVarApiClient.setTwitterCredentials(credentials);
   }
 

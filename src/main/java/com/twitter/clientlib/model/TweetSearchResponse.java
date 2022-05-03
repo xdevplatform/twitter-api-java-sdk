@@ -51,6 +51,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -190,6 +191,7 @@ public class TweetSearchResponse {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -256,23 +258,22 @@ public class TweetSearchResponse {
   * @throws IOException if the JSON Object is invalid with respect to TweetSearchResponse
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (TweetSearchResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in TweetSearchResponse is not found in the empty JSON string", TweetSearchResponse.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!TweetSearchResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TweetSearchResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (TweetSearchResponse.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetSearchResponse is not found in the empty JSON string", TweetSearchResponse.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      // validate the optional field `data` (array)
       if (jsonArraydata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("data").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+        }
+
+        // validate the optional field `data` (array)
         for (int i = 0; i < jsonArraydata.size(); i++) {
           Tweet.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
         };
@@ -282,8 +283,13 @@ public class TweetSearchResponse {
         Expansions.validateJsonObject(jsonObj.getAsJsonObject("includes"));
       }
       JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      // validate the optional field `errors` (array)
       if (jsonArrayerrors != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("errors").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+        }
+
+        // validate the optional field `errors` (array)
         for (int i = 0; i < jsonArrayerrors.size(); i++) {
           Problem.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
         };

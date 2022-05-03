@@ -52,6 +52,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -242,6 +243,7 @@ public class Expansions {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -311,51 +313,70 @@ public class Expansions {
   * @throws IOException if the JSON Object is invalid with respect to Expansions
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (Expansions.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Expansions is not found in the empty JSON string", Expansions.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!Expansions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Expansions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (Expansions.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in Expansions is not found in the empty JSON string", Expansions.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
-      // validate the optional field `users` (array)
       if (jsonArrayusers != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("users").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
+        }
+
+        // validate the optional field `users` (array)
         for (int i = 0; i < jsonArrayusers.size(); i++) {
           User.validateJsonObject(jsonArrayusers.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraytweets = jsonObj.getAsJsonArray("tweets");
-      // validate the optional field `tweets` (array)
       if (jsonArraytweets != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tweets").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `tweets` to be an array in the JSON string but got `%s`", jsonObj.get("tweets").toString()));
+        }
+
+        // validate the optional field `tweets` (array)
         for (int i = 0; i < jsonArraytweets.size(); i++) {
           Tweet.validateJsonObject(jsonArraytweets.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArrayplaces = jsonObj.getAsJsonArray("places");
-      // validate the optional field `places` (array)
       if (jsonArrayplaces != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("places").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `places` to be an array in the JSON string but got `%s`", jsonObj.get("places").toString()));
+        }
+
+        // validate the optional field `places` (array)
         for (int i = 0; i < jsonArrayplaces.size(); i++) {
           Place.validateJsonObject(jsonArrayplaces.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraymedia = jsonObj.getAsJsonArray("media");
-      // validate the optional field `media` (array)
       if (jsonArraymedia != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("media").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `media` to be an array in the JSON string but got `%s`", jsonObj.get("media").toString()));
+        }
+
+        // validate the optional field `media` (array)
         for (int i = 0; i < jsonArraymedia.size(); i++) {
           Media.validateJsonObject(jsonArraymedia.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraypolls = jsonObj.getAsJsonArray("polls");
-      // validate the optional field `polls` (array)
       if (jsonArraypolls != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("polls").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `polls` to be an array in the JSON string but got `%s`", jsonObj.get("polls").toString()));
+        }
+
+        // validate the optional field `polls` (array)
         for (int i = 0; i < jsonArraypolls.size(); i++) {
           Poll.validateJsonObject(jsonArraypolls.get(i).getAsJsonObject());
         };

@@ -45,6 +45,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -85,6 +86,7 @@ public class MultiListNoPaginationResponseMeta {
   public void setResultCount(Integer resultCount) {
     this.resultCount = resultCount;
   }
+
 
 
   @Override
@@ -144,20 +146,14 @@ public class MultiListNoPaginationResponseMeta {
   * @throws IOException if the JSON Object is invalid with respect to MultiListNoPaginationResponseMeta
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MultiListNoPaginationResponseMeta.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MultiListNoPaginationResponseMeta is not found in the empty JSON string", MultiListNoPaginationResponseMeta.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!MultiListNoPaginationResponseMeta.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MultiListNoPaginationResponseMeta` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (MultiListNoPaginationResponseMeta.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in MultiListNoPaginationResponseMeta is not found in the empty JSON string", MultiListNoPaginationResponseMeta.openapiRequiredFields.toString()));
+     //   }
+     // }
+
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

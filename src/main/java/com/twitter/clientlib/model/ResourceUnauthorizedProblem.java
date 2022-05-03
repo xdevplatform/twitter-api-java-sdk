@@ -65,6 +65,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -317,6 +318,7 @@ public class ResourceUnauthorizedProblem extends Problem {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -399,20 +401,14 @@ public class ResourceUnauthorizedProblem extends Problem {
   * @throws IOException if the JSON Object is invalid with respect to ResourceUnauthorizedProblem
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (ResourceUnauthorizedProblem.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ResourceUnauthorizedProblem is not found in the empty JSON string", ResourceUnauthorizedProblem.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!ResourceUnauthorizedProblem.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ResourceUnauthorizedProblem` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (ResourceUnauthorizedProblem.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ResourceUnauthorizedProblem is not found in the empty JSON string", ResourceUnauthorizedProblem.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ResourceUnauthorizedProblem.openapiRequiredFields) {

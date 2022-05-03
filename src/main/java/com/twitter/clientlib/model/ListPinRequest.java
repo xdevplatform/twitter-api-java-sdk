@@ -45,6 +45,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -85,6 +86,7 @@ public class ListPinRequest {
   public void setListId(String listId) {
     this.listId = listId;
   }
+
 
 
   @Override
@@ -144,19 +146,16 @@ public class ListPinRequest {
   * @throws IOException if the JSON Object is invalid with respect to ListPinRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (ListPinRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListPinRequest is not found in the empty JSON string", ListPinRequest.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!ListPinRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPinRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (ListPinRequest.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ListPinRequest is not found in the empty JSON string", ListPinRequest.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      if (jsonObj.get("list_id") != null && !jsonObj.get("list_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `list_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("list_id").toString()));
       }
   }
 

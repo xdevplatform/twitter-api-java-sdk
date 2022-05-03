@@ -59,6 +59,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -630,6 +631,7 @@ public class Tweet {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -746,20 +748,14 @@ public class Tweet {
   * @throws IOException if the JSON Object is invalid with respect to Tweet
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (Tweet.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Tweet is not found in the empty JSON string", Tweet.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!Tweet.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Tweet` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (Tweet.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in Tweet is not found in the empty JSON string", Tweet.openapiRequiredFields.toString()));
+     //   }
+     // }
+
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Tweet.openapiRequiredFields) {
@@ -767,9 +763,29 @@ public class Tweet {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("text") != null && !jsonObj.get("text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
+      }
+      if (jsonObj.get("author_id") != null && !jsonObj.get("author_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `author_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("author_id").toString()));
+      }
+      if (jsonObj.get("in_reply_to_user_id") != null && !jsonObj.get("in_reply_to_user_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `in_reply_to_user_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("in_reply_to_user_id").toString()));
+      }
+      if (jsonObj.get("conversation_id") != null && !jsonObj.get("conversation_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `conversation_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conversation_id").toString()));
+      }
       JsonArray jsonArrayreferencedTweets = jsonObj.getAsJsonArray("referenced_tweets");
-      // validate the optional field `referenced_tweets` (array)
       if (jsonArrayreferencedTweets != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("referenced_tweets").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `referenced_tweets` to be an array in the JSON string but got `%s`", jsonObj.get("referenced_tweets").toString()));
+        }
+
+        // validate the optional field `referenced_tweets` (array)
         for (int i = 0; i < jsonArrayreferencedTweets.size(); i++) {
           TweetReferencedTweets.validateJsonObject(jsonArrayreferencedTweets.get(i).getAsJsonObject());
         };
@@ -779,8 +795,13 @@ public class Tweet {
         TweetAttachments.validateJsonObject(jsonObj.getAsJsonObject("attachments"));
       }
       JsonArray jsonArraycontextAnnotations = jsonObj.getAsJsonArray("context_annotations");
-      // validate the optional field `context_annotations` (array)
       if (jsonArraycontextAnnotations != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("context_annotations").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `context_annotations` to be an array in the JSON string but got `%s`", jsonObj.get("context_annotations").toString()));
+        }
+
+        // validate the optional field `context_annotations` (array)
         for (int i = 0; i < jsonArraycontextAnnotations.size(); i++) {
           ContextAnnotation.validateJsonObject(jsonArraycontextAnnotations.get(i).getAsJsonObject());
         };
@@ -800,6 +821,12 @@ public class Tweet {
       // validate the optional field `public_metrics`
       if (jsonObj.getAsJsonObject("public_metrics") != null) {
         TweetPublicMetrics.validateJsonObject(jsonObj.getAsJsonObject("public_metrics"));
+      }
+      if (jsonObj.get("lang") != null && !jsonObj.get("lang").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lang` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lang").toString()));
+      }
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("source").toString()));
       }
       // validate the optional field `non_public_metrics`
       if (jsonObj.getAsJsonObject("non_public_metrics") != null) {

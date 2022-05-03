@@ -47,6 +47,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -133,6 +134,7 @@ public class CreateTweetRequestMedia {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,19 +195,21 @@ public class CreateTweetRequestMedia {
   * @throws IOException if the JSON Object is invalid with respect to CreateTweetRequestMedia
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateTweetRequestMedia.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequestMedia is not found in the empty JSON string", CreateTweetRequestMedia.openapiRequiredFields.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (CreateTweetRequestMedia.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTweetRequestMedia is not found in the empty JSON string", CreateTweetRequestMedia.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      // ensure the json data is an array
+      if (jsonObj.get("media_ids") != null && !jsonObj.get("media_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `media_ids` to be an array in the JSON string but got `%s`", jsonObj.get("media_ids").toString()));
       }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateTweetRequestMedia.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateTweetRequestMedia` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
+      // ensure the json data is an array
+      if (jsonObj.get("tagged_user_ids") != null && !jsonObj.get("tagged_user_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tagged_user_ids` to be an array in the JSON string but got `%s`", jsonObj.get("tagged_user_ids").toString()));
       }
   }
 

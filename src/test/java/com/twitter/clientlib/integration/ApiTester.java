@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
@@ -82,97 +82,97 @@ public class ApiTester {
   protected void checkApiExceptionProblem(
       ApiException e, Class problemType, String message, String title, String detail
   ) {
-    Assert.assertTrue(
+    Assertions.assertTrue(
         e.getErrorObject().getProblem().getClass().getName().equals(problemType.getName()));
     InvalidRequestProblem problem = (InvalidRequestProblem) e.getErrorObject().getProblem();
-    Assert.assertNotNull(problem.getErrors());
-    Assert.assertNotNull(problem.getErrors().get(0));
-    Assert.assertNotNull(problem.getErrors().get(0).getMessage());
-    Assert.assertTrue(problem.getErrors().get(0).getMessage().contains(message));
-    Assert.assertEquals(problem.getTitle(), title);
-    Assert.assertEquals(problem.getDetail(), detail);
+    Assertions.assertNotNull(problem.getErrors());
+    Assertions.assertNotNull(problem.getErrors().get(0));
+    Assertions.assertNotNull(problem.getErrors().get(0).getMessage());
+    Assertions.assertTrue(problem.getErrors().get(0).getMessage().contains(message));
+    Assertions.assertEquals(problem.getTitle(), title);
+    Assertions.assertEquals(problem.getDetail(), detail);
   }
 
   protected void checkErrors(boolean assertTrue, List<Problem> errors) {
     boolean hasErrors = errors != null && errors.size() > 0;
     if (assertTrue) {
-      Assert.assertTrue(hasErrors);
+      Assertions.assertTrue(hasErrors);
     } else {
-      Assert.assertFalse(hasErrors);
+      Assertions.assertFalse(hasErrors);
     }
   }
 
   protected void checkTweetData(Tweet tweet) {
-    Assert.assertNotNull(tweet);
-    Assert.assertNotNull(tweet.getText());
-    Assert.assertNotNull(tweet.getAuthorId());
-    Assert.assertNotNull(tweet.getCreatedAt());
+    Assertions.assertNotNull(tweet);
+    Assertions.assertNotNull(tweet.getText());
+    Assertions.assertNotNull(tweet.getAuthorId());
+    Assertions.assertNotNull(tweet.getCreatedAt());
   }
 
   protected void checkTweetIncludes(Expansions expansions) {
-    Assert.assertNotNull(expansions);
-    Assert.assertNotNull(expansions.getUsers());
-    Assert.assertNotNull(expansions.getUsers().get(0));
-    Assert.assertNotNull(expansions.getUsers().get(0).getUsername());
+    Assertions.assertNotNull(expansions);
+    Assertions.assertNotNull(expansions.getUsers());
+    Assertions.assertNotNull(expansions.getUsers().get(0));
+    Assertions.assertNotNull(expansions.getUsers().get(0).getUsername());
   }
 
   protected void checkUserData(User user) {
-    Assert.assertNotNull(user);
-    Assert.assertNotNull(user.getId());
-    Assert.assertNotNull(user.getUsername());
-    Assert.assertNotNull(user.getName());
+    Assertions.assertNotNull(user);
+    Assertions.assertNotNull(user.getId());
+    Assertions.assertNotNull(user.getUsername());
+    Assertions.assertNotNull(user.getName());
   }
 
   protected void checkSpaceData(Space space) {
-    Assert.assertNotNull(space);
-    Assert.assertNotNull(space.getId());
-    Assert.assertNotNull(space.getCreatedAt());
-    Assert.assertNotNull(space.getCreatorId());
-    Assert.assertNotNull(space.getTitle());
+    Assertions.assertNotNull(space);
+    Assertions.assertNotNull(space.getId());
+    Assertions.assertNotNull(space.getCreatedAt());
+    Assertions.assertNotNull(space.getCreatorId());
+    Assertions.assertNotNull(space.getTitle());
   }
 
   protected void checkListData(ModelList list) {
-    Assert.assertNotNull(list);
-    Assert.assertNotNull(list.getId());
-    Assert.assertNotNull(list.getCreatedAt());
-    Assert.assertNotNull(list.getDescription());
-    Assert.assertNotNull(list.getOwnerId());
-    Assert.assertNotNull(list.getFollowerCount());
+    Assertions.assertNotNull(list);
+    Assertions.assertNotNull(list.getId());
+    Assertions.assertNotNull(list.getCreatedAt());
+    Assertions.assertNotNull(list.getDescription());
+    Assertions.assertNotNull(list.getOwnerId());
+    Assertions.assertNotNull(list.getFollowerCount());
   }
 
   protected void checkResourceNotFoundProblem(
       Problem problem, String value, String title, String parameter
   ) {
-    Assert.assertTrue(problem instanceof ResourceNotFoundProblem);
+    Assertions.assertTrue(problem instanceof ResourceNotFoundProblem);
     ResourceNotFoundProblem resourceNotFoundProblem = (ResourceNotFoundProblem) problem;
-    Assert.assertTrue(resourceNotFoundProblem.getTitle().equals(title));
-    Assert.assertEquals(parameter, resourceNotFoundProblem.getParameter());
-    Assert.assertEquals(value, resourceNotFoundProblem.getValue());
+    Assertions.assertTrue(resourceNotFoundProblem.getTitle().equals(title));
+    Assertions.assertEquals(parameter, resourceNotFoundProblem.getParameter());
+    Assertions.assertEquals(value, resourceNotFoundProblem.getValue());
   }
 
   protected void checkGenericProblem(Problem problem, String detail, String title, Integer status) {
-    Assert.assertTrue(problem instanceof GenericProblem);
+    Assertions.assertTrue(problem instanceof GenericProblem);
     GenericProblem genericProblem = (GenericProblem) problem;
-    Assert.assertTrue(genericProblem.getTitle().equals(title));
-    Assert.assertEquals(detail, genericProblem.getDetail());
-    Assert.assertEquals(status, genericProblem.getStatus());
+    Assertions.assertTrue(genericProblem.getTitle().equals(title));
+    Assertions.assertEquals(detail, genericProblem.getDetail());
+    Assertions.assertEquals(status, genericProblem.getStatus());
   }
 
   protected void checkInvalidRequestProblem(
       Problem problem, String detail, String title, String firstErrorMessage
   ) {
-    Assert.assertTrue(problem instanceof InvalidRequestProblem);
+    Assertions.assertTrue(problem instanceof InvalidRequestProblem);
     InvalidRequestProblem invalidRequestProblem = (InvalidRequestProblem) problem;
-    Assert.assertTrue(invalidRequestProblem.getTitle().equals(title));
-    Assert.assertEquals(detail, invalidRequestProblem.getDetail());
-    Assert.assertEquals(firstErrorMessage, invalidRequestProblem.getErrors().get(0).getMessage());
+    Assertions.assertTrue(invalidRequestProblem.getTitle().equals(title));
+    Assertions.assertEquals(detail, invalidRequestProblem.getDetail());
+    Assertions.assertEquals(firstErrorMessage, invalidRequestProblem.getErrors().get(0).getMessage());
   }
 
   protected void checkDuplicateRuleProblem(Problem problem, String detail, String value) {
-    Assert.assertTrue(problem instanceof DuplicateRuleProblem);
+    Assertions.assertTrue(problem instanceof DuplicateRuleProblem);
     DuplicateRuleProblem duplicateProblem = (DuplicateRuleProblem) problem;
-    Assert.assertTrue(duplicateProblem.getTitle().equals("DuplicateRule"));
-//    Assert.assertEquals(detail, duplicateProblem.getDetail());
-    Assert.assertEquals(value, duplicateProblem.getValue());
+    Assertions.assertTrue(duplicateProblem.getTitle().equals("DuplicateRule"));
+//    Assertions.assertEquals(detail, duplicateProblem.getDetail());
+    Assertions.assertEquals(value, duplicateProblem.getValue());
   }
 }

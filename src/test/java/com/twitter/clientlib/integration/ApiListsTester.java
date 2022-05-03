@@ -32,23 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.GenericMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.InvalidRequestProblem;
-import com.twitter.clientlib.model.ListAddMemberRequest;
-import com.twitter.clientlib.model.ListCreateRequest;
-import com.twitter.clientlib.model.ListCreateResponse;
-import com.twitter.clientlib.model.ListDeleteResponse;
-import com.twitter.clientlib.model.ListFollowRequest;
-import com.twitter.clientlib.model.ListFollowedResponse;
-import com.twitter.clientlib.model.ListLookupMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.ListMemberResponse;
-import com.twitter.clientlib.model.ListPinRequest;
-import com.twitter.clientlib.model.ListPinnedResponse;
-import com.twitter.clientlib.model.ListUpdateRequest;
-import com.twitter.clientlib.model.ListUpdateResponse;
-import com.twitter.clientlib.model.ListsIdTweetsResponse;
-import com.twitter.clientlib.model.MultiListResponse;
-import com.twitter.clientlib.model.SingleListLookupResponse;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

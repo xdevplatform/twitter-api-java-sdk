@@ -27,10 +27,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.AddBookmarkRequest;
-import com.twitter.clientlib.model.BookmarkMutationResponse;
-import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
-import com.twitter.clientlib.model.InvalidRequestProblem;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

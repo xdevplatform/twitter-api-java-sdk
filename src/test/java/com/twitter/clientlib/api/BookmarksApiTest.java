@@ -30,8 +30,8 @@ import com.twitter.clientlib.model.Error;
 import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +42,7 @@ import java.io.InputStream;
 /**
  * API tests for BookmarksApi
  */
-@Ignore
+@Disabled
 public class BookmarksApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi();
@@ -53,8 +53,7 @@ public class BookmarksApiTest {
      *
      * Returns Tweet objects that have been bookmarked by the requesting user
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void getUsersIdBookmarksTest() throws ApiException {
@@ -70,14 +69,14 @@ public class BookmarksApiTest {
                 GenericTweetsTimelineResponse response = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
         // TODO: test validations
     }
-    
+
+
     /**
      * Add Tweet to Bookmarks
      *
      * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void postUsersIdBookmarksTest() throws ApiException {
@@ -86,14 +85,14 @@ public class BookmarksApiTest {
                 BookmarkMutationResponse response = apiInstance.bookmarks().postUsersIdBookmarks(addBookmarkRequest, id);
         // TODO: test validations
     }
-    
+
+
     /**
      * Remove a bookmarked Tweet
      *
      * Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdBookmarksDeleteTest() throws ApiException {
@@ -102,5 +101,5 @@ public class BookmarksApiTest {
                 BookmarkMutationResponse response = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId);
         // TODO: test validations
     }
-    
+
 }

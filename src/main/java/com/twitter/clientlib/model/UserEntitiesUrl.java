@@ -48,6 +48,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -97,6 +98,7 @@ public class UserEntitiesUrl {
   public void setUrls(List<UrlEntity> urls) {
     this.urls = urls;
   }
+
 
 
   @Override
@@ -156,23 +158,22 @@ public class UserEntitiesUrl {
   * @throws IOException if the JSON Object is invalid with respect to UserEntitiesUrl
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (UserEntitiesUrl.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in UserEntitiesUrl is not found in the empty JSON string", UserEntitiesUrl.openapiRequiredFields.toString()));
-        }
-      }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!UserEntitiesUrl.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UserEntitiesUrl` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
+     // if (jsonObj == null) {
+     //   if (UserEntitiesUrl.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in UserEntitiesUrl is not found in the empty JSON string", UserEntitiesUrl.openapiRequiredFields.toString()));
+     //   }
+     // }
+
       JsonArray jsonArrayurls = jsonObj.getAsJsonArray("urls");
-      // validate the optional field `urls` (array)
       if (jsonArrayurls != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("urls").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
+        }
+
+        // validate the optional field `urls` (array)
         for (int i = 0; i < jsonArrayurls.size(); i++) {
           UrlEntity.validateJsonObject(jsonArrayurls.get(i).getAsJsonObject());
         };

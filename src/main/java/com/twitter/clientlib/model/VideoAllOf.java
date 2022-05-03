@@ -33,10 +33,13 @@ import com.twitter.clientlib.model.VideoAllOfNonPublicMetrics;
 import com.twitter.clientlib.model.VideoAllOfOrganicMetrics;
 import com.twitter.clientlib.model.VideoAllOfPromotedMetrics;
 import com.twitter.clientlib.model.VideoAllOfPublicMetrics;
+import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,6 +53,7 @@ import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -69,6 +73,10 @@ public class VideoAllOf {
   public static final String SERIALIZED_NAME_DURATION_MS = "duration_ms";
   @SerializedName(SERIALIZED_NAME_DURATION_MS)
   private Integer durationMs;
+
+  public static final String SERIALIZED_NAME_VARIANTS = "variants";
+  @SerializedName(SERIALIZED_NAME_VARIANTS)
+  private List<VideoAllOfVariants> variants = null;
 
   public static final String SERIALIZED_NAME_PUBLIC_METRICS = "public_metrics";
   @SerializedName(SERIALIZED_NAME_PUBLIC_METRICS)
@@ -132,6 +140,37 @@ public class VideoAllOf {
 
   public void setDurationMs(Integer durationMs) {
     this.durationMs = durationMs;
+  }
+
+
+  public VideoAllOf variants(List<VideoAllOfVariants> variants) {
+    
+    this.variants = variants;
+    return this;
+  }
+
+  public VideoAllOf addVariantsItem(VideoAllOfVariants variantsItem) {
+    if (this.variants == null) {
+      this.variants = new ArrayList<>();
+    }
+    this.variants.add(variantsItem);
+    return this;
+  }
+
+   /**
+   * An array of all available variants of the media
+   * @return variants
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of all available variants of the media")
+
+  public List<VideoAllOfVariants> getVariants() {
+    return variants;
+  }
+
+
+  public void setVariants(List<VideoAllOfVariants> variants) {
+    this.variants = variants;
   }
 
 
@@ -227,6 +266,7 @@ public class VideoAllOf {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -238,6 +278,7 @@ public class VideoAllOf {
     VideoAllOf videoAllOf = (VideoAllOf) o;
     return Objects.equals(this.previewImageUrl, videoAllOf.previewImageUrl) &&
         Objects.equals(this.durationMs, videoAllOf.durationMs) &&
+        Objects.equals(this.variants, videoAllOf.variants) &&
         Objects.equals(this.publicMetrics, videoAllOf.publicMetrics) &&
         Objects.equals(this.nonPublicMetrics, videoAllOf.nonPublicMetrics) &&
         Objects.equals(this.organicMetrics, videoAllOf.organicMetrics) &&
@@ -246,7 +287,7 @@ public class VideoAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(previewImageUrl, durationMs, publicMetrics, nonPublicMetrics, organicMetrics, promotedMetrics);
+    return Objects.hash(previewImageUrl, durationMs, variants, publicMetrics, nonPublicMetrics, organicMetrics, promotedMetrics);
   }
 
   @Override
@@ -255,6 +296,7 @@ public class VideoAllOf {
     sb.append("class VideoAllOf {\n");
     sb.append("    previewImageUrl: ").append(toIndentedString(previewImageUrl)).append("\n");
     sb.append("    durationMs: ").append(toIndentedString(durationMs)).append("\n");
+    sb.append("    variants: ").append(toIndentedString(variants)).append("\n");
     sb.append("    publicMetrics: ").append(toIndentedString(publicMetrics)).append("\n");
     sb.append("    nonPublicMetrics: ").append(toIndentedString(nonPublicMetrics)).append("\n");
     sb.append("    organicMetrics: ").append(toIndentedString(organicMetrics)).append("\n");
@@ -283,6 +325,7 @@ public class VideoAllOf {
     openapiFields = new HashSet<String>();
     openapiFields.add("preview_image_url");
     openapiFields.add("duration_ms");
+    openapiFields.add("variants");
     openapiFields.add("public_metrics");
     openapiFields.add("non_public_metrics");
     openapiFields.add("organic_metrics");
@@ -299,19 +342,28 @@ public class VideoAllOf {
   * @throws IOException if the JSON Object is invalid with respect to VideoAllOf
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (VideoAllOf.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has reuqired fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in VideoAllOf is not found in the empty JSON string", VideoAllOf.openapiRequiredFields.toString()));
-        }
+     // if (jsonObj == null) {
+     //   if (VideoAllOf.openapiRequiredFields.isEmpty()) {
+     //     return;
+     //   } else { // has required fields
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in VideoAllOf is not found in the empty JSON string", VideoAllOf.openapiRequiredFields.toString()));
+     //   }
+     // }
+
+      if (jsonObj.get("preview_image_url") != null && !jsonObj.get("preview_image_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `preview_image_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("preview_image_url").toString()));
       }
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!VideoAllOf.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VideoAllOf` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+      JsonArray jsonArrayvariants = jsonObj.getAsJsonArray("variants");
+      if (jsonArrayvariants != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("variants").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `variants` to be an array in the JSON string but got `%s`", jsonObj.get("variants").toString()));
         }
+
+        // validate the optional field `variants` (array)
+        for (int i = 0; i < jsonArrayvariants.size(); i++) {
+          VideoAllOfVariants.validateJsonObject(jsonArrayvariants.get(i).getAsJsonObject());
+        };
       }
       // validate the optional field `public_metrics`
       if (jsonObj.getAsJsonObject("public_metrics") != null) {
