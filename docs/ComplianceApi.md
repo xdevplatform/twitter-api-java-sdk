@@ -38,9 +38,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     CreateBatchComplianceJobRequest createBatchComplianceJobRequest = new CreateBatchComplianceJobRequest(); // CreateBatchComplianceJobRequest | 
     try {
@@ -111,9 +119,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     String id = "id_example"; // String | ID of the compliance job to retrieve.
     try {
@@ -184,9 +200,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     ComplianceJobType type = ComplianceJobType.fromValue("tweets"); // ComplianceJobType | Type of compliance job to list.
     ComplianceJobStatus status = ComplianceJobStatus.fromValue("created"); // ComplianceJobStatus | Status of compliance job to list.

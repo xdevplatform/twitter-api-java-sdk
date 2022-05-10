@@ -59,9 +59,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     AddOrDeleteRulesRequest addOrDeleteRulesRequest = new AddOrDeleteRulesRequest(); // AddOrDeleteRulesRequest | 
     Boolean dryRun = true; // Boolean | Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes.
@@ -134,9 +142,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     CreateTweetRequest createTweetRequest = new CreateTweetRequest(); // CreateTweetRequest | 
     try {
@@ -207,9 +227,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the Tweet to be deleted.
     try {
@@ -280,9 +312,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | A single Tweet ID.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
@@ -365,9 +413,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     List<String> ids = Arrays.asList(); // List<String> | A comma separated list of Tweet IDs. Up to 100 are allowed in a single request.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
@@ -450,9 +514,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the Quoted Tweet.
     Integer maxResults = 10; // Integer | The maximum number of results to be returned.
@@ -539,9 +619,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     List<String> ids = Arrays.asList(); // List<String> | A comma-separated list of Rule IDs.
     Integer maxResults = 1000; // Integer | The maximum number of results
@@ -616,9 +704,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     HideReplyByIdRequest hideReplyByIdRequest = new HideReplyByIdRequest(); // HideReplyByIdRequest | 
     String id = "id_example"; // String | The ID of the reply that you want to hide or unhide.
@@ -691,9 +791,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the List to list Tweets of
     Integer maxResults = 100; // Integer | The maximum number of results
@@ -785,9 +901,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
@@ -804,7 +928,13 @@ public class Example {
                BufferedReader reader = new BufferedReader(new InputStreamReader(result));
                String line = reader.readLine();
                while (line != null) {
-                 System.out.println(json.getGson().fromJson(line, localVarReturnType).toString());
+                 if(line.isEmpty()) {
+                   System.out.println("==> Empty line");
+                   line = reader.readLine();
+                   continue;
+                 }
+                 Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+                 System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
                  line = reader.readLine();
                }
             }catch (Exception e) {
@@ -887,9 +1017,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
@@ -902,11 +1040,17 @@ public class Example {
             InputStream result = apiInstance.tweets().searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
             try{
                JSON json = new JSON();
-               Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
+               Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
                BufferedReader reader = new BufferedReader(new InputStreamReader(result));
                String line = reader.readLine();
                while (line != null) {
-                 System.out.println(json.getGson().fromJson(line, localVarReturnType).toString());
+                 if(line.isEmpty()) {
+                   System.out.println("==> Empty line");
+                   line = reader.readLine();
+                   continue;
+                 }
+                 Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+                 System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
                  line = reader.readLine();
                }
             }catch (Exception e) {
@@ -984,9 +1128,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "1YqKDqWqdPLsV"; // String | The space id from which tweets will be retrieved
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
@@ -1059,9 +1219,24 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     Integer maxResults = 56; // Integer | The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100
     String id = "1YqKDqWqdPLsV"; // String | The space id from which tweets will be retrieved
@@ -1136,9 +1311,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     String query = "(from:TwitterDev OR from:TwitterAPI) has:media -is:retweet"; // String | One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length
     OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute).
@@ -1223,9 +1406,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     String query = "(from:TwitterDev OR from:TwitterAPI) has:media -is:retweet"; // String | One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length
     OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute).
@@ -1310,9 +1501,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
     // Set the params values
     String query = "(from:TwitterDev OR from:TwitterAPI) has:media -is:retweet"; // String | One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length
     OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute).
@@ -1411,9 +1610,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String query = "(from:TwitterDev OR from:TwitterAPI) has:media -is:retweet"; // String | One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length
     OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute).
@@ -1512,9 +1727,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     UsersLikesCreateRequest usersLikesCreateRequest = new UsersLikesCreateRequest(); // UsersLikesCreateRequest | 
     String id = "id_example"; // String | The ID of the user that is requesting to like the tweet
@@ -1587,9 +1814,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the User to list the liked Tweets of
     Integer maxResults = 56; // Integer | The maximum number of results
@@ -1676,9 +1919,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the User to list mentions of
     String sinceId = "791775337160081409"; // String | The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified.
@@ -1773,9 +2032,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     UsersRetweetsCreateRequest usersRetweetsCreateRequest = new UsersRetweetsCreateRequest(); // UsersRetweetsCreateRequest | 
     String id = "id_example"; // String | The ID of the user that is requesting to retweet the tweet
@@ -1848,9 +2119,25 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the User to list Tweets of
     String sinceId = "791775337160081409"; // String | The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified.
@@ -1947,9 +2234,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the user that is requesting to unlike the tweet
     String tweetId = "tweetId_example"; // String | The ID of the tweet that the user is requesting to unlike
@@ -2022,9 +2321,21 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
     // Set the params values
     String id = "id_example"; // String | The ID of the user that is requesting to unretweet the tweet
     String sourceTweetId = "sourceTweetId_example"; // String | The ID of the tweet that the user is requesting to unretweet

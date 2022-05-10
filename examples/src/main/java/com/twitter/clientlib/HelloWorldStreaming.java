@@ -80,7 +80,8 @@ public class HelloWorldStreaming {
 //             line = reader.readLine();
 //             continue;
 //            }
-//           System.out.println(json.getGson().fromJson(line, localVarReturnType).toString());
+//           Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+//           System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
 //           line = reader.readLine();
 //         }
 //      }catch (Exception e) {
