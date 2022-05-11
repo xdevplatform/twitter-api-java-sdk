@@ -13,6 +13,26 @@ Twitter API v2 available endpoints
   For more information, please visit [https://developer.twitter.com/](https://developer.twitter.com/)
 
 
+## Table of contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Maven users](#maven-users)
+  - [Gradle users](#gradle-users)
+  - [Others](#others)
+- [Twitter Credentials](#twitter-credentials)
+  - [OAuth 2.0 Authorization with PKCE](#oauth-20-authorization-with-pkce)
+  - [OAuth 2.0 Bearer Token](#oauth-20-bearer-token-app-only)
+- [Getting Started](#getting-started)
+- [Authentication](#authentication)
+  - [Auto Refresh Token](#auto-refresh-token)
+- [Rate limits retry mechanism](#rate-limits-retry-mechanism)
+- [Documentation for API Endpoints](#documentation-for-api-endpoints)
+- [Documentation for Models](#documentation-for-models)
+
+
+
+
 ## Requirements
 
 Building the API client library requires:
@@ -79,7 +99,7 @@ Then manually install the following JARs:
 
 Twitter APIs support three types of authentications:
 
-* OAuth 2.0 Authorization with PKCE
+* #### OAuth 2.0 Authorization with PKCE :
 
 TWITTER_OAUTH2_CLIENT_ID
 
@@ -91,7 +111,7 @@ TWITTER_OAUTH2_REFRESH_TOKEN
 
 TWITTER_OAUTH2_IS_AUTO_REFRESH_TOKEN - default value is `false`
 
-* OAuth 2.0 Bearer Token (app-only)
+* #### OAuth 2.0 Bearer Token (app-only) : 
 
 TWITTER_BEARER_TOKEN
 
