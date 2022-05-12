@@ -99,7 +99,7 @@ Then manually install the following JARs:
 
 Twitter APIs support three types of authentications:
 
-* #### OAuth 2.0 Authorization with PKCE :
+* #### OAuth 2.0 Authorization with PKCE
 
 TWITTER_OAUTH2_CLIENT_ID
 
@@ -111,7 +111,7 @@ TWITTER_OAUTH2_REFRESH_TOKEN
 
 TWITTER_OAUTH2_IS_AUTO_REFRESH_TOKEN - default value is `false`
 
-* #### OAuth 2.0 Bearer Token (app-only) : 
+* #### OAuth 2.0 Bearer Token (app-only)
 
 TWITTER_BEARER_TOKEN
 
