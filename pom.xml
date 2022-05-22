@@ -39,18 +39,6 @@
         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
       </repository>
     </distributionManagement>
-    <repositories>
-      <repository>
-        <id>sonatype-nexus-snapshots</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases>
-          <enabled>false</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-      </repository>
-    </repositories>
     <build>
         <plugins>
            <plugin>
@@ -246,9 +234,20 @@
 
     <profiles>
         <profile>
-            <id>sign-artifacts</id>
+            <id>release</id>
             <build>
                 <plugins>
+                    <plugin>
+                      <groupId>org.sonatype.plugins</groupId>
+                      <artifactId>nexus-staging-maven-plugin</artifactId>
+                      <version>1.6.7</version>
+                      <extensions>true</extensions>
+                      <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                      </configuration>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -260,6 +259,10 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphraseServerId>${gpg.passphrase}</passphraseServerId>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

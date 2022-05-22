@@ -499,6 +499,34 @@ public class TweetsApiTest {
 
 
     /**
+     * User home timeline by User ID
+     *
+     * Returns Tweet objects that appears in the provided User ID&#39;s home timeline
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void usersIdTimelineTest() throws ApiException {
+        String id = null;
+        String sinceId = null;
+        String untilId = null;
+        Integer maxResults = null;
+        Set<String> exclude = null;
+        String paginationToken = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+        Set<String> userFields = null;
+        Set<String> mediaFields = null;
+        Set<String> placeFields = null;
+        Set<String> pollFields = null;
+                GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdTimeline(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        // TODO: test validations
+    }
+
+
+    /**
      * User Tweets timeline by User ID
      *
      * Returns a list of Tweets authored by the provided User ID
