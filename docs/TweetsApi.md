@@ -25,6 +25,7 @@ All URIs are relative to *https://api.twitter.com*
 | [**usersIdLikedTweets**](TweetsApi.md#usersIdLikedTweets) | **GET** /2/users/{id}/liked_tweets | Returns Tweet objects liked by the provided User ID |
 | [**usersIdMentions**](TweetsApi.md#usersIdMentions) | **GET** /2/users/{id}/mentions | User mention timeline by User ID |
 | [**usersIdRetweets**](TweetsApi.md#usersIdRetweets) | **POST** /2/users/{id}/retweets | Causes the user (in the path) to retweet the specified tweet |
+| [**usersIdTimeline**](TweetsApi.md#usersIdTimeline) | **GET** /2/users/{id}/timelines/reverse_chronological | User home timeline by User ID |
 | [**usersIdTweets**](TweetsApi.md#usersIdTweets) | **GET** /2/users/{id}/tweets | User Tweets timeline by User ID |
 | [**usersIdUnlike**](TweetsApi.md#usersIdUnlike) | **DELETE** /2/users/{id}/likes/{tweet_id} | Causes the user (in the path) to unlike the specified tweet |
 | [**usersIdUnretweets**](TweetsApi.md#usersIdUnretweets) | **DELETE** /2/users/{id}/retweets/{source_tweet_id} | Causes the user (in the path) to unretweet the specified tweet |
@@ -2082,6 +2083,117 @@ public class Example {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The request was successful |  -  |
+| **0** | The request has failed. |  -  |
+
+<a name="usersIdTimeline"></a>
+# **usersIdTimeline**
+> GenericTweetsTimelineResponse usersIdTimeline(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields)
+
+User home timeline by User ID
+
+Returns Tweet objects that appears in the provided User ID&#39;s home timeline
+
+### Example
+```java
+// Import classes:
+import com.twitter.clientlib.ApiClient;
+import com.twitter.clientlib.ApiException;
+import com.twitter.clientlib.Configuration;
+import com.twitter.clientlib.auth.*;
+import com.twitter.clientlib.model.*;
+import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
+import com.twitter.clientlib.api.TwitterApi;
+
+import com.twitter.clientlib.api.TweetsApi;
+import java.util.List;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.time.OffsetDateTime;
+
+public class Example {
+  public static void main(String[] args) {
+    TwitterApi apiInstance = new TwitterApi();
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure OAuth2 access token for authorization:
+    // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+    //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+    //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
+    // apiInstance.setTwitterCredentials(credentials);
+
+
+    // Set the params values
+    String id = "id_example"; // String | The ID of the User to list Reverse Chronological Timeline Tweets of
+    String sinceId = "791775337160081409"; // String | The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified.
+    String untilId = "1346889436626259968"; // String | The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified.
+    Integer maxResults = 56; // Integer | The maximum number of results
+    Set<String> exclude = new HashSet<>(Arrays.asList()); // Set<String> | The set of entities to exclude (e.g. 'replies' or 'retweets')
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get the next 'page' of results.
+    OffsetDateTime startTime = OffsetDateTime.parse("2021-02-01T18:40:40.000Z"); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified.
+    OffsetDateTime endTime = OffsetDateTime.parse("2021-02-14T18:40:40.000Z"); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
+    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
+    Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
+    try {
+           GenericTweetsTimelineResponse result = apiInstance.tweets().usersIdTimeline(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TweetsApi#usersIdTimeline");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| The ID of the User to list Reverse Chronological Timeline Tweets of | |
+| **sinceId** | **String**| The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. | [optional] |
+| **untilId** | **String**| The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. | [optional] |
+| **maxResults** | **Integer**| The maximum number of results | [optional] |
+| **exclude** | [**Set&lt;String&gt;**](String.md)| The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) | [optional] [enum: replies, retweets] |
+| **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
+| **startTime** | **OffsetDateTime**| YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. | [optional] |
+| **endTime** | **OffsetDateTime**| YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. | [optional] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: author_id, referenced_tweets.id, in_reply_to_user_id, geo.place_id, attachments.media_keys, attachments.poll_ids, entities.mentions.username, referenced_tweets.id.author_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: media_key, duration_ms, height, preview_image_url, type, url, width, public_metrics, non_public_metrics, organic_metrics, promoted_metrics, alt_text, variants] |
+| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: id, name, country_code, place_type, full_name, country, contained_within, geo] |
+| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: id, options, voting_status, end_datetime, duration_minutes] |
+
+### Return type
+
+[**GenericTweetsTimelineResponse**](GenericTweetsTimelineResponse.md)
+
+### Authorization
+
+[OAuth2UserToken](../README.md#OAuth2UserToken), [UserToken](../README.md#UserToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json, application/problem+json
 
 ### HTTP response details

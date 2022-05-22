@@ -6,12 +6,11 @@ You can find examples of using the SDK under the [examples/](examples/) director
 
 **Note: Only Twitter API V2 is supported**
 
-- API version: 2.42
+- API version: 2.43
 
 Twitter API v2 available endpoints
 
   For more information, please visit [https://developer.twitter.com/](https://developer.twitter.com/)
-
 
 ## Table of contents
 
@@ -29,8 +28,6 @@ Twitter API v2 available endpoints
 - [Rate limits retry mechanism](#rate-limits-retry-mechanism)
 - [Documentation for API Endpoints](#documentation-for-api-endpoints)
 - [Documentation for Models](#documentation-for-models)
-
-
 
 
 ## Requirements
@@ -294,6 +291,7 @@ Class | Method | HTTP request | Description
 *TweetsApi* | [**usersIdLikedTweets**](docs/TweetsApi.md#usersIdLikedTweets) | **GET** /2/users/{id}/liked_tweets | Returns Tweet objects liked by the provided User ID
 *TweetsApi* | [**usersIdMentions**](docs/TweetsApi.md#usersIdMentions) | **GET** /2/users/{id}/mentions | User mention timeline by User ID
 *TweetsApi* | [**usersIdRetweets**](docs/TweetsApi.md#usersIdRetweets) | **POST** /2/users/{id}/retweets | Causes the user (in the path) to retweet the specified tweet
+*TweetsApi* | [**usersIdTimeline**](docs/TweetsApi.md#usersIdTimeline) | **GET** /2/users/{id}/timelines/reverse_chronological | User home timeline by User ID
 *TweetsApi* | [**usersIdTweets**](docs/TweetsApi.md#usersIdTweets) | **GET** /2/users/{id}/tweets | User Tweets timeline by User ID
 *TweetsApi* | [**usersIdUnlike**](docs/TweetsApi.md#usersIdUnlike) | **DELETE** /2/users/{id}/likes/{tweet_id} | Causes the user (in the path) to unlike the specified tweet
 *TweetsApi* | [**usersIdUnretweets**](docs/TweetsApi.md#usersIdUnretweets) | **DELETE** /2/users/{id}/retweets/{source_tweet_id} | Causes the user (in the path) to unretweet the specified tweet
