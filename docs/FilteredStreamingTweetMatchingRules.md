@@ -1,6 +1,6 @@
 
 
-# FilteredStreamingTweetOneOfMatchingRules
+# FilteredStreamingTweetMatchingRules
 
 
 ## Properties

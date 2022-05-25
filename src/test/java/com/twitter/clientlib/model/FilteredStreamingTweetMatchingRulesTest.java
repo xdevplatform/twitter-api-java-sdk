@@ -27,36 +27,41 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.Problem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for FilteredStreamingTweetOneOf1
+ * Model tests for FilteredStreamingTweetMatchingRules
  */
-public class FilteredStreamingTweetOneOf1Test {
-    private final FilteredStreamingTweetOneOf1 model = new FilteredStreamingTweetOneOf1();
+public class FilteredStreamingTweetMatchingRulesTest {
+    private final FilteredStreamingTweetMatchingRules model = new FilteredStreamingTweetMatchingRules();
 
     /**
-     * Model tests for FilteredStreamingTweetOneOf1
+     * Model tests for FilteredStreamingTweetMatchingRules
      */
     @Test
-    public void testFilteredStreamingTweetOneOf1() {
-        // TODO: test FilteredStreamingTweetOneOf1
+    public void testFilteredStreamingTweetMatchingRules() {
+        // TODO: test FilteredStreamingTweetMatchingRules
     }
 
     /**
-     * Test the property 'errors'
+     * Test the property 'id'
      */
     @Test
-    public void errorsTest() {
-        // TODO: test errors
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'tag'
+     */
+    @Test
+    public void tagTest() {
+        // TODO: test tag
     }
 
 }
