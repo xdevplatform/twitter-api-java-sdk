@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
 </dependency>
 ```
 
@@ -75,7 +75,7 @@ mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been publishe
 }
 
 dependencies {
-implementation "com.twitter:twitter-api-java-sdk:1.2.1"
+implementation "com.twitter:twitter-api-java-sdk:1.2.2"
 }
 ```
 
@@ -89,7 +89,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/twitter-api-java-sdk-1.2.1.jar`
+* `target/twitter-api-java-sdk-1.2.2.jar`
 * `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -359,9 +359,7 @@ Class | Method | HTTP request | Description
  - [FieldUnauthorizedProblem](docs/FieldUnauthorizedProblem.md)
  - [FieldUnauthorizedProblemAllOf](docs/FieldUnauthorizedProblemAllOf.md)
  - [FilteredStreamingTweet](docs/FilteredStreamingTweet.md)
- - [FilteredStreamingTweetOneOf](docs/FilteredStreamingTweetOneOf.md)
- - [FilteredStreamingTweetOneOf1](docs/FilteredStreamingTweetOneOf1.md)
- - [FilteredStreamingTweetOneOfMatchingRules](docs/FilteredStreamingTweetOneOfMatchingRules.md)
+ - [FilteredStreamingTweetMatchingRules](docs/FilteredStreamingTweetMatchingRules.md)
  - [FullTextEntities](docs/FullTextEntities.md)
  - [GenericMultipleUsersLookupResponse](docs/GenericMultipleUsersLookupResponse.md)
  - [GenericMultipleUsersLookupResponseMeta](docs/GenericMultipleUsersLookupResponseMeta.md)
