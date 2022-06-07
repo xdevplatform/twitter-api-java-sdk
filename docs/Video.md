@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**previewImageUrl** | **URI** |  |  [optional]
+**previewImageUrl** | **URL** |  |  [optional]
 **durationMs** | **Integer** |  |  [optional]
 **variants** | [**List&lt;VideoAllOfVariants&gt;**](VideoAllOfVariants.md) | An array of all available variants of the media |  [optional]
 **publicMetrics** | [**VideoAllOfPublicMetrics**](VideoAllOfPublicMetrics.md) |  |  [optional]

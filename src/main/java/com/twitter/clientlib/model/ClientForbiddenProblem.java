@@ -52,7 +52,7 @@ import com.twitter.clientlib.model.UsageCapExceededProblem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -133,7 +133,7 @@ public class ClientForbiddenProblem extends Problem {
 
   public static final String SERIALIZED_NAME_REGISTRATION_URL = "registration_url";
   @SerializedName(SERIALIZED_NAME_REGISTRATION_URL)
-  private URI registrationUrl;
+  private URL registrationUrl;
 
   public ClientForbiddenProblem() { 
     this.type = this.getClass().getSimpleName();
@@ -162,7 +162,7 @@ public class ClientForbiddenProblem extends Problem {
   }
 
 
-  public ClientForbiddenProblem registrationUrl(URI registrationUrl) {
+  public ClientForbiddenProblem registrationUrl(URL registrationUrl) {
     
     this.registrationUrl = registrationUrl;
     return this;
@@ -175,12 +175,12 @@ public class ClientForbiddenProblem extends Problem {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public URI getRegistrationUrl() {
+  public URL getRegistrationUrl() {
     return registrationUrl;
   }
 
 
-  public void setRegistrationUrl(URI registrationUrl) {
+  public void setRegistrationUrl(URL registrationUrl) {
     this.registrationUrl = registrationUrl;
   }
 

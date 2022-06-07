@@ -9,7 +9,7 @@ A problem that indicates your client is forbidden from making this request.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reason** | [**ReasonEnum**](#ReasonEnum) |  |  [optional]
-**registrationUrl** | **URI** |  |  [optional]
+**registrationUrl** | **URL** |  |  [optional]
 
 
 

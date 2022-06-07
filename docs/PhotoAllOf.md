@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **URI** |  |  [optional]
+**url** | **URL** |  |  [optional]
 **altText** | **String** |  |  [optional]
 
 

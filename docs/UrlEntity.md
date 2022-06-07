@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start** | **Integer** | Index (zero-based) at which position this entity starts.  The index is inclusive. | 
 **end** | **Integer** | Index (zero-based) at which position this entity ends.  The index is exclusive. | 
-**url** | **URI** | A validly formatted URL. | 
-**expandedUrl** | **URI** | A validly formatted URL. |  [optional]
+**url** | **URL** |  | 
+**expandedUrl** | **URL** |  |  [optional]
 **displayUrl** | **String** | The URL as displayed in the Twitter client. |  [optional]
-**unwoundUrl** | **URI** | Fully resolved url |  [optional]
+**unwoundUrl** | **URL** | Fully resolved url |  [optional]
 **status** | **Integer** | HTTP Status Code. |  [optional]
 **title** | **String** | Title of the page the URL points to. |  [optional]
 **description** | **String** | Description of the URL landing page. |  [optional]
