@@ -33,7 +33,7 @@ import com.twitter.clientlib.model.URLImage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,11 +65,11 @@ import com.twitter.clientlib.JSON;
 public class URLFields {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
-  private URI url;
+  private URL url;
 
   public static final String SERIALIZED_NAME_EXPANDED_URL = "expanded_url";
   @SerializedName(SERIALIZED_NAME_EXPANDED_URL)
-  private URI expandedUrl;
+  private URL expandedUrl;
 
   public static final String SERIALIZED_NAME_DISPLAY_URL = "display_url";
   @SerializedName(SERIALIZED_NAME_DISPLAY_URL)
@@ -77,7 +77,7 @@ public class URLFields {
 
   public static final String SERIALIZED_NAME_UNWOUND_URL = "unwound_url";
   @SerializedName(SERIALIZED_NAME_UNWOUND_URL)
-  private URI unwoundUrl;
+  private URL unwoundUrl;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -102,48 +102,48 @@ public class URLFields {
   public URLFields() { 
   }
 
-  public URLFields url(URI url) {
+  public URLFields url(URL url) {
     
     this.url = url;
     return this;
   }
 
    /**
-   * A validly formatted URL.
+   * Get url
    * @return url
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", required = true, value = "A validly formatted URL.")
+  @ApiModelProperty(required = true, value = "")
 
-  public URI getUrl() {
+  public URL getUrl() {
     return url;
   }
 
 
-  public void setUrl(URI url) {
+  public void setUrl(URL url) {
     this.url = url;
   }
 
 
-  public URLFields expandedUrl(URI expandedUrl) {
+  public URLFields expandedUrl(URL expandedUrl) {
     
     this.expandedUrl = expandedUrl;
     return this;
   }
 
    /**
-   * A validly formatted URL.
+   * Get expandedUrl
    * @return expandedUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", value = "A validly formatted URL.")
+  @ApiModelProperty(value = "")
 
-  public URI getExpandedUrl() {
+  public URL getExpandedUrl() {
     return expandedUrl;
   }
 
 
-  public void setExpandedUrl(URI expandedUrl) {
+  public void setExpandedUrl(URL expandedUrl) {
     this.expandedUrl = expandedUrl;
   }
 
@@ -171,7 +171,7 @@ public class URLFields {
   }
 
 
-  public URLFields unwoundUrl(URI unwoundUrl) {
+  public URLFields unwoundUrl(URL unwoundUrl) {
     
     this.unwoundUrl = unwoundUrl;
     return this;
@@ -184,12 +184,12 @@ public class URLFields {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "https://twittercommunity.com/t/introducing-the-v2-follow-lookup-endpoints/147118", value = "Fully resolved url")
 
-  public URI getUnwoundUrl() {
+  public URL getUnwoundUrl() {
     return unwoundUrl;
   }
 
 
-  public void setUnwoundUrl(URI unwoundUrl) {
+  public void setUnwoundUrl(URL unwoundUrl) {
     this.unwoundUrl = unwoundUrl;
   }
 
@@ -416,12 +416,6 @@ public class URLFields {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
-      }
-      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
-      }
-      if (jsonObj.get("expanded_url") != null && !jsonObj.get("expanded_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `expanded_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expanded_url").toString()));
       }
       if (jsonObj.get("display_url") != null && !jsonObj.get("display_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `display_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_url").toString()));

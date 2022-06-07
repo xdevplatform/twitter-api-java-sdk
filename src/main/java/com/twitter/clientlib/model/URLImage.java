@@ -32,7 +32,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,7 +62,7 @@ import com.twitter.clientlib.JSON;
 public class URLImage {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
-  private URI url;
+  private URL url;
 
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
@@ -75,25 +75,25 @@ public class URLImage {
   public URLImage() { 
   }
 
-  public URLImage url(URI url) {
+  public URLImage url(URL url) {
     
     this.url = url;
     return this;
   }
 
    /**
-   * A validly formatted URL.
+   * Get url
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", value = "A validly formatted URL.")
+  @ApiModelProperty(value = "")
 
-  public URI getUrl() {
+  public URL getUrl() {
     return url;
   }
 
 
-  public void setUrl(URI url) {
+  public void setUrl(URL url) {
     this.url = url;
   }
 
@@ -218,9 +218,6 @@ public class URLImage {
      //   }
      // }
 
-      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

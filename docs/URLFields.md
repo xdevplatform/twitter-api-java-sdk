@@ -8,10 +8,10 @@ Represent the portion of text recognized as a URL.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **URI** | A validly formatted URL. | 
-**expandedUrl** | **URI** | A validly formatted URL. |  [optional]
+**url** | **URL** |  | 
+**expandedUrl** | **URL** |  |  [optional]
 **displayUrl** | **String** | The URL as displayed in the Twitter client. |  [optional]
-**unwoundUrl** | **URI** | Fully resolved url |  [optional]
+**unwoundUrl** | **URL** | Fully resolved url |  [optional]
 **status** | **Integer** | HTTP Status Code. |  [optional]
 **title** | **String** | Title of the page the URL points to. |  [optional]
 **description** | **String** | Description of the URL landing page. |  [optional]

@@ -34,7 +34,7 @@ import com.twitter.clientlib.model.ComplianceJobType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 import java.time.OffsetDateTime;
 
 import com.google.gson.Gson;
@@ -76,7 +76,7 @@ public class ComplianceJob {
 
   public static final String SERIALIZED_NAME_UPLOAD_URL = "upload_url";
   @SerializedName(SERIALIZED_NAME_UPLOAD_URL)
-  private URI uploadUrl;
+  private URL uploadUrl;
 
   public static final String SERIALIZED_NAME_UPLOAD_EXPIRES_AT = "upload_expires_at";
   @SerializedName(SERIALIZED_NAME_UPLOAD_EXPIRES_AT)
@@ -84,7 +84,7 @@ public class ComplianceJob {
 
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "download_url";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
-  private URI downloadUrl;
+  private URL downloadUrl;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT = "download_expires_at";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT)
@@ -170,7 +170,7 @@ public class ComplianceJob {
   }
 
 
-  public ComplianceJob uploadUrl(URI uploadUrl) {
+  public ComplianceJob uploadUrl(URL uploadUrl) {
     
     this.uploadUrl = uploadUrl;
     return this;
@@ -183,12 +183,12 @@ public class ComplianceJob {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "URL to which the user will upload their tweet or user IDs")
 
-  public URI getUploadUrl() {
+  public URL getUploadUrl() {
     return uploadUrl;
   }
 
 
-  public void setUploadUrl(URI uploadUrl) {
+  public void setUploadUrl(URL uploadUrl) {
     this.uploadUrl = uploadUrl;
   }
 
@@ -216,7 +216,7 @@ public class ComplianceJob {
   }
 
 
-  public ComplianceJob downloadUrl(URI downloadUrl) {
+  public ComplianceJob downloadUrl(URL downloadUrl) {
     
     this.downloadUrl = downloadUrl;
     return this;
@@ -229,12 +229,12 @@ public class ComplianceJob {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "URL from which the user will retrieve their compliance results")
 
-  public URI getDownloadUrl() {
+  public URL getDownloadUrl() {
     return downloadUrl;
   }
 
 
-  public void setDownloadUrl(URI downloadUrl) {
+  public void setDownloadUrl(URL downloadUrl) {
     this.downloadUrl = downloadUrl;
   }
 

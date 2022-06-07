@@ -38,7 +38,7 @@ import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +69,7 @@ import com.twitter.clientlib.JSON;
 public class AnimatedGif extends Media {
   public static final String SERIALIZED_NAME_PREVIEW_IMAGE_URL = "preview_image_url";
   @SerializedName(SERIALIZED_NAME_PREVIEW_IMAGE_URL)
-  private URI previewImageUrl;
+  private URL previewImageUrl;
 
   public static final String SERIALIZED_NAME_VARIANTS = "variants";
   @SerializedName(SERIALIZED_NAME_VARIANTS)
@@ -79,7 +79,7 @@ public class AnimatedGif extends Media {
     this.type = this.getClass().getSimpleName();
   }
 
-  public AnimatedGif previewImageUrl(URI previewImageUrl) {
+  public AnimatedGif previewImageUrl(URL previewImageUrl) {
     
     this.previewImageUrl = previewImageUrl;
     return this;
@@ -92,12 +92,12 @@ public class AnimatedGif extends Media {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public URI getPreviewImageUrl() {
+  public URL getPreviewImageUrl() {
     return previewImageUrl;
   }
 
 
-  public void setPreviewImageUrl(URI previewImageUrl) {
+  public void setPreviewImageUrl(URL previewImageUrl) {
     this.previewImageUrl = previewImageUrl;
   }
 

@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reason** | [**ReasonEnum**](#ReasonEnum) |  |  [optional]
-**registrationUrl** | **URI** |  |  [optional]
+**registrationUrl** | **URL** |  |  [optional]
 
 
 

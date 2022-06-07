@@ -37,7 +37,7 @@ import com.twitter.clientlib.model.Video;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -66,7 +66,7 @@ import com.twitter.clientlib.JSON;
 public class Photo extends Media {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
-  private URI url;
+  private URL url;
 
   public static final String SERIALIZED_NAME_ALT_TEXT = "alt_text";
   @SerializedName(SERIALIZED_NAME_ALT_TEXT)
@@ -76,7 +76,7 @@ public class Photo extends Media {
     this.type = this.getClass().getSimpleName();
   }
 
-  public Photo url(URI url) {
+  public Photo url(URL url) {
     
     this.url = url;
     return this;
@@ -89,12 +89,12 @@ public class Photo extends Media {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public URI getUrl() {
+  public URL getUrl() {
     return url;
   }
 
 
-  public void setUrl(URI url) {
+  public void setUrl(URL url) {
     this.url = url;
   }
 

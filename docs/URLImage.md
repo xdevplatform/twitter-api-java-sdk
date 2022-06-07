@@ -8,7 +8,7 @@ Represent the information for the URL image
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **URI** | A validly formatted URL. |  [optional]
+**url** | **URL** |  |  [optional]
 **height** | **Integer** | The height of the media in pixels |  [optional]
 **width** | **Integer** | The width of the media in pixels |  [optional]
 

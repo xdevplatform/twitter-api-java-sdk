@@ -35,7 +35,7 @@ import com.twitter.clientlib.model.UserWithheld;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 import java.time.OffsetDateTime;
 
 import com.google.gson.Gson;
@@ -94,7 +94,7 @@ public class User {
 
   public static final String SERIALIZED_NAME_PROFILE_IMAGE_URL = "profile_image_url";
   @SerializedName(SERIALIZED_NAME_PROFILE_IMAGE_URL)
-  private URI profileImageUrl;
+  private URL profileImageUrl;
 
   public static final String SERIALIZED_NAME_LOCATION = "location";
   @SerializedName(SERIALIZED_NAME_LOCATION)
@@ -284,7 +284,7 @@ public class User {
   }
 
 
-  public User profileImageUrl(URI profileImageUrl) {
+  public User profileImageUrl(URL profileImageUrl) {
     
     this.profileImageUrl = profileImageUrl;
     return this;
@@ -297,12 +297,12 @@ public class User {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The URL to the profile image for this user.")
 
-  public URI getProfileImageUrl() {
+  public URL getProfileImageUrl() {
     return profileImageUrl;
   }
 
 
-  public void setProfileImageUrl(URI profileImageUrl) {
+  public void setProfileImageUrl(URL profileImageUrl) {
     this.profileImageUrl = profileImageUrl;
   }
 

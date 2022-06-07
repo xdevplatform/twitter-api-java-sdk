@@ -32,7 +32,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.net.URI;
+import java.net.URL;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,7 +69,7 @@ public class VideoAllOfVariants {
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
-  private URI url;
+  private URL url;
 
   public VideoAllOfVariants() { 
   }
@@ -120,7 +120,7 @@ public class VideoAllOfVariants {
   }
 
 
-  public VideoAllOfVariants url(URI url) {
+  public VideoAllOfVariants url(URL url) {
     
     this.url = url;
     return this;
@@ -133,12 +133,12 @@ public class VideoAllOfVariants {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The url to the media")
 
-  public URI getUrl() {
+  public URL getUrl() {
     return url;
   }
 
 
-  public void setUrl(URI url) {
+  public void setUrl(URL url) {
     this.url = url;
   }
 
