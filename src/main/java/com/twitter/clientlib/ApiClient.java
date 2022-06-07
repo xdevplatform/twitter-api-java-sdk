@@ -62,6 +62,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.twitter.clientlib.auth.AccessTokenAuthenticator;
 import com.twitter.clientlib.auth.Authentication;
 import com.twitter.clientlib.auth.HttpBasicAuth;
 import com.twitter.clientlib.auth.HttpBearerAuth;
@@ -74,6 +75,8 @@ import com.twitter.clientlib.auth.OAuth;
 * <p>ApiClient class.</p>
 */
 public class ApiClient {
+
+    public final static String OAUTH2_USER_TOKEN = "OAuth2UserToken";
 
     private String basePath = "https://api.twitter.com";
     private boolean debugging = false;
@@ -209,6 +212,7 @@ public class ApiClient {
         for (Interceptor interceptor: interceptors) {
             builder.addInterceptor(interceptor);
         }
+        builder.authenticator(new AccessTokenAuthenticator(this));
 
         httpClient = builder.connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)

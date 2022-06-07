@@ -161,18 +161,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public AddOrDeleteRulesResponse addOrDeleteRules(AddOrDeleteRulesRequest addOrDeleteRulesRequest, Boolean dryRun) throws ApiException {
-        ApiResponse<AddOrDeleteRulesResponse> localVarResp;
-        try{
-          localVarResp = addOrDeleteRulesWithHttpInfo(addOrDeleteRulesRequest, dryRun);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = addOrDeleteRulesWithHttpInfo(addOrDeleteRulesRequest, dryRun);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<AddOrDeleteRulesResponse> localVarResp = addOrDeleteRulesWithHttpInfo(addOrDeleteRulesRequest, dryRun);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -214,7 +204,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -309,18 +298,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetCreateResponse createTweet(CreateTweetRequest createTweetRequest) throws ApiException {
-        ApiResponse<TweetCreateResponse> localVarResp;
-        try{
-          localVarResp = createTweetWithHttpInfo(createTweetRequest);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = createTweetWithHttpInfo(createTweetRequest);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetCreateResponse> localVarResp = createTweetWithHttpInfo(createTweetRequest);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -361,7 +340,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -461,18 +439,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetDeleteResponse deleteTweetById(String id) throws ApiException {
-        ApiResponse<TweetDeleteResponse> localVarResp;
-        try{
-          localVarResp = deleteTweetByIdWithHttpInfo(id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = deleteTweetByIdWithHttpInfo(id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetDeleteResponse> localVarResp = deleteTweetByIdWithHttpInfo(id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -513,7 +481,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -649,18 +616,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public SingleTweetLookupResponse findTweetById(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<SingleTweetLookupResponse> localVarResp;
-        try{
-          localVarResp = findTweetByIdWithHttpInfo(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findTweetByIdWithHttpInfo(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<SingleTweetLookupResponse> localVarResp = findTweetByIdWithHttpInfo(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -707,7 +664,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -852,18 +808,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public MultiTweetLookupResponse findTweetsById(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<MultiTweetLookupResponse> localVarResp;
-        try{
-          localVarResp = findTweetsByIdWithHttpInfo(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findTweetsByIdWithHttpInfo(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiTweetLookupResponse> localVarResp = findTweetsByIdWithHttpInfo(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -910,7 +856,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1064,18 +1009,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public QuoteTweetLookupResponse findTweetsThatQuoteATweet(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<QuoteTweetLookupResponse> localVarResp;
-        try{
-          localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<QuoteTweetLookupResponse> localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1124,7 +1059,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1242,18 +1176,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public GetRulesResponse getRules(List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
-        ApiResponse<GetRulesResponse> localVarResp;
-        try{
-          localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<GetRulesResponse> localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1296,7 +1220,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1400,18 +1323,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public HideReplyByIdResponse hideReplyById(HideReplyByIdRequest hideReplyByIdRequest, String id) throws ApiException {
-        ApiResponse<HideReplyByIdResponse> localVarResp;
-        try{
-          localVarResp = hideReplyByIdWithHttpInfo(hideReplyByIdRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = hideReplyByIdWithHttpInfo(hideReplyByIdRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<HideReplyByIdResponse> localVarResp = hideReplyByIdWithHttpInfo(hideReplyByIdRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1453,7 +1366,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1602,18 +1514,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public ListsIdTweetsResponse listsIdTweets(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<ListsIdTweetsResponse> localVarResp;
-        try{
-          localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListsIdTweetsResponse> localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1662,7 +1564,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1854,7 +1755,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2044,7 +1944,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2156,18 +2055,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public MultiUserLookupResponse spaceBuyers(String id, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiUserLookupResponse> localVarResp;
-        try{
-          localVarResp = spaceBuyersWithHttpInfo(id, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = spaceBuyersWithHttpInfo(id, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiUserLookupResponse> localVarResp = spaceBuyersWithHttpInfo(id, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2209,7 +2098,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2322,18 +2210,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public MultiTweetLookupResponse spaceTweets(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        ApiResponse<MultiTweetLookupResponse> localVarResp;
-        try{
-          localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiTweetLookupResponse> localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2376,7 +2254,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2523,18 +2400,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetCountsResponse tweetCountsFullArchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        ApiResponse<TweetCountsResponse> localVarResp;
-        try{
-          localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetCountsResponse> localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2582,7 +2449,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2734,18 +2600,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetCountsResponse tweetCountsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        ApiResponse<TweetCountsResponse> localVarResp;
-        try{
-          localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetCountsResponse> localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2793,7 +2649,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2987,18 +2842,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetSearchResponse tweetsFullarchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<TweetSearchResponse> localVarResp;
-        try{
-          localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetSearchResponse> localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -3053,7 +2898,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -3254,18 +3098,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public TweetSearchResponse tweetsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<TweetSearchResponse> localVarResp;
-        try{
-          localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<TweetSearchResponse> localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -3320,7 +3154,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -3436,18 +3269,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public UsersLikesCreateResponse usersIdLike(UsersLikesCreateRequest usersLikesCreateRequest, String id) throws ApiException {
-        ApiResponse<UsersLikesCreateResponse> localVarResp;
-        try{
-          localVarResp = usersIdLikeWithHttpInfo(usersLikesCreateRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdLikeWithHttpInfo(usersLikesCreateRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<UsersLikesCreateResponse> localVarResp = usersIdLikeWithHttpInfo(usersLikesCreateRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -3489,7 +3312,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -3638,18 +3460,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public UsersIdLikedTweetsResponse usersIdLikedTweets(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<UsersIdLikedTweetsResponse> localVarResp;
-        try{
-          localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<UsersIdLikedTweetsResponse> localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -3698,7 +3510,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -3878,18 +3689,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public GenericTweetsTimelineResponse usersIdMentions(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<GenericTweetsTimelineResponse> localVarResp;
-        try{
-          localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -3942,7 +3743,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -4056,18 +3856,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public UsersRetweetsCreateResponse usersIdRetweets(UsersRetweetsCreateRequest usersRetweetsCreateRequest, String id) throws ApiException {
-        ApiResponse<UsersRetweetsCreateResponse> localVarResp;
-        try{
-          localVarResp = usersIdRetweetsWithHttpInfo(usersRetweetsCreateRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdRetweetsWithHttpInfo(usersRetweetsCreateRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<UsersRetweetsCreateResponse> localVarResp = usersIdRetweetsWithHttpInfo(usersRetweetsCreateRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -4109,7 +3899,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -4288,18 +4077,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public GenericTweetsTimelineResponse usersIdTimeline(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<GenericTweetsTimelineResponse> localVarResp;
-        try{
-          localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -4353,7 +4132,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -4544,18 +4322,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public GenericTweetsTimelineResponse usersIdTweets(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<GenericTweetsTimelineResponse> localVarResp;
-        try{
-          localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -4609,7 +4377,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -4730,18 +4497,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public UsersLikesDeleteResponse usersIdUnlike(String id, String tweetId) throws ApiException {
-        ApiResponse<UsersLikesDeleteResponse> localVarResp;
-        try{
-          localVarResp = usersIdUnlikeWithHttpInfo(id, tweetId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdUnlikeWithHttpInfo(id, tweetId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<UsersLikesDeleteResponse> localVarResp = usersIdUnlikeWithHttpInfo(id, tweetId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -4783,7 +4540,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -4892,18 +4648,8 @@ public class TweetsApi extends ApiCommon {
      </table>
      */
     public UsersRetweetsDeleteResponse usersIdUnretweets(String id, String sourceTweetId) throws ApiException {
-        ApiResponse<UsersRetweetsDeleteResponse> localVarResp;
-        try{
-          localVarResp = usersIdUnretweetsWithHttpInfo(id, sourceTweetId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdUnretweetsWithHttpInfo(id, sourceTweetId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<UsersRetweetsDeleteResponse> localVarResp = usersIdUnretweetsWithHttpInfo(id, sourceTweetId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -4945,7 +4691,6 @@ public class TweetsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }

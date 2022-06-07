@@ -145,18 +145,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public SingleSpaceLookupResponse findSpaceById(String id, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        ApiResponse<SingleSpaceLookupResponse> localVarResp;
-        try{
-          localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<SingleSpaceLookupResponse> localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -199,7 +189,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -316,18 +305,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public MultiSpaceLookupResponse findSpacesByCreatorIds(List<String> userIds, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        ApiResponse<MultiSpaceLookupResponse> localVarResp;
-        try{
-          localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiSpaceLookupResponse> localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -370,7 +349,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -487,18 +465,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public MultiSpaceLookupResponse findSpacesByIds(List<String> ids, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        ApiResponse<MultiSpaceLookupResponse> localVarResp;
-        try{
-          localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiSpaceLookupResponse> localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -541,7 +509,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -670,18 +637,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public MultiSpaceLookupResponse searchSpaces(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        ApiResponse<MultiSpaceLookupResponse> localVarResp;
-        try{
-          localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiSpaceLookupResponse> localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -726,7 +683,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -836,18 +792,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public MultiUserLookupResponse spaceBuyers(String id, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiUserLookupResponse> localVarResp;
-        try{
-          localVarResp = spaceBuyersWithHttpInfo(id, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = spaceBuyersWithHttpInfo(id, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiUserLookupResponse> localVarResp = spaceBuyersWithHttpInfo(id, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -889,7 +835,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1002,18 +947,8 @@ public class SpacesApi extends ApiCommon {
      </table>
      */
     public MultiTweetLookupResponse spaceTweets(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        ApiResponse<MultiTweetLookupResponse> localVarResp;
-        try{
-          localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiTweetLookupResponse> localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1056,7 +991,6 @@ public class SpacesApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }

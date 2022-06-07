@@ -180,18 +180,8 @@ public class BookmarksApi extends ApiCommon {
      </table>
      */
     public GenericTweetsTimelineResponse getUsersIdBookmarks(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ApiResponse<GenericTweetsTimelineResponse> localVarResp;
-        try{
-          localVarResp = getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<GenericTweetsTimelineResponse> localVarResp = getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -240,7 +230,6 @@ public class BookmarksApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -355,18 +344,8 @@ public class BookmarksApi extends ApiCommon {
      </table>
      */
     public BookmarkMutationResponse postUsersIdBookmarks(AddBookmarkRequest addBookmarkRequest, String id) throws ApiException {
-        ApiResponse<BookmarkMutationResponse> localVarResp;
-        try{
-          localVarResp = postUsersIdBookmarksWithHttpInfo(addBookmarkRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = postUsersIdBookmarksWithHttpInfo(addBookmarkRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<BookmarkMutationResponse> localVarResp = postUsersIdBookmarksWithHttpInfo(addBookmarkRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -408,7 +387,6 @@ public class BookmarksApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -517,18 +495,8 @@ public class BookmarksApi extends ApiCommon {
      </table>
      */
     public BookmarkMutationResponse usersIdBookmarksDelete(String id, String tweetId) throws ApiException {
-        ApiResponse<BookmarkMutationResponse> localVarResp;
-        try{
-          localVarResp = usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<BookmarkMutationResponse> localVarResp = usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -570,7 +538,6 @@ public class BookmarksApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }

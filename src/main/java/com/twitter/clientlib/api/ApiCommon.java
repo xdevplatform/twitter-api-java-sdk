@@ -37,16 +37,8 @@ public class ApiCommon {
     localVarApiClient = apiClient;
   }
 
-  protected OAuth2AccessToken refreshToken() throws ApiException {
-    return localVarApiClient.refreshToken();
-  }
-
   protected String[] reduceAuthNames(String[] localVarAuthNames) {
     return localVarApiClient.reduceAuthNames(localVarAuthNames);
-  }
-
-  protected boolean isOAUth2AutoRefreshToken() {
-    return localVarApiClient.isOAUth2AutoRefreshToken();
   }
 
   public boolean handleRateLimit(ApiException e, Integer retries) throws ApiException {
