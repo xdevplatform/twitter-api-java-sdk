@@ -79,12 +79,7 @@ public class OAuth implements Authentication {
      public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
                             String payload, String method, URI uri) throws ApiException {
       if (accessToken == null) {
-        try {
-          obtainAccessToken(null);
-        } catch (ApiException e) {
-          //TODO handle it!! throw the excep (+ change the signature) or get the excep from thee API?
-          e.printStackTrace();
-        }
+        obtainAccessToken(null);
       }
       if (accessToken != null) {
         headerParams.put("Authorization", "Bearer " + accessToken.getAccessToken());
@@ -111,6 +106,7 @@ public class OAuth implements Authentication {
         }
       } catch (OAuthException | InterruptedException | ExecutionException | IOException e) {
         log.log(Level.FINE, "Refreshing the access token using the refresh token failed", e);
+        throw new ApiException(e);
       }
       try {
         switch (flow) {

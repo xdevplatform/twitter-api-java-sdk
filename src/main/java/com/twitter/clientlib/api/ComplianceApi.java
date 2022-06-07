@@ -132,18 +132,8 @@ public class ComplianceApi extends ApiCommon {
      </table>
      */
     public SingleComplianceJobResponse createBatchComplianceJob(CreateBatchComplianceJobRequest createBatchComplianceJobRequest) throws ApiException {
-        ApiResponse<SingleComplianceJobResponse> localVarResp;
-        try{
-          localVarResp = createBatchComplianceJobWithHttpInfo(createBatchComplianceJobRequest);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = createBatchComplianceJobWithHttpInfo(createBatchComplianceJobRequest);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<SingleComplianceJobResponse> localVarResp = createBatchComplianceJobWithHttpInfo(createBatchComplianceJobRequest);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -184,7 +174,6 @@ public class ComplianceApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -284,18 +273,8 @@ public class ComplianceApi extends ApiCommon {
      </table>
      */
     public SingleComplianceJobResponse getBatchComplianceJob(String id) throws ApiException {
-        ApiResponse<SingleComplianceJobResponse> localVarResp;
-        try{
-          localVarResp = getBatchComplianceJobWithHttpInfo(id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = getBatchComplianceJobWithHttpInfo(id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<SingleComplianceJobResponse> localVarResp = getBatchComplianceJobWithHttpInfo(id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -336,7 +315,6 @@ public class ComplianceApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -445,18 +423,8 @@ public class ComplianceApi extends ApiCommon {
      </table>
      */
     public MultiComplianceJobResponse listBatchComplianceJobs(ComplianceJobType type, ComplianceJobStatus status) throws ApiException {
-        ApiResponse<MultiComplianceJobResponse> localVarResp;
-        try{
-          localVarResp = listBatchComplianceJobsWithHttpInfo(type, status);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listBatchComplianceJobsWithHttpInfo(type, status);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiComplianceJobResponse> localVarResp = listBatchComplianceJobsWithHttpInfo(type, status);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -498,7 +466,6 @@ public class ComplianceApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }

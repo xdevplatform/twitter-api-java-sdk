@@ -116,18 +116,8 @@ public class GeneralApi extends ApiCommon {
      </table>
      */
     public Object getOpenApiSpec() throws ApiException {
-        ApiResponse<Object> localVarResp;
-        try{
-          localVarResp = getOpenApiSpecWithHttpInfo();
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = getOpenApiSpecWithHttpInfo();
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<Object> localVarResp = getOpenApiSpecWithHttpInfo();
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -166,7 +156,6 @@ public class GeneralApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }

@@ -173,18 +173,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public MultiListResponse getUserListMemberships(String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiListResponse> localVarResp;
-        try{
-          localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiListResponse> localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -230,7 +220,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -337,18 +326,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListMemberResponse listAddMember(ListAddMemberRequest listAddMemberRequest, String id) throws ApiException {
-        ApiResponse<ListMemberResponse> localVarResp;
-        try{
-          localVarResp = listAddMemberWithHttpInfo(listAddMemberRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listAddMemberWithHttpInfo(listAddMemberRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListMemberResponse> localVarResp = listAddMemberWithHttpInfo(listAddMemberRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -390,7 +369,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -485,18 +463,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListCreateResponse listIdCreate(ListCreateRequest listCreateRequest) throws ApiException {
-        ApiResponse<ListCreateResponse> localVarResp;
-        try{
-          localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListCreateResponse> localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -537,7 +505,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -637,18 +604,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListDeleteResponse listIdDelete(String id) throws ApiException {
-        ApiResponse<ListDeleteResponse> localVarResp;
-        try{
-          localVarResp = listIdDeleteWithHttpInfo(id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listIdDeleteWithHttpInfo(id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListDeleteResponse> localVarResp = listIdDeleteWithHttpInfo(id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -689,7 +646,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -807,18 +763,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public SingleListLookupResponse listIdGet(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        ApiResponse<SingleListLookupResponse> localVarResp;
-        try{
-          localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<SingleListLookupResponse> localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -862,7 +808,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -967,18 +912,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListUpdateResponse listIdUpdate(ListUpdateRequest listUpdateRequest, String id) throws ApiException {
-        ApiResponse<ListUpdateResponse> localVarResp;
-        try{
-          localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListUpdateResponse> localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1020,7 +955,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1129,18 +1063,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListMemberResponse listRemoveMember(String id, String userId) throws ApiException {
-        ApiResponse<ListMemberResponse> localVarResp;
-        try{
-          localVarResp = listRemoveMemberWithHttpInfo(id, userId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listRemoveMemberWithHttpInfo(id, userId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListMemberResponse> localVarResp = listRemoveMemberWithHttpInfo(id, userId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1182,7 +1106,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1285,18 +1208,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListFollowedResponse listUserFollow(ListFollowRequest listFollowRequest, String id) throws ApiException {
-        ApiResponse<ListFollowedResponse> localVarResp;
-        try{
-          localVarResp = listUserFollowWithHttpInfo(listFollowRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserFollowWithHttpInfo(listFollowRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListFollowedResponse> localVarResp = listUserFollowWithHttpInfo(listFollowRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1338,7 +1251,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1469,18 +1381,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public MultiListResponse listUserOwnedLists(String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiListResponse> localVarResp;
-        try{
-          localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiListResponse> localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1526,7 +1428,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1633,18 +1534,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListPinnedResponse listUserPin(ListPinRequest listPinRequest, String id) throws ApiException {
-        ApiResponse<ListPinnedResponse> localVarResp;
-        try{
-          localVarResp = listUserPinWithHttpInfo(listPinRequest, id);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserPinWithHttpInfo(listPinRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListPinnedResponse> localVarResp = listUserPinWithHttpInfo(listPinRequest, id);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1686,7 +1577,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1805,18 +1695,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public MultiListNoPaginationResponse listUserPinnedLists(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiListNoPaginationResponse> localVarResp;
-        try{
-          localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiListNoPaginationResponse> localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -1860,7 +1740,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -1971,18 +1850,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListFollowedResponse listUserUnfollow(String id, String listId) throws ApiException {
-        ApiResponse<ListFollowedResponse> localVarResp;
-        try{
-          localVarResp = listUserUnfollowWithHttpInfo(id, listId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserUnfollowWithHttpInfo(id, listId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListFollowedResponse> localVarResp = listUserUnfollowWithHttpInfo(id, listId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2024,7 +1893,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2133,18 +2001,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public ListPinnedResponse listUserUnpin(String id, String listId) throws ApiException {
-        ApiResponse<ListPinnedResponse> localVarResp;
-        try{
-          localVarResp = listUserUnpinWithHttpInfo(id, listId);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = listUserUnpinWithHttpInfo(id, listId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<ListPinnedResponse> localVarResp = listUserUnpinWithHttpInfo(id, listId);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2186,7 +2044,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
@@ -2317,18 +2174,8 @@ public class ListsApi extends ApiCommon {
      </table>
      */
     public MultiListResponse userFollowedLists(String id, Integer maxResults, Long paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        ApiResponse<MultiListResponse> localVarResp;
-        try{
-          localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if (isOAUth2AutoRefreshToken() && e.getCode() == 401) {
-            refreshToken();
-            localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp != null ? localVarResp.getData() : null;
+      ApiResponse<MultiListResponse> localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+      return localVarResp != null ? localVarResp.getData() : null;
     }
 
    /**
@@ -2374,7 +2221,6 @@ public class ListsApi extends ApiCommon {
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            e.setErrorObjectType(new GenericType<com.twitter.clientlib.model.ProblemOrError>(){});
             throw e;
         }
     }
