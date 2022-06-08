@@ -53,6 +53,22 @@ public class PollTest {
     }
 
     /**
+     * Test the property 'durationMinutes'
+     */
+    @Test
+    public void durationMinutesTest() {
+        // TODO: test durationMinutes
+    }
+
+    /**
+     * Test the property 'endDatetime'
+     */
+    @Test
+    public void endDatetimeTest() {
+        // TODO: test endDatetime
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -74,22 +90,6 @@ public class PollTest {
     @Test
     public void votingStatusTest() {
         // TODO: test votingStatus
-    }
-
-    /**
-     * Test the property 'endDatetime'
-     */
-    @Test
-    public void endDatetimeTest() {
-        // TODO: test endDatetime
-    }
-
-    /**
-     * Test the property 'durationMinutes'
-     */
-    @Test
-    public void durationMinutesTest() {
-        // TODO: test durationMinutes
     }
 
 }

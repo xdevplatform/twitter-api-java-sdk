@@ -54,83 +54,11 @@ public class UserTest {
     }
 
     /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
      * Test the property 'createdAt'
      */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'username'
-     */
-    @Test
-    public void usernameTest() {
-        // TODO: test username
-    }
-
-    /**
-     * Test the property '_protected'
-     */
-    @Test
-    public void _protectedTest() {
-        // TODO: test _protected
-    }
-
-    /**
-     * Test the property 'verified'
-     */
-    @Test
-    public void verifiedTest() {
-        // TODO: test verified
-    }
-
-    /**
-     * Test the property 'withheld'
-     */
-    @Test
-    public void withheldTest() {
-        // TODO: test withheld
-    }
-
-    /**
-     * Test the property 'profileImageUrl'
-     */
-    @Test
-    public void profileImageUrlTest() {
-        // TODO: test profileImageUrl
-    }
-
-    /**
-     * Test the property 'location'
-     */
-    @Test
-    public void locationTest() {
-        // TODO: test location
-    }
-
-    /**
-     * Test the property 'url'
-     */
-    @Test
-    public void urlTest() {
-        // TODO: test url
     }
 
     /**
@@ -150,6 +78,30 @@ public class UserTest {
     }
 
     /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'location'
+     */
+    @Test
+    public void locationTest() {
+        // TODO: test location
+    }
+
+    /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
      * Test the property 'pinnedTweetId'
      */
     @Test
@@ -158,11 +110,59 @@ public class UserTest {
     }
 
     /**
+     * Test the property 'profileImageUrl'
+     */
+    @Test
+    public void profileImageUrlTest() {
+        // TODO: test profileImageUrl
+    }
+
+    /**
+     * Test the property '_protected'
+     */
+    @Test
+    public void _protectedTest() {
+        // TODO: test _protected
+    }
+
+    /**
      * Test the property 'publicMetrics'
      */
     @Test
     public void publicMetricsTest() {
         // TODO: test publicMetrics
+    }
+
+    /**
+     * Test the property 'url'
+     */
+    @Test
+    public void urlTest() {
+        // TODO: test url
+    }
+
+    /**
+     * Test the property 'username'
+     */
+    @Test
+    public void usernameTest() {
+        // TODO: test username
+    }
+
+    /**
+     * Test the property 'verified'
+     */
+    @Test
+    public void verifiedTest() {
+        // TODO: test verified
+    }
+
+    /**
+     * Test the property 'withheld'
+     */
+    @Test
+    public void withheldTest() {
+        // TODO: test withheld
     }
 
 }

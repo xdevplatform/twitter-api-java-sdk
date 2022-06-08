@@ -28,6 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.CashtagEntity;
+import com.twitter.clientlib.model.FullTextEntitiesAnnotationsInner;
 import com.twitter.clientlib.model.HashtagEntity;
 import com.twitter.clientlib.model.MentionEntity;
 import com.twitter.clientlib.model.UrlEntity;
@@ -55,11 +56,19 @@ public class FullTextEntitiesTest {
     }
 
     /**
-     * Test the property 'urls'
+     * Test the property 'annotations'
      */
     @Test
-    public void urlsTest() {
-        // TODO: test urls
+    public void annotationsTest() {
+        // TODO: test annotations
+    }
+
+    /**
+     * Test the property 'cashtags'
+     */
+    @Test
+    public void cashtagsTest() {
+        // TODO: test cashtags
     }
 
     /**
@@ -79,11 +88,11 @@ public class FullTextEntitiesTest {
     }
 
     /**
-     * Test the property 'cashtags'
+     * Test the property 'urls'
      */
     @Test
-    public void cashtagsTest() {
-        // TODO: test cashtags
+    public void urlsTest() {
+        // TODO: test urls
     }
 
 }

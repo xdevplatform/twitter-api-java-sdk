@@ -11,11 +11,11 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="getUsersIdBookmarks"></a>
 # **getUsersIdBookmarks**
-> GenericTweetsTimelineResponse getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields)
+> Get2UsersIdBookmarksResponse getUsersIdBookmarks(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Bookmarks by User
 
-Returns Tweet objects that have been bookmarked by the requesting user
+Returns Tweet objects that have been bookmarked by the requesting User
 
 ### Example
 ```java
@@ -53,17 +53,17 @@ public class Example {
     // apiInstance.setTwitterCredentials(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user for whom to return results
-    Integer maxResults = 56; // Integer | The maximum number of results
+    String id = "id_example"; // String | The ID of the authenticated source User for whom to return results.
+    Integer maxResults = 56; // Integer | The maximum number of results.
     String paginationToken = "paginationToken_example"; // String | This parameter is used to get the next 'page' of results.
-    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
-    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           GenericTweetsTimelineResponse result = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+           Get2UsersIdBookmarksResponse result = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling BookmarksApi#getUsersIdBookmarks");
@@ -80,19 +80,19 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user for whom to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] |
+| **id** | **String**| The ID of the authenticated source User for whom to return results. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] |
 | **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: author_id, referenced_tweets.id, in_reply_to_user_id, geo.place_id, attachments.media_keys, attachments.poll_ids, entities.mentions.username, referenced_tweets.id.author_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
-| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: media_key, duration_ms, height, preview_image_url, type, url, width, public_metrics, non_public_metrics, organic_metrics, promoted_metrics, alt_text, variants] |
-| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: id, name, country_code, place_type, full_name, country, contained_within, geo] |
-| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: id, options, voting_status, end_datetime, duration_minutes] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: attachments.media_keys, attachments.poll_ids, author_id, entities.mentions.username, geo.place_id, in_reply_to_user_id, referenced_tweets.id, referenced_tweets.id.author_id] |
+| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: alt_text, duration_ms, height, media_key, non_public_metrics, organic_metrics, preview_image_url, promoted_metrics, public_metrics, type, url, variants, width] |
+| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: duration_minutes, end_datetime, id, options, voting_status] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: contained_within, country, country_code, full_name, geo, id, name, place_type] |
 
 ### Return type
 
-[**GenericTweetsTimelineResponse**](GenericTweetsTimelineResponse.md)
+[**Get2UsersIdBookmarksResponse**](Get2UsersIdBookmarksResponse.md)
 
 ### Authorization
 
@@ -106,16 +106,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="postUsersIdBookmarks"></a>
 # **postUsersIdBookmarks**
-> BookmarkMutationResponse postUsersIdBookmarks(addBookmarkRequest, id)
+> BookmarkMutationResponse postUsersIdBookmarks(bookmarkAddRequest, id)
 
 Add Tweet to Bookmarks
 
-Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
+Adds a Tweet (ID in the body) to the requesting User&#39;s (in the path) bookmarks
 
 ### Example
 ```java
@@ -153,10 +153,10 @@ public class Example {
     // apiInstance.setTwitterCredentials(credentials);
 
     // Set the params values
-    AddBookmarkRequest addBookmarkRequest = new AddBookmarkRequest(); // AddBookmarkRequest | 
-    String id = "id_example"; // String | The ID of the user for whom to add bookmarks
+    BookmarkAddRequest bookmarkAddRequest = new BookmarkAddRequest(); // BookmarkAddRequest | 
+    String id = "id_example"; // String | The ID of the authenticated source User for whom to add bookmarks.
     try {
-           BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(addBookmarkRequest, id);
+           BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling BookmarksApi#postUsersIdBookmarks");
@@ -173,8 +173,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **addBookmarkRequest** | [**AddBookmarkRequest**](AddBookmarkRequest.md)|  | |
-| **id** | **String**| The ID of the user for whom to add bookmarks | |
+| **bookmarkAddRequest** | [**BookmarkAddRequest**](BookmarkAddRequest.md)|  | |
+| **id** | **String**| The ID of the authenticated source User for whom to add bookmarks. | |
 
 ### Return type
 
@@ -192,7 +192,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdBookmarksDelete"></a>
@@ -201,7 +201,7 @@ public class Example {
 
 Remove a bookmarked Tweet
 
-Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
+Removes a Tweet from the requesting User&#39;s bookmarked Tweets.
 
 ### Example
 ```java
@@ -239,8 +239,8 @@ public class Example {
     // apiInstance.setTwitterCredentials(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user whose bookmark is to be removed.
-    String tweetId = "tweetId_example"; // String | The ID of the tweet that the user is removing from bookmarks
+    String id = "id_example"; // String | The ID of the authenticated source User whose bookmark is to be removed.
+    String tweetId = "tweetId_example"; // String | The ID of the Tweet that the source User is removing from bookmarks.
     try {
            BookmarkMutationResponse result = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId);
             System.out.println(result);
@@ -259,8 +259,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user whose bookmark is to be removed. | |
-| **tweetId** | **String**| The ID of the tweet that the user is removing from bookmarks | |
+| **id** | **String**| The ID of the authenticated source User whose bookmark is to be removed. | |
+| **tweetId** | **String**| The ID of the Tweet that the source User is removing from bookmarks. | |
 
 ### Return type
 
@@ -278,6 +278,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 

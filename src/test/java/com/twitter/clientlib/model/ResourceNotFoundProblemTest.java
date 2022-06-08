@@ -69,22 +69,6 @@ public class ResourceNotFoundProblemTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
      * Test the property 'detail'
      */
     @Test
@@ -101,19 +85,27 @@ public class ResourceNotFoundProblemTest {
     }
 
     /**
+     * Test the property 'title'
+     */
+    @Test
+    public void titleTest() {
+        // TODO: test title
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
      * Test the property 'parameter'
      */
     @Test
     public void parameterTest() {
         // TODO: test parameter
-    }
-
-    /**
-     * Test the property 'value'
-     */
-    @Test
-    public void valueTest() {
-        // TODO: test value
     }
 
     /**
@@ -130,6 +122,14 @@ public class ResourceNotFoundProblemTest {
     @Test
     public void resourceTypeTest() {
         // TODO: test resourceType
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

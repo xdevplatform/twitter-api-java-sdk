@@ -4,16 +4,16 @@ All URIs are relative to *https://api.twitter.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the open api spec document. |
+| [**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the OpenAPI Specification document. |
 
 
 <a name="getOpenApiSpec"></a>
 # **getOpenApiSpec**
 > Object getOpenApiSpec()
 
-Returns the open api spec document.
+Returns the OpenAPI Specification document.
 
-Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
 
 ### Example
 ```java

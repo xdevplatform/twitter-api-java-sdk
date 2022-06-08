@@ -50,7 +50,7 @@ public class HelloWorld {
 
     try {
      // findTweetById
-     SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null , null, null, null);
+     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20", tweetFields, null, null , null, null, null);
      if(result.getErrors() != null && result.getErrors().size() > 0) {
        System.out.println("Error:");
 

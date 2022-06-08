@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.SpaceTopics;
+import com.twitter.clientlib.model.SpaceTopicsInner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -58,16 +58,61 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Space
+ * 
  */
+@ApiModel(description = "")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Space {
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_CREATOR_ID = "creator_id";
+  @SerializedName(SERIALIZED_NAME_CREATOR_ID)
+  private String creatorId;
+
+  public static final String SERIALIZED_NAME_ENDED_AT = "ended_at";
+  @SerializedName(SERIALIZED_NAME_ENDED_AT)
+  private OffsetDateTime endedAt;
+
+  public static final String SERIALIZED_NAME_HOST_IDS = "host_ids";
+  @SerializedName(SERIALIZED_NAME_HOST_IDS)
+  private List<String> hostIds = null;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_INVITED_USER_IDS = "invited_user_ids";
+  @SerializedName(SERIALIZED_NAME_INVITED_USER_IDS)
+  private List<String> invitedUserIds = null;
+
+  public static final String SERIALIZED_NAME_IS_TICKETED = "is_ticketed";
+  @SerializedName(SERIALIZED_NAME_IS_TICKETED)
+  private Boolean isTicketed;
+
+  public static final String SERIALIZED_NAME_LANG = "lang";
+  @SerializedName(SERIALIZED_NAME_LANG)
+  private String lang;
+
+  public static final String SERIALIZED_NAME_PARTICIPANT_COUNT = "participant_count";
+  @SerializedName(SERIALIZED_NAME_PARTICIPANT_COUNT)
+  private Integer participantCount;
+
+  public static final String SERIALIZED_NAME_SCHEDULED_START = "scheduled_start";
+  @SerializedName(SERIALIZED_NAME_SCHEDULED_START)
+  private OffsetDateTime scheduledStart;
+
+  public static final String SERIALIZED_NAME_SPEAKER_IDS = "speaker_ids";
+  @SerializedName(SERIALIZED_NAME_SPEAKER_IDS)
+  private List<String> speakerIds = null;
+
+  public static final String SERIALIZED_NAME_STARTED_AT = "started_at";
+  @SerializedName(SERIALIZED_NAME_STARTED_AT)
+  private OffsetDateTime startedAt;
+
   /**
-   * The current state of the space.
+   * The current state of the Space.
    */
   @JsonAdapter(StateEnum.Adapter.class)
   public enum StateEnum {
@@ -119,260 +164,24 @@ public class Space {
   @SerializedName(SERIALIZED_NAME_STATE)
   private StateEnum state;
 
-  public static final String SERIALIZED_NAME_STARTED_AT = "started_at";
-  @SerializedName(SERIALIZED_NAME_STARTED_AT)
-  private OffsetDateTime startedAt;
-
-  public static final String SERIALIZED_NAME_IS_TICKETED = "is_ticketed";
-  @SerializedName(SERIALIZED_NAME_IS_TICKETED)
-  private Boolean isTicketed;
-
-  public static final String SERIALIZED_NAME_PARTICIPANT_COUNT = "participant_count";
-  @SerializedName(SERIALIZED_NAME_PARTICIPANT_COUNT)
-  private Integer participantCount;
+  public static final String SERIALIZED_NAME_SUBSCRIBER_COUNT = "subscriber_count";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIBER_COUNT)
+  private Integer subscriberCount;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
   private String title;
 
-  public static final String SERIALIZED_NAME_HOST_IDS = "host_ids";
-  @SerializedName(SERIALIZED_NAME_HOST_IDS)
-  private List<String> hostIds = null;
+  public static final String SERIALIZED_NAME_TOPICS = "topics";
+  @SerializedName(SERIALIZED_NAME_TOPICS)
+  private List<SpaceTopicsInner> topics = null;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private OffsetDateTime updatedAt;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
-
-  public static final String SERIALIZED_NAME_CREATOR_ID = "creator_id";
-  @SerializedName(SERIALIZED_NAME_CREATOR_ID)
-  private String creatorId;
-
-  public static final String SERIALIZED_NAME_LANG = "lang";
-  @SerializedName(SERIALIZED_NAME_LANG)
-  private String lang;
-
-  public static final String SERIALIZED_NAME_SPEAKER_IDS = "speaker_ids";
-  @SerializedName(SERIALIZED_NAME_SPEAKER_IDS)
-  private List<String> speakerIds = null;
-
-  public static final String SERIALIZED_NAME_INVITED_USER_IDS = "invited_user_ids";
-  @SerializedName(SERIALIZED_NAME_INVITED_USER_IDS)
-  private List<String> invitedUserIds = null;
-
-  public static final String SERIALIZED_NAME_SCHEDULED_START = "scheduled_start";
-  @SerializedName(SERIALIZED_NAME_SCHEDULED_START)
-  private OffsetDateTime scheduledStart;
-
-  public static final String SERIALIZED_NAME_ENDED_AT = "ended_at";
-  @SerializedName(SERIALIZED_NAME_ENDED_AT)
-  private OffsetDateTime endedAt;
-
-  public static final String SERIALIZED_NAME_TOPICS = "topics";
-  @SerializedName(SERIALIZED_NAME_TOPICS)
-  private List<SpaceTopics> topics = null;
-
-  public static final String SERIALIZED_NAME_SUBSCRIBER_COUNT = "subscriber_count";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIBER_COUNT)
-  private Integer subscriberCount;
-
   public Space() { 
   }
-
-  public Space id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The unique identifier of this Space.
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1SLjjRYNejbKM", required = true, value = "The unique identifier of this Space.")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Space state(StateEnum state) {
-    
-    this.state = state;
-    return this;
-  }
-
-   /**
-   * The current state of the space.
-   * @return state
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "live", required = true, value = "The current state of the space.")
-
-  public StateEnum getState() {
-    return state;
-  }
-
-
-  public void setState(StateEnum state) {
-    this.state = state;
-  }
-
-
-  public Space startedAt(OffsetDateTime startedAt) {
-    
-    this.startedAt = startedAt;
-    return this;
-  }
-
-   /**
-   * When the space was started as a date string
-   * @return startedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the space was started as a date string")
-
-  public OffsetDateTime getStartedAt() {
-    return startedAt;
-  }
-
-
-  public void setStartedAt(OffsetDateTime startedAt) {
-    this.startedAt = startedAt;
-  }
-
-
-  public Space isTicketed(Boolean isTicketed) {
-    
-    this.isTicketed = isTicketed;
-    return this;
-  }
-
-   /**
-   * Denotes if the space is a ticketed space
-   * @return isTicketed
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Denotes if the space is a ticketed space")
-
-  public Boolean getIsTicketed() {
-    return isTicketed;
-  }
-
-
-  public void setIsTicketed(Boolean isTicketed) {
-    this.isTicketed = isTicketed;
-  }
-
-
-  public Space participantCount(Integer participantCount) {
-    
-    this.participantCount = participantCount;
-    return this;
-  }
-
-   /**
-   * The number of participants in a space
-   * @return participantCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The number of participants in a space")
-
-  public Integer getParticipantCount() {
-    return participantCount;
-  }
-
-
-  public void setParticipantCount(Integer participantCount) {
-    this.participantCount = participantCount;
-  }
-
-
-  public Space title(String title) {
-    
-    this.title = title;
-    return this;
-  }
-
-   /**
-   * The title of the space
-   * @return title
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Spaces are Awesome", value = "The title of the space")
-
-  public String getTitle() {
-    return title;
-  }
-
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-
-  public Space hostIds(List<String> hostIds) {
-    
-    this.hostIds = hostIds;
-    return this;
-  }
-
-  public Space addHostIdsItem(String hostIdsItem) {
-    if (this.hostIds == null) {
-      this.hostIds = new ArrayList<>();
-    }
-    this.hostIds.add(hostIdsItem);
-    return this;
-  }
-
-   /**
-   * The user ids for the hosts of the space
-   * @return hostIds
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The user ids for the hosts of the space")
-
-  public List<String> getHostIds() {
-    return hostIds;
-  }
-
-
-  public void setHostIds(List<String> hostIds) {
-    this.hostIds = hostIds;
-  }
-
-
-  public Space updatedAt(OffsetDateTime updatedAt) {
-    
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-   /**
-   * When the space was last updated
-   * @return updatedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "When the space was last updated")
-
-  public OffsetDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
 
   public Space createdAt(OffsetDateTime createdAt) {
     
@@ -381,11 +190,11 @@ public class Space {
   }
 
    /**
-   * Creation time of the space
+   * Creation time of the Space.
    * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "Creation time of the space")
+  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "Creation time of the Space.")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -420,57 +229,80 @@ public class Space {
   }
 
 
-  public Space lang(String lang) {
+  public Space endedAt(OffsetDateTime endedAt) {
     
-    this.lang = lang;
+    this.endedAt = endedAt;
     return this;
   }
 
    /**
-   * The language of the space
-   * @return lang
+   * End time of the Space.
+   * @return endedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "en", value = "The language of the space")
+  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "End time of the Space.")
 
-  public String getLang() {
-    return lang;
+  public OffsetDateTime getEndedAt() {
+    return endedAt;
   }
 
 
-  public void setLang(String lang) {
-    this.lang = lang;
+  public void setEndedAt(OffsetDateTime endedAt) {
+    this.endedAt = endedAt;
   }
 
 
-  public Space speakerIds(List<String> speakerIds) {
+  public Space hostIds(List<String> hostIds) {
     
-    this.speakerIds = speakerIds;
+    this.hostIds = hostIds;
     return this;
   }
 
-  public Space addSpeakerIdsItem(String speakerIdsItem) {
-    if (this.speakerIds == null) {
-      this.speakerIds = new ArrayList<>();
+  public Space addHostIdsItem(String hostIdsItem) {
+    if (this.hostIds == null) {
+      this.hostIds = new ArrayList<>();
     }
-    this.speakerIds.add(speakerIdsItem);
+    this.hostIds.add(hostIdsItem);
     return this;
   }
 
    /**
-   * An array of user ids for people who were speakers in a space
-   * @return speakerIds
+   * The user ids for the hosts of the Space.
+   * @return hostIds
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of user ids for people who were speakers in a space")
+  @ApiModelProperty(value = "The user ids for the hosts of the Space.")
 
-  public List<String> getSpeakerIds() {
-    return speakerIds;
+  public List<String> getHostIds() {
+    return hostIds;
   }
 
 
-  public void setSpeakerIds(List<String> speakerIds) {
-    this.speakerIds = speakerIds;
+  public void setHostIds(List<String> hostIds) {
+    this.hostIds = hostIds;
+  }
+
+
+  public Space id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The unique identifier of this Space.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "1SLjjRYNejbKM", required = true, value = "The unique identifier of this Space.")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -489,11 +321,11 @@ public class Space {
   }
 
    /**
-   * An array of user ids for people who were invited to a space
+   * An array of user ids for people who were invited to a Space.
    * @return invitedUserIds
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of user ids for people who were invited to a space")
+  @ApiModelProperty(value = "An array of user ids for people who were invited to a Space.")
 
   public List<String> getInvitedUserIds() {
     return invitedUserIds;
@@ -505,6 +337,75 @@ public class Space {
   }
 
 
+  public Space isTicketed(Boolean isTicketed) {
+    
+    this.isTicketed = isTicketed;
+    return this;
+  }
+
+   /**
+   * Denotes if the Space is a ticketed Space.
+   * @return isTicketed
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Denotes if the Space is a ticketed Space.")
+
+  public Boolean getIsTicketed() {
+    return isTicketed;
+  }
+
+
+  public void setIsTicketed(Boolean isTicketed) {
+    this.isTicketed = isTicketed;
+  }
+
+
+  public Space lang(String lang) {
+    
+    this.lang = lang;
+    return this;
+  }
+
+   /**
+   * The language of the Space.
+   * @return lang
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "en", value = "The language of the Space.")
+
+  public String getLang() {
+    return lang;
+  }
+
+
+  public void setLang(String lang) {
+    this.lang = lang;
+  }
+
+
+  public Space participantCount(Integer participantCount) {
+    
+    this.participantCount = participantCount;
+    return this;
+  }
+
+   /**
+   * The number of participants in a Space.
+   * @return participantCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "10", value = "The number of participants in a Space.")
+
+  public Integer getParticipantCount() {
+    return participantCount;
+  }
+
+
+  public void setParticipantCount(Integer participantCount) {
+    this.participantCount = participantCount;
+  }
+
+
   public Space scheduledStart(OffsetDateTime scheduledStart) {
     
     this.scheduledStart = scheduledStart;
@@ -512,11 +413,11 @@ public class Space {
   }
 
    /**
-   * A date time stamp for when a space is scheduled to begin
+   * A date time stamp for when a Space is scheduled to begin.
    * @return scheduledStart
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "A date time stamp for when a space is scheduled to begin")
+  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "A date time stamp for when a Space is scheduled to begin.")
 
   public OffsetDateTime getScheduledStart() {
     return scheduledStart;
@@ -528,57 +429,80 @@ public class Space {
   }
 
 
-  public Space endedAt(OffsetDateTime endedAt) {
+  public Space speakerIds(List<String> speakerIds) {
     
-    this.endedAt = endedAt;
+    this.speakerIds = speakerIds;
     return this;
   }
 
-   /**
-   * End time of the space
-   * @return endedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2021-07-06T18:40:40Z", value = "End time of the space")
-
-  public OffsetDateTime getEndedAt() {
-    return endedAt;
-  }
-
-
-  public void setEndedAt(OffsetDateTime endedAt) {
-    this.endedAt = endedAt;
-  }
-
-
-  public Space topics(List<SpaceTopics> topics) {
-    
-    this.topics = topics;
-    return this;
-  }
-
-  public Space addTopicsItem(SpaceTopics topicsItem) {
-    if (this.topics == null) {
-      this.topics = new ArrayList<>();
+  public Space addSpeakerIdsItem(String speakerIdsItem) {
+    if (this.speakerIds == null) {
+      this.speakerIds = new ArrayList<>();
     }
-    this.topics.add(topicsItem);
+    this.speakerIds.add(speakerIdsItem);
     return this;
   }
 
    /**
-   * The topics of a space, as selected by its creator
-   * @return topics
+   * An array of user ids for people who were speakers in a Space.
+   * @return speakerIds
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The topics of a space, as selected by its creator")
+  @ApiModelProperty(value = "An array of user ids for people who were speakers in a Space.")
 
-  public List<SpaceTopics> getTopics() {
-    return topics;
+  public List<String> getSpeakerIds() {
+    return speakerIds;
   }
 
 
-  public void setTopics(List<SpaceTopics> topics) {
-    this.topics = topics;
+  public void setSpeakerIds(List<String> speakerIds) {
+    this.speakerIds = speakerIds;
+  }
+
+
+  public Space startedAt(OffsetDateTime startedAt) {
+    
+    this.startedAt = startedAt;
+    return this;
+  }
+
+   /**
+   * When the Space was started as a date string.
+   * @return startedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When the Space was started as a date string.")
+
+  public OffsetDateTime getStartedAt() {
+    return startedAt;
+  }
+
+
+  public void setStartedAt(OffsetDateTime startedAt) {
+    this.startedAt = startedAt;
+  }
+
+
+  public Space state(StateEnum state) {
+    
+    this.state = state;
+    return this;
+  }
+
+   /**
+   * The current state of the Space.
+   * @return state
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "live", required = true, value = "The current state of the Space.")
+
+  public StateEnum getState() {
+    return state;
+  }
+
+
+  public void setState(StateEnum state) {
+    this.state = state;
   }
 
 
@@ -589,11 +513,11 @@ public class Space {
   }
 
    /**
-   * The number of people who have either purchased a ticket or set a reminder for this space.
+   * The number of people who have either purchased a ticket or set a reminder for this Space.
    * @return subscriberCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The number of people who have either purchased a ticket or set a reminder for this space.")
+  @ApiModelProperty(example = "10", value = "The number of people who have either purchased a ticket or set a reminder for this Space.")
 
   public Integer getSubscriberCount() {
     return subscriberCount;
@@ -602,6 +526,83 @@ public class Space {
 
   public void setSubscriberCount(Integer subscriberCount) {
     this.subscriberCount = subscriberCount;
+  }
+
+
+  public Space title(String title) {
+    
+    this.title = title;
+    return this;
+  }
+
+   /**
+   * The title of the Space.
+   * @return title
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Spaces are Awesome", value = "The title of the Space.")
+
+  public String getTitle() {
+    return title;
+  }
+
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+
+  public Space topics(List<SpaceTopicsInner> topics) {
+    
+    this.topics = topics;
+    return this;
+  }
+
+  public Space addTopicsItem(SpaceTopicsInner topicsItem) {
+    if (this.topics == null) {
+      this.topics = new ArrayList<>();
+    }
+    this.topics.add(topicsItem);
+    return this;
+  }
+
+   /**
+   * The topics of a Space, as selected by its creator.
+   * @return topics
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The topics of a Space, as selected by its creator.")
+
+  public List<SpaceTopicsInner> getTopics() {
+    return topics;
+  }
+
+
+  public void setTopics(List<SpaceTopicsInner> topics) {
+    this.topics = topics;
+  }
+
+
+  public Space updatedAt(OffsetDateTime updatedAt) {
+    
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+   /**
+   * When the Space was last updated.
+   * @return updatedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When the Space was last updated.")
+
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
 
@@ -615,51 +616,51 @@ public class Space {
       return false;
     }
     Space space = (Space) o;
-    return Objects.equals(this.id, space.id) &&
-        Objects.equals(this.state, space.state) &&
-        Objects.equals(this.startedAt, space.startedAt) &&
-        Objects.equals(this.isTicketed, space.isTicketed) &&
-        Objects.equals(this.participantCount, space.participantCount) &&
-        Objects.equals(this.title, space.title) &&
-        Objects.equals(this.hostIds, space.hostIds) &&
-        Objects.equals(this.updatedAt, space.updatedAt) &&
-        Objects.equals(this.createdAt, space.createdAt) &&
+    return Objects.equals(this.createdAt, space.createdAt) &&
         Objects.equals(this.creatorId, space.creatorId) &&
-        Objects.equals(this.lang, space.lang) &&
-        Objects.equals(this.speakerIds, space.speakerIds) &&
-        Objects.equals(this.invitedUserIds, space.invitedUserIds) &&
-        Objects.equals(this.scheduledStart, space.scheduledStart) &&
         Objects.equals(this.endedAt, space.endedAt) &&
+        Objects.equals(this.hostIds, space.hostIds) &&
+        Objects.equals(this.id, space.id) &&
+        Objects.equals(this.invitedUserIds, space.invitedUserIds) &&
+        Objects.equals(this.isTicketed, space.isTicketed) &&
+        Objects.equals(this.lang, space.lang) &&
+        Objects.equals(this.participantCount, space.participantCount) &&
+        Objects.equals(this.scheduledStart, space.scheduledStart) &&
+        Objects.equals(this.speakerIds, space.speakerIds) &&
+        Objects.equals(this.startedAt, space.startedAt) &&
+        Objects.equals(this.state, space.state) &&
+        Objects.equals(this.subscriberCount, space.subscriberCount) &&
+        Objects.equals(this.title, space.title) &&
         Objects.equals(this.topics, space.topics) &&
-        Objects.equals(this.subscriberCount, space.subscriberCount);
+        Objects.equals(this.updatedAt, space.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, state, startedAt, isTicketed, participantCount, title, hostIds, updatedAt, createdAt, creatorId, lang, speakerIds, invitedUserIds, scheduledStart, endedAt, topics, subscriberCount);
+    return Objects.hash(createdAt, creatorId, endedAt, hostIds, id, invitedUserIds, isTicketed, lang, participantCount, scheduledStart, speakerIds, startedAt, state, subscriberCount, title, topics, updatedAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Space {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
-    sb.append("    isTicketed: ").append(toIndentedString(isTicketed)).append("\n");
-    sb.append("    participantCount: ").append(toIndentedString(participantCount)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    hostIds: ").append(toIndentedString(hostIds)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    creatorId: ").append(toIndentedString(creatorId)).append("\n");
-    sb.append("    lang: ").append(toIndentedString(lang)).append("\n");
-    sb.append("    speakerIds: ").append(toIndentedString(speakerIds)).append("\n");
-    sb.append("    invitedUserIds: ").append(toIndentedString(invitedUserIds)).append("\n");
-    sb.append("    scheduledStart: ").append(toIndentedString(scheduledStart)).append("\n");
     sb.append("    endedAt: ").append(toIndentedString(endedAt)).append("\n");
-    sb.append("    topics: ").append(toIndentedString(topics)).append("\n");
+    sb.append("    hostIds: ").append(toIndentedString(hostIds)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    invitedUserIds: ").append(toIndentedString(invitedUserIds)).append("\n");
+    sb.append("    isTicketed: ").append(toIndentedString(isTicketed)).append("\n");
+    sb.append("    lang: ").append(toIndentedString(lang)).append("\n");
+    sb.append("    participantCount: ").append(toIndentedString(participantCount)).append("\n");
+    sb.append("    scheduledStart: ").append(toIndentedString(scheduledStart)).append("\n");
+    sb.append("    speakerIds: ").append(toIndentedString(speakerIds)).append("\n");
+    sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    subscriberCount: ").append(toIndentedString(subscriberCount)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    topics: ").append(toIndentedString(topics)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -682,23 +683,23 @@ public class Space {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("state");
-    openapiFields.add("started_at");
-    openapiFields.add("is_ticketed");
-    openapiFields.add("participant_count");
-    openapiFields.add("title");
-    openapiFields.add("host_ids");
-    openapiFields.add("updated_at");
     openapiFields.add("created_at");
     openapiFields.add("creator_id");
-    openapiFields.add("lang");
-    openapiFields.add("speaker_ids");
-    openapiFields.add("invited_user_ids");
-    openapiFields.add("scheduled_start");
     openapiFields.add("ended_at");
-    openapiFields.add("topics");
+    openapiFields.add("host_ids");
+    openapiFields.add("id");
+    openapiFields.add("invited_user_ids");
+    openapiFields.add("is_ticketed");
+    openapiFields.add("lang");
+    openapiFields.add("participant_count");
+    openapiFields.add("scheduled_start");
+    openapiFields.add("speaker_ids");
+    openapiFields.add("started_at");
+    openapiFields.add("state");
     openapiFields.add("subscriber_count");
+    openapiFields.add("title");
+    openapiFields.add("topics");
+    openapiFields.add("updated_at");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -728,21 +729,19 @@ public class Space {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (jsonObj.get("state") != null && !jsonObj.get("state").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
-      }
-      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      if (jsonObj.get("creator_id") != null && !jsonObj.get("creator_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creator_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creator_id").toString()));
       }
       // ensure the json data is an array
       if (jsonObj.get("host_ids") != null && !jsonObj.get("host_ids").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `host_ids` to be an array in the JSON string but got `%s`", jsonObj.get("host_ids").toString()));
       }
-      if (jsonObj.get("creator_id") != null && !jsonObj.get("creator_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `creator_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creator_id").toString()));
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      // ensure the json data is an array
+      if (jsonObj.get("invited_user_ids") != null && !jsonObj.get("invited_user_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invited_user_ids` to be an array in the JSON string but got `%s`", jsonObj.get("invited_user_ids").toString()));
       }
       if (jsonObj.get("lang") != null && !jsonObj.get("lang").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `lang` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lang").toString()));
@@ -751,9 +750,11 @@ public class Space {
       if (jsonObj.get("speaker_ids") != null && !jsonObj.get("speaker_ids").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `speaker_ids` to be an array in the JSON string but got `%s`", jsonObj.get("speaker_ids").toString()));
       }
-      // ensure the json data is an array
-      if (jsonObj.get("invited_user_ids") != null && !jsonObj.get("invited_user_ids").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `invited_user_ids` to be an array in the JSON string but got `%s`", jsonObj.get("invited_user_ids").toString()));
+      if (jsonObj.get("state") != null && !jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
+      }
+      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
       }
       JsonArray jsonArraytopics = jsonObj.getAsJsonArray("topics");
       if (jsonArraytopics != null) {
@@ -764,7 +765,7 @@ public class Space {
 
         // validate the optional field `topics` (array)
         for (int i = 0; i < jsonArraytopics.size(); i++) {
-          SpaceTopics.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
+          SpaceTopicsInner.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
         };
       }
   }

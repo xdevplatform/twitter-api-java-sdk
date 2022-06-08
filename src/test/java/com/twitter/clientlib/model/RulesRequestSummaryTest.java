@@ -59,6 +59,14 @@ public class RulesRequestSummaryTest {
     }
 
     /**
+     * Test the property 'invalid'
+     */
+    @Test
+    public void invalidTest() {
+        // TODO: test invalid
+    }
+
+    /**
      * Test the property 'notCreated'
      */
     @Test
@@ -72,14 +80,6 @@ public class RulesRequestSummaryTest {
     @Test
     public void validTest() {
         // TODO: test valid
-    }
-
-    /**
-     * Test the property 'invalid'
-     */
-    @Test
-    public void invalidTest() {
-        // TODO: test invalid
     }
 
     /**

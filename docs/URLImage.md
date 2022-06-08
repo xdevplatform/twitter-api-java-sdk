@@ -1,16 +1,16 @@
 
 
-# URLImage
+# UrlImage
 
-Represent the information for the URL image
+Represent the information for the URL image.
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**url** | **URL** |  |  [optional]
-**height** | **Integer** | The height of the media in pixels |  [optional]
-**width** | **Integer** | The width of the media in pixels |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**height** | **Integer** | The height of the media in pixels. |  [optional] |
+|**url** | **URL** | A validly formatted URL. |  [optional] |
+|**width** | **Integer** | The width of the media in pixels. |  [optional] |
 
 
 

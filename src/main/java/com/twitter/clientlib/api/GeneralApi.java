@@ -105,8 +105,8 @@ public class GeneralApi extends ApiCommon {
     }
 
     /**
-     * Returns the open api spec document.
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * Returns the OpenAPI Specification document.
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -139,8 +139,8 @@ public class GeneralApi extends ApiCommon {
     }
 
     /**
-     * Returns the open api spec document.
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * Returns the OpenAPI Specification document.
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -161,8 +161,8 @@ public class GeneralApi extends ApiCommon {
     }
 
     /**
-     * Returns the open api spec document. (asynchronously)
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * Returns the OpenAPI Specification document. (asynchronously)
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

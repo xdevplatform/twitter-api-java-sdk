@@ -24,21 +24,29 @@ package com.twitter.clientlib.api;
 
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.ApiException;
+import com.twitter.clientlib.model.BlockUserMutationResponse;
+import com.twitter.clientlib.model.BlockUserRequest;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.GenericMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.ListLookupMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.Get2ListsIdFollowersResponse;
+import com.twitter.clientlib.model.Get2ListsIdMembersResponse;
+import com.twitter.clientlib.model.Get2TweetsIdLikingUsersResponse;
+import com.twitter.clientlib.model.Get2TweetsIdRetweetedByResponse;
+import com.twitter.clientlib.model.Get2UsersByResponse;
+import com.twitter.clientlib.model.Get2UsersByUsernameUsernameResponse;
+import com.twitter.clientlib.model.Get2UsersIdBlockingResponse;
+import com.twitter.clientlib.model.Get2UsersIdFollowersResponse;
+import com.twitter.clientlib.model.Get2UsersIdFollowingResponse;
+import com.twitter.clientlib.model.Get2UsersIdMutingResponse;
+import com.twitter.clientlib.model.Get2UsersIdResponse;
+import com.twitter.clientlib.model.Get2UsersMeResponse;
+import com.twitter.clientlib.model.Get2UsersResponse;
+import com.twitter.clientlib.model.MuteUserMutationResponse;
+import com.twitter.clientlib.model.MuteUserRequest;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleUserLookupResponse;
-import com.twitter.clientlib.model.UsersBlockingMutationResponse;
+import com.twitter.clientlib.model.UsersFollowingCreateRequest;
 import com.twitter.clientlib.model.UsersFollowingCreateResponse;
 import com.twitter.clientlib.model.UsersFollowingDeleteResponse;
-import com.twitter.clientlib.model.UsersFollowingLookupResponse;
-import com.twitter.clientlib.model.UsersIdBlockRequest;
-import com.twitter.clientlib.model.UsersIdFollowRequest;
-import com.twitter.clientlib.model.UsersIdMuteRequest;
-import com.twitter.clientlib.model.UsersMutingMutationResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -60,16 +68,16 @@ public class UsersApiTest {
     /**
      * User lookup me
      *
-     * This endpoint returns information about the requesting user.
+     * This endpoint returns information about the requesting User.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void findMyUserTest() throws ApiException {
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                SingleUserLookupResponse response = apiInstance.users().findMyUser(expansions, tweetFields, userFields);
+                Get2UsersMeResponse response = apiInstance.users().findMyUser(userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -77,17 +85,17 @@ public class UsersApiTest {
     /**
      * User lookup by ID
      *
-     * This endpoint returns information about a user. Specify user by ID.
+     * This endpoint returns information about a User. Specify User by ID.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void findUserByIdTest() throws ApiException {
         String id = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                SingleUserLookupResponse response = apiInstance.users().findUserById(id, expansions, tweetFields, userFields);
+                Get2UsersIdResponse response = apiInstance.users().findUserById(id, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -95,17 +103,17 @@ public class UsersApiTest {
     /**
      * User lookup by username
      *
-     * This endpoint returns information about a user. Specify user by username.
+     * This endpoint returns information about a User. Specify User by username.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void findUserByUsernameTest() throws ApiException {
         String username = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                SingleUserLookupResponse response = apiInstance.users().findUserByUsername(username, expansions, tweetFields, userFields);
+                Get2UsersByUsernameUsernameResponse response = apiInstance.users().findUserByUsername(username, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -113,17 +121,17 @@ public class UsersApiTest {
     /**
      * User lookup by IDs
      *
-     * This endpoint returns information about users. Specify users by their ID.
+     * This endpoint returns information about Users. Specify Users by their ID.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void findUsersByIdTest() throws ApiException {
         List<String> ids = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                MultiUserLookupResponse response = apiInstance.users().findUsersById(ids, expansions, tweetFields, userFields);
+                Get2UsersResponse response = apiInstance.users().findUsersById(ids, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -131,25 +139,25 @@ public class UsersApiTest {
     /**
      * User lookup by usernames
      *
-     * This endpoint returns information about users. Specify users by their username.
+     * This endpoint returns information about Users. Specify Users by their username.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void findUsersByUsernameTest() throws ApiException {
         List<String> usernames = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                MultiUserLookupResponse response = apiInstance.users().findUsersByUsername(usernames, expansions, tweetFields, userFields);
+                Get2UsersByResponse response = apiInstance.users().findUsersByUsername(usernames, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that follow a List by the provided List ID
+     * Returns User objects that follow a List by the provided List ID
      *
-     * Returns a list of users that follow a List by the provided List ID
+     * Returns a list of Users that follow a List by the provided List ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -157,19 +165,19 @@ public class UsersApiTest {
     public void listGetFollowersTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
-        Long paginationToken = null;
+        String paginationToken = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                ListLookupMultipleUsersLookupResponse response = apiInstance.users().listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+                Get2ListsIdFollowersResponse response = apiInstance.users().listGetFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that are members of a List by the provided List ID
+     * Returns User objects that are members of a List by the provided List ID.
      *
-     * Returns a list of users that are members of a List by the provided List ID
+     * Returns a list of Users that are members of a List by the provided List ID.
      *
      * @throws ApiException if the Api call fails
      */
@@ -177,19 +185,19 @@ public class UsersApiTest {
     public void listGetMembersTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
-        Long paginationToken = null;
+        String paginationToken = null;
+        Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
-                ListLookupMultipleUsersLookupResponse response = apiInstance.users().listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+                Get2ListsIdMembersResponse response = apiInstance.users().listGetMembers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that have liked the provided Tweet ID
+     * Returns User objects that have liked the provided Tweet ID
      *
-     * Returns a list of users that have liked the provided Tweet ID
+     * Returns a list of Users that have liked the provided Tweet ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -198,15 +206,18 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GenericMultipleUsersLookupResponse response = apiInstance.users().tweetsIdLikingUsers(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2TweetsIdLikingUsersResponse response = apiInstance.users().tweetsIdLikingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that have retweeted the provided Tweet ID
+     * Returns User objects that have retweeted the provided Tweet ID
      *
-     * Returns a list of users that have retweeted the provided Tweet ID
+     * Returns a list of Users that have retweeted the provided Tweet ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -215,7 +226,10 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GenericMultipleUsersLookupResponse response = apiInstance.users().tweetsIdRetweetingUsers(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2TweetsIdRetweetedByResponse response = apiInstance.users().tweetsIdRetweetingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -223,23 +237,23 @@ public class UsersApiTest {
     /**
      * Block User by User ID
      *
-     * Causes the user (in the path) to block the target user. The user (in the path) must match the user context authorizing the request
+     * Causes the User (in the path) to block the target User. The User (in the path) must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdBlockTest() throws ApiException {
-        UsersIdBlockRequest usersIdBlockRequest = null;
+        BlockUserRequest blockUserRequest = null;
         String id = null;
-                UsersBlockingMutationResponse response = apiInstance.users().usersIdBlock(usersIdBlockRequest, id);
+                BlockUserMutationResponse response = apiInstance.users().usersIdBlock(blockUserRequest, id);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that are blocked by provided user ID
+     * Returns User objects that are blocked by provided User ID
      *
-     * Returns a list of users that are blocked by the provided user ID
+     * Returns a list of Users that are blocked by the provided User ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -248,7 +262,10 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GenericMultipleUsersLookupResponse response = apiInstance.users().usersIdBlocking(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2UsersIdBlockingResponse response = apiInstance.users().usersIdBlocking(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -256,23 +273,23 @@ public class UsersApiTest {
     /**
      * Follow User
      *
-     * Causes the user(in the path) to follow, or “request to follow” for protected users, the target user. The user(in the path) must match the user context authorizing the request
+     * Causes the User(in the path) to follow, or “request to follow” for protected Users, the target User. The User(in the path) must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdFollowTest() throws ApiException {
-        UsersIdFollowRequest usersIdFollowRequest = null;
+        UsersFollowingCreateRequest usersFollowingCreateRequest = null;
         String id = null;
-                UsersFollowingCreateResponse response = apiInstance.users().usersIdFollow(usersIdFollowRequest, id);
+                UsersFollowingCreateResponse response = apiInstance.users().usersIdFollow(usersFollowingCreateRequest, id);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that follow the provided user ID
+     * Returns User objects that follow a List by the provided User ID
      *
-     * Returns a list of users that follow the provided user ID
+     * Returns a list of Users that follow the provided User ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -281,7 +298,10 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GenericMultipleUsersLookupResponse response = apiInstance.users().usersIdFollowers(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2UsersIdFollowersResponse response = apiInstance.users().usersIdFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -289,7 +309,7 @@ public class UsersApiTest {
     /**
      * Following by User ID
      *
-     * Returns a list of users that are being followed by the provided user ID
+     * Returns a list of Users that are being followed by the provided User ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -298,31 +318,34 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                UsersFollowingLookupResponse response = apiInstance.users().usersIdFollowing(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2UsersIdFollowingResponse response = apiInstance.users().usersIdFollowing(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Mute User by User ID
+     * Mute User by User ID.
      *
-     * Causes the user (in the path) to mute the target user. The user (in the path) must match the user context authorizing the request
+     * Causes the User (in the path) to mute the target User. The User (in the path) must match the User context authorizing the request.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void usersIdMuteTest() throws ApiException {
-        UsersIdMuteRequest usersIdMuteRequest = null;
+        MuteUserRequest muteUserRequest = null;
         String id = null;
-                UsersMutingMutationResponse response = apiInstance.users().usersIdMute(usersIdMuteRequest, id);
+                MuteUserMutationResponse response = apiInstance.users().usersIdMute(muteUserRequest, id);
         // TODO: test validations
     }
 
 
     /**
-     * Returns user objects that are muted by the provided user ID
+     * Returns User objects that are muted by the provided User ID
      *
-     * Returns a list of users that are muted by the provided user ID
+     * Returns a list of Users that are muted by the provided User ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -331,7 +354,10 @@ public class UsersApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GenericMultipleUsersLookupResponse response = apiInstance.users().usersIdMuting(id, maxResults, paginationToken);
+        Set<String> userFields = null;
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2UsersIdMutingResponse response = apiInstance.users().usersIdMuting(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -339,7 +365,7 @@ public class UsersApiTest {
     /**
      * Unblock User by User ID
      *
-     * Causes the source user to unblock the target user. The source user must match the user context authorizing the request
+     * Causes the source User to unblock the target User. The source User must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
@@ -347,7 +373,7 @@ public class UsersApiTest {
     public void usersIdUnblockTest() throws ApiException {
         String sourceUserId = null;
         String targetUserId = null;
-                UsersBlockingMutationResponse response = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId);
+                BlockUserMutationResponse response = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId);
         // TODO: test validations
     }
 
@@ -355,7 +381,7 @@ public class UsersApiTest {
     /**
      * Unfollow User
      *
-     * Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
+     * Causes the source User to unfollow the target User. The source User must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
@@ -371,7 +397,7 @@ public class UsersApiTest {
     /**
      * Unmute User by User ID
      *
-     * Causes the source user to unmute the target user. The source user must match the user context authorizing the request
+     * Causes the source User to unmute the target User. The source User must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
@@ -379,7 +405,7 @@ public class UsersApiTest {
     public void usersIdUnmuteTest() throws ApiException {
         String sourceUserId = null;
         String targetUserId = null;
-                UsersMutingMutationResponse response = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId);
+                MuteUserMutationResponse response = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId);
         // TODO: test validations
     }
 

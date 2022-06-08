@@ -58,13 +58,70 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ResourceUnauthorizedProblemAllOf {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
-
   public static final String SERIALIZED_NAME_PARAMETER = "parameter";
   @SerializedName(SERIALIZED_NAME_PARAMETER)
   private String parameter;
+
+  public static final String SERIALIZED_NAME_RESOURCE_ID = "resource_id";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_ID)
+  private String resourceId;
+
+  /**
+   * Gets or Sets resourceType
+   */
+  @JsonAdapter(ResourceTypeEnum.Adapter.class)
+  public enum ResourceTypeEnum {
+    USER("user"),
+    
+    TWEET("tweet"),
+    
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
+
+    private String value;
+
+    ResourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ResourceTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  private ResourceTypeEnum resourceType;
 
   /**
    * Gets or Sets section
@@ -117,92 +174,12 @@ public class ResourceUnauthorizedProblemAllOf {
   @SerializedName(SERIALIZED_NAME_SECTION)
   private SectionEnum section;
 
-  public static final String SERIALIZED_NAME_RESOURCE_ID = "resource_id";
-  @SerializedName(SERIALIZED_NAME_RESOURCE_ID)
-  private String resourceId;
-
-  /**
-   * Gets or Sets resourceType
-   */
-  @JsonAdapter(ResourceTypeEnum.Adapter.class)
-  public enum ResourceTypeEnum {
-    TWEET("tweet"),
-    
-    USER("user"),
-    
-    MEDIA("media"),
-    
-    LIST("list"),
-    
-    SPACE("space");
-
-    private String value;
-
-    ResourceTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ResourceTypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
-  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
-  private ResourceTypeEnum resourceType;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   public ResourceUnauthorizedProblemAllOf() { 
   }
-
-  public ResourceUnauthorizedProblemAllOf value(String value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Get value
-   * @return value
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
 
   public ResourceUnauthorizedProblemAllOf parameter(String parameter) {
     
@@ -224,29 +201,6 @@ public class ResourceUnauthorizedProblemAllOf {
 
   public void setParameter(String parameter) {
     this.parameter = parameter;
-  }
-
-
-  public ResourceUnauthorizedProblemAllOf section(SectionEnum section) {
-    
-    this.section = section;
-    return this;
-  }
-
-   /**
-   * Get section
-   * @return section
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public SectionEnum getSection() {
-    return section;
-  }
-
-
-  public void setSection(SectionEnum section) {
-    this.section = section;
   }
 
 
@@ -296,6 +250,52 @@ public class ResourceUnauthorizedProblemAllOf {
   }
 
 
+  public ResourceUnauthorizedProblemAllOf section(SectionEnum section) {
+    
+    this.section = section;
+    return this;
+  }
+
+   /**
+   * Get section
+   * @return section
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public SectionEnum getSection() {
+    return section;
+  }
+
+
+  public void setSection(SectionEnum section) {
+    this.section = section;
+  }
+
+
+  public ResourceUnauthorizedProblemAllOf value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -306,27 +306,27 @@ public class ResourceUnauthorizedProblemAllOf {
       return false;
     }
     ResourceUnauthorizedProblemAllOf resourceUnauthorizedProblemAllOf = (ResourceUnauthorizedProblemAllOf) o;
-    return Objects.equals(this.value, resourceUnauthorizedProblemAllOf.value) &&
-        Objects.equals(this.parameter, resourceUnauthorizedProblemAllOf.parameter) &&
-        Objects.equals(this.section, resourceUnauthorizedProblemAllOf.section) &&
+    return Objects.equals(this.parameter, resourceUnauthorizedProblemAllOf.parameter) &&
         Objects.equals(this.resourceId, resourceUnauthorizedProblemAllOf.resourceId) &&
-        Objects.equals(this.resourceType, resourceUnauthorizedProblemAllOf.resourceType);
+        Objects.equals(this.resourceType, resourceUnauthorizedProblemAllOf.resourceType) &&
+        Objects.equals(this.section, resourceUnauthorizedProblemAllOf.section) &&
+        Objects.equals(this.value, resourceUnauthorizedProblemAllOf.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, parameter, section, resourceId, resourceType);
+    return Objects.hash(parameter, resourceId, resourceType, section, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceUnauthorizedProblemAllOf {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
-    sb.append("    section: ").append(toIndentedString(section)).append("\n");
     sb.append("    resourceId: ").append(toIndentedString(resourceId)).append("\n");
     sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
+    sb.append("    section: ").append(toIndentedString(section)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -349,19 +349,19 @@ public class ResourceUnauthorizedProblemAllOf {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
     openapiFields.add("parameter");
-    openapiFields.add("section");
     openapiFields.add("resource_id");
     openapiFields.add("resource_type");
+    openapiFields.add("section");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("value");
     openapiRequiredFields.add("parameter");
-    openapiRequiredFields.add("section");
     openapiRequiredFields.add("resource_id");
     openapiRequiredFields.add("resource_type");
+    openapiRequiredFields.add("section");
+    openapiRequiredFields.add("value");
   }
 
  /**
@@ -386,20 +386,20 @@ public class ResourceUnauthorizedProblemAllOf {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
-      }
       if (jsonObj.get("parameter") != null && !jsonObj.get("parameter").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `parameter` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parameter").toString()));
-      }
-      if (jsonObj.get("section") != null && !jsonObj.get("section").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `section` to be a primitive type in the JSON string but got `%s`", jsonObj.get("section").toString()));
       }
       if (jsonObj.get("resource_id") != null && !jsonObj.get("resource_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `resource_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("resource_id").toString()));
       }
       if (jsonObj.get("resource_type") != null && !jsonObj.get("resource_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `resource_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("resource_type").toString()));
+      }
+      if (jsonObj.get("section") != null && !jsonObj.get("section").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `section` to be a primitive type in the JSON string but got `%s`", jsonObj.get("section").toString()));
+      }
+      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

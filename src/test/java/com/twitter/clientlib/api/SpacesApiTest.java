@@ -25,12 +25,14 @@ package com.twitter.clientlib.api;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.MultiSpaceLookupResponse;
-import com.twitter.clientlib.model.MultiTweetLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.Get2SpacesByCreatorIdsResponse;
+import com.twitter.clientlib.model.Get2SpacesIdBuyersResponse;
+import com.twitter.clientlib.model.Get2SpacesIdResponse;
+import com.twitter.clientlib.model.Get2SpacesIdTweetsResponse;
+import com.twitter.clientlib.model.Get2SpacesResponse;
+import com.twitter.clientlib.model.Get2SpacesSearchResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleSpaceLookupResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +63,9 @@ public class SpacesApiTest {
         String id = null;
         Set<String> spaceFields = null;
         Set<String> expansions = null;
-                SingleSpaceLookupResponse response = apiInstance.spaces().findSpaceById(id, spaceFields, expansions);
+        Set<String> userFields = null;
+        Set<String> topicFields = null;
+                Get2SpacesIdResponse response = apiInstance.spaces().findSpaceById(id, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -78,7 +82,9 @@ public class SpacesApiTest {
         List<String> userIds = null;
         Set<String> spaceFields = null;
         Set<String> expansions = null;
-                MultiSpaceLookupResponse response = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions);
+        Set<String> userFields = null;
+        Set<String> topicFields = null;
+                Get2SpacesByCreatorIdsResponse response = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -95,7 +101,9 @@ public class SpacesApiTest {
         List<String> ids = null;
         Set<String> spaceFields = null;
         Set<String> expansions = null;
-                MultiSpaceLookupResponse response = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions);
+        Set<String> userFields = null;
+        Set<String> topicFields = null;
+                Get2SpacesResponse response = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -114,40 +122,51 @@ public class SpacesApiTest {
         Integer maxResults = null;
         Set<String> spaceFields = null;
         Set<String> expansions = null;
-                MultiSpaceLookupResponse response = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions);
+        Set<String> userFields = null;
+        Set<String> topicFields = null;
+                Get2SpacesSearchResponse response = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
 
     /**
-     * Retrieve the list of users who purchased a ticket to the given space
+     * Retrieve the list of Users who purchased a ticket to the given space
      *
-     * Retrieves the list of users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceBuyersTest() throws ApiException {
         String id = null;
+        String paginationToken = null;
+        Integer maxResults = null;
         Set<String> userFields = null;
-                MultiUserLookupResponse response = apiInstance.spaces().spaceBuyers(id, userFields);
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2SpacesIdBuyersResponse response = apiInstance.spaces().spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
 
     /**
-     * Retrieve tweets from a Space
+     * Retrieve Tweets from a Space.
      *
-     * Retrieves tweets shared in the specified space
+     * Retrieves Tweets shared in the specified Space.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceTweetsTest() throws ApiException {
-        Integer maxResults = null;
         String id = null;
+        Integer maxResults = null;
         Set<String> tweetFields = null;
-                MultiTweetLookupResponse response = apiInstance.spaces().spaceTweets(maxResults, id, tweetFields);
+        Set<String> expansions = null;
+        Set<String> mediaFields = null;
+        Set<String> pollFields = null;
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2SpacesIdTweetsResponse response = apiInstance.spaces().spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         // TODO: test validations
     }
 

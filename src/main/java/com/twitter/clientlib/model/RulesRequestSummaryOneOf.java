@@ -63,6 +63,10 @@ public class RulesRequestSummaryOneOf {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private Integer created;
 
+  public static final String SERIALIZED_NAME_INVALID = "invalid";
+  @SerializedName(SERIALIZED_NAME_INVALID)
+  private Integer invalid;
+
   public static final String SERIALIZED_NAME_NOT_CREATED = "not_created";
   @SerializedName(SERIALIZED_NAME_NOT_CREATED)
   private Integer notCreated;
@@ -70,10 +74,6 @@ public class RulesRequestSummaryOneOf {
   public static final String SERIALIZED_NAME_VALID = "valid";
   @SerializedName(SERIALIZED_NAME_VALID)
   private Integer valid;
-
-  public static final String SERIALIZED_NAME_INVALID = "invalid";
-  @SerializedName(SERIALIZED_NAME_INVALID)
-  private Integer invalid;
 
   public RulesRequestSummaryOneOf() { 
   }
@@ -98,6 +98,29 @@ public class RulesRequestSummaryOneOf {
 
   public void setCreated(Integer created) {
     this.created = created;
+  }
+
+
+  public RulesRequestSummaryOneOf invalid(Integer invalid) {
+    
+    this.invalid = invalid;
+    return this;
+  }
+
+   /**
+   * Number of invalid user-specified stream filtering rules.
+   * @return invalid
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "1", required = true, value = "Number of invalid user-specified stream filtering rules.")
+
+  public Integer getInvalid() {
+    return invalid;
+  }
+
+
+  public void setInvalid(Integer invalid) {
+    this.invalid = invalid;
   }
 
 
@@ -147,29 +170,6 @@ public class RulesRequestSummaryOneOf {
   }
 
 
-  public RulesRequestSummaryOneOf invalid(Integer invalid) {
-    
-    this.invalid = invalid;
-    return this;
-  }
-
-   /**
-   * Number of invalid user-specified stream filtering rules.
-   * @return invalid
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "Number of invalid user-specified stream filtering rules.")
-
-  public Integer getInvalid() {
-    return invalid;
-  }
-
-
-  public void setInvalid(Integer invalid) {
-    this.invalid = invalid;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -181,14 +181,14 @@ public class RulesRequestSummaryOneOf {
     }
     RulesRequestSummaryOneOf rulesRequestSummaryOneOf = (RulesRequestSummaryOneOf) o;
     return Objects.equals(this.created, rulesRequestSummaryOneOf.created) &&
+        Objects.equals(this.invalid, rulesRequestSummaryOneOf.invalid) &&
         Objects.equals(this.notCreated, rulesRequestSummaryOneOf.notCreated) &&
-        Objects.equals(this.valid, rulesRequestSummaryOneOf.valid) &&
-        Objects.equals(this.invalid, rulesRequestSummaryOneOf.invalid);
+        Objects.equals(this.valid, rulesRequestSummaryOneOf.valid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, notCreated, valid, invalid);
+    return Objects.hash(created, invalid, notCreated, valid);
   }
 
   @Override
@@ -196,9 +196,9 @@ public class RulesRequestSummaryOneOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class RulesRequestSummaryOneOf {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    invalid: ").append(toIndentedString(invalid)).append("\n");
     sb.append("    notCreated: ").append(toIndentedString(notCreated)).append("\n");
     sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
-    sb.append("    invalid: ").append(toIndentedString(invalid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -222,16 +222,16 @@ public class RulesRequestSummaryOneOf {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("created");
+    openapiFields.add("invalid");
     openapiFields.add("not_created");
     openapiFields.add("valid");
-    openapiFields.add("invalid");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("created");
+    openapiRequiredFields.add("invalid");
     openapiRequiredFields.add("not_created");
     openapiRequiredFields.add("valid");
-    openapiRequiredFields.add("invalid");
   }
 
  /**

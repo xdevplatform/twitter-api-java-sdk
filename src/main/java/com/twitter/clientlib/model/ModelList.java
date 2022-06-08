@@ -60,14 +60,6 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "A Twitter List is a curated group of accounts.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ModelList {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
@@ -80,9 +72,17 @@ public class ModelList {
   @SerializedName(SERIALIZED_NAME_FOLLOWER_COUNT)
   private Integer followerCount;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_MEMBER_COUNT = "member_count";
   @SerializedName(SERIALIZED_NAME_MEMBER_COUNT)
   private Integer memberCount;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "owner_id";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
@@ -94,52 +94,6 @@ public class ModelList {
 
   public ModelList() { 
   }
-
-  public ModelList id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The unique identifier of this List.
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1146654567674912769", required = true, value = "The unique identifier of this List.")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ModelList name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of this List.
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The name of this List.")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
 
   public ModelList createdAt(OffsetDateTime createdAt) {
     
@@ -210,6 +164,29 @@ public class ModelList {
   }
 
 
+  public ModelList id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The unique identifier of this List.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "1146654567674912769", required = true, value = "The unique identifier of this List.")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
   public ModelList memberCount(Integer memberCount) {
     
     this.memberCount = memberCount;
@@ -230,6 +207,29 @@ public class ModelList {
 
   public void setMemberCount(Integer memberCount) {
     this.memberCount = memberCount;
+  }
+
+
+  public ModelList name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of this List.
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The name of this List.")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -289,31 +289,31 @@ public class ModelList {
       return false;
     }
     ModelList _list = (ModelList) o;
-    return Objects.equals(this.id, _list.id) &&
-        Objects.equals(this.name, _list.name) &&
-        Objects.equals(this.createdAt, _list.createdAt) &&
+    return Objects.equals(this.createdAt, _list.createdAt) &&
         Objects.equals(this.description, _list.description) &&
         Objects.equals(this.followerCount, _list.followerCount) &&
+        Objects.equals(this.id, _list.id) &&
         Objects.equals(this.memberCount, _list.memberCount) &&
+        Objects.equals(this.name, _list.name) &&
         Objects.equals(this.ownerId, _list.ownerId) &&
         Objects.equals(this._private, _list._private);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, createdAt, description, followerCount, memberCount, ownerId, _private);
+    return Objects.hash(createdAt, description, followerCount, id, memberCount, name, ownerId, _private);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModelList {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    followerCount: ").append(toIndentedString(followerCount)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    memberCount: ").append(toIndentedString(memberCount)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
     sb.append("}");
@@ -338,12 +338,12 @@ public class ModelList {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
     openapiFields.add("created_at");
     openapiFields.add("description");
     openapiFields.add("follower_count");
+    openapiFields.add("id");
     openapiFields.add("member_count");
+    openapiFields.add("name");
     openapiFields.add("owner_id");
     openapiFields.add("private");
 
@@ -375,14 +375,14 @@ public class ModelList {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
       if (jsonObj.get("owner_id") != null && !jsonObj.get("owner_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `owner_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("owner_id").toString()));

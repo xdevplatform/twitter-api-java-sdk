@@ -63,6 +63,10 @@ public class VideoAllOfNonPublicMetrics {
   @SerializedName(SERIALIZED_NAME_PLAYBACK0_COUNT)
   private Integer playback0Count;
 
+  public static final String SERIALIZED_NAME_PLAYBACK100_COUNT = "playback_100_count";
+  @SerializedName(SERIALIZED_NAME_PLAYBACK100_COUNT)
+  private Integer playback100Count;
+
   public static final String SERIALIZED_NAME_PLAYBACK25_COUNT = "playback_25_count";
   @SerializedName(SERIALIZED_NAME_PLAYBACK25_COUNT)
   private Integer playback25Count;
@@ -74,10 +78,6 @@ public class VideoAllOfNonPublicMetrics {
   public static final String SERIALIZED_NAME_PLAYBACK75_COUNT = "playback_75_count";
   @SerializedName(SERIALIZED_NAME_PLAYBACK75_COUNT)
   private Integer playback75Count;
-
-  public static final String SERIALIZED_NAME_PLAYBACK100_COUNT = "playback_100_count";
-  @SerializedName(SERIALIZED_NAME_PLAYBACK100_COUNT)
-  private Integer playback100Count;
 
   public VideoAllOfNonPublicMetrics() { 
   }
@@ -102,6 +102,29 @@ public class VideoAllOfNonPublicMetrics {
 
   public void setPlayback0Count(Integer playback0Count) {
     this.playback0Count = playback0Count;
+  }
+
+
+  public VideoAllOfNonPublicMetrics playback100Count(Integer playback100Count) {
+    
+    this.playback100Count = playback100Count;
+    return this;
+  }
+
+   /**
+   * Number of users who made it through 100% of the video.
+   * @return playback100Count
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of users who made it through 100% of the video.")
+
+  public Integer getPlayback100Count() {
+    return playback100Count;
+  }
+
+
+  public void setPlayback100Count(Integer playback100Count) {
+    this.playback100Count = playback100Count;
   }
 
 
@@ -174,29 +197,6 @@ public class VideoAllOfNonPublicMetrics {
   }
 
 
-  public VideoAllOfNonPublicMetrics playback100Count(Integer playback100Count) {
-    
-    this.playback100Count = playback100Count;
-    return this;
-  }
-
-   /**
-   * Number of users who made it through 100% of the video.
-   * @return playback100Count
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of users who made it through 100% of the video.")
-
-  public Integer getPlayback100Count() {
-    return playback100Count;
-  }
-
-
-  public void setPlayback100Count(Integer playback100Count) {
-    this.playback100Count = playback100Count;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -208,15 +208,15 @@ public class VideoAllOfNonPublicMetrics {
     }
     VideoAllOfNonPublicMetrics videoAllOfNonPublicMetrics = (VideoAllOfNonPublicMetrics) o;
     return Objects.equals(this.playback0Count, videoAllOfNonPublicMetrics.playback0Count) &&
+        Objects.equals(this.playback100Count, videoAllOfNonPublicMetrics.playback100Count) &&
         Objects.equals(this.playback25Count, videoAllOfNonPublicMetrics.playback25Count) &&
         Objects.equals(this.playback50Count, videoAllOfNonPublicMetrics.playback50Count) &&
-        Objects.equals(this.playback75Count, videoAllOfNonPublicMetrics.playback75Count) &&
-        Objects.equals(this.playback100Count, videoAllOfNonPublicMetrics.playback100Count);
+        Objects.equals(this.playback75Count, videoAllOfNonPublicMetrics.playback75Count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(playback0Count, playback25Count, playback50Count, playback75Count, playback100Count);
+    return Objects.hash(playback0Count, playback100Count, playback25Count, playback50Count, playback75Count);
   }
 
   @Override
@@ -224,10 +224,10 @@ public class VideoAllOfNonPublicMetrics {
     StringBuilder sb = new StringBuilder();
     sb.append("class VideoAllOfNonPublicMetrics {\n");
     sb.append("    playback0Count: ").append(toIndentedString(playback0Count)).append("\n");
+    sb.append("    playback100Count: ").append(toIndentedString(playback100Count)).append("\n");
     sb.append("    playback25Count: ").append(toIndentedString(playback25Count)).append("\n");
     sb.append("    playback50Count: ").append(toIndentedString(playback50Count)).append("\n");
     sb.append("    playback75Count: ").append(toIndentedString(playback75Count)).append("\n");
-    sb.append("    playback100Count: ").append(toIndentedString(playback100Count)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,10 +251,10 @@ public class VideoAllOfNonPublicMetrics {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("playback_0_count");
+    openapiFields.add("playback_100_count");
     openapiFields.add("playback_25_count");
     openapiFields.add("playback_50_count");
     openapiFields.add("playback_75_count");
-    openapiFields.add("playback_100_count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

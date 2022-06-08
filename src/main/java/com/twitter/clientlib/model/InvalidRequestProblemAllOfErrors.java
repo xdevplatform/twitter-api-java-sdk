@@ -61,16 +61,39 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InvalidRequestProblemAllOfErrors {
-  public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
-  @SerializedName(SERIALIZED_NAME_PARAMETERS)
-  private Map<String, List<String>> parameters = null;
-
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
+  public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS)
+  private Map<String, List<String>> parameters = null;
+
   public InvalidRequestProblemAllOfErrors() { 
   }
+
+  public InvalidRequestProblemAllOfErrors message(String message) {
+    
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Get message
+   * @return message
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getMessage() {
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
 
   public InvalidRequestProblemAllOfErrors parameters(Map<String, List<String>> parameters) {
     
@@ -103,29 +126,6 @@ public class InvalidRequestProblemAllOfErrors {
   }
 
 
-  public InvalidRequestProblemAllOfErrors message(String message) {
-    
-    this.message = message;
-    return this;
-  }
-
-   /**
-   * Get message
-   * @return message
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getMessage() {
-    return message;
-  }
-
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -136,21 +136,21 @@ public class InvalidRequestProblemAllOfErrors {
       return false;
     }
     InvalidRequestProblemAllOfErrors invalidRequestProblemAllOfErrors = (InvalidRequestProblemAllOfErrors) o;
-    return Objects.equals(this.parameters, invalidRequestProblemAllOfErrors.parameters) &&
-        Objects.equals(this.message, invalidRequestProblemAllOfErrors.message);
+    return Objects.equals(this.message, invalidRequestProblemAllOfErrors.message) &&
+        Objects.equals(this.parameters, invalidRequestProblemAllOfErrors.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parameters, message);
+    return Objects.hash(message, parameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvalidRequestProblemAllOfErrors {\n");
-    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,8 +173,8 @@ public class InvalidRequestProblemAllOfErrors {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("parameters");
     openapiFields.add("message");
+    openapiFields.add("parameters");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

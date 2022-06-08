@@ -43,9 +43,9 @@ public class GeneralApiTest {
     // TODO set credentials
     
     /**
-     * Returns the open api spec document.
+     * Returns the OpenAPI Specification document.
      *
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      *
      * @throws ApiException if the Api call fails
      */

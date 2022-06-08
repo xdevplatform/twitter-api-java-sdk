@@ -6,18 +6,18 @@ A [GeoJson Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) geometry ob
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**type** | [**TypeEnum**](#TypeEnum) |  | 
-**coordinates** | **List&lt;BigDecimal&gt;** | A [GeoJson Position](https://tools.ietf.org/html/rfc7946#section-3.1.1) in the format &#x60;[longitude,latitude]&#x60;. | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**coordinates** | **List&lt;BigDecimal&gt;** | A [GeoJson Position](https://tools.ietf.org/html/rfc7946#section-3.1.1) in the format &#x60;[longitude,latitude]&#x60;. |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
 
 
 
 ## Enum: TypeEnum
 
-Name | Value
----- | -----
-POINT | &quot;Point&quot;
+| Name | Value |
+|---- | -----|
+| POINT | &quot;Point&quot; |
 
 
 

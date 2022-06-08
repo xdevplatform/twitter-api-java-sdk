@@ -53,7 +53,7 @@ public class HelloWorldStreaming {
     tweetFields.add("created_at");
 
     try {
-      InputStream streamResult = apiInstance.tweets().sampleStream(null, tweetFields, null , null, null, null, 0);
+      InputStream streamResult = apiInstance.tweets().sampleStream(0, tweetFields, null , null, null, null, null);
       // sampleStream with TweetsStreamListenersExecutor
       Responder responder = new Responder();
       TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);
@@ -71,7 +71,7 @@ public class HelloWorldStreaming {
 //      // An example of how to use the streaming directly using the InputStream result (Without TweetsStreamListenersExecutor)
 //      try{
 //         JSON json = new JSON();
-//         Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
+//         Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
 //         BufferedReader reader = new BufferedReader(new InputStreamReader(streamResult));
 //         String line = reader.readLine();
 //         while (line != null) {
@@ -99,7 +99,7 @@ public class HelloWorldStreaming {
 
 class Responder implements com.twitter.clientlib.TweetsStreamListener {
   @Override
-  public void actionOnTweetsStream(StreamingTweet streamingTweet) {
+  public void actionOnTweetsStream(StreamingTweetResponse streamingTweet) {
     if(streamingTweet == null) {
       System.err.println("Error: actionOnTweetsStream - streamingTweet is null ");
       return;

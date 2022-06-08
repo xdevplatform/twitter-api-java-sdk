@@ -49,27 +49,11 @@ public class ResourceUnauthorizedProblemAllOfTest {
     }
 
     /**
-     * Test the property 'value'
-     */
-    @Test
-    public void valueTest() {
-        // TODO: test value
-    }
-
-    /**
      * Test the property 'parameter'
      */
     @Test
     public void parameterTest() {
         // TODO: test parameter
-    }
-
-    /**
-     * Test the property 'section'
-     */
-    @Test
-    public void sectionTest() {
-        // TODO: test section
     }
 
     /**
@@ -86,6 +70,22 @@ public class ResourceUnauthorizedProblemAllOfTest {
     @Test
     public void resourceTypeTest() {
         // TODO: test resourceType
+    }
+
+    /**
+     * Test the property 'section'
+     */
+    @Test
+    public void sectionTest() {
+        // TODO: test section
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

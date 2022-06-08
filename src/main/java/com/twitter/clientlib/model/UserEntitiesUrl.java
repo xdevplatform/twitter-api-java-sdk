@@ -57,9 +57,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Expanded details for the URL specified in the user&#39;s profile, with start and end indices.
+ * Expanded details for the URL specified in the User&#39;s profile, with start and end indices.
  */
-@ApiModel(description = "Expanded details for the URL specified in the user's profile, with start and end indices.")
+@ApiModel(description = "Expanded details for the URL specified in the User's profile, with start and end indices.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserEntitiesUrl {
   public static final String SERIALIZED_NAME_URLS = "urls";

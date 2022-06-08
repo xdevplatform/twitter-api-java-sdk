@@ -32,6 +32,7 @@ import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Place;
 import com.twitter.clientlib.model.Poll;
+import com.twitter.clientlib.model.Topic;
 import com.twitter.clientlib.model.Tweet;
 import com.twitter.clientlib.model.User;
 import io.swagger.annotations.ApiModel;
@@ -65,88 +66,61 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Expansions {
-  public static final String SERIALIZED_NAME_USERS = "users";
-  @SerializedName(SERIALIZED_NAME_USERS)
-  private List<User> users = null;
-
-  public static final String SERIALIZED_NAME_TWEETS = "tweets";
-  @SerializedName(SERIALIZED_NAME_TWEETS)
-  private List<Tweet> tweets = null;
+  public static final String SERIALIZED_NAME_MEDIA = "media";
+  @SerializedName(SERIALIZED_NAME_MEDIA)
+  private List<Media> media = null;
 
   public static final String SERIALIZED_NAME_PLACES = "places";
   @SerializedName(SERIALIZED_NAME_PLACES)
   private List<Place> places = null;
 
-  public static final String SERIALIZED_NAME_MEDIA = "media";
-  @SerializedName(SERIALIZED_NAME_MEDIA)
-  private List<Media> media = null;
-
   public static final String SERIALIZED_NAME_POLLS = "polls";
   @SerializedName(SERIALIZED_NAME_POLLS)
   private List<Poll> polls = null;
 
+  public static final String SERIALIZED_NAME_TOPICS = "topics";
+  @SerializedName(SERIALIZED_NAME_TOPICS)
+  private List<Topic> topics = null;
+
+  public static final String SERIALIZED_NAME_TWEETS = "tweets";
+  @SerializedName(SERIALIZED_NAME_TWEETS)
+  private List<Tweet> tweets = null;
+
+  public static final String SERIALIZED_NAME_USERS = "users";
+  @SerializedName(SERIALIZED_NAME_USERS)
+  private List<User> users = null;
+
   public Expansions() { 
   }
 
-  public Expansions users(List<User> users) {
+  public Expansions media(List<Media> media) {
     
-    this.users = users;
+    this.media = media;
     return this;
   }
 
-  public Expansions addUsersItem(User usersItem) {
-    if (this.users == null) {
-      this.users = new ArrayList<>();
+  public Expansions addMediaItem(Media mediaItem) {
+    if (this.media == null) {
+      this.media = new ArrayList<>();
     }
-    this.users.add(usersItem);
+    this.media.add(mediaItem);
     return this;
   }
 
    /**
-   * Get users
-   * @return users
+   * Get media
+   * @return media
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<User> getUsers() {
-    return users;
+  public List<Media> getMedia() {
+    return media;
   }
 
 
-  public void setUsers(List<User> users) {
-    this.users = users;
-  }
-
-
-  public Expansions tweets(List<Tweet> tweets) {
-    
-    this.tweets = tweets;
-    return this;
-  }
-
-  public Expansions addTweetsItem(Tweet tweetsItem) {
-    if (this.tweets == null) {
-      this.tweets = new ArrayList<>();
-    }
-    this.tweets.add(tweetsItem);
-    return this;
-  }
-
-   /**
-   * Get tweets
-   * @return tweets
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<Tweet> getTweets() {
-    return tweets;
-  }
-
-
-  public void setTweets(List<Tweet> tweets) {
-    this.tweets = tweets;
+  public void setMedia(List<Media> media) {
+    this.media = media;
   }
 
 
@@ -181,37 +155,6 @@ public class Expansions {
   }
 
 
-  public Expansions media(List<Media> media) {
-    
-    this.media = media;
-    return this;
-  }
-
-  public Expansions addMediaItem(Media mediaItem) {
-    if (this.media == null) {
-      this.media = new ArrayList<>();
-    }
-    this.media.add(mediaItem);
-    return this;
-  }
-
-   /**
-   * Get media
-   * @return media
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<Media> getMedia() {
-    return media;
-  }
-
-
-  public void setMedia(List<Media> media) {
-    this.media = media;
-  }
-
-
   public Expansions polls(List<Poll> polls) {
     
     this.polls = polls;
@@ -243,6 +186,99 @@ public class Expansions {
   }
 
 
+  public Expansions topics(List<Topic> topics) {
+    
+    this.topics = topics;
+    return this;
+  }
+
+  public Expansions addTopicsItem(Topic topicsItem) {
+    if (this.topics == null) {
+      this.topics = new ArrayList<>();
+    }
+    this.topics.add(topicsItem);
+    return this;
+  }
+
+   /**
+   * Get topics
+   * @return topics
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<Topic> getTopics() {
+    return topics;
+  }
+
+
+  public void setTopics(List<Topic> topics) {
+    this.topics = topics;
+  }
+
+
+  public Expansions tweets(List<Tweet> tweets) {
+    
+    this.tweets = tweets;
+    return this;
+  }
+
+  public Expansions addTweetsItem(Tweet tweetsItem) {
+    if (this.tweets == null) {
+      this.tweets = new ArrayList<>();
+    }
+    this.tweets.add(tweetsItem);
+    return this;
+  }
+
+   /**
+   * Get tweets
+   * @return tweets
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<Tweet> getTweets() {
+    return tweets;
+  }
+
+
+  public void setTweets(List<Tweet> tweets) {
+    this.tweets = tweets;
+  }
+
+
+  public Expansions users(List<User> users) {
+    
+    this.users = users;
+    return this;
+  }
+
+  public Expansions addUsersItem(User usersItem) {
+    if (this.users == null) {
+      this.users = new ArrayList<>();
+    }
+    this.users.add(usersItem);
+    return this;
+  }
+
+   /**
+   * Get users
+   * @return users
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<User> getUsers() {
+    return users;
+  }
+
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -253,27 +289,29 @@ public class Expansions {
       return false;
     }
     Expansions expansions = (Expansions) o;
-    return Objects.equals(this.users, expansions.users) &&
-        Objects.equals(this.tweets, expansions.tweets) &&
+    return Objects.equals(this.media, expansions.media) &&
         Objects.equals(this.places, expansions.places) &&
-        Objects.equals(this.media, expansions.media) &&
-        Objects.equals(this.polls, expansions.polls);
+        Objects.equals(this.polls, expansions.polls) &&
+        Objects.equals(this.topics, expansions.topics) &&
+        Objects.equals(this.tweets, expansions.tweets) &&
+        Objects.equals(this.users, expansions.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(users, tweets, places, media, polls);
+    return Objects.hash(media, places, polls, topics, tweets, users);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Expansions {\n");
-    sb.append("    users: ").append(toIndentedString(users)).append("\n");
-    sb.append("    tweets: ").append(toIndentedString(tweets)).append("\n");
-    sb.append("    places: ").append(toIndentedString(places)).append("\n");
     sb.append("    media: ").append(toIndentedString(media)).append("\n");
+    sb.append("    places: ").append(toIndentedString(places)).append("\n");
     sb.append("    polls: ").append(toIndentedString(polls)).append("\n");
+    sb.append("    topics: ").append(toIndentedString(topics)).append("\n");
+    sb.append("    tweets: ").append(toIndentedString(tweets)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -296,11 +334,12 @@ public class Expansions {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("users");
-    openapiFields.add("tweets");
-    openapiFields.add("places");
     openapiFields.add("media");
+    openapiFields.add("places");
     openapiFields.add("polls");
+    openapiFields.add("topics");
+    openapiFields.add("tweets");
+    openapiFields.add("users");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -321,28 +360,16 @@ public class Expansions {
      //   }
      // }
 
-      JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
-      if (jsonArrayusers != null) {
+      JsonArray jsonArraymedia = jsonObj.getAsJsonArray("media");
+      if (jsonArraymedia != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("users").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
+        if (!jsonObj.get("media").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `media` to be an array in the JSON string but got `%s`", jsonObj.get("media").toString()));
         }
 
-        // validate the optional field `users` (array)
-        for (int i = 0; i < jsonArrayusers.size(); i++) {
-          User.validateJsonObject(jsonArrayusers.get(i).getAsJsonObject());
-        };
-      }
-      JsonArray jsonArraytweets = jsonObj.getAsJsonArray("tweets");
-      if (jsonArraytweets != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("tweets").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `tweets` to be an array in the JSON string but got `%s`", jsonObj.get("tweets").toString()));
-        }
-
-        // validate the optional field `tweets` (array)
-        for (int i = 0; i < jsonArraytweets.size(); i++) {
-          Tweet.validateJsonObject(jsonArraytweets.get(i).getAsJsonObject());
+        // validate the optional field `media` (array)
+        for (int i = 0; i < jsonArraymedia.size(); i++) {
+          Media.validateJsonObject(jsonArraymedia.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArrayplaces = jsonObj.getAsJsonArray("places");
@@ -357,18 +384,6 @@ public class Expansions {
           Place.validateJsonObject(jsonArrayplaces.get(i).getAsJsonObject());
         };
       }
-      JsonArray jsonArraymedia = jsonObj.getAsJsonArray("media");
-      if (jsonArraymedia != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("media").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `media` to be an array in the JSON string but got `%s`", jsonObj.get("media").toString()));
-        }
-
-        // validate the optional field `media` (array)
-        for (int i = 0; i < jsonArraymedia.size(); i++) {
-          Media.validateJsonObject(jsonArraymedia.get(i).getAsJsonObject());
-        };
-      }
       JsonArray jsonArraypolls = jsonObj.getAsJsonArray("polls");
       if (jsonArraypolls != null) {
         // ensure the json data is an array
@@ -379,6 +394,42 @@ public class Expansions {
         // validate the optional field `polls` (array)
         for (int i = 0; i < jsonArraypolls.size(); i++) {
           Poll.validateJsonObject(jsonArraypolls.get(i).getAsJsonObject());
+        };
+      }
+      JsonArray jsonArraytopics = jsonObj.getAsJsonArray("topics");
+      if (jsonArraytopics != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("topics").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `topics` to be an array in the JSON string but got `%s`", jsonObj.get("topics").toString()));
+        }
+
+        // validate the optional field `topics` (array)
+        for (int i = 0; i < jsonArraytopics.size(); i++) {
+          Topic.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
+        };
+      }
+      JsonArray jsonArraytweets = jsonObj.getAsJsonArray("tweets");
+      if (jsonArraytweets != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tweets").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `tweets` to be an array in the JSON string but got `%s`", jsonObj.get("tweets").toString()));
+        }
+
+        // validate the optional field `tweets` (array)
+        for (int i = 0; i < jsonArraytweets.size(); i++) {
+          Tweet.validateJsonObject(jsonArraytweets.get(i).getAsJsonObject());
+        };
+      }
+      JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
+      if (jsonArrayusers != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("users").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
+        }
+
+        // validate the optional field `users` (array)
+        for (int i = 0; i < jsonArrayusers.size(); i++) {
+          User.validateJsonObject(jsonArrayusers.get(i).getAsJsonObject());
         };
       }
   }

@@ -30,6 +30,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.CashtagEntity;
+import com.twitter.clientlib.model.FullTextEntitiesAnnotationsInner;
 import com.twitter.clientlib.model.HashtagEntity;
 import com.twitter.clientlib.model.MentionEntity;
 import com.twitter.clientlib.model.UrlEntity;
@@ -64,9 +65,13 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FullTextEntities {
-  public static final String SERIALIZED_NAME_URLS = "urls";
-  @SerializedName(SERIALIZED_NAME_URLS)
-  private List<UrlEntity> urls = null;
+  public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
+  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  private List<FullTextEntitiesAnnotationsInner> annotations = null;
+
+  public static final String SERIALIZED_NAME_CASHTAGS = "cashtags";
+  @SerializedName(SERIALIZED_NAME_CASHTAGS)
+  private List<CashtagEntity> cashtags = null;
 
   public static final String SERIALIZED_NAME_HASHTAGS = "hashtags";
   @SerializedName(SERIALIZED_NAME_HASHTAGS)
@@ -76,41 +81,72 @@ public class FullTextEntities {
   @SerializedName(SERIALIZED_NAME_MENTIONS)
   private List<MentionEntity> mentions = null;
 
-  public static final String SERIALIZED_NAME_CASHTAGS = "cashtags";
-  @SerializedName(SERIALIZED_NAME_CASHTAGS)
-  private List<CashtagEntity> cashtags = null;
+  public static final String SERIALIZED_NAME_URLS = "urls";
+  @SerializedName(SERIALIZED_NAME_URLS)
+  private List<UrlEntity> urls = null;
 
   public FullTextEntities() { 
   }
 
-  public FullTextEntities urls(List<UrlEntity> urls) {
+  public FullTextEntities annotations(List<FullTextEntitiesAnnotationsInner> annotations) {
     
-    this.urls = urls;
+    this.annotations = annotations;
     return this;
   }
 
-  public FullTextEntities addUrlsItem(UrlEntity urlsItem) {
-    if (this.urls == null) {
-      this.urls = new ArrayList<>();
+  public FullTextEntities addAnnotationsItem(FullTextEntitiesAnnotationsInner annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new ArrayList<>();
     }
-    this.urls.add(urlsItem);
+    this.annotations.add(annotationsItem);
     return this;
   }
 
    /**
-   * Get urls
-   * @return urls
+   * Get annotations
+   * @return annotations
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<UrlEntity> getUrls() {
-    return urls;
+  public List<FullTextEntitiesAnnotationsInner> getAnnotations() {
+    return annotations;
   }
 
 
-  public void setUrls(List<UrlEntity> urls) {
-    this.urls = urls;
+  public void setAnnotations(List<FullTextEntitiesAnnotationsInner> annotations) {
+    this.annotations = annotations;
+  }
+
+
+  public FullTextEntities cashtags(List<CashtagEntity> cashtags) {
+    
+    this.cashtags = cashtags;
+    return this;
+  }
+
+  public FullTextEntities addCashtagsItem(CashtagEntity cashtagsItem) {
+    if (this.cashtags == null) {
+      this.cashtags = new ArrayList<>();
+    }
+    this.cashtags.add(cashtagsItem);
+    return this;
+  }
+
+   /**
+   * Get cashtags
+   * @return cashtags
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<CashtagEntity> getCashtags() {
+    return cashtags;
+  }
+
+
+  public void setCashtags(List<CashtagEntity> cashtags) {
+    this.cashtags = cashtags;
   }
 
 
@@ -176,34 +212,34 @@ public class FullTextEntities {
   }
 
 
-  public FullTextEntities cashtags(List<CashtagEntity> cashtags) {
+  public FullTextEntities urls(List<UrlEntity> urls) {
     
-    this.cashtags = cashtags;
+    this.urls = urls;
     return this;
   }
 
-  public FullTextEntities addCashtagsItem(CashtagEntity cashtagsItem) {
-    if (this.cashtags == null) {
-      this.cashtags = new ArrayList<>();
+  public FullTextEntities addUrlsItem(UrlEntity urlsItem) {
+    if (this.urls == null) {
+      this.urls = new ArrayList<>();
     }
-    this.cashtags.add(cashtagsItem);
+    this.urls.add(urlsItem);
     return this;
   }
 
    /**
-   * Get cashtags
-   * @return cashtags
+   * Get urls
+   * @return urls
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<CashtagEntity> getCashtags() {
-    return cashtags;
+  public List<UrlEntity> getUrls() {
+    return urls;
   }
 
 
-  public void setCashtags(List<CashtagEntity> cashtags) {
-    this.cashtags = cashtags;
+  public void setUrls(List<UrlEntity> urls) {
+    this.urls = urls;
   }
 
 
@@ -217,25 +253,27 @@ public class FullTextEntities {
       return false;
     }
     FullTextEntities fullTextEntities = (FullTextEntities) o;
-    return Objects.equals(this.urls, fullTextEntities.urls) &&
+    return Objects.equals(this.annotations, fullTextEntities.annotations) &&
+        Objects.equals(this.cashtags, fullTextEntities.cashtags) &&
         Objects.equals(this.hashtags, fullTextEntities.hashtags) &&
         Objects.equals(this.mentions, fullTextEntities.mentions) &&
-        Objects.equals(this.cashtags, fullTextEntities.cashtags);
+        Objects.equals(this.urls, fullTextEntities.urls);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(urls, hashtags, mentions, cashtags);
+    return Objects.hash(annotations, cashtags, hashtags, mentions, urls);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FullTextEntities {\n");
-    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
+    sb.append("    cashtags: ").append(toIndentedString(cashtags)).append("\n");
     sb.append("    hashtags: ").append(toIndentedString(hashtags)).append("\n");
     sb.append("    mentions: ").append(toIndentedString(mentions)).append("\n");
-    sb.append("    cashtags: ").append(toIndentedString(cashtags)).append("\n");
+    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -258,10 +296,11 @@ public class FullTextEntities {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("urls");
+    openapiFields.add("annotations");
+    openapiFields.add("cashtags");
     openapiFields.add("hashtags");
     openapiFields.add("mentions");
-    openapiFields.add("cashtags");
+    openapiFields.add("urls");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -282,16 +321,28 @@ public class FullTextEntities {
      //   }
      // }
 
-      JsonArray jsonArrayurls = jsonObj.getAsJsonArray("urls");
-      if (jsonArrayurls != null) {
+      JsonArray jsonArrayannotations = jsonObj.getAsJsonArray("annotations");
+      if (jsonArrayannotations != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("urls").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
+        if (!jsonObj.get("annotations").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `annotations` to be an array in the JSON string but got `%s`", jsonObj.get("annotations").toString()));
         }
 
-        // validate the optional field `urls` (array)
-        for (int i = 0; i < jsonArrayurls.size(); i++) {
-          UrlEntity.validateJsonObject(jsonArrayurls.get(i).getAsJsonObject());
+        // validate the optional field `annotations` (array)
+        for (int i = 0; i < jsonArrayannotations.size(); i++) {
+          FullTextEntitiesAnnotationsInner.validateJsonObject(jsonArrayannotations.get(i).getAsJsonObject());
+        };
+      }
+      JsonArray jsonArraycashtags = jsonObj.getAsJsonArray("cashtags");
+      if (jsonArraycashtags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("cashtags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `cashtags` to be an array in the JSON string but got `%s`", jsonObj.get("cashtags").toString()));
+        }
+
+        // validate the optional field `cashtags` (array)
+        for (int i = 0; i < jsonArraycashtags.size(); i++) {
+          CashtagEntity.validateJsonObject(jsonArraycashtags.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArrayhashtags = jsonObj.getAsJsonArray("hashtags");
@@ -318,16 +369,16 @@ public class FullTextEntities {
           MentionEntity.validateJsonObject(jsonArraymentions.get(i).getAsJsonObject());
         };
       }
-      JsonArray jsonArraycashtags = jsonObj.getAsJsonArray("cashtags");
-      if (jsonArraycashtags != null) {
+      JsonArray jsonArrayurls = jsonObj.getAsJsonArray("urls");
+      if (jsonArrayurls != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("cashtags").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `cashtags` to be an array in the JSON string but got `%s`", jsonObj.get("cashtags").toString()));
+        if (!jsonObj.get("urls").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
         }
 
-        // validate the optional field `cashtags` (array)
-        for (int i = 0; i < jsonArraycashtags.size(); i++) {
-          CashtagEntity.validateJsonObject(jsonArraycashtags.get(i).getAsJsonObject());
+        // validate the optional field `urls` (array)
+        for (int i = 0; i < jsonArrayurls.size(); i++) {
+          UrlEntity.validateJsonObject(jsonArrayurls.get(i).getAsJsonObject());
         };
       }
   }

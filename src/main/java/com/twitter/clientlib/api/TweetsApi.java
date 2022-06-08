@@ -40,28 +40,32 @@ import java.io.IOException;
 
 import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
 import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
-import com.twitter.clientlib.model.CreateTweetRequest;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.FilteredStreamingTweet;
-import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
-import com.twitter.clientlib.model.GetRulesResponse;
-import com.twitter.clientlib.model.Granularity;
-import com.twitter.clientlib.model.HideReplyByIdRequest;
-import com.twitter.clientlib.model.HideReplyByIdResponse;
-import com.twitter.clientlib.model.ListsIdTweetsResponse;
-import com.twitter.clientlib.model.MultiTweetLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.FilteredStreamingTweetResponse;
+import com.twitter.clientlib.model.Get2ListsIdTweetsResponse;
+import com.twitter.clientlib.model.Get2SpacesIdBuyersResponse;
+import com.twitter.clientlib.model.Get2SpacesIdTweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsCountsAllResponse;
+import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
+import com.twitter.clientlib.model.Get2TweetsIdQuoteTweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
+import com.twitter.clientlib.model.Get2TweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsSearchAllResponse;
+import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
+import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
+import com.twitter.clientlib.model.Get2UsersIdMentionsResponse;
+import com.twitter.clientlib.model.Get2UsersIdTimelinesReverseChronologicalResponse;
+import com.twitter.clientlib.model.Get2UsersIdTweetsResponse;
 import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.QuoteTweetLookupResponse;
+import com.twitter.clientlib.model.RulesLookupResponse;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
-import com.twitter.clientlib.model.StreamingTweet;
-import com.twitter.clientlib.model.TweetCountsResponse;
+import com.twitter.clientlib.model.StreamingTweetResponse;
+import com.twitter.clientlib.model.TweetCreateRequest;
 import com.twitter.clientlib.model.TweetCreateResponse;
 import com.twitter.clientlib.model.TweetDeleteResponse;
-import com.twitter.clientlib.model.TweetSearchResponse;
-import com.twitter.clientlib.model.UsersIdLikedTweetsResponse;
+import com.twitter.clientlib.model.TweetHideRequest;
+import com.twitter.clientlib.model.TweetHideResponse;
 import com.twitter.clientlib.model.UsersLikesCreateRequest;
 import com.twitter.clientlib.model.UsersLikesCreateResponse;
 import com.twitter.clientlib.model.UsersLikesDeleteResponse;
@@ -92,7 +96,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -148,7 +152,7 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Add/Delete rules
-     * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
+     * Add or delete rules from a User&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
      * @param addOrDeleteRulesRequest  (required)
      * @param dryRun Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes. (optional)
      * @return AddOrDeleteRulesResponse
@@ -156,7 +160,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -185,7 +189,7 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Add/Delete rules
-     * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
+     * Add or delete rules from a User&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
      * @param addOrDeleteRulesRequest  (required)
      * @param dryRun Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes. (optional)
      * @return ApiResponse&lt;AddOrDeleteRulesResponse&gt;
@@ -193,7 +197,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -210,7 +214,7 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Add/Delete rules (asynchronously)
-     * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
+     * Add or delete rules from a User&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
      * @param addOrDeleteRulesRequest  (required)
      * @param dryRun Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -219,7 +223,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -232,19 +236,19 @@ public class TweetsApi extends ApiCommon {
     }
     /**
      * Build call for createTweet
-     * @param createTweetRequest  (optional)
+     * @param tweetCreateRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createTweetCall(CreateTweetRequest createTweetRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = createTweetRequest;
+    public okhttp3.Call createTweetCall(TweetCreateRequest tweetCreateRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = tweetCreateRequest;
 
         // create path and map variables
         String localVarPath = "/2/tweets";
@@ -276,29 +280,34 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createTweetValidateBeforeCall(CreateTweetRequest createTweetRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createTweetValidateBeforeCall(TweetCreateRequest tweetCreateRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'tweetCreateRequest' is set
+        if (tweetCreateRequest == null) {
+            throw new ApiException("Missing the required parameter 'tweetCreateRequest' when calling createTweet(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = createTweetCall(createTweetRequest, _callback);
+        okhttp3.Call localVarCall = createTweetCall(tweetCreateRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * Creation of a Tweet
-     * Causes the user to create a tweet under the authorized account.
-     * @param createTweetRequest  (optional)
+     * Causes the User to create a Tweet under the authorized account.
+     * @param tweetCreateRequest  (required)
      * @return TweetCreateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public TweetCreateResponse createTweet(CreateTweetRequest createTweetRequest) throws ApiException {
-      ApiResponse<TweetCreateResponse> localVarResp = createTweetWithHttpInfo(createTweetRequest);
+    public TweetCreateResponse createTweet(TweetCreateRequest tweetCreateRequest) throws ApiException {
+      ApiResponse<TweetCreateResponse> localVarResp = createTweetWithHttpInfo(tweetCreateRequest);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -306,13 +315,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public TweetCreateResponse createTweet(Integer retries, CreateTweetRequest createTweetRequest) throws ApiException {
+    public TweetCreateResponse createTweet(Integer retries, TweetCreateRequest tweetCreateRequest) throws ApiException {
         TweetCreateResponse localVarResp;
         try{
-          localVarResp = createTweet(createTweetRequest);
+          localVarResp = createTweet(tweetCreateRequest);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return createTweet(retries - 1, createTweetRequest);
+            return createTweet(retries - 1, tweetCreateRequest);
           } else {
             throw e;
           }
@@ -322,19 +331,19 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Creation of a Tweet
-     * Causes the user to create a tweet under the authorized account.
-     * @param createTweetRequest  (optional)
+     * Causes the User to create a Tweet under the authorized account.
+     * @param tweetCreateRequest  (required)
      * @return ApiResponse&lt;TweetCreateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TweetCreateResponse> createTweetWithHttpInfo(CreateTweetRequest createTweetRequest) throws ApiException {
-        okhttp3.Call localVarCall = createTweetValidateBeforeCall(createTweetRequest, null);
+    public ApiResponse<TweetCreateResponse> createTweetWithHttpInfo(TweetCreateRequest tweetCreateRequest) throws ApiException {
+        okhttp3.Call localVarCall = createTweetValidateBeforeCall(tweetCreateRequest, null);
         try {
             Type localVarReturnType = new TypeToken<TweetCreateResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -346,21 +355,21 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Creation of a Tweet (asynchronously)
-     * Causes the user to create a tweet under the authorized account.
-     * @param createTweetRequest  (optional)
+     * Causes the User to create a Tweet under the authorized account.
+     * @param tweetCreateRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createTweetAsync(CreateTweetRequest createTweetRequest, final ApiCallback<TweetCreateResponse> _callback) throws ApiException {
+    public okhttp3.Call createTweetAsync(TweetCreateRequest tweetCreateRequest, final ApiCallback<TweetCreateResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createTweetValidateBeforeCall(createTweetRequest, _callback);
+        okhttp3.Call localVarCall = createTweetValidateBeforeCall(tweetCreateRequest, _callback);
         Type localVarReturnType = new TypeToken<TweetCreateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -374,7 +383,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -434,7 +443,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -470,7 +479,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -495,7 +504,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -509,23 +518,23 @@ public class TweetsApi extends ApiCommon {
     /**
      * Build call for findTweetById
      * @param id A single Tweet ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetByIdCall(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findTweetByIdCall(String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -538,28 +547,28 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -583,7 +592,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findTweetByIdValidateBeforeCall(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findTweetByIdValidateBeforeCall(String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -591,7 +600,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findTweetByIdCall(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = findTweetByIdCall(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -600,23 +609,23 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet ID
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param id A single Tweet ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return SingleTweetLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2TweetsIdResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public SingleTweetLookupResponse findTweetById(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<SingleTweetLookupResponse> localVarResp = findTweetByIdWithHttpInfo(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2TweetsIdResponse findTweetById(String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2TweetsIdResponse> localVarResp = findTweetByIdWithHttpInfo(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -624,13 +633,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public SingleTweetLookupResponse findTweetById(Integer retries, String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        SingleTweetLookupResponse localVarResp;
+    public Get2TweetsIdResponse findTweetById(Integer retries, String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2TweetsIdResponse localVarResp;
         try{
-          localVarResp = findTweetById(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = findTweetById(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findTweetById(retries - 1, id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return findTweetById(retries - 1, id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -642,25 +651,25 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet ID
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param id A single Tweet ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;SingleTweetLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsIdResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SingleTweetLookupResponse> findTweetByIdWithHttpInfo(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = findTweetByIdValidateBeforeCall(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2TweetsIdResponse> findTweetByIdWithHttpInfo(String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = findTweetByIdValidateBeforeCall(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleTweetLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsIdResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -672,49 +681,49 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet ID (asynchronously)
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param id A single Tweet ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetByIdAsync(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<SingleTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findTweetByIdAsync(String id, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsIdResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findTweetByIdValidateBeforeCall(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<SingleTweetLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findTweetByIdValidateBeforeCall(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsIdResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for findTweetsById
      * @param ids A comma separated list of Tweet IDs. Up to 100 are allowed in a single request. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsByIdCall(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findTweetsByIdCall(List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -730,28 +739,28 @@ public class TweetsApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "ids", ids));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -775,7 +784,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findTweetsByIdValidateBeforeCall(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findTweetsByIdValidateBeforeCall(List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'ids' is set
         if (ids == null) {
@@ -783,7 +792,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findTweetsByIdCall(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = findTweetsByIdCall(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -792,23 +801,23 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet IDs
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param ids A comma separated list of Tweet IDs. Up to 100 are allowed in a single request. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return MultiTweetLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2TweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiTweetLookupResponse findTweetsById(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<MultiTweetLookupResponse> localVarResp = findTweetsByIdWithHttpInfo(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2TweetsResponse findTweetsById(List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2TweetsResponse> localVarResp = findTweetsByIdWithHttpInfo(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -816,13 +825,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiTweetLookupResponse findTweetsById(Integer retries, List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        MultiTweetLookupResponse localVarResp;
+    public Get2TweetsResponse findTweetsById(Integer retries, List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2TweetsResponse localVarResp;
         try{
-          localVarResp = findTweetsById(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = findTweetsById(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findTweetsById(retries - 1, ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return findTweetsById(retries - 1, ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -834,25 +843,25 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet IDs
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param ids A comma separated list of Tweet IDs. Up to 100 are allowed in a single request. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;MultiTweetLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiTweetLookupResponse> findTweetsByIdWithHttpInfo(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = findTweetsByIdValidateBeforeCall(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2TweetsResponse> findTweetsByIdWithHttpInfo(List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = findTweetsByIdValidateBeforeCall(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -864,51 +873,52 @@ public class TweetsApi extends ApiCommon {
      * Tweet lookup by Tweet IDs (asynchronously)
      * Returns a variety of information about the Tweet specified by the requested ID.
      * @param ids A comma separated list of Tweet IDs. Up to 100 are allowed in a single request. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsByIdAsync(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<MultiTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findTweetsByIdAsync(List<String> ids, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findTweetsByIdValidateBeforeCall(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findTweetsByIdValidateBeforeCall(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for findTweetsThatQuoteATweet
-     * @param id The ID of the Quoted Tweet. (required)
+     * @param id A single Tweet ID. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsThatQuoteATweetCall(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findTweetsThatQuoteATweetCall(String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -925,32 +935,36 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
+        if (paginationToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -974,7 +988,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findTweetsThatQuoteATweetValidateBeforeCall(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findTweetsThatQuoteATweetValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -982,34 +996,35 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetCall(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Retrieve tweets that quote a tweet.
-     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
-     * @param id The ID of the Quoted Tweet. (required)
+     * Retrieve Tweets that quote a Tweet.
+     * Returns a variety of information about each Tweet that quotes the Tweet specified by the requested ID.
+     * @param id A single Tweet ID. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return QuoteTweetLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2TweetsIdQuoteTweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<QuoteTweetLookupResponse> localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2TweetsIdQuoteTweetsResponse findTweetsThatQuoteATweet(String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2TweetsIdQuoteTweetsResponse> localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -1017,13 +1032,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public QuoteTweetLookupResponse findTweetsThatQuoteATweet(Integer retries, String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        QuoteTweetLookupResponse localVarResp;
+    public Get2TweetsIdQuoteTweetsResponse findTweetsThatQuoteATweet(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2TweetsIdQuoteTweetsResponse localVarResp;
         try{
-          localVarResp = findTweetsThatQuoteATweet(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = findTweetsThatQuoteATweet(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findTweetsThatQuoteATweet(retries - 1, id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return findTweetsThatQuoteATweet(retries - 1, id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -1032,30 +1047,31 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets that quote a tweet.
-     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
-     * @param id The ID of the Quoted Tweet. (required)
+     * Retrieve Tweets that quote a Tweet.
+     * Returns a variety of information about each Tweet that quotes the Tweet specified by the requested ID.
+     * @param id A single Tweet ID. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;QuoteTweetLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsIdQuoteTweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QuoteTweetLookupResponse> findTweetsThatQuoteATweetWithHttpInfo(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2TweetsIdQuoteTweetsResponse> findTweetsThatQuoteATweetWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsIdQuoteTweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1064,38 +1080,39 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets that quote a tweet. (asynchronously)
-     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
-     * @param id The ID of the Quoted Tweet. (required)
+     * Retrieve Tweets that quote a Tweet. (asynchronously)
+     * Returns a variety of information about each Tweet that quotes the Tweet specified by the requested ID.
+     * @param id A single Tweet ID. (required)
      * @param maxResults The maximum number of results to be returned. (optional, default to 10)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findTweetsThatQuoteATweetAsync(String id, Integer maxResults, Set<String> exclude, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<QuoteTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findTweetsThatQuoteATweetAsync(String id, Integer maxResults, String paginationToken, Set<String> exclude, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsIdQuoteTweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<QuoteTweetLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findTweetsThatQuoteATweetValidateBeforeCall(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsIdQuoteTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getRules
      * @param ids A comma-separated list of Rule IDs. (optional)
-     * @param maxResults The maximum number of results (optional, default to 1000)
+     * @param maxResults The maximum number of results. (optional, default to 1000)
      * @param paginationToken This value is populated by passing the &#39;next_token&#39; returned in a request to paginate through results. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1103,7 +1120,7 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -1162,21 +1179,21 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Rules lookup
-     * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
+     * Returns rules from a User&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
      * @param ids A comma-separated list of Rule IDs. (optional)
-     * @param maxResults The maximum number of results (optional, default to 1000)
+     * @param maxResults The maximum number of results. (optional, default to 1000)
      * @param paginationToken This value is populated by passing the &#39;next_token&#39; returned in a request to paginate through results. (optional)
-     * @return GetRulesResponse
+     * @return RulesLookupResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public GetRulesResponse getRules(List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GetRulesResponse> localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
+    public RulesLookupResponse getRules(List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
+      ApiResponse<RulesLookupResponse> localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -1184,8 +1201,8 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public GetRulesResponse getRules(Integer retries, List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
-        GetRulesResponse localVarResp;
+    public RulesLookupResponse getRules(Integer retries, List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
+        RulesLookupResponse localVarResp;
         try{
           localVarResp = getRules(ids, maxResults, paginationToken);
         } catch (ApiException e) {
@@ -1200,23 +1217,23 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Rules lookup
-     * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
+     * Returns rules from a User&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
      * @param ids A comma-separated list of Rule IDs. (optional)
-     * @param maxResults The maximum number of results (optional, default to 1000)
+     * @param maxResults The maximum number of results. (optional, default to 1000)
      * @param paginationToken This value is populated by passing the &#39;next_token&#39; returned in a request to paginate through results. (optional)
-     * @return ApiResponse&lt;GetRulesResponse&gt;
+     * @return ApiResponse&lt;RulesLookupResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetRulesResponse> getRulesWithHttpInfo(List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
+    public ApiResponse<RulesLookupResponse> getRulesWithHttpInfo(List<String> ids, Integer maxResults, String paginationToken) throws ApiException {
         okhttp3.Call localVarCall = getRulesValidateBeforeCall(ids, maxResults, paginationToken, null);
         try {
-            Type localVarReturnType = new TypeToken<GetRulesResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<RulesLookupResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1226,9 +1243,9 @@ public class TweetsApi extends ApiCommon {
 
     /**
      * Rules lookup (asynchronously)
-     * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
+     * Returns rules from a User&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
      * @param ids A comma-separated list of Rule IDs. (optional)
-     * @param maxResults The maximum number of results (optional, default to 1000)
+     * @param maxResults The maximum number of results. (optional, default to 1000)
      * @param paginationToken This value is populated by passing the &#39;next_token&#39; returned in a request to paginate through results. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1236,37 +1253,37 @@ public class TweetsApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRulesAsync(List<String> ids, Integer maxResults, String paginationToken, final ApiCallback<GetRulesResponse> _callback) throws ApiException {
+    public okhttp3.Call getRulesAsync(List<String> ids, Integer maxResults, String paginationToken, final ApiCallback<RulesLookupResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getRulesValidateBeforeCall(ids, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GetRulesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<RulesLookupResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for hideReplyById
-     * @param hideReplyByIdRequest  (optional)
-     * @param id The ID of the reply that you want to hide or unhide. (required)
+     * @param tweetHideRequest  (optional)
+     * @param tweetId The ID of the reply that you want to hide or unhide. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A successful response. The reply has been hidden or unhidden. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call hideReplyByIdCall(HideReplyByIdRequest hideReplyByIdRequest, String id, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = hideReplyByIdRequest;
+    public okhttp3.Call hideReplyByIdCall(TweetHideRequest tweetHideRequest, String tweetId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = tweetHideRequest;
 
         // create path and map variables
-        String localVarPath = "/2/tweets/{id}/hidden"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+        String localVarPath = "/2/tweets/{tweet_id}/hidden"
+            .replaceAll("\\{" + "tweet_id" + "\\}", localVarApiClient.escapeString(tweetId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1295,15 +1312,15 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call hideReplyByIdValidateBeforeCall(HideReplyByIdRequest hideReplyByIdRequest, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call hideReplyByIdValidateBeforeCall(TweetHideRequest tweetHideRequest, String tweetId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling hideReplyById(Async)");
+        // verify the required parameter 'tweetId' is set
+        if (tweetId == null) {
+            throw new ApiException("Missing the required parameter 'tweetId' when calling hideReplyById(Async)");
         }
         
 
-        okhttp3.Call localVarCall = hideReplyByIdCall(hideReplyByIdRequest, id, _callback);
+        okhttp3.Call localVarCall = hideReplyByIdCall(tweetHideRequest, tweetId, _callback);
         return localVarCall;
 
     }
@@ -1311,19 +1328,19 @@ public class TweetsApi extends ApiCommon {
     /**
      * Hide replies
      * Hides or unhides a reply to an owned conversation.
-     * @param hideReplyByIdRequest  (optional)
-     * @param id The ID of the reply that you want to hide or unhide. (required)
-     * @return HideReplyByIdResponse
+     * @param tweetHideRequest  (optional)
+     * @param tweetId The ID of the reply that you want to hide or unhide. (required)
+     * @return TweetHideResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A successful response. The reply has been hidden or unhidden. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public HideReplyByIdResponse hideReplyById(HideReplyByIdRequest hideReplyByIdRequest, String id) throws ApiException {
-      ApiResponse<HideReplyByIdResponse> localVarResp = hideReplyByIdWithHttpInfo(hideReplyByIdRequest, id);
+    public TweetHideResponse hideReplyById(TweetHideRequest tweetHideRequest, String tweetId) throws ApiException {
+      ApiResponse<TweetHideResponse> localVarResp = hideReplyByIdWithHttpInfo(tweetHideRequest, tweetId);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -1331,13 +1348,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public HideReplyByIdResponse hideReplyById(Integer retries, HideReplyByIdRequest hideReplyByIdRequest, String id) throws ApiException {
-        HideReplyByIdResponse localVarResp;
+    public TweetHideResponse hideReplyById(Integer retries, TweetHideRequest tweetHideRequest, String tweetId) throws ApiException {
+        TweetHideResponse localVarResp;
         try{
-          localVarResp = hideReplyById(hideReplyByIdRequest, id);
+          localVarResp = hideReplyById(tweetHideRequest, tweetId);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return hideReplyById(retries - 1, hideReplyByIdRequest, id);
+            return hideReplyById(retries - 1, tweetHideRequest, tweetId);
           } else {
             throw e;
           }
@@ -1348,21 +1365,21 @@ public class TweetsApi extends ApiCommon {
     /**
      * Hide replies
      * Hides or unhides a reply to an owned conversation.
-     * @param hideReplyByIdRequest  (optional)
-     * @param id The ID of the reply that you want to hide or unhide. (required)
-     * @return ApiResponse&lt;HideReplyByIdResponse&gt;
+     * @param tweetHideRequest  (optional)
+     * @param tweetId The ID of the reply that you want to hide or unhide. (required)
+     * @return ApiResponse&lt;TweetHideResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A successful response. The reply has been hidden or unhidden. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<HideReplyByIdResponse> hideReplyByIdWithHttpInfo(HideReplyByIdRequest hideReplyByIdRequest, String id) throws ApiException {
-        okhttp3.Call localVarCall = hideReplyByIdValidateBeforeCall(hideReplyByIdRequest, id, null);
+    public ApiResponse<TweetHideResponse> hideReplyByIdWithHttpInfo(TweetHideRequest tweetHideRequest, String tweetId) throws ApiException {
+        okhttp3.Call localVarCall = hideReplyByIdValidateBeforeCall(tweetHideRequest, tweetId, null);
         try {
-            Type localVarReturnType = new TypeToken<HideReplyByIdResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<TweetHideResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1373,47 +1390,47 @@ public class TweetsApi extends ApiCommon {
     /**
      * Hide replies (asynchronously)
      * Hides or unhides a reply to an owned conversation.
-     * @param hideReplyByIdRequest  (optional)
-     * @param id The ID of the reply that you want to hide or unhide. (required)
+     * @param tweetHideRequest  (optional)
+     * @param tweetId The ID of the reply that you want to hide or unhide. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A successful response. The reply has been hidden or unhidden. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call hideReplyByIdAsync(HideReplyByIdRequest hideReplyByIdRequest, String id, final ApiCallback<HideReplyByIdResponse> _callback) throws ApiException {
+    public okhttp3.Call hideReplyByIdAsync(TweetHideRequest tweetHideRequest, String tweetId, final ApiCallback<TweetHideResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = hideReplyByIdValidateBeforeCall(hideReplyByIdRequest, id, _callback);
-        Type localVarReturnType = new TypeToken<HideReplyByIdResponse>(){}.getType();
+        okhttp3.Call localVarCall = hideReplyByIdValidateBeforeCall(tweetHideRequest, tweetId, _callback);
+        Type localVarReturnType = new TypeToken<TweetHideResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for listsIdTweets
-     * @param id The ID of the List to list Tweets of (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
+     * @param id The ID of the List. (required)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listsIdTweetsCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listsIdTweetsCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1434,28 +1451,28 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -1479,7 +1496,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listsIdTweetsValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listsIdTweetsValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1487,34 +1504,34 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = listsIdTweetsCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = listsIdTweetsCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * List Tweets timeline by List ID
-     * Returns a list of Tweets associated with the provided List ID
-     * @param id The ID of the List to list Tweets of (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
+     * List Tweets timeline by List ID.
+     * Returns a list of Tweets associated with the provided List ID.
+     * @param id The ID of the List. (required)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ListsIdTweetsResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2ListsIdTweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ListsIdTweetsResponse listsIdTweets(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<ListsIdTweetsResponse> localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2ListsIdTweetsResponse listsIdTweets(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2ListsIdTweetsResponse> localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -1522,13 +1539,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public ListsIdTweetsResponse listsIdTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        ListsIdTweetsResponse localVarResp;
+    public Get2ListsIdTweetsResponse listsIdTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2ListsIdTweetsResponse localVarResp;
         try{
-          localVarResp = listsIdTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = listsIdTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return listsIdTweets(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return listsIdTweets(retries - 1, id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -1537,30 +1554,30 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * List Tweets timeline by List ID
-     * Returns a list of Tweets associated with the provided List ID
-     * @param id The ID of the List to list Tweets of (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
+     * List Tweets timeline by List ID.
+     * Returns a list of Tweets associated with the provided List ID.
+     * @param id The ID of the List. (required)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;ListsIdTweetsResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2ListsIdTweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListsIdTweetsResponse> listsIdTweetsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = listsIdTweetsValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2ListsIdTweetsResponse> listsIdTweetsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = listsIdTweetsValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<ListsIdTweetsResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2ListsIdTweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1569,54 +1586,54 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * List Tweets timeline by List ID (asynchronously)
-     * Returns a list of Tweets associated with the provided List ID
-     * @param id The ID of the List to list Tweets of (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
+     * List Tweets timeline by List ID. (asynchronously)
+     * Returns a list of Tweets associated with the provided List ID.
+     * @param id The ID of the List. (required)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listsIdTweetsAsync(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<ListsIdTweetsResponse> _callback) throws ApiException {
+    public okhttp3.Call listsIdTweetsAsync(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2ListsIdTweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listsIdTweetsValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<ListsIdTweetsResponse>(){}.getType();
+        okhttp3.Call localVarCall = listsIdTweetsValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2ListsIdTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for sampleStream
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sampleStreamCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call sampleStreamCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1628,32 +1645,32 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
         }
 
-        if (backfillMinutes != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -1677,10 +1694,10 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sampleStreamValidateBeforeCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sampleStreamValidateBeforeCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = sampleStreamCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = sampleStreamCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -1688,24 +1705,24 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
-     * @return StreamingTweet
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return StreamingTweetResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStream(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        InputStream localVarResp = sampleStreamWithHttpInfo(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+    public InputStream sampleStream(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        InputStream localVarResp = sampleStreamWithHttpInfo(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         return localVarResp;
     }
 
@@ -1713,14 +1730,14 @@ public class TweetsApi extends ApiCommon {
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream sampleStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+    public InputStream sampleStream(Integer retries, Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
         InputStream localVarResp;
         try{
-          localVarResp = sampleStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          localVarResp = sampleStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         }
         catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return sampleStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+            return sampleStream(retries - 1, backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -1732,26 +1749,26 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
-     * @return ApiResponse&lt;StreamingTweet&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;StreamingTweetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStreamWithHttpInfo(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, null);
+    public InputStream sampleStreamWithHttpInfo(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
+            Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1762,50 +1779,50 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream (asynchronously)
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sampleStreamAsync(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback<StreamingTweet> _callback) throws ApiException {
+    public okhttp3.Call sampleStreamAsync(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<StreamingTweetResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
-        Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
+        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchStream
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchStreamCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchStreamCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1817,32 +1834,32 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
         }
 
-        if (backfillMinutes != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -1866,10 +1883,10 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchStreamValidateBeforeCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchStreamValidateBeforeCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = searchStreamCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = searchStreamCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -1877,24 +1894,24 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
-     * @return FilteredStreamingTweet
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return FilteredStreamingTweetResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStream(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        InputStream localVarResp = searchStreamWithHttpInfo(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+    public InputStream searchStream(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        InputStream localVarResp = searchStreamWithHttpInfo(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         return localVarResp;
     }
 
@@ -1902,14 +1919,14 @@ public class TweetsApi extends ApiCommon {
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream searchStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+    public InputStream searchStream(Integer retries, Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
         InputStream localVarResp;
         try{
-          localVarResp = searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          localVarResp = searchStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         }
         catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return searchStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+            return searchStream(retries - 1, backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -1921,26 +1938,26 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
-     * @return ApiResponse&lt;FilteredStreamingTweet&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;FilteredStreamingTweetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStreamWithHttpInfo(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, null);
+    public InputStream searchStreamWithHttpInfo(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
+            Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1951,45 +1968,49 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream (asynchronously)
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param backfillMinutes The number of minutes of backfill requested. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful. Successful responses will return a stream of individual JSON Tweet payloads. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchStreamAsync(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback<FilteredStreamingTweet> _callback) throws ApiException {
+    public okhttp3.Call searchStreamAsync(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<FilteredStreamingTweetResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
-        Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for spaceBuyers
-     * @param id The space id from which tweets will be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceBuyersCall(String id, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call spaceBuyersCall(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2002,8 +2023,24 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (paginationToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (maxResults != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        }
+
         if (userFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
         final String[] localVarAccepts = {
@@ -2022,12 +2059,12 @@ public class TweetsApi extends ApiCommon {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken", "UserToken" };
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call spaceBuyersValidateBeforeCall(String id, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call spaceBuyersValidateBeforeCall(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2035,27 +2072,31 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = spaceBuyersCall(id, userFields, _callback);
+        okhttp3.Call localVarCall = spaceBuyersCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Retrieve the list of users who purchased a ticket to the given space
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param userFields A comma separated list of User fields to display. (optional)
-     * @return MultiUserLookupResponse
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @return Get2SpacesIdBuyersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiUserLookupResponse spaceBuyers(String id, Set<String> userFields) throws ApiException {
-      ApiResponse<MultiUserLookupResponse> localVarResp = spaceBuyersWithHttpInfo(id, userFields);
+    public Get2SpacesIdBuyersResponse spaceBuyers(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+      ApiResponse<Get2SpacesIdBuyersResponse> localVarResp = spaceBuyersWithHttpInfo(id, paginationToken, maxResults, userFields, expansions, tweetFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -2063,13 +2104,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiUserLookupResponse spaceBuyers(Integer retries, String id, Set<String> userFields) throws ApiException {
-        MultiUserLookupResponse localVarResp;
+    public Get2SpacesIdBuyersResponse spaceBuyers(Integer retries, String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        Get2SpacesIdBuyersResponse localVarResp;
         try{
-          localVarResp = spaceBuyers(id, userFields);
+          localVarResp = spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return spaceBuyers(retries - 1, id, userFields);
+            return spaceBuyers(retries - 1, id, paginationToken, maxResults, userFields, expansions, tweetFields);
           } else {
             throw e;
           }
@@ -2078,23 +2119,27 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve the list of users who purchased a ticket to the given space
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;MultiUserLookupResponse&gt;
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesIdBuyersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiUserLookupResponse> spaceBuyersWithHttpInfo(String id, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, userFields, null);
+    public ApiResponse<Get2SpacesIdBuyersResponse> spaceBuyersWithHttpInfo(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesIdBuyersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2103,43 +2148,52 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve the list of users who purchased a ticket to the given space (asynchronously)
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space (asynchronously)
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceBuyersAsync(String id, Set<String> userFields, final ApiCallback<MultiUserLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call spaceBuyersAsync(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2SpacesIdBuyersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, userFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesIdBuyersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for spaceTweets
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceTweetsCall(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call spaceTweetsCall(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2158,6 +2212,26 @@ public class TweetsApi extends ApiCommon {
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (mediaFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        }
+
+        if (pollFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -2181,7 +2255,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call spaceTweetsValidateBeforeCall(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call spaceTweetsValidateBeforeCall(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2189,28 +2263,33 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = spaceTweetsCall(maxResults, id, tweetFields, _callback);
+        okhttp3.Call localVarCall = spaceTweetsCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Retrieve tweets from a Space
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve Tweets from a Space.
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @return MultiTweetLookupResponse
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2SpacesIdTweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiTweetLookupResponse spaceTweets(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-      ApiResponse<MultiTweetLookupResponse> localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
+    public Get2SpacesIdTweetsResponse spaceTweets(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2SpacesIdTweetsResponse> localVarResp = spaceTweetsWithHttpInfo(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -2218,13 +2297,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiTweetLookupResponse spaceTweets(Integer retries, Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        MultiTweetLookupResponse localVarResp;
+    public Get2SpacesIdTweetsResponse spaceTweets(Integer retries, String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2SpacesIdTweetsResponse localVarResp;
         try{
-          localVarResp = spaceTweets(maxResults, id, tweetFields);
+          localVarResp = spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return spaceTweets(retries - 1, maxResults, id, tweetFields);
+            return spaceTweets(retries - 1, id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -2233,24 +2312,29 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets from a Space
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve Tweets from a Space.
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @return ApiResponse&lt;MultiTweetLookupResponse&gt;
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesIdTweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiTweetLookupResponse> spaceTweetsWithHttpInfo(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(maxResults, id, tweetFields, null);
+    public ApiResponse<Get2SpacesIdTweetsResponse> spaceTweetsWithHttpInfo(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesIdTweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2259,31 +2343,36 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets from a Space (asynchronously)
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve Tweets from a Space. (asynchronously)
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceTweetsAsync(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback<MultiTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call spaceTweetsAsync(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2SpacesIdTweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(maxResults, id, tweetFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesIdTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for tweetCountsFullArchiveSearch
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2291,17 +2380,18 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetCountsFullArchiveSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tweetCountsFullArchiveSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2345,6 +2435,10 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("granularity", granularity));
         }
 
+        if (searchCountFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "search_count.fields", searchCountFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -2366,7 +2460,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetCountsFullArchiveSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetCountsFullArchiveSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -2374,7 +2468,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, _callback);
+        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, _callback);
         return localVarCall;
 
     }
@@ -2382,7 +2476,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full archive search counts
      * Returns Tweet Counts that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2390,17 +2484,18 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
-     * @return TweetCountsResponse
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
+     * @return Get2TweetsCountsAllResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public TweetCountsResponse tweetCountsFullArchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-      ApiResponse<TweetCountsResponse> localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+    public Get2TweetsCountsAllResponse tweetCountsFullArchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+      ApiResponse<Get2TweetsCountsAllResponse> localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -2408,13 +2503,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public TweetCountsResponse tweetCountsFullArchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        TweetCountsResponse localVarResp;
+    public Get2TweetsCountsAllResponse tweetCountsFullArchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+        Get2TweetsCountsAllResponse localVarResp;
         try{
-          localVarResp = tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+          localVarResp = tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return tweetCountsFullArchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+            return tweetCountsFullArchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
           } else {
             throw e;
           }
@@ -2425,7 +2520,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full archive search counts
      * Returns Tweet Counts that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2433,19 +2528,20 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
-     * @return ApiResponse&lt;TweetCountsResponse&gt;
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsCountsAllResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TweetCountsResponse> tweetCountsFullArchiveSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, null);
+    public ApiResponse<Get2TweetsCountsAllResponse> tweetCountsFullArchiveSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, null);
         try {
-            Type localVarReturnType = new TypeToken<TweetCountsResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsCountsAllResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2456,7 +2552,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full archive search counts (asynchronously)
      * Returns Tweet Counts that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2464,26 +2560,27 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetCountsFullArchiveSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback<TweetCountsResponse> _callback) throws ApiException {
+    public okhttp3.Call tweetCountsFullArchiveSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback<Get2TweetsCountsAllResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, _callback);
-        Type localVarReturnType = new TypeToken<TweetCountsResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetCountsFullArchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsCountsAllResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for tweetCountsRecentSearch
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2491,17 +2588,18 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Recent tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetCountsRecentSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tweetCountsRecentSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2545,6 +2643,10 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("granularity", granularity));
         }
 
+        if (searchCountFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "search_count.fields", searchCountFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -2566,7 +2668,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetCountsRecentSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetCountsRecentSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -2574,7 +2676,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetCountsRecentSearchCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, _callback);
+        okhttp3.Call localVarCall = tweetCountsRecentSearchCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, _callback);
         return localVarCall;
 
     }
@@ -2582,7 +2684,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search counts
      * Returns Tweet Counts from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2590,17 +2692,18 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
-     * @return TweetCountsResponse
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
+     * @return Get2TweetsCountsRecentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Recent tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public TweetCountsResponse tweetCountsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-      ApiResponse<TweetCountsResponse> localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+    public Get2TweetsCountsRecentResponse tweetCountsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+      ApiResponse<Get2TweetsCountsRecentResponse> localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -2608,13 +2711,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public TweetCountsResponse tweetCountsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        TweetCountsResponse localVarResp;
+    public Get2TweetsCountsRecentResponse tweetCountsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+        Get2TweetsCountsRecentResponse localVarResp;
         try{
-          localVarResp = tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+          localVarResp = tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return tweetCountsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+            return tweetCountsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
           } else {
             throw e;
           }
@@ -2625,7 +2728,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search counts
      * Returns Tweet Counts from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2633,19 +2736,20 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
-     * @return ApiResponse&lt;TweetCountsResponse&gt;
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsCountsRecentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Recent tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TweetCountsResponse> tweetCountsRecentSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity) throws ApiException {
-        okhttp3.Call localVarCall = tweetCountsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, null);
+    public ApiResponse<Get2TweetsCountsRecentResponse> tweetCountsRecentSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetCountsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, null);
         try {
-            Type localVarReturnType = new TypeToken<TweetCountsResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsCountsRecentResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2656,7 +2760,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search counts (asynchronously)
      * Returns Tweet Counts from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
@@ -2664,51 +2768,52 @@ public class TweetsApi extends ApiCommon {
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param granularity The granularity for the search counts results. (optional, default to hour)
+     * @param searchCountFields A comma separated list of SearchCount fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Recent tweet counts response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetCountsRecentSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, Granularity granularity, final ApiCallback<TweetCountsResponse> _callback) throws ApiException {
+    public okhttp3.Call tweetCountsRecentSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, String nextToken, String paginationToken, String granularity, Set<String> searchCountFields, final ApiCallback<Get2TweetsCountsRecentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetCountsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, _callback);
-        Type localVarReturnType = new TypeToken<TweetCountsResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetCountsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsCountsRecentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for tweetsFullarchiveSearch
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets full archive search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsFullarchiveSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tweetsFullarchiveSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2744,10 +2849,6 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        if (sortOrder != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort_order", sortOrder));
-        }
-
         if (nextToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("next_token", nextToken));
         }
@@ -2756,28 +2857,32 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (sortOrder != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort_order", sortOrder));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -2801,7 +2906,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetsFullarchiveSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetsFullarchiveSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -2809,7 +2914,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetsFullarchiveSearchCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = tweetsFullarchiveSearchCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -2817,32 +2922,32 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full-archive search
      * Returns Tweets that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return TweetSearchResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2TweetsSearchAllResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets full archive search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public TweetSearchResponse tweetsFullarchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<TweetSearchResponse> localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2TweetsSearchAllResponse tweetsFullarchiveSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2TweetsSearchAllResponse> localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -2850,13 +2955,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public TweetSearchResponse tweetsFullarchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        TweetSearchResponse localVarResp;
+    public Get2TweetsSearchAllResponse tweetsFullarchiveSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2TweetsSearchAllResponse localVarResp;
         try{
-          localVarResp = tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return tweetsFullarchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return tweetsFullarchiveSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -2867,34 +2972,34 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full-archive search
      * Returns Tweets that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;TweetSearchResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsSearchAllResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets full archive search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TweetSearchResponse> tweetsFullarchiveSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = tweetsFullarchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2TweetsSearchAllResponse> tweetsFullarchiveSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetsFullarchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<TweetSearchResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsSearchAllResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2905,66 +3010,66 @@ public class TweetsApi extends ApiCommon {
     /**
      * Full-archive search (asynchronously)
      * Returns Tweets that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets full archive search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsFullarchiveSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<TweetSearchResponse> _callback) throws ApiException {
+    public okhttp3.Call tweetsFullarchiveSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsSearchAllResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetsFullarchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<TweetSearchResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetsFullarchiveSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsSearchAllResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for tweetsRecentSearch
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
-     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
+     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets recent search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsRecentSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tweetsRecentSearchCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3000,10 +3105,6 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        if (sortOrder != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort_order", sortOrder));
-        }
-
         if (nextToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("next_token", nextToken));
         }
@@ -3012,28 +3113,32 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (sortOrder != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort_order", sortOrder));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -3057,7 +3162,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetsRecentSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetsRecentSearchValidateBeforeCall(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -3065,7 +3170,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetsRecentSearchCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = tweetsRecentSearchCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -3073,32 +3178,32 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search
      * Returns Tweets from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
-     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
+     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return TweetSearchResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2TweetsSearchRecentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets recent search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public TweetSearchResponse tweetsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<TweetSearchResponse> localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2TweetsSearchRecentResponse tweetsRecentSearch(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2TweetsSearchRecentResponse> localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -3106,13 +3211,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public TweetSearchResponse tweetsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        TweetSearchResponse localVarResp;
+    public Get2TweetsSearchRecentResponse tweetsRecentSearch(Integer retries, String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2TweetsSearchRecentResponse localVarResp;
         try{
-          localVarResp = tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return tweetsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return tweetsRecentSearch(retries - 1, query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -3123,34 +3228,34 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search
      * Returns Tweets from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
-     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
+     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;TweetSearchResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2TweetsSearchRecentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets recent search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TweetSearchResponse> tweetsRecentSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = tweetsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2TweetsSearchRecentResponse> tweetsRecentSearchWithHttpInfo(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<TweetSearchResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsSearchRecentResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -3161,49 +3266,49 @@ public class TweetsApi extends ApiCommon {
     /**
      * Recent search (asynchronously)
      * Returns Tweets from the last 7 days that match a search query.
-     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length (required)
-     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp (from most recent 7 days) from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
+     * @param query One query/rule/filter for matching Tweets. Refer to https://t.co/rulelength to identify the max query length. (required)
+     * @param startTime YYYY-MM-DDTHH:mm:ssZ. The oldest UTC timestamp from which the Tweets will be provided. Timestamp is in second granularity and is inclusive (i.e. 12:00:01 includes the first second of the minute). (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The newest, most recent UTC timestamp to which the Tweets will be provided. Timestamp is in second granularity and is exclusive (i.e. 12:00:01 excludes the first second of the minute). (optional)
      * @param sinceId Returns results with a Tweet ID greater than (that is, more recent than) the specified ID. (optional)
      * @param untilId Returns results with a Tweet ID less than (that is, older than) the specified ID. (optional)
      * @param maxResults The maximum number of search results to be returned by a request. (optional, default to 10)
-     * @param sortOrder This order in which to return results. (optional)
      * @param nextToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param sortOrder This order in which to return results. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Tweets recent search response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsRecentSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String sortOrder, String nextToken, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<TweetSearchResponse> _callback) throws ApiException {
+    public okhttp3.Call tweetsRecentSearchAsync(String query, OffsetDateTime startTime, OffsetDateTime endTime, String sinceId, String untilId, Integer maxResults, String nextToken, String paginationToken, String sortOrder, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsSearchRecentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<TweetSearchResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetsRecentSearchValidateBeforeCall(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsSearchRecentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for usersIdLike
      * @param usersLikesCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to like the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to like the Tweet. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3255,16 +3360,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to like the specified tweet
-     * Causes the user (in the path) to like the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to like the specified Tweet
+     * Causes the User (in the path) to like the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersLikesCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to like the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to like the Tweet. (required)
      * @return UsersLikesCreateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3292,16 +3397,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to like the specified tweet
-     * Causes the user (in the path) to like the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to like the specified Tweet
+     * Causes the User (in the path) to like the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersLikesCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to like the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to like the Tweet. (required)
      * @return ApiResponse&lt;UsersLikesCreateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3317,17 +3422,17 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to like the specified tweet (asynchronously)
-     * Causes the user (in the path) to like the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to like the specified Tweet (asynchronously)
+     * Causes the User (in the path) to like the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersLikesCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to like the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to like the Tweet. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3340,26 +3445,26 @@ public class TweetsApi extends ApiCommon {
     }
     /**
      * Build call for usersIdLikedTweets
-     * @param id The ID of the User to list the liked Tweets of (required)
-     * @param maxResults The maximum number of results (optional)
+     * @param id The ID of the User to lookup. (required)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdLikedTweetsCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call usersIdLikedTweetsCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3380,28 +3485,28 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -3425,7 +3530,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdLikedTweetsValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdLikedTweetsValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3433,7 +3538,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdLikedTweetsCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = usersIdLikedTweetsCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -3441,26 +3546,26 @@ public class TweetsApi extends ApiCommon {
     /**
      * Returns Tweet objects liked by the provided User ID
      * Returns a list of Tweets liked by the provided User ID
-     * @param id The ID of the User to list the liked Tweets of (required)
-     * @param maxResults The maximum number of results (optional)
+     * @param id The ID of the User to lookup. (required)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return UsersIdLikedTweetsResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2UsersIdLikedTweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public UsersIdLikedTweetsResponse usersIdLikedTweets(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<UsersIdLikedTweetsResponse> localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2UsersIdLikedTweetsResponse usersIdLikedTweets(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2UsersIdLikedTweetsResponse> localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -3468,13 +3573,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public UsersIdLikedTweetsResponse usersIdLikedTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        UsersIdLikedTweetsResponse localVarResp;
+    public Get2UsersIdLikedTweetsResponse usersIdLikedTweets(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2UsersIdLikedTweetsResponse localVarResp;
         try{
-          localVarResp = usersIdLikedTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = usersIdLikedTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return usersIdLikedTweets(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return usersIdLikedTweets(retries - 1, id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -3485,28 +3590,28 @@ public class TweetsApi extends ApiCommon {
     /**
      * Returns Tweet objects liked by the provided User ID
      * Returns a list of Tweets liked by the provided User ID
-     * @param id The ID of the User to list the liked Tweets of (required)
-     * @param maxResults The maximum number of results (optional)
+     * @param id The ID of the User to lookup. (required)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;UsersIdLikedTweetsResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2UsersIdLikedTweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsersIdLikedTweetsResponse> usersIdLikedTweetsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = usersIdLikedTweetsValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2UsersIdLikedTweetsResponse> usersIdLikedTweetsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdLikedTweetsValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersIdLikedTweetsResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdLikedTweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -3517,58 +3622,58 @@ public class TweetsApi extends ApiCommon {
     /**
      * Returns Tweet objects liked by the provided User ID (asynchronously)
      * Returns a list of Tweets liked by the provided User ID
-     * @param id The ID of the User to list the liked Tweets of (required)
-     * @param maxResults The maximum number of results (optional)
+     * @param id The ID of the User to lookup. (required)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdLikedTweetsAsync(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<UsersIdLikedTweetsResponse> _callback) throws ApiException {
+    public okhttp3.Call usersIdLikedTweetsAsync(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2UsersIdLikedTweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdLikedTweetsValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<UsersIdLikedTweetsResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdLikedTweetsValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdLikedTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for usersIdMentions
-     * @param id The ID of the User to list mentions of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdMentionsCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call usersIdMentionsCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3605,28 +3710,28 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -3650,7 +3755,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdMentionsValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdMentionsValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3658,7 +3763,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdMentionsCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = usersIdMentionsCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -3666,30 +3771,30 @@ public class TweetsApi extends ApiCommon {
     /**
      * User mention timeline by User ID
      * Returns Tweet objects that mention username associated to the provided User ID
-     * @param id The ID of the User to list mentions of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return GenericTweetsTimelineResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2UsersIdMentionsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public GenericTweetsTimelineResponse usersIdMentions(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2UsersIdMentionsResponse usersIdMentions(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2UsersIdMentionsResponse> localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -3697,13 +3802,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public GenericTweetsTimelineResponse usersIdMentions(Integer retries, String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        GenericTweetsTimelineResponse localVarResp;
+    public Get2UsersIdMentionsResponse usersIdMentions(Integer retries, String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2UsersIdMentionsResponse localVarResp;
         try{
-          localVarResp = usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return usersIdMentions(retries - 1, id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return usersIdMentions(retries - 1, id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -3714,32 +3819,32 @@ public class TweetsApi extends ApiCommon {
     /**
      * User mention timeline by User ID
      * Returns Tweet objects that mention username associated to the provided User ID
-     * @param id The ID of the User to list mentions of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;GenericTweetsTimelineResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2UsersIdMentionsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericTweetsTimelineResponse> usersIdMentionsWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = usersIdMentionsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2UsersIdMentionsResponse> usersIdMentionsWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdMentionsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdMentionsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -3750,47 +3855,47 @@ public class TweetsApi extends ApiCommon {
     /**
      * User mention timeline by User ID (asynchronously)
      * Returns Tweet objects that mention username associated to the provided User ID
-     * @param id The ID of the User to list mentions of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdMentionsAsync(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<GenericTweetsTimelineResponse> _callback) throws ApiException {
+    public okhttp3.Call usersIdMentionsAsync(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2UsersIdMentionsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdMentionsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdMentionsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdMentionsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for usersIdRetweets
      * @param usersRetweetsCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to retweet the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3842,16 +3947,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to retweet the specified tweet
-     * Causes the user (in the path) to retweet the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to retweet the specified Tweet.
+     * Causes the User (in the path) to retweet the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersRetweetsCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to retweet the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
      * @return UsersRetweetsCreateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3879,16 +3984,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to retweet the specified tweet
-     * Causes the user (in the path) to retweet the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to retweet the specified Tweet.
+     * Causes the User (in the path) to retweet the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersRetweetsCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to retweet the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
      * @return ApiResponse&lt;UsersRetweetsCreateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3904,17 +4009,17 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to retweet the specified tweet (asynchronously)
-     * Causes the user (in the path) to retweet the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to retweet the specified Tweet. (asynchronously)
+     * Causes the User (in the path) to retweet the specified Tweet. The User in the path must match the User context authorizing the request.
      * @param usersRetweetsCreateRequest  (optional)
-     * @param id The ID of the user that is requesting to retweet the tweet (required)
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -3927,31 +4032,31 @@ public class TweetsApi extends ApiCommon {
     }
     /**
      * Build call for usersIdTimeline
-     * @param id The ID of the User to list Reverse Chronological Timeline Tweets of (required)
+     * @param id The ID of the authenticated source User to list Reverse Chronological Timeline Tweets of. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdTimelineCall(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call usersIdTimelineCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3976,12 +4081,12 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
-        }
-
         if (paginationToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
 
         if (startTime != null) {
@@ -3992,28 +4097,28 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -4037,7 +4142,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdTimelineValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdTimelineValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -4045,7 +4150,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdTimelineCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = usersIdTimelineCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -4053,31 +4158,31 @@ public class TweetsApi extends ApiCommon {
     /**
      * User home timeline by User ID
      * Returns Tweet objects that appears in the provided User ID&#39;s home timeline
-     * @param id The ID of the User to list Reverse Chronological Timeline Tweets of (required)
+     * @param id The ID of the authenticated source User to list Reverse Chronological Timeline Tweets of. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return GenericTweetsTimelineResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2UsersIdTimelinesReverseChronologicalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public GenericTweetsTimelineResponse usersIdTimeline(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2UsersIdTimelinesReverseChronologicalResponse usersIdTimeline(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2UsersIdTimelinesReverseChronologicalResponse> localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -4085,13 +4190,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public GenericTweetsTimelineResponse usersIdTimeline(Integer retries, String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        GenericTweetsTimelineResponse localVarResp;
+    public Get2UsersIdTimelinesReverseChronologicalResponse usersIdTimeline(Integer retries, String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2UsersIdTimelinesReverseChronologicalResponse localVarResp;
         try{
-          localVarResp = usersIdTimeline(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = usersIdTimeline(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return usersIdTimeline(retries - 1, id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return usersIdTimeline(retries - 1, id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -4102,33 +4207,33 @@ public class TweetsApi extends ApiCommon {
     /**
      * User home timeline by User ID
      * Returns Tweet objects that appears in the provided User ID&#39;s home timeline
-     * @param id The ID of the User to list Reverse Chronological Timeline Tweets of (required)
+     * @param id The ID of the authenticated source User to list Reverse Chronological Timeline Tweets of. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;GenericTweetsTimelineResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2UsersIdTimelinesReverseChronologicalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericTweetsTimelineResponse> usersIdTimelineWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = usersIdTimelineValidateBeforeCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2UsersIdTimelinesReverseChronologicalResponse> usersIdTimelineWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdTimelineValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdTimelinesReverseChronologicalResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -4139,64 +4244,64 @@ public class TweetsApi extends ApiCommon {
     /**
      * User home timeline by User ID (asynchronously)
      * Returns Tweet objects that appears in the provided User ID&#39;s home timeline
-     * @param id The ID of the User to list Reverse Chronological Timeline Tweets of (required)
+     * @param id The ID of the authenticated source User to list Reverse Chronological Timeline Tweets of. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdTimelineAsync(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<GenericTweetsTimelineResponse> _callback) throws ApiException {
+    public okhttp3.Call usersIdTimelineAsync(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2UsersIdTimelinesReverseChronologicalResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdTimelineValidateBeforeCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdTimelineValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdTimelinesReverseChronologicalResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for usersIdTweets
-     * @param id The ID of the User to list Tweets of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdTweetsCall(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call usersIdTweetsCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4221,12 +4326,12 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
-        }
-
         if (paginationToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
 
         if (startTime != null) {
@@ -4237,28 +4342,28 @@ public class TweetsApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -4282,7 +4387,7 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdTweetsValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdTweetsValidateBeforeCall(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -4290,7 +4395,7 @@ public class TweetsApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdTweetsCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = usersIdTweetsCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
@@ -4298,31 +4403,31 @@ public class TweetsApi extends ApiCommon {
     /**
      * User Tweets timeline by User ID
      * Returns a list of Tweets authored by the provided User ID
-     * @param id The ID of the User to list Tweets of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return GenericTweetsTimelineResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2UsersIdTweetsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public GenericTweetsTimelineResponse usersIdTweets(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<GenericTweetsTimelineResponse> localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+    public Get2UsersIdTweetsResponse usersIdTweets(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2UsersIdTweetsResponse> localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -4330,13 +4435,13 @@ public class TweetsApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public GenericTweetsTimelineResponse usersIdTweets(Integer retries, String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        GenericTweetsTimelineResponse localVarResp;
+    public Get2UsersIdTweetsResponse usersIdTweets(Integer retries, String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2UsersIdTweetsResponse localVarResp;
         try{
-          localVarResp = usersIdTweets(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+          localVarResp = usersIdTweets(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return usersIdTweets(retries - 1, id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+            return usersIdTweets(retries - 1, id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
           } else {
             throw e;
           }
@@ -4347,33 +4452,33 @@ public class TweetsApi extends ApiCommon {
     /**
      * User Tweets timeline by User ID
      * Returns a list of Tweets authored by the provided User ID
-     * @param id The ID of the User to list Tweets of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;GenericTweetsTimelineResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2UsersIdTweetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericTweetsTimelineResponse> usersIdTweetsWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = usersIdTweetsValidateBeforeCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    public ApiResponse<Get2UsersIdTweetsResponse> usersIdTweetsWithHttpInfo(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdTweetsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdTweetsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -4384,48 +4489,48 @@ public class TweetsApi extends ApiCommon {
     /**
      * User Tweets timeline by User ID (asynchronously)
      * Returns a list of Tweets authored by the provided User ID
-     * @param id The ID of the User to list Tweets of (required)
+     * @param id The ID of the User to lookup. (required)
      * @param sinceId The minimum Tweet ID to be included in the result set. This parameter takes precedence over start_time if both are specified. (optional)
      * @param untilId The maximum Tweet ID to be included in the result set. This parameter takes precedence over end_time if both are specified. (optional)
-     * @param maxResults The maximum number of results (optional)
-     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;) (optional)
+     * @param maxResults The maximum number of results. (optional)
      * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+     * @param exclude The set of entities to exclude (e.g. &#39;replies&#39; or &#39;retweets&#39;). (optional)
      * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. The since_id parameter takes precedence if it is also specified. (optional)
      * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. The until_id parameter takes precedence if it is also specified. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdTweetsAsync(String id, String sinceId, String untilId, Integer maxResults, Set<String> exclude, String paginationToken, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<GenericTweetsTimelineResponse> _callback) throws ApiException {
+    public okhttp3.Call usersIdTweetsAsync(String id, String sinceId, String untilId, Integer maxResults, String paginationToken, Set<String> exclude, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2UsersIdTweetsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdTweetsValidateBeforeCall(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdTweetsValidateBeforeCall(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for usersIdUnlike
-     * @param id The ID of the user that is requesting to unlike the tweet (required)
-     * @param tweetId The ID of the tweet that the user is requesting to unlike (required)
+     * @param id The ID of the authenticated source User that is requesting to unlike the Tweet. (required)
+     * @param tweetId The ID of the Tweet that the User is requesting to unlike. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4483,16 +4588,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unlike the specified tweet
-     * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unlike the tweet (required)
-     * @param tweetId The ID of the tweet that the user is requesting to unlike (required)
+     * Causes the User (in the path) to unlike the specified Tweet
+     * Causes the User (in the path) to unlike the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to unlike the Tweet. (required)
+     * @param tweetId The ID of the Tweet that the User is requesting to unlike. (required)
      * @return UsersLikesDeleteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4520,16 +4625,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unlike the specified tweet
-     * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unlike the tweet (required)
-     * @param tweetId The ID of the tweet that the user is requesting to unlike (required)
+     * Causes the User (in the path) to unlike the specified Tweet
+     * Causes the User (in the path) to unlike the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to unlike the Tweet. (required)
+     * @param tweetId The ID of the Tweet that the User is requesting to unlike. (required)
      * @return ApiResponse&lt;UsersLikesDeleteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4545,17 +4650,17 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unlike the specified tweet (asynchronously)
-     * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unlike the tweet (required)
-     * @param tweetId The ID of the tweet that the user is requesting to unlike (required)
+     * Causes the User (in the path) to unlike the specified Tweet (asynchronously)
+     * Causes the User (in the path) to unlike the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to unlike the Tweet. (required)
+     * @param tweetId The ID of the Tweet that the User is requesting to unlike. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4568,15 +4673,15 @@ public class TweetsApi extends ApiCommon {
     }
     /**
      * Build call for usersIdUnretweets
-     * @param id The ID of the user that is requesting to unretweet the tweet (required)
-     * @param sourceTweetId The ID of the tweet that the user is requesting to unretweet (required)
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
+     * @param sourceTweetId The ID of the Tweet that the User is requesting to unretweet. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4634,16 +4739,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unretweet the specified tweet
-     * Causes the user (in the path) to unretweet the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unretweet the tweet (required)
-     * @param sourceTweetId The ID of the tweet that the user is requesting to unretweet (required)
+     * Causes the User (in the path) to unretweet the specified Tweet
+     * Causes the User (in the path) to unretweet the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
+     * @param sourceTweetId The ID of the Tweet that the User is requesting to unretweet. (required)
      * @return UsersRetweetsDeleteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4671,16 +4776,16 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unretweet the specified tweet
-     * Causes the user (in the path) to unretweet the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unretweet the tweet (required)
-     * @param sourceTweetId The ID of the tweet that the user is requesting to unretweet (required)
+     * Causes the User (in the path) to unretweet the specified Tweet
+     * Causes the User (in the path) to unretweet the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
+     * @param sourceTweetId The ID of the Tweet that the User is requesting to unretweet. (required)
      * @return ApiResponse&lt;UsersRetweetsDeleteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
@@ -4696,17 +4801,17 @@ public class TweetsApi extends ApiCommon {
     }
 
     /**
-     * Causes the user (in the path) to unretweet the specified tweet (asynchronously)
-     * Causes the user (in the path) to unretweet the specified tweet. The user must match the user context authorizing the request
-     * @param id The ID of the user that is requesting to unretweet the tweet (required)
-     * @param sourceTweetId The ID of the tweet that the user is requesting to unretweet (required)
+     * Causes the User (in the path) to unretweet the specified Tweet (asynchronously)
+     * Causes the User (in the path) to unretweet the specified Tweet. The User must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to retweet the Tweet. (required)
+     * @param sourceTweetId The ID of the Tweet that the User is requesting to unretweet. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */

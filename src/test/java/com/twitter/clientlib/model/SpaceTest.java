@@ -27,7 +27,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.SpaceTopics;
+import com.twitter.clientlib.model.SpaceTopicsInner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -53,70 +53,6 @@ public class SpaceTest {
     }
 
     /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'state'
-     */
-    @Test
-    public void stateTest() {
-        // TODO: test state
-    }
-
-    /**
-     * Test the property 'startedAt'
-     */
-    @Test
-    public void startedAtTest() {
-        // TODO: test startedAt
-    }
-
-    /**
-     * Test the property 'isTicketed'
-     */
-    @Test
-    public void isTicketedTest() {
-        // TODO: test isTicketed
-    }
-
-    /**
-     * Test the property 'participantCount'
-     */
-    @Test
-    public void participantCountTest() {
-        // TODO: test participantCount
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
-     * Test the property 'hostIds'
-     */
-    @Test
-    public void hostIdsTest() {
-        // TODO: test hostIds
-    }
-
-    /**
-     * Test the property 'updatedAt'
-     */
-    @Test
-    public void updatedAtTest() {
-        // TODO: test updatedAt
-    }
-
-    /**
      * Test the property 'createdAt'
      */
     @Test
@@ -133,19 +69,27 @@ public class SpaceTest {
     }
 
     /**
-     * Test the property 'lang'
+     * Test the property 'endedAt'
      */
     @Test
-    public void langTest() {
-        // TODO: test lang
+    public void endedAtTest() {
+        // TODO: test endedAt
     }
 
     /**
-     * Test the property 'speakerIds'
+     * Test the property 'hostIds'
      */
     @Test
-    public void speakerIdsTest() {
-        // TODO: test speakerIds
+    public void hostIdsTest() {
+        // TODO: test hostIds
+    }
+
+    /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
@@ -157,6 +101,30 @@ public class SpaceTest {
     }
 
     /**
+     * Test the property 'isTicketed'
+     */
+    @Test
+    public void isTicketedTest() {
+        // TODO: test isTicketed
+    }
+
+    /**
+     * Test the property 'lang'
+     */
+    @Test
+    public void langTest() {
+        // TODO: test lang
+    }
+
+    /**
+     * Test the property 'participantCount'
+     */
+    @Test
+    public void participantCountTest() {
+        // TODO: test participantCount
+    }
+
+    /**
      * Test the property 'scheduledStart'
      */
     @Test
@@ -165,11 +133,43 @@ public class SpaceTest {
     }
 
     /**
-     * Test the property 'endedAt'
+     * Test the property 'speakerIds'
      */
     @Test
-    public void endedAtTest() {
-        // TODO: test endedAt
+    public void speakerIdsTest() {
+        // TODO: test speakerIds
+    }
+
+    /**
+     * Test the property 'startedAt'
+     */
+    @Test
+    public void startedAtTest() {
+        // TODO: test startedAt
+    }
+
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
+    }
+
+    /**
+     * Test the property 'subscriberCount'
+     */
+    @Test
+    public void subscriberCountTest() {
+        // TODO: test subscriberCount
+    }
+
+    /**
+     * Test the property 'title'
+     */
+    @Test
+    public void titleTest() {
+        // TODO: test title
     }
 
     /**
@@ -181,11 +181,11 @@ public class SpaceTest {
     }
 
     /**
-     * Test the property 'subscriberCount'
+     * Test the property 'updatedAt'
      */
     @Test
-    public void subscriberCountTest() {
-        // TODO: test subscriberCount
+    public void updatedAtTest() {
+        // TODO: test updatedAt
     }
 
 }

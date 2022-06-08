@@ -58,11 +58,19 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Represent a Poll attached to a Tweet
+ * Represent a Poll attached to a Tweet.
  */
-@ApiModel(description = "Represent a Poll attached to a Tweet")
+@ApiModel(description = "Represent a Poll attached to a Tweet.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Poll {
+  public static final String SERIALIZED_NAME_DURATION_MINUTES = "duration_minutes";
+  @SerializedName(SERIALIZED_NAME_DURATION_MINUTES)
+  private Integer durationMinutes;
+
+  public static final String SERIALIZED_NAME_END_DATETIME = "end_datetime";
+  @SerializedName(SERIALIZED_NAME_END_DATETIME)
+  private OffsetDateTime endDatetime;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -122,16 +130,56 @@ public class Poll {
   @SerializedName(SERIALIZED_NAME_VOTING_STATUS)
   private VotingStatusEnum votingStatus;
 
-  public static final String SERIALIZED_NAME_END_DATETIME = "end_datetime";
-  @SerializedName(SERIALIZED_NAME_END_DATETIME)
-  private OffsetDateTime endDatetime;
-
-  public static final String SERIALIZED_NAME_DURATION_MINUTES = "duration_minutes";
-  @SerializedName(SERIALIZED_NAME_DURATION_MINUTES)
-  private Integer durationMinutes;
-
   public Poll() { 
   }
+
+  public Poll durationMinutes(Integer durationMinutes) {
+    
+    this.durationMinutes = durationMinutes;
+    return this;
+  }
+
+   /**
+   * Get durationMinutes
+   * minimum: 5
+   * maximum: 10080
+   * @return durationMinutes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getDurationMinutes() {
+    return durationMinutes;
+  }
+
+
+  public void setDurationMinutes(Integer durationMinutes) {
+    this.durationMinutes = durationMinutes;
+  }
+
+
+  public Poll endDatetime(OffsetDateTime endDatetime) {
+    
+    this.endDatetime = endDatetime;
+    return this;
+  }
+
+   /**
+   * Get endDatetime
+   * @return endDatetime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getEndDatetime() {
+    return endDatetime;
+  }
+
+
+  public void setEndDatetime(OffsetDateTime endDatetime) {
+    this.endDatetime = endDatetime;
+  }
+
 
   public Poll id(String id) {
     
@@ -207,52 +255,6 @@ public class Poll {
   }
 
 
-  public Poll endDatetime(OffsetDateTime endDatetime) {
-    
-    this.endDatetime = endDatetime;
-    return this;
-  }
-
-   /**
-   * Get endDatetime
-   * @return endDatetime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getEndDatetime() {
-    return endDatetime;
-  }
-
-
-  public void setEndDatetime(OffsetDateTime endDatetime) {
-    this.endDatetime = endDatetime;
-  }
-
-
-  public Poll durationMinutes(Integer durationMinutes) {
-    
-    this.durationMinutes = durationMinutes;
-    return this;
-  }
-
-   /**
-   * Get durationMinutes
-   * @return durationMinutes
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Integer getDurationMinutes() {
-    return durationMinutes;
-  }
-
-
-  public void setDurationMinutes(Integer durationMinutes) {
-    this.durationMinutes = durationMinutes;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -263,27 +265,27 @@ public class Poll {
       return false;
     }
     Poll poll = (Poll) o;
-    return Objects.equals(this.id, poll.id) &&
-        Objects.equals(this.options, poll.options) &&
-        Objects.equals(this.votingStatus, poll.votingStatus) &&
+    return Objects.equals(this.durationMinutes, poll.durationMinutes) &&
         Objects.equals(this.endDatetime, poll.endDatetime) &&
-        Objects.equals(this.durationMinutes, poll.durationMinutes);
+        Objects.equals(this.id, poll.id) &&
+        Objects.equals(this.options, poll.options) &&
+        Objects.equals(this.votingStatus, poll.votingStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, options, votingStatus, endDatetime, durationMinutes);
+    return Objects.hash(durationMinutes, endDatetime, id, options, votingStatus);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Poll {\n");
+    sb.append("    durationMinutes: ").append(toIndentedString(durationMinutes)).append("\n");
+    sb.append("    endDatetime: ").append(toIndentedString(endDatetime)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("    votingStatus: ").append(toIndentedString(votingStatus)).append("\n");
-    sb.append("    endDatetime: ").append(toIndentedString(endDatetime)).append("\n");
-    sb.append("    durationMinutes: ").append(toIndentedString(durationMinutes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -306,11 +308,11 @@ public class Poll {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("duration_minutes");
+    openapiFields.add("end_datetime");
     openapiFields.add("id");
     openapiFields.add("options");
     openapiFields.add("voting_status");
-    openapiFields.add("end_datetime");
-    openapiFields.add("duration_minutes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

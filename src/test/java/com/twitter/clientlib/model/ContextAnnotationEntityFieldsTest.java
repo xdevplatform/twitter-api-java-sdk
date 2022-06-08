@@ -49,6 +49,14 @@ public class ContextAnnotationEntityFieldsTest {
     }
 
     /**
+     * Test the property 'description'
+     */
+    @Test
+    public void descriptionTest() {
+        // TODO: test description
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -62,14 +70,6 @@ public class ContextAnnotationEntityFieldsTest {
     @Test
     public void nameTest() {
         // TODO: test name
-    }
-
-    /**
-     * Test the property 'description'
-     */
-    @Test
-    public void descriptionTest() {
-        // TODO: test description
     }
 
 }

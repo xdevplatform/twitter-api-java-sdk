@@ -36,25 +36,17 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for URLImage
+ * Model tests for UrlImage
  */
-public class URLImageTest {
-    private final URLImage model = new URLImage();
+public class UrlImageTest {
+    private final UrlImage model = new UrlImage();
 
     /**
-     * Model tests for URLImage
+     * Model tests for UrlImage
      */
     @Test
-    public void testURLImage() {
-        // TODO: test URLImage
-    }
-
-    /**
-     * Test the property 'url'
-     */
-    @Test
-    public void urlTest() {
-        // TODO: test url
+    public void testUrlImage() {
+        // TODO: test UrlImage
     }
 
     /**
@@ -63,6 +55,14 @@ public class URLImageTest {
     @Test
     public void heightTest() {
         // TODO: test height
+    }
+
+    /**
+     * Test the property 'url'
+     */
+    @Test
+    public void urlTest() {
+        // TODO: test url
     }
 
     /**

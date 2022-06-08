@@ -39,12 +39,14 @@ import java.io.IOException;
 
 
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.MultiSpaceLookupResponse;
-import com.twitter.clientlib.model.MultiTweetLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.Get2SpacesByCreatorIdsResponse;
+import com.twitter.clientlib.model.Get2SpacesIdBuyersResponse;
+import com.twitter.clientlib.model.Get2SpacesIdResponse;
+import com.twitter.clientlib.model.Get2SpacesIdTweetsResponse;
+import com.twitter.clientlib.model.Get2SpacesResponse;
+import com.twitter.clientlib.model.Get2SpacesSearchResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleSpaceLookupResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -61,20 +63,22 @@ public class SpacesApi extends ApiCommon {
 
     /**
      * Build call for findSpaceById
-     * @param id The space id to be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpaceByIdCall(String id, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findSpaceByIdCall(String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -93,6 +97,14 @@ public class SpacesApi extends ApiCommon {
 
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (topicFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "topic.fields", topicFields));
         }
 
         final String[] localVarAccepts = {
@@ -116,7 +128,7 @@ public class SpacesApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findSpaceByIdValidateBeforeCall(String id, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findSpaceByIdValidateBeforeCall(String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -124,7 +136,7 @@ public class SpacesApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findSpaceByIdCall(id, spaceFields, expansions, _callback);
+        okhttp3.Call localVarCall = findSpaceByIdCall(id, spaceFields, expansions, userFields, topicFields, _callback);
         return localVarCall;
 
     }
@@ -132,20 +144,22 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by Space ID
      * Returns a variety of information about the Space specified by the requested ID
-     * @param id The space id to be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return SingleSpaceLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return Get2SpacesIdResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public SingleSpaceLookupResponse findSpaceById(String id, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-      ApiResponse<SingleSpaceLookupResponse> localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions);
+    public Get2SpacesIdResponse findSpaceById(String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+      ApiResponse<Get2SpacesIdResponse> localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions, userFields, topicFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -153,13 +167,13 @@ public class SpacesApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public SingleSpaceLookupResponse findSpaceById(Integer retries, String id, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        SingleSpaceLookupResponse localVarResp;
+    public Get2SpacesIdResponse findSpaceById(Integer retries, String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        Get2SpacesIdResponse localVarResp;
         try{
-          localVarResp = findSpaceById(id, spaceFields, expansions);
+          localVarResp = findSpaceById(id, spaceFields, expansions, userFields, topicFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findSpaceById(retries - 1, id, spaceFields, expansions);
+            return findSpaceById(retries - 1, id, spaceFields, expansions, userFields, topicFields);
           } else {
             throw e;
           }
@@ -170,22 +184,24 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by Space ID
      * Returns a variety of information about the Space specified by the requested ID
-     * @param id The space id to be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return ApiResponse&lt;SingleSpaceLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesIdResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SingleSpaceLookupResponse> findSpaceByIdWithHttpInfo(String id, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        okhttp3.Call localVarCall = findSpaceByIdValidateBeforeCall(id, spaceFields, expansions, null);
+    public ApiResponse<Get2SpacesIdResponse> findSpaceByIdWithHttpInfo(String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        okhttp3.Call localVarCall = findSpaceByIdValidateBeforeCall(id, spaceFields, expansions, userFields, topicFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleSpaceLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesIdResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -196,42 +212,46 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by Space ID (asynchronously)
      * Returns a variety of information about the Space specified by the requested ID
-     * @param id The space id to be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpaceByIdAsync(String id, Set<String> spaceFields, Set<String> expansions, final ApiCallback<SingleSpaceLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findSpaceByIdAsync(String id, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback<Get2SpacesIdResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findSpaceByIdValidateBeforeCall(id, spaceFields, expansions, _callback);
-        Type localVarReturnType = new TypeToken<SingleSpaceLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findSpaceByIdValidateBeforeCall(id, spaceFields, expansions, userFields, topicFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesIdResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for findSpacesByCreatorIds
-     * @param userIds The users to search through (required)
+     * @param userIds The IDs of Users to search through. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpacesByCreatorIdsCall(List<String> userIds, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findSpacesByCreatorIdsCall(List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -255,6 +275,14 @@ public class SpacesApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (topicFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "topic.fields", topicFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -276,7 +304,7 @@ public class SpacesApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findSpacesByCreatorIdsValidateBeforeCall(List<String> userIds, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findSpacesByCreatorIdsValidateBeforeCall(List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'userIds' is set
         if (userIds == null) {
@@ -284,7 +312,7 @@ public class SpacesApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findSpacesByCreatorIdsCall(userIds, spaceFields, expansions, _callback);
+        okhttp3.Call localVarCall = findSpacesByCreatorIdsCall(userIds, spaceFields, expansions, userFields, topicFields, _callback);
         return localVarCall;
 
     }
@@ -292,20 +320,22 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by their creators
      * Returns a variety of information about the Spaces created by the provided User IDs
-     * @param userIds The users to search through (required)
+     * @param userIds The IDs of Users to search through. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return MultiSpaceLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return Get2SpacesByCreatorIdsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiSpaceLookupResponse findSpacesByCreatorIds(List<String> userIds, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-      ApiResponse<MultiSpaceLookupResponse> localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions);
+    public Get2SpacesByCreatorIdsResponse findSpacesByCreatorIds(List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+      ApiResponse<Get2SpacesByCreatorIdsResponse> localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions, userFields, topicFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -313,13 +343,13 @@ public class SpacesApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiSpaceLookupResponse findSpacesByCreatorIds(Integer retries, List<String> userIds, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        MultiSpaceLookupResponse localVarResp;
+    public Get2SpacesByCreatorIdsResponse findSpacesByCreatorIds(Integer retries, List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        Get2SpacesByCreatorIdsResponse localVarResp;
         try{
-          localVarResp = findSpacesByCreatorIds(userIds, spaceFields, expansions);
+          localVarResp = findSpacesByCreatorIds(userIds, spaceFields, expansions, userFields, topicFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findSpacesByCreatorIds(retries - 1, userIds, spaceFields, expansions);
+            return findSpacesByCreatorIds(retries - 1, userIds, spaceFields, expansions, userFields, topicFields);
           } else {
             throw e;
           }
@@ -330,22 +360,24 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by their creators
      * Returns a variety of information about the Spaces created by the provided User IDs
-     * @param userIds The users to search through (required)
+     * @param userIds The IDs of Users to search through. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return ApiResponse&lt;MultiSpaceLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesByCreatorIdsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiSpaceLookupResponse> findSpacesByCreatorIdsWithHttpInfo(List<String> userIds, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        okhttp3.Call localVarCall = findSpacesByCreatorIdsValidateBeforeCall(userIds, spaceFields, expansions, null);
+    public ApiResponse<Get2SpacesByCreatorIdsResponse> findSpacesByCreatorIdsWithHttpInfo(List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        okhttp3.Call localVarCall = findSpacesByCreatorIdsValidateBeforeCall(userIds, spaceFields, expansions, userFields, topicFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesByCreatorIdsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -356,42 +388,46 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup by their creators (asynchronously)
      * Returns a variety of information about the Spaces created by the provided User IDs
-     * @param userIds The users to search through (required)
+     * @param userIds The IDs of Users to search through. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpacesByCreatorIdsAsync(List<String> userIds, Set<String> spaceFields, Set<String> expansions, final ApiCallback<MultiSpaceLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findSpacesByCreatorIdsAsync(List<String> userIds, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback<Get2SpacesByCreatorIdsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findSpacesByCreatorIdsValidateBeforeCall(userIds, spaceFields, expansions, _callback);
-        Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findSpacesByCreatorIdsValidateBeforeCall(userIds, spaceFields, expansions, userFields, topicFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesByCreatorIdsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for findSpacesByIds
-     * @param ids A list of space ids (required)
+     * @param ids The list of Space IDs to return. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpacesByIdsCall(List<String> ids, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call findSpacesByIdsCall(List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -415,6 +451,14 @@ public class SpacesApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (topicFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "topic.fields", topicFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -436,7 +480,7 @@ public class SpacesApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findSpacesByIdsValidateBeforeCall(List<String> ids, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findSpacesByIdsValidateBeforeCall(List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'ids' is set
         if (ids == null) {
@@ -444,7 +488,7 @@ public class SpacesApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findSpacesByIdsCall(ids, spaceFields, expansions, _callback);
+        okhttp3.Call localVarCall = findSpacesByIdsCall(ids, spaceFields, expansions, userFields, topicFields, _callback);
         return localVarCall;
 
     }
@@ -452,20 +496,22 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup up Space IDs
      * Returns a variety of information about the Spaces specified by the requested IDs
-     * @param ids A list of space ids (required)
+     * @param ids The list of Space IDs to return. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return MultiSpaceLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return Get2SpacesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiSpaceLookupResponse findSpacesByIds(List<String> ids, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-      ApiResponse<MultiSpaceLookupResponse> localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions);
+    public Get2SpacesResponse findSpacesByIds(List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+      ApiResponse<Get2SpacesResponse> localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions, userFields, topicFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -473,13 +519,13 @@ public class SpacesApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiSpaceLookupResponse findSpacesByIds(Integer retries, List<String> ids, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        MultiSpaceLookupResponse localVarResp;
+    public Get2SpacesResponse findSpacesByIds(Integer retries, List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        Get2SpacesResponse localVarResp;
         try{
-          localVarResp = findSpacesByIds(ids, spaceFields, expansions);
+          localVarResp = findSpacesByIds(ids, spaceFields, expansions, userFields, topicFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return findSpacesByIds(retries - 1, ids, spaceFields, expansions);
+            return findSpacesByIds(retries - 1, ids, spaceFields, expansions, userFields, topicFields);
           } else {
             throw e;
           }
@@ -490,22 +536,24 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup up Space IDs
      * Returns a variety of information about the Spaces specified by the requested IDs
-     * @param ids A list of space ids (required)
+     * @param ids The list of Space IDs to return. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return ApiResponse&lt;MultiSpaceLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiSpaceLookupResponse> findSpacesByIdsWithHttpInfo(List<String> ids, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        okhttp3.Call localVarCall = findSpacesByIdsValidateBeforeCall(ids, spaceFields, expansions, null);
+    public ApiResponse<Get2SpacesResponse> findSpacesByIdsWithHttpInfo(List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        okhttp3.Call localVarCall = findSpacesByIdsValidateBeforeCall(ids, spaceFields, expansions, userFields, topicFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -516,44 +564,48 @@ public class SpacesApi extends ApiCommon {
     /**
      * Space lookup up Space IDs (asynchronously)
      * Returns a variety of information about the Spaces specified by the requested IDs
-     * @param ids A list of space ids (required)
+     * @param ids The list of Space IDs to return. (required)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findSpacesByIdsAsync(List<String> ids, Set<String> spaceFields, Set<String> expansions, final ApiCallback<MultiSpaceLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call findSpacesByIdsAsync(List<String> ids, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback<Get2SpacesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findSpacesByIdsValidateBeforeCall(ids, spaceFields, expansions, _callback);
-        Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findSpacesByIdsValidateBeforeCall(ids, spaceFields, expansions, userFields, topicFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchSpaces
-     * @param query The search query (required)
-     * @param state The state of spaces to search for (optional, default to all)
-     * @param maxResults The number of results to return. The maximum for this value is 100. (optional)
+     * @param query The search query. (required)
+     * @param state The state of Spaces to search for. (optional, default to all)
+     * @param maxResults The number of results to return. (optional, default to 100)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSpacesCall(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchSpacesCall(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -585,6 +637,14 @@ public class SpacesApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (topicFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "topic.fields", topicFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -606,7 +666,7 @@ public class SpacesApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchSpacesValidateBeforeCall(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchSpacesValidateBeforeCall(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -614,7 +674,7 @@ public class SpacesApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = searchSpacesCall(query, state, maxResults, spaceFields, expansions, _callback);
+        okhttp3.Call localVarCall = searchSpacesCall(query, state, maxResults, spaceFields, expansions, userFields, topicFields, _callback);
         return localVarCall;
 
     }
@@ -622,22 +682,24 @@ public class SpacesApi extends ApiCommon {
     /**
      * Search for Spaces
      * Returns Spaces that match the provided query.
-     * @param query The search query (required)
-     * @param state The state of spaces to search for (optional, default to all)
-     * @param maxResults The number of results to return. The maximum for this value is 100. (optional)
+     * @param query The search query. (required)
+     * @param state The state of Spaces to search for. (optional, default to all)
+     * @param maxResults The number of results to return. (optional, default to 100)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return MultiSpaceLookupResponse
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return Get2SpacesSearchResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiSpaceLookupResponse searchSpaces(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-      ApiResponse<MultiSpaceLookupResponse> localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions);
+    public Get2SpacesSearchResponse searchSpaces(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+      ApiResponse<Get2SpacesSearchResponse> localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -645,13 +707,13 @@ public class SpacesApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiSpaceLookupResponse searchSpaces(Integer retries, String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        MultiSpaceLookupResponse localVarResp;
+    public Get2SpacesSearchResponse searchSpaces(Integer retries, String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        Get2SpacesSearchResponse localVarResp;
         try{
-          localVarResp = searchSpaces(query, state, maxResults, spaceFields, expansions);
+          localVarResp = searchSpaces(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return searchSpaces(retries - 1, query, state, maxResults, spaceFields, expansions);
+            return searchSpaces(retries - 1, query, state, maxResults, spaceFields, expansions, userFields, topicFields);
           } else {
             throw e;
           }
@@ -662,24 +724,26 @@ public class SpacesApi extends ApiCommon {
     /**
      * Search for Spaces
      * Returns Spaces that match the provided query.
-     * @param query The search query (required)
-     * @param state The state of spaces to search for (optional, default to all)
-     * @param maxResults The number of results to return. The maximum for this value is 100. (optional)
+     * @param query The search query. (required)
+     * @param state The state of Spaces to search for. (optional, default to all)
+     * @param maxResults The number of results to return. (optional, default to 100)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
-     * @return ApiResponse&lt;MultiSpaceLookupResponse&gt;
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesSearchResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiSpaceLookupResponse> searchSpacesWithHttpInfo(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions) throws ApiException {
-        okhttp3.Call localVarCall = searchSpacesValidateBeforeCall(query, state, maxResults, spaceFields, expansions, null);
+    public ApiResponse<Get2SpacesSearchResponse> searchSpacesWithHttpInfo(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields) throws ApiException {
+        okhttp3.Call localVarCall = searchSpacesValidateBeforeCall(query, state, maxResults, spaceFields, expansions, userFields, topicFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesSearchResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -690,43 +754,49 @@ public class SpacesApi extends ApiCommon {
     /**
      * Search for Spaces (asynchronously)
      * Returns Spaces that match the provided query.
-     * @param query The search query (required)
-     * @param state The state of spaces to search for (optional, default to all)
-     * @param maxResults The number of results to return. The maximum for this value is 100. (optional)
+     * @param query The search query. (required)
+     * @param state The state of Spaces to search for. (optional, default to all)
+     * @param maxResults The number of results to return. (optional, default to 100)
      * @param spaceFields A comma separated list of Space fields to display. (optional)
      * @param expansions A comma separated list of fields to expand. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param topicFields A comma separated list of Topic fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSpacesAsync(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, final ApiCallback<MultiSpaceLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call searchSpacesAsync(String query, String state, Integer maxResults, Set<String> spaceFields, Set<String> expansions, Set<String> userFields, Set<String> topicFields, final ApiCallback<Get2SpacesSearchResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchSpacesValidateBeforeCall(query, state, maxResults, spaceFields, expansions, _callback);
-        Type localVarReturnType = new TypeToken<MultiSpaceLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = searchSpacesValidateBeforeCall(query, state, maxResults, spaceFields, expansions, userFields, topicFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesSearchResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for spaceBuyers
-     * @param id The space id from which tweets will be retrieved (required)
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
      * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceBuyersCall(String id, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call spaceBuyersCall(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -739,158 +809,20 @@ public class SpacesApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (paginationToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (maxResults != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        }
+
         if (userFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
-        final String[] localVarAccepts = {
-            "application/json", "application/problem+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken", "UserToken" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call spaceBuyersValidateBeforeCall(String id, Set<String> userFields, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling spaceBuyers(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = spaceBuyersCall(id, userFields, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Retrieve the list of users who purchased a ticket to the given space
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return MultiUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public MultiUserLookupResponse spaceBuyers(String id, Set<String> userFields) throws ApiException {
-      ApiResponse<MultiUserLookupResponse> localVarResp = spaceBuyersWithHttpInfo(id, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
-
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public MultiUserLookupResponse spaceBuyers(Integer retries, String id, Set<String> userFields) throws ApiException {
-        MultiUserLookupResponse localVarResp;
-        try{
-          localVarResp = spaceBuyers(id, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return spaceBuyers(retries - 1, id, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Retrieve the list of users who purchased a ticket to the given space
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;MultiUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<MultiUserLookupResponse> spaceBuyersWithHttpInfo(String id, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, userFields, null);
-        try {
-            Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
-            return localVarApiClient.execute(localVarCall, localVarReturnType);
-        } catch (ApiException e) {
-            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            throw e;
-        }
-    }
-
-    /**
-     * Retrieve the list of users who purchased a ticket to the given space (asynchronously)
-     * Retrieves the list of users who purchased a ticket to the given space
-     * @param id The space id from which tweets will be retrieved (required)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call spaceBuyersAsync(String id, Set<String> userFields, final ApiCallback<MultiUserLookupResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, userFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for spaceTweets
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call spaceTweetsCall(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/2/spaces/{id}/tweets"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (maxResults != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
@@ -913,41 +845,44 @@ public class SpacesApi extends ApiCommon {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken" };
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call spaceTweetsValidateBeforeCall(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call spaceBuyersValidateBeforeCall(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling spaceTweets(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling spaceBuyers(Async)");
         }
         
 
-        okhttp3.Call localVarCall = spaceTweetsCall(maxResults, id, tweetFields, _callback);
+        okhttp3.Call localVarCall = spaceBuyersCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Retrieve tweets from a Space
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @return MultiTweetLookupResponse
+     * @return Get2SpacesIdBuyersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiTweetLookupResponse spaceTweets(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-      ApiResponse<MultiTweetLookupResponse> localVarResp = spaceTweetsWithHttpInfo(maxResults, id, tweetFields);
+    public Get2SpacesIdBuyersResponse spaceBuyers(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+      ApiResponse<Get2SpacesIdBuyersResponse> localVarResp = spaceBuyersWithHttpInfo(id, paginationToken, maxResults, userFields, expansions, tweetFields);
       return localVarResp != null ? localVarResp.getData() : null;
     }
 
@@ -955,13 +890,13 @@ public class SpacesApi extends ApiCommon {
     * Calls the API using a retry mechanism to handle rate limits errors.
     *
     */
-    public MultiTweetLookupResponse spaceTweets(Integer retries, Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        MultiTweetLookupResponse localVarResp;
+    public Get2SpacesIdBuyersResponse spaceBuyers(Integer retries, String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        Get2SpacesIdBuyersResponse localVarResp;
         try{
-          localVarResp = spaceTweets(maxResults, id, tweetFields);
+          localVarResp = spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
         } catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return spaceTweets(retries - 1, maxResults, id, tweetFields);
+            return spaceBuyers(retries - 1, id, paginationToken, maxResults, userFields, expansions, tweetFields);
           } else {
             throw e;
           }
@@ -970,24 +905,27 @@ public class SpacesApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets from a Space
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @return ApiResponse&lt;MultiTweetLookupResponse&gt;
+     * @return ApiResponse&lt;Get2SpacesIdBuyersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MultiTweetLookupResponse> spaceTweetsWithHttpInfo(Integer maxResults, String id, Set<String> tweetFields) throws ApiException {
-        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(maxResults, id, tweetFields, null);
+    public ApiResponse<Get2SpacesIdBuyersResponse> spaceBuyersWithHttpInfo(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2SpacesIdBuyersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -996,10 +934,13 @@ public class SpacesApi extends ApiCommon {
     }
 
     /**
-     * Retrieve tweets from a Space (asynchronously)
-     * Retrieves tweets shared in the specified space
-     * @param maxResults The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 (optional)
-     * @param id The space id from which tweets will be retrieved (required)
+     * Retrieve the list of Users who purchased a ticket to the given space (asynchronously)
+     * Retrieves the list of Users who purchased a ticket to the given space
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+     * @param maxResults The maximum number of results. (optional, default to 100)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
      * @param tweetFields A comma separated list of Tweet fields to display. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1007,14 +948,211 @@ public class SpacesApi extends ApiCommon {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call spaceTweetsAsync(Integer maxResults, String id, Set<String> tweetFields, final ApiCallback<MultiTweetLookupResponse> _callback) throws ApiException {
+    public okhttp3.Call spaceBuyersAsync(String id, String paginationToken, Integer maxResults, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2SpacesIdBuyersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(maxResults, id, tweetFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiTweetLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = spaceBuyersValidateBeforeCall(id, paginationToken, maxResults, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesIdBuyersResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for spaceTweets
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call spaceTweetsCall(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/spaces/{id}/tweets"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (maxResults != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (mediaFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        }
+
+        if (pollFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call spaceTweetsValidateBeforeCall(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling spaceTweets(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = spaceTweetsCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Retrieve Tweets from a Space.
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return Get2SpacesIdTweetsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Get2SpacesIdTweetsResponse spaceTweets(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+      ApiResponse<Get2SpacesIdTweetsResponse> localVarResp = spaceTweetsWithHttpInfo(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+      return localVarResp != null ? localVarResp.getData() : null;
+    }
+
+   /**
+    * Calls the API using a retry mechanism to handle rate limits errors.
+    *
+    */
+    public Get2SpacesIdTweetsResponse spaceTweets(Integer retries, String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        Get2SpacesIdTweetsResponse localVarResp;
+        try{
+          localVarResp = spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+        } catch (ApiException e) {
+          if(handleRateLimit(e, retries)) {
+            return spaceTweets(retries - 1, id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+          } else {
+            throw e;
+          }
+        }
+        return localVarResp;
+    }
+
+    /**
+     * Retrieve Tweets from a Space.
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @return ApiResponse&lt;Get2SpacesIdTweetsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Get2SpacesIdTweetsResponse> spaceTweetsWithHttpInfo(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
+        try {
+            Type localVarReturnType = new TypeToken<Get2SpacesIdTweetsResponse>(){}.getType();
+            return localVarApiClient.execute(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+
+    /**
+     * Retrieve Tweets from a Space. (asynchronously)
+     * Retrieves Tweets shared in the specified Space.
+     * @param id The ID of the Space to be retrieved. (required)
+     * @param maxResults The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. (optional, default to 100)
+     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+     * @param expansions A comma separated list of fields to expand. (optional)
+     * @param mediaFields A comma separated list of Media fields to display. (optional)
+     * @param pollFields A comma separated list of Poll fields to display. (optional)
+     * @param userFields A comma separated list of User fields to display. (optional)
+     * @param placeFields A comma separated list of Place fields to display. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call spaceTweetsAsync(String id, Integer maxResults, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2SpacesIdTweetsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = spaceTweetsValidateBeforeCall(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2SpacesIdTweetsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

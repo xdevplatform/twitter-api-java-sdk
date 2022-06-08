@@ -35,7 +35,7 @@ import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.auth.TwitterOAuth20Service;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
 
 /**
 * This is an example of getting an OAuth2 access token and using it to call an API.
@@ -113,7 +113,7 @@ public class OAuth20GetAccessToken {
 
     try {
       // findTweetById
-      SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null,
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20", tweetFields, null, null,
           null, null, null);
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");

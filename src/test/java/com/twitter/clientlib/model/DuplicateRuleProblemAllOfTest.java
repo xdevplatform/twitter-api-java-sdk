@@ -49,19 +49,19 @@ public class DuplicateRuleProblemAllOfTest {
     }
 
     /**
-     * Test the property 'value'
-     */
-    @Test
-    public void valueTest() {
-        // TODO: test value
-    }
-
-    /**
      * Test the property 'id'
      */
     @Test
     public void idTest() {
         // TODO: test id
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

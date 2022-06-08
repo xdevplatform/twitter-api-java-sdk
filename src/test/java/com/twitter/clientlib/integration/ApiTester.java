@@ -47,7 +47,7 @@ import com.twitter.clientlib.model.User;
 
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ApiTester {
+abstract public class ApiTester {
 
   protected TwitterApi apiInstance;
   protected final Integer maxResults = 15;

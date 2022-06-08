@@ -6,10 +6,10 @@ Represent a boundary range (start and end index) for a recognized entity (for ex
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**start** | **Integer** | Index (zero-based) at which position this entity starts.  The index is inclusive. | 
-**end** | **Integer** | Index (zero-based) at which position this entity ends.  The index is exclusive. | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**end** | **Integer** | Index (zero-based) at which position this entity ends.  The index is exclusive. |  |
+|**start** | **Integer** | Index (zero-based) at which position this entity starts.  The index is inclusive. |  |
 
 
 

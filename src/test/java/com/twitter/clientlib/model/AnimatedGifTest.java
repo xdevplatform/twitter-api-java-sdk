@@ -31,8 +31,8 @@ import com.twitter.clientlib.model.AnimatedGif;
 import com.twitter.clientlib.model.AnimatedGifAllOf;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
+import com.twitter.clientlib.model.Variant;
 import com.twitter.clientlib.model.Video;
-import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -58,11 +58,11 @@ public class AnimatedGifTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'height'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void heightTest() {
+        // TODO: test height
     }
 
     /**
@@ -74,11 +74,11 @@ public class AnimatedGifTest {
     }
 
     /**
-     * Test the property 'height'
+     * Test the property 'type'
      */
     @Test
-    public void heightTest() {
-        // TODO: test height
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**

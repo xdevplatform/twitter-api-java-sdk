@@ -88,9 +88,9 @@ public class DisallowedResourceProblem extends Problem {
    */
   @JsonAdapter(ResourceTypeEnum.Adapter.class)
   public enum ResourceTypeEnum {
-    TWEET("tweet"),
-    
     USER("user"),
+    
+    TWEET("tweet"),
     
     MEDIA("media"),
     
@@ -315,10 +315,10 @@ public class DisallowedResourceProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("resource_id");
     openapiFields.add("resource_type");
     openapiFields.add("section");
@@ -328,8 +328,8 @@ public class DisallowedResourceProblem extends Problem {
     openapiRequiredFields.add("resource_id");
     openapiRequiredFields.add("resource_type");
     openapiRequiredFields.add("section");
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

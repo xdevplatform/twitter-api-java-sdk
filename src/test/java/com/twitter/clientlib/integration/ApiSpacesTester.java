@@ -59,9 +59,9 @@ public class ApiSpacesTester extends ApiTester {
 
   public Space randomSpace(String query) throws ApiException {
     Space space = null;
-    MultiSpaceLookupResponse result = apiInstance.spaces().searchSpaces(query, stateAll,
+    Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(query, stateAll,
         maxResults,
-        spaceFields, spaceExpansions);
+        spaceFields, spaceExpansions, null, null);
     if (result.getData() != null && result.getData().size() > 0) {
       space = result.getData().get(0);
     }
@@ -80,9 +80,9 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void searchSpacesTest() throws ApiException {
-    MultiSpaceLookupResponse result = apiInstance.spaces().searchSpaces(querySpaces, stateAll,
+    Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(querySpaces, stateAll,
         maxResults,
-        spaceFields, spaceExpansions);
+        spaceFields, spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkSpaceData(result.getData().get(0));
@@ -92,9 +92,9 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void searchSpacesNoSpacesTest() throws ApiException {
-    MultiSpaceLookupResponse result = apiInstance.spaces().searchSpaces(querySpacesNotFound,
+    Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(querySpacesNotFound,
         stateAll,
-        maxResults, spaceFields, spaceExpansions);
+        maxResults, spaceFields, spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -104,8 +104,8 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void findSpacesByIdsTest() throws ApiException {
-    MultiSpaceLookupResponse result = apiInstance.spaces().findSpacesByIds(spacesIds, spaceFields,
-        spaceExpansions);
+    Get2SpacesResponse result = apiInstance.spaces().findSpacesByIds(spacesIds, spaceFields,
+      spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkSpaceData(result.getData().get(0));
@@ -116,7 +116,7 @@ public class ApiSpacesTester extends ApiTester {
   @Test
   public void findSpacesByIdErrorTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().findSpacesByIds(spacesIdsNotFound, spaceFields, spaceExpansions);
+      apiInstance.spaces().findSpacesByIds(spacesIdsNotFound, spaceFields, spaceExpansions, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `ids` query parameter value [" + spaceIdNotFound + "] does not match",
@@ -125,8 +125,8 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void findSpaceByIdTest() throws ApiException {
-    SingleSpaceLookupResponse result = apiInstance.spaces().findSpaceById(spaceId, spaceFields,
-        spaceExpansions);
+        Get2SpacesIdResponse result = apiInstance.spaces().findSpaceById(spaceId, spaceFields,
+        spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
     checkSpaceData(result.getData());
     assertNotNull(result.getIncludes());
@@ -136,7 +136,7 @@ public class ApiSpacesTester extends ApiTester {
   @Test
   public void findSpaceByIdErrorTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().findSpaceById(spaceIdNotFound, spaceFields, spaceExpansions);
+      apiInstance.spaces().findSpaceById(spaceIdNotFound, spaceFields, spaceExpansions, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + spaceIdNotFound + "] does not match",
@@ -145,9 +145,8 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void findSpacesByCreatorIdsTest() throws ApiException {
-    MultiSpaceLookupResponse result = apiInstance.spaces().findSpacesByCreatorIds(usersIds,
-        spaceFields,
-        spaceExpansions);
+    Get2SpacesByCreatorIdsResponse result = apiInstance.spaces().findSpacesByCreatorIds(usersIds,
+      spaceFields, spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getMeta());
     if (result.getData() != null) {
@@ -163,8 +162,8 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void findSpacesByCreatorIdsCreatorNotFoundTest() throws ApiException {
-    MultiSpaceLookupResponse result = apiInstance.spaces().findSpacesByCreatorIds(usersIdsNotFound,
-        spaceFields, spaceExpansions);
+        Get2SpacesByCreatorIdsResponse result = apiInstance.spaces().findSpacesByCreatorIds(usersIdsNotFound,
+        spaceFields, spaceExpansions, null, null);
     checkErrors(false, result.getErrors());
 
     assertNotNull(result.getMeta());
@@ -188,7 +187,7 @@ public class ApiSpacesTester extends ApiTester {
   @Test
   public void spaceBuyersNotSpaceOwnerTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().spaceBuyers(spaceId, userFields);
+        apiInstance.spaces().spaceBuyers(spaceId, null, null, userFields, null, null);
     });
     checkGenericProblem(exception.getErrorObject().getProblem(),
         "You do not have access to this information as you do not own the space.", "Forbidden",
@@ -198,7 +197,7 @@ public class ApiSpacesTester extends ApiTester {
   @Test
   public void spaceBuyersUserNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().spaceBuyers(spaceIdNotFound, userFields);
+        apiInstance.spaces().spaceBuyers(spaceIdNotFound, null, null, userFields, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + spaceIdNotFound + "] does not match",
@@ -207,8 +206,8 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void spaceTweetsTest() throws ApiException {
-    MultiTweetLookupResponse result = apiInstance.spaces().spaceTweets(maxResults, spaceId,
-        tweetFields);
+    Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(spaceId, maxResults, tweetFields,
+      null, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getMeta());
     if (result.getData() != null) {
@@ -222,21 +221,24 @@ public class ApiSpacesTester extends ApiTester {
 
   @Test
   public void spaceTweetsSpaceEndedTest() throws ApiException {
-    ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().spaceTweets(maxResults, spaceEndedId, tweetFields);
-    });
-    checkGenericProblem(exception.getErrorObject().getProblem(),
-        "You cannot access this information because the space has ended.", "Forbidden",
-        403);
+    Get2SpacesIdTweetsResponse get2SpacesIdTweetsResponse = apiInstance.spaces().spaceTweets(
+    spaceEndedId, maxResults, tweetFields,
+    null, null, null, null, null);
+
+    checkErrors(true, get2SpacesIdTweetsResponse.getErrors());
+    List<Problem> problems = get2SpacesIdTweetsResponse.getErrors();
+    assertEquals(1, problems.size());
+    checkResourceNotFoundProblem(problems.get(0), spaceEndedId, "Not Found Error", "id");
   }
 
   @Test
   public void spaceTweetsSpaceNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.spaces().spaceTweets(maxResults, spaceIdNotFound, tweetFields);
+      apiInstance.spaces().spaceTweets(spaceIdNotFound, maxResults, tweetFields,
+        null, null, null, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
-        "The `id` query parameter value [" + spaceIdNotFound + "] does not match",
-        "Invalid Request", "One or more parameters to your request was invalid.");
+      "The `id` query parameter value [" + spaceIdNotFound + "] does not match",
+      "Invalid Request", "One or more parameters to your request was invalid.");
   }
 }

@@ -160,9 +160,9 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchNotFoundTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(queryNotFound, null,
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(queryNotFound, null,
         null,
-        null, null, null, null, null);
+        null, null, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));
@@ -173,8 +173,8 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, null, null,
-        null, null, null, null, null);
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, null, null,
+        null, null, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));

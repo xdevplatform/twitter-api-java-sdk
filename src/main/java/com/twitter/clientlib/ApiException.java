@@ -37,7 +37,6 @@ public class ApiException extends Exception {
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
     private com.twitter.clientlib.model.ProblemOrError errorObject = null;
-    private GenericType errorObjectType = null;
  
     /**
      * <p>Constructor for ApiException.</p>
@@ -166,21 +165,13 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Get the error object type.
+     * Get the exception message including HTTP response data.
      *
-     * @return Error object type
+     * @return The exception message
      */
-    public GenericType getErrorObjectType() {
-        return errorObjectType;
-    }
-
-    /**
-     * Set the error object type.
-     *
-     * @param errorObjectType object type
-     */
-    public void setErrorObjectType(GenericType errorObjectType) {
-        this.errorObjectType = errorObjectType;
+    public String getMessage() {
+        return String.format("Message: %s%nHTTP response code: %s%nHTTP response body: %s%nHTTP response headers: %s",
+                super.getMessage(), this.getCode(), this.getResponseBody(), this.getResponseHeaders().toString());
     }
 
     /**

@@ -57,14 +57,6 @@ public class ResourceNotFoundProblemAllOfTest {
     }
 
     /**
-     * Test the property 'value'
-     */
-    @Test
-    public void valueTest() {
-        // TODO: test value
-    }
-
-    /**
      * Test the property 'resourceId'
      */
     @Test
@@ -78,6 +70,14 @@ public class ResourceNotFoundProblemAllOfTest {
     @Test
     public void resourceTypeTest() {
         // TODO: test resourceType
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

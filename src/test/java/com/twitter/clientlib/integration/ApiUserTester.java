@@ -45,8 +45,8 @@ public class ApiUserTester extends ApiTester {
 
   private final String popularUsername = "TheRock";
   private final String usernameNotFound = "cprttfdgq";
-  private final List<String> usersnames = Arrays.asList(popularUsername);
-  private final List<String> usersnamesNotFounds = Arrays.asList(usernameNotFound);
+  private final List<String> usernames = Arrays.asList(popularUsername);
+  private final List<String> usernamesNotFounds = Arrays.asList(usernameNotFound);
 
   @BeforeAll
   public void init() {
@@ -55,8 +55,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUserByIdTest() throws ApiException {
-    SingleUserLookupResponse result = apiInstance.users().findUserById(userId, null, tweetFields,
-        userFields);
+    Get2UsersIdResponse result = apiInstance.users().findUserById(userId, userFields, null, tweetFields);
     checkErrors(false, result.getErrors());
     checkUserData(result.getData());
     assertNull(result.getIncludes());
@@ -64,9 +63,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUserByIdErrorTest() throws ApiException {
-    SingleUserLookupResponse result = apiInstance.users().findUserById(userNotExists, null,
-        tweetFields,
-        userFields);
+    Get2UsersIdResponse result = apiInstance.users().findUserById(userNotExists, userFields, null, tweetFields);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
@@ -74,8 +71,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUsersByIdTest() throws ApiException {
-    MultiUserLookupResponse result = apiInstance.users().findUsersById(usersIds, null, tweetFields,
-        userFields);
+    Get2UsersResponse result = apiInstance.users().findUsersById(usersIds, userFields, null, tweetFields);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -84,9 +80,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUsersByIdErrorTest() throws ApiException {
-    MultiUserLookupResponse result = apiInstance.users().findUsersById(usersIdsNotFound, null,
-        tweetFields,
-        userFields);
+    Get2UsersResponse result = apiInstance.users().findUsersById(usersIdsNotFound, userFields, null, tweetFields);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error",
@@ -95,8 +89,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUserByUsernameTest() throws ApiException {
-    SingleUserLookupResponse result = apiInstance.users().findUserByUsername(popularUsername, null,
-        tweetFields, userFields);
+    Get2UsersByUsernameUsernameResponse result = apiInstance.users().findUserByUsername(popularUsername, userFields, null, tweetFields);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData());
@@ -105,9 +98,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUserByUsernameFoundTest() throws ApiException {
-    SingleUserLookupResponse result = apiInstance.users().findUserByUsername(usernameNotFound,
-        null,
-        tweetFields, userFields);
+    Get2UsersByUsernameUsernameResponse result = apiInstance.users().findUserByUsername(usernameNotFound, userFields, null, tweetFields);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), usernameNotFound, "Not Found Error",
@@ -116,9 +107,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUsersByUsernameTest() throws ApiException {
-    MultiUserLookupResponse result = apiInstance.users().findUsersByUsername(usersnames, null,
-        tweetFields,
-        userFields);
+    Get2UsersByResponse result = apiInstance.users().findUsersByUsername(usernames, userFields, null, tweetFields);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -127,9 +116,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findUsersByUsernameNotFoundTest() throws ApiException {
-    MultiUserLookupResponse result = apiInstance.users().findUsersByUsername(usersnamesNotFounds,
-        null,
-        tweetFields, userFields);
+    Get2UsersByResponse result = apiInstance.users().findUsersByUsername(usernamesNotFounds, userFields, null, tweetFields);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), usernameNotFound, "Not Found Error",
@@ -138,8 +125,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void findMyUserTest() throws ApiException {
-    SingleUserLookupResponse result = apiInstance.users().findMyUser(null, tweetFields,
-        userFields);
+    Get2UsersMeResponse result = apiInstance.users().findMyUser(userFields, null, tweetFields);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData());
@@ -148,9 +134,9 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowingTest() throws ApiException {
-    UsersFollowingLookupResponse result = apiInstance.users().usersIdFollowing(popularUserId,
+    Get2UsersIdFollowingResponse result = apiInstance.users().usersIdFollowing(popularUserId,
         maxResults,
-        null);
+        null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -161,9 +147,8 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowingNotFoundTest() throws ApiException {
-    UsersFollowingLookupResponse result = apiInstance.users().usersIdFollowing(userNotExists,
-        maxResults,
-        null);
+    Get2UsersIdFollowingResponse result = apiInstance.users().usersIdFollowing(userNotExists,
+      maxResults, null, null, null, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
@@ -172,8 +157,8 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowersTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdFollowers(popularUserId,
-        maxResults, null);
+    Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(popularUserId,
+      maxResults, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -184,8 +169,8 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowersNotFoundTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdFollowers(userNotExists,
-        maxResults, null);
+    Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(userNotExists,
+      maxResults, null, null, null, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
@@ -194,7 +179,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowTest() throws ApiException {
-    UsersIdFollowRequest request = new UsersIdFollowRequest();
+    UsersFollowingCreateRequest request = new UsersFollowingCreateRequest();
     request.setTargetUserId(popularUserId);
     UsersFollowingCreateResponse result = apiInstance.users().usersIdFollow(request, userId);
     checkErrors(false, result.getErrors());
@@ -205,7 +190,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowFollowingNotFoundTest() throws ApiException {
-    UsersIdFollowRequest request = new UsersIdFollowRequest();
+    UsersFollowingCreateRequest request = new UsersFollowingCreateRequest();
     request.setTargetUserId(userNotExists);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdFollow(request, userId);
@@ -217,7 +202,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdFollowFollowerNotFoundTest() throws ApiException {
-    UsersIdFollowRequest request = new UsersIdFollowRequest();
+    UsersFollowingCreateRequest request = new UsersFollowingCreateRequest();
     request.setTargetUserId(popularUserId);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdFollow(request, userNotExists);
@@ -258,14 +243,13 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdBlockingTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdBlocking(userId,
-        maxResults,
-        null);
+    Get2UsersIdBlockingResponse result = apiInstance.users().usersIdBlocking(userId,
+      maxResults,
+      null, null, null, null);
     checkErrors(false, result.getErrors());
     if (result.getData() != null) {
       checkUserData(result.getData().get(0));
       assertTrue(result.getMeta().getResultCount() > 0);
-      assertNotNull(result.getIncludes());
     } else {
       assertEquals(0, (int) result.getMeta().getResultCount());
       assertNull(result.getIncludes());
@@ -276,7 +260,7 @@ public class ApiUserTester extends ApiTester {
   @Test
   public void usersIdBlockingNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.users().usersIdBlocking(userNotExists, maxResults, null);
+      apiInstance.users().usersIdBlocking(userNotExists, maxResults, null, null, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -285,9 +269,9 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdBlockTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
+    BlockUserRequest request = new BlockUserRequest();
     request.setTargetUserId(popularUserId);
-    UsersBlockingMutationResponse result = apiInstance.users().usersIdBlock(request, userId);
+    BlockUserMutationResponse result = apiInstance.users().usersIdBlock(request, userId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getBlocking());
@@ -295,7 +279,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdBlockBlockedNotFoundTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
+    BlockUserRequest request = new BlockUserRequest();
     request.setTargetUserId(userNotExists);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdBlock(request, userId);
@@ -307,7 +291,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdBlockBlockingNotFoundTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
+    BlockUserRequest request = new BlockUserRequest();
     request.setTargetUserId(popularUserId);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdBlock(request, userNotExists);
@@ -319,9 +303,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdUnblockTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
-    request.setTargetUserId(popularUserId);
-    UsersBlockingMutationResponse result = apiInstance.users().usersIdUnblock(userId,
+    BlockUserMutationResponse result = apiInstance.users().usersIdUnblock(userId,
         popularUserId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
@@ -330,8 +312,6 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdUnblockBlockedNotFoundTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
-    request.setTargetUserId(userNotExists);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdUnblock(userId, userNotExists);
     });
@@ -342,8 +322,6 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdUnblockBlockingNotFoundTest() throws ApiException {
-    UsersIdBlockRequest request = new UsersIdBlockRequest();
-    request.setTargetUserId(popularUserId);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdUnblock(userNotExists, popularUserId);
     });
@@ -354,13 +332,12 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdMutingTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdMuting(userId,
-        maxResults, null);
+    Get2UsersIdMutingResponse result = apiInstance.users().usersIdMuting(userId,
+      maxResults, null, null, null, null);
     checkErrors(false, result.getErrors());
     if (result.getData() != null) {
       checkUserData(result.getData().get(0));
       assertTrue(result.getMeta().getResultCount() > 0);
-      assertNotNull(result.getIncludes());
     } else {
       assertEquals(0, (int) result.getMeta().getResultCount());
       assertNull(result.getIncludes());
@@ -371,7 +348,7 @@ public class ApiUserTester extends ApiTester {
   @Test
   public void usersIdMutingNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.users().usersIdMuting(userNotExists, maxResults, null);
+      apiInstance.users().usersIdMuting(userNotExists, maxResults, null, null, null, null);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -380,9 +357,9 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdMuteTest() throws ApiException {
-    UsersIdMuteRequest request = new UsersIdMuteRequest();
+    MuteUserRequest request = new MuteUserRequest();
     request.setTargetUserId(popularUserId);
-    UsersMutingMutationResponse result = apiInstance.users().usersIdMute(request, userId);
+    MuteUserMutationResponse result = apiInstance.users().usersIdMute(request, userId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getMuting());
@@ -390,7 +367,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdMuteMutedNotFoundTest() throws ApiException {
-    UsersIdMuteRequest request = new UsersIdMuteRequest();
+    MuteUserRequest request = new MuteUserRequest();
     request.setTargetUserId(userNotExists);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdMute(request, userId);
@@ -402,7 +379,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdMuteMutingNotFoundTest() throws ApiException {
-    UsersIdMuteRequest request = new UsersIdMuteRequest();
+    MuteUserRequest request = new MuteUserRequest();
     request.setTargetUserId(popularUserId);
     ApiException exception = assertThrows(ApiException.class, () -> {
       apiInstance.users().usersIdMute(request, userNotExists);
@@ -414,7 +391,7 @@ public class ApiUserTester extends ApiTester {
 
   @Test
   public void usersIdUnmuteTest() throws ApiException {
-    UsersMutingMutationResponse result = apiInstance.users().usersIdUnmute(userId, popularUserId);
+    MuteUserMutationResponse result = apiInstance.users().usersIdUnmute(userId, popularUserId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getMuting());

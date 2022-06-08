@@ -22,8 +22,8 @@ Do not edit the class manually.
 
 package com.twitter.clientlib;
 
-import com.twitter.clientlib.model.StreamingTweet;
+import com.twitter.clientlib.model.StreamingTweetResponse;
 
 public interface TweetsStreamListener {
-  void actionOnTweetsStream(StreamingTweet streamingTweet);
+  void actionOnTweetsStream(StreamingTweetResponse streamingTweet);
 }

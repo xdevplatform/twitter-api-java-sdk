@@ -49,19 +49,19 @@ public class MentionFieldsTest {
     }
 
     /**
-     * Test the property 'username'
-     */
-    @Test
-    public void usernameTest() {
-        // TODO: test username
-    }
-
-    /**
      * Test the property 'id'
      */
     @Test
     public void idTest() {
         // TODO: test id
+    }
+
+    /**
+     * Test the property 'username'
+     */
+    @Test
+    public void usernameTest() {
+        // TODO: test username
     }
 
 }

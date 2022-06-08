@@ -6,9 +6,9 @@ Represent the portion of text recognized as a Hashtag, and its start and end pos
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tag** | **String** | The text of the Hashtag | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tag** | **String** | The text of the Hashtag. |  |
 
 
 
