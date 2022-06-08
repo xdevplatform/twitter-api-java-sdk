@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>1.2.3</version>
+  <version>1.2.4</version>
 </dependency>
 ```
 
@@ -75,7 +75,7 @@ mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been publishe
 }
 
 dependencies {
-implementation "com.twitter:twitter-api-java-sdk:1.2.3"
+implementation "com.twitter:twitter-api-java-sdk:1.2.4"
 }
 ```
 
@@ -89,7 +89,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/twitter-api-java-sdk-1.2.3.jar`
+* `target/twitter-api-java-sdk-1.2.4.jar`
 * `target/lib/*.jar`
 
 ## Twitter Credentials
