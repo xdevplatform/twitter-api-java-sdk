@@ -22,7 +22,7 @@
 |**possiblySensitive** | **Boolean** | Indicates if this Tweet contains URLs marked as sensitive, for example content suitable for mature audiences. |  [optional] |
 |**promotedMetrics** | [**TweetPromotedMetrics**](TweetPromotedMetrics.md) |  |  [optional] |
 |**publicMetrics** | [**TweetPublicMetrics**](TweetPublicMetrics.md) |  |  [optional] |
-|**referencedTweets** | [**List&lt;TweetReferencedTweetsInner&gt;**](TweetReferencedTweetsInner.md) | A list of Tweets this Tweet refers to. For example, if the parent Tweet is a Retweet, a Quoted Tweet or a Reply, it will include the related Tweet referenced to by its parent. |  [optional] |
+|**referencedTweets** | [**List&lt;TweetReferencedTweets&gt;**](TweetReferencedTweets.md) | A list of Tweets this Tweet refers to. For example, if the parent Tweet is a Retweet, a Quoted Tweet or a Reply, it will include the related Tweet referenced to by its parent. |  [optional] |
 |**replySettings** | **ReplySettings** |  |  [optional] |
 |**source** | **String** | The name of the app the user Tweeted from. |  [optional] |
 |**text** | **String** | The content of the Tweet. |  |

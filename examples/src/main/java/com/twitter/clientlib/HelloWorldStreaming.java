@@ -53,7 +53,10 @@ public class HelloWorldStreaming {
     tweetFields.add("created_at");
 
     try {
-      InputStream streamResult = apiInstance.tweets().sampleStream(0, tweetFields, null , null, null, null, null);
+      InputStream streamResult = apiInstance.tweets().sampleStream()
+        .backfillMinutes(0)
+        .tweetFields(tweetFields)
+        .execute();
       // sampleStream with TweetsStreamListenersExecutor
       Responder responder = new Responder();
       TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);

@@ -38,7 +38,7 @@ import com.twitter.clientlib.model.TweetNonPublicMetrics;
 import com.twitter.clientlib.model.TweetOrganicMetrics;
 import com.twitter.clientlib.model.TweetPromotedMetrics;
 import com.twitter.clientlib.model.TweetPublicMetrics;
-import com.twitter.clientlib.model.TweetReferencedTweetsInner;
+import com.twitter.clientlib.model.TweetReferencedTweets;
 import com.twitter.clientlib.model.TweetWithheld;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -134,7 +134,7 @@ public class Tweet {
 
   public static final String SERIALIZED_NAME_REFERENCED_TWEETS = "referenced_tweets";
   @SerializedName(SERIALIZED_NAME_REFERENCED_TWEETS)
-  private List<TweetReferencedTweetsInner> referencedTweets = null;
+  private List<TweetReferencedTweets> referencedTweets = null;
 
   public static final String SERIALIZED_NAME_REPLY_SETTINGS = "reply_settings";
   @SerializedName(SERIALIZED_NAME_REPLY_SETTINGS)
@@ -508,13 +508,13 @@ public class Tweet {
   }
 
 
-  public Tweet referencedTweets(List<TweetReferencedTweetsInner> referencedTweets) {
+  public Tweet referencedTweets(List<TweetReferencedTweets> referencedTweets) {
     
     this.referencedTweets = referencedTweets;
     return this;
   }
 
-  public Tweet addReferencedTweetsItem(TweetReferencedTweetsInner referencedTweetsItem) {
+  public Tweet addReferencedTweetsItem(TweetReferencedTweets referencedTweetsItem) {
     if (this.referencedTweets == null) {
       this.referencedTweets = new ArrayList<>();
     }
@@ -529,12 +529,12 @@ public class Tweet {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of Tweets this Tweet refers to. For example, if the parent Tweet is a Retweet, a Quoted Tweet or a Reply, it will include the related Tweet referenced to by its parent.")
 
-  public List<TweetReferencedTweetsInner> getReferencedTweets() {
+  public List<TweetReferencedTweets> getReferencedTweets() {
     return referencedTweets;
   }
 
 
-  public void setReferencedTweets(List<TweetReferencedTweetsInner> referencedTweets) {
+  public void setReferencedTweets(List<TweetReferencedTweets> referencedTweets) {
     this.referencedTweets = referencedTweets;
   }
 
@@ -827,7 +827,7 @@ public class Tweet {
 
         // validate the optional field `referenced_tweets` (array)
         for (int i = 0; i < jsonArrayreferencedTweets.size(); i++) {
-          TweetReferencedTweetsInner.validateJsonObject(jsonArrayreferencedTweets.get(i).getAsJsonObject());
+          TweetReferencedTweets.validateJsonObject(jsonArrayreferencedTweets.get(i).getAsJsonObject());
         };
       }
       if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonPrimitive()) {

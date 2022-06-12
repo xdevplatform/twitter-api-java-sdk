@@ -36,7 +36,7 @@ import com.twitter.clientlib.model.TweetNonPublicMetrics;
 import com.twitter.clientlib.model.TweetOrganicMetrics;
 import com.twitter.clientlib.model.TweetPromotedMetrics;
 import com.twitter.clientlib.model.TweetPublicMetrics;
-import com.twitter.clientlib.model.TweetReferencedTweetsInner;
+import com.twitter.clientlib.model.TweetReferencedTweets;
 import com.twitter.clientlib.model.TweetWithheld;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

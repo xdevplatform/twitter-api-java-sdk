@@ -54,33 +54,61 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * FilteredStreamingTweetResponseMatchingRulesInner
+ * The Twitter Topic object.
  */
+@ApiModel(description = "The Twitter Topic object.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FilteredStreamingTweetResponseMatchingRulesInner {
+public class SpaceTopics {
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_TAG = "tag";
-  @SerializedName(SERIALIZED_NAME_TAG)
-  private String tag;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public FilteredStreamingTweetResponseMatchingRulesInner() { 
+  public SpaceTopics() { 
   }
 
-  public FilteredStreamingTweetResponseMatchingRulesInner id(String id) {
+  public SpaceTopics description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the given topic.
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The description of the given topic.")
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public SpaceTopics id(String id) {
     
     this.id = id;
     return this;
   }
 
    /**
-   * Unique identifier of this rule.
+   * An ID suitable for use in the REST API.
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "120897978112909812", required = true, value = "Unique identifier of this rule.")
+  @ApiModelProperty(required = true, value = "An ID suitable for use in the REST API.")
 
   public String getId() {
     return id;
@@ -92,26 +120,26 @@ public class FilteredStreamingTweetResponseMatchingRulesInner {
   }
 
 
-  public FilteredStreamingTweetResponseMatchingRulesInner tag(String tag) {
+  public SpaceTopics name(String name) {
     
-    this.tag = tag;
+    this.name = name;
     return this;
   }
 
    /**
-   * A tag meant for the labeling of user provided rules.
-   * @return tag
+   * The name of the given topic.
+   * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Non-retweeted coffee Tweets", value = "A tag meant for the labeling of user provided rules.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The name of the given topic.")
 
-  public String getTag() {
-    return tag;
+  public String getName() {
+    return name;
   }
 
 
-  public void setTag(String tag) {
-    this.tag = tag;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -124,22 +152,24 @@ public class FilteredStreamingTweetResponseMatchingRulesInner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FilteredStreamingTweetResponseMatchingRulesInner filteredStreamingTweetResponseMatchingRulesInner = (FilteredStreamingTweetResponseMatchingRulesInner) o;
-    return Objects.equals(this.id, filteredStreamingTweetResponseMatchingRulesInner.id) &&
-        Objects.equals(this.tag, filteredStreamingTweetResponseMatchingRulesInner.tag);
+    SpaceTopics spaceTopics = (SpaceTopics) o;
+    return Objects.equals(this.description, spaceTopics.description) &&
+        Objects.equals(this.id, spaceTopics.id) &&
+        Objects.equals(this.name, spaceTopics.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, tag);
+    return Objects.hash(description, id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FilteredStreamingTweetResponseMatchingRulesInner {\n");
+    sb.append("class SpaceTopics {\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -162,41 +192,46 @@ public class FilteredStreamingTweetResponseMatchingRulesInner {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("description");
     openapiFields.add("id");
-    openapiFields.add("tag");
+    openapiFields.add("name");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
+    openapiRequiredFields.add("name");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to FilteredStreamingTweetResponseMatchingRulesInner
+  * @throws IOException if the JSON Object is invalid with respect to SpaceTopics
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (FilteredStreamingTweetResponseMatchingRulesInner.openapiRequiredFields.isEmpty()) {
+     //   if (SpaceTopics.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in FilteredStreamingTweetResponseMatchingRulesInner is not found in the empty JSON string", FilteredStreamingTweetResponseMatchingRulesInner.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in SpaceTopics is not found in the empty JSON string", SpaceTopics.openapiRequiredFields.toString()));
      //   }
      // }
 
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FilteredStreamingTweetResponseMatchingRulesInner.openapiRequiredFields) {
+      for (String requiredField : SpaceTopics.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }
 
@@ -204,22 +239,22 @@ public class FilteredStreamingTweetResponseMatchingRulesInner {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FilteredStreamingTweetResponseMatchingRulesInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FilteredStreamingTweetResponseMatchingRulesInner' and its subtypes
+       if (!SpaceTopics.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SpaceTopics' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FilteredStreamingTweetResponseMatchingRulesInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FilteredStreamingTweetResponseMatchingRulesInner.class));
+       final TypeAdapter<SpaceTopics> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SpaceTopics.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FilteredStreamingTweetResponseMatchingRulesInner>() {
+       return (TypeAdapter<T>) new TypeAdapter<SpaceTopics>() {
            @Override
-           public void write(JsonWriter out, FilteredStreamingTweetResponseMatchingRulesInner value) throws IOException {
+           public void write(JsonWriter out, SpaceTopics value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FilteredStreamingTweetResponseMatchingRulesInner read(JsonReader in) throws IOException {
+           public SpaceTopics read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -230,18 +265,18 @@ public class FilteredStreamingTweetResponseMatchingRulesInner {
   }
 
  /**
-  * Create an instance of FilteredStreamingTweetResponseMatchingRulesInner given an JSON string
+  * Create an instance of SpaceTopics given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of FilteredStreamingTweetResponseMatchingRulesInner
-  * @throws IOException if the JSON string is invalid with respect to FilteredStreamingTweetResponseMatchingRulesInner
+  * @return An instance of SpaceTopics
+  * @throws IOException if the JSON string is invalid with respect to SpaceTopics
   */
-  public static FilteredStreamingTweetResponseMatchingRulesInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FilteredStreamingTweetResponseMatchingRulesInner.class);
+  public static SpaceTopics fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SpaceTopics.class);
   }
 
  /**
-  * Convert an instance of FilteredStreamingTweetResponseMatchingRulesInner to an JSON string
+  * Convert an instance of SpaceTopics to an JSON string
   *
   * @return JSON string
   */

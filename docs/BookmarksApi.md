@@ -11,7 +11,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="getUsersIdBookmarks"></a>
 # **getUsersIdBookmarks**
-> Get2UsersIdBookmarksResponse getUsersIdBookmarks(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
+> Get2UsersIdBookmarksResponse getUsersIdBookmarks(id).maxResults(maxResults).paginationToken(paginationToken).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
 
 Bookmarks by User
 
@@ -63,7 +63,16 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2UsersIdBookmarksResponse result = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+           Get2UsersIdBookmarksResponse result = apiInstance.bookmarks().getUsersIdBookmarks(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .tweetFields(tweetFields)
+            .expansions(expansions)
+            .mediaFields(mediaFields)
+            .pollFields(pollFields)
+            .userFields(userFields)
+            .placeFields(placeFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling BookmarksApi#getUsersIdBookmarks");
@@ -111,7 +120,7 @@ public class Example {
 
 <a name="postUsersIdBookmarks"></a>
 # **postUsersIdBookmarks**
-> BookmarkMutationResponse postUsersIdBookmarks(bookmarkAddRequest, id)
+> BookmarkMutationResponse postUsersIdBookmarks(bookmarkAddRequest, id).execute();
 
 Add Tweet to Bookmarks
 
@@ -156,7 +165,8 @@ public class Example {
     BookmarkAddRequest bookmarkAddRequest = new BookmarkAddRequest(); // BookmarkAddRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User for whom to add bookmarks.
     try {
-           BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id);
+           BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling BookmarksApi#postUsersIdBookmarks");
@@ -197,7 +207,7 @@ public class Example {
 
 <a name="usersIdBookmarksDelete"></a>
 # **usersIdBookmarksDelete**
-> BookmarkMutationResponse usersIdBookmarksDelete(id, tweetId)
+> BookmarkMutationResponse usersIdBookmarksDelete(id, tweetId).execute();
 
 Remove a bookmarked Tweet
 
@@ -242,7 +252,8 @@ public class Example {
     String id = "id_example"; // String | The ID of the authenticated source User whose bookmark is to be removed.
     String tweetId = "tweetId_example"; // String | The ID of the Tweet that the source User is removing from bookmarks.
     try {
-           BookmarkMutationResponse result = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId);
+           BookmarkMutationResponse result = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling BookmarksApi#usersIdBookmarksDelete");

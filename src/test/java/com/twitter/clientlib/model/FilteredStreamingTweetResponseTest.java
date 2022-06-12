@@ -28,7 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.Expansions;
-import com.twitter.clientlib.model.FilteredStreamingTweetResponseMatchingRulesInner;
+import com.twitter.clientlib.model.FilteredStreamingTweetResponseMatchingRules;
 import com.twitter.clientlib.model.Problem;
 import com.twitter.clientlib.model.Tweet;
 import io.swagger.annotations.ApiModel;

@@ -1,6 +1,6 @@
 
 
-# TweetReferencedTweetsInner
+# TweetReferencedTweets
 
 
 ## Properties

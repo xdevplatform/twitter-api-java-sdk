@@ -30,7 +30,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.*;
+import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
+import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
+import com.twitter.clientlib.model.AddRulesRequest;
+import com.twitter.clientlib.model.DeleteRulesRequest;
+import com.twitter.clientlib.model.DeleteRulesRequestDelete;
+import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
+import com.twitter.clientlib.model.RuleNoId;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,7 +65,9 @@ public class ApiTweetBearerTester extends ApiTester {
     rule.setValue(ruleStrValue);
     add.addAddItem(rule);
     request.setActualInstance(add);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
+    return apiInstance.tweets().addOrDeleteRules(request)
+        .dryRun(false)
+        .execute();
   }
 
   private AddOrDeleteRulesResponse deleteRule(String ruleStrValue) throws ApiException {
@@ -69,7 +77,8 @@ public class ApiTweetBearerTester extends ApiTester {
     drd.setValues(Arrays.asList(ruleStrValue));
     dr.setDelete(drd);
     request.setActualInstance(dr);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
+    return apiInstance.tweets().addOrDeleteRules(request).dryRun(false)
+        .execute();
   }
 
 
@@ -160,9 +169,9 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchNotFoundTest() throws ApiException {
-    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(queryNotFound, null,
-        null,
-        null, null, null, null, null, null);
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(
+            queryNotFound)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));
@@ -173,8 +182,8 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchTest() throws ApiException {
-    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, null, null,
-        null, null, null, null, null, null);
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));

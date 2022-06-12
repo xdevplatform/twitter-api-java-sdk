@@ -22,7 +22,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="getUserListMemberships"></a>
 # **getUserListMemberships**
-> Get2UsersIdListMembershipsResponse getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields)
+> Get2UsersIdListMembershipsResponse getUserListMemberships(id).maxResults(maxResults).paginationToken(paginationToken).listFields(listFields).expansions(expansions).userFields(userFields).execute();
 
 Get a User&#39;s List Memberships
 
@@ -76,7 +76,13 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           Get2UsersIdListMembershipsResponse result = apiInstance.lists().getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields);
+           Get2UsersIdListMembershipsResponse result = apiInstance.lists().getUserListMemberships(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .listFields(listFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#getUserListMemberships");
@@ -121,7 +127,7 @@ public class Example {
 
 <a name="listAddMember"></a>
 # **listAddMember**
-> ListMutateResponse listAddMember(listAddUserRequest, id)
+> ListMutateResponse listAddMember(id).listAddUserRequest(listAddUserRequest).execute();
 
 Add a List member
 
@@ -167,7 +173,9 @@ public class Example {
     ListAddUserRequest listAddUserRequest = new ListAddUserRequest(); // ListAddUserRequest | 
     String id = "id_example"; // String | The ID of the List for which to add a member.
     try {
-           ListMutateResponse result = apiInstance.lists().listAddMember(listAddUserRequest, id);
+           ListMutateResponse result = apiInstance.lists().listAddMember(id)
+            .listAddUserRequest(listAddUserRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listAddMember");
@@ -208,7 +216,7 @@ public class Example {
 
 <a name="listIdCreate"></a>
 # **listIdCreate**
-> ListCreateResponse listIdCreate(listCreateRequest)
+> ListCreateResponse listIdCreate().listCreateRequest(listCreateRequest).execute();
 
 Create List
 
@@ -253,7 +261,9 @@ public class Example {
     // Set the params values
     ListCreateRequest listCreateRequest = new ListCreateRequest(); // ListCreateRequest | 
     try {
-           ListCreateResponse result = apiInstance.lists().listIdCreate(listCreateRequest);
+           ListCreateResponse result = apiInstance.lists().listIdCreate()
+            .listCreateRequest(listCreateRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listIdCreate");
@@ -293,7 +303,7 @@ public class Example {
 
 <a name="listIdDelete"></a>
 # **listIdDelete**
-> ListDeleteResponse listIdDelete(id)
+> ListDeleteResponse listIdDelete(id).execute();
 
 Delete List
 
@@ -338,7 +348,8 @@ public class Example {
     // Set the params values
     String id = "id_example"; // String | The ID of the List to delete.
     try {
-           ListDeleteResponse result = apiInstance.lists().listIdDelete(id);
+           ListDeleteResponse result = apiInstance.lists().listIdDelete(id)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listIdDelete");
@@ -378,7 +389,7 @@ public class Example {
 
 <a name="listIdGet"></a>
 # **listIdGet**
-> Get2ListsIdResponse listIdGet(id, listFields, expansions, userFields)
+> Get2ListsIdResponse listIdGet(id).listFields(listFields).expansions(expansions).userFields(userFields).execute();
 
 List lookup by List ID.
 
@@ -430,7 +441,11 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           Get2ListsIdResponse result = apiInstance.lists().listIdGet(id, listFields, expansions, userFields);
+           Get2ListsIdResponse result = apiInstance.lists().listIdGet(id)
+            .listFields(listFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listIdGet");
@@ -473,7 +488,7 @@ public class Example {
 
 <a name="listIdUpdate"></a>
 # **listIdUpdate**
-> ListUpdateResponse listIdUpdate(listUpdateRequest, id)
+> ListUpdateResponse listIdUpdate(id).listUpdateRequest(listUpdateRequest).execute();
 
 Update List.
 
@@ -519,7 +534,9 @@ public class Example {
     ListUpdateRequest listUpdateRequest = new ListUpdateRequest(); // ListUpdateRequest | 
     String id = "id_example"; // String | The ID of the List to modify.
     try {
-           ListUpdateResponse result = apiInstance.lists().listIdUpdate(listUpdateRequest, id);
+           ListUpdateResponse result = apiInstance.lists().listIdUpdate(id)
+            .listUpdateRequest(listUpdateRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listIdUpdate");
@@ -560,7 +577,7 @@ public class Example {
 
 <a name="listRemoveMember"></a>
 # **listRemoveMember**
-> ListMutateResponse listRemoveMember(id, userId)
+> ListMutateResponse listRemoveMember(id, userId).execute();
 
 Remove a List member
 
@@ -606,7 +623,8 @@ public class Example {
     String id = "id_example"; // String | The ID of the List to remove a member.
     String userId = "userId_example"; // String | The ID of User that will be removed from the List.
     try {
-           ListMutateResponse result = apiInstance.lists().listRemoveMember(id, userId);
+           ListMutateResponse result = apiInstance.lists().listRemoveMember(id, userId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listRemoveMember");
@@ -647,7 +665,7 @@ public class Example {
 
 <a name="listUserFollow"></a>
 # **listUserFollow**
-> ListFollowedResponse listUserFollow(listFollowedRequest, id)
+> ListFollowedResponse listUserFollow(id).listFollowedRequest(listFollowedRequest).execute();
 
 Follow a List
 
@@ -693,7 +711,9 @@ public class Example {
     ListFollowedRequest listFollowedRequest = new ListFollowedRequest(); // ListFollowedRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that will follow the List.
     try {
-           ListFollowedResponse result = apiInstance.lists().listUserFollow(listFollowedRequest, id);
+           ListFollowedResponse result = apiInstance.lists().listUserFollow(id)
+            .listFollowedRequest(listFollowedRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserFollow");
@@ -734,7 +754,7 @@ public class Example {
 
 <a name="listUserOwnedLists"></a>
 # **listUserOwnedLists**
-> Get2UsersIdOwnedListsResponse listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields)
+> Get2UsersIdOwnedListsResponse listUserOwnedLists(id).maxResults(maxResults).paginationToken(paginationToken).listFields(listFields).expansions(expansions).userFields(userFields).execute();
 
 Get a User&#39;s Owned Lists.
 
@@ -788,7 +808,13 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           Get2UsersIdOwnedListsResponse result = apiInstance.lists().listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+           Get2UsersIdOwnedListsResponse result = apiInstance.lists().listUserOwnedLists(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .listFields(listFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserOwnedLists");
@@ -833,7 +859,7 @@ public class Example {
 
 <a name="listUserPin"></a>
 # **listUserPin**
-> ListPinnedResponse listUserPin(listPinnedRequest, id)
+> ListPinnedResponse listUserPin(listPinnedRequest, id).execute();
 
 Pin a List
 
@@ -879,7 +905,8 @@ public class Example {
     ListPinnedRequest listPinnedRequest = new ListPinnedRequest(); // ListPinnedRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that will pin the List.
     try {
-           ListPinnedResponse result = apiInstance.lists().listUserPin(listPinnedRequest, id);
+           ListPinnedResponse result = apiInstance.lists().listUserPin(listPinnedRequest, id)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserPin");
@@ -920,7 +947,7 @@ public class Example {
 
 <a name="listUserPinnedLists"></a>
 # **listUserPinnedLists**
-> Get2UsersIdPinnedListsResponse listUserPinnedLists(id, listFields, expansions, userFields)
+> Get2UsersIdPinnedListsResponse listUserPinnedLists(id).listFields(listFields).expansions(expansions).userFields(userFields).execute();
 
 Get a User&#39;s Pinned Lists
 
@@ -968,7 +995,11 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           Get2UsersIdPinnedListsResponse result = apiInstance.lists().listUserPinnedLists(id, listFields, expansions, userFields);
+           Get2UsersIdPinnedListsResponse result = apiInstance.lists().listUserPinnedLists(id)
+            .listFields(listFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserPinnedLists");
@@ -1011,7 +1042,7 @@ public class Example {
 
 <a name="listUserUnfollow"></a>
 # **listUserUnfollow**
-> ListFollowedResponse listUserUnfollow(id, listId)
+> ListFollowedResponse listUserUnfollow(id, listId).execute();
 
 Unfollow a List
 
@@ -1057,7 +1088,8 @@ public class Example {
     String id = "id_example"; // String | The ID of the authenticated source User that will unfollow the List.
     String listId = "listId_example"; // String | The ID of the List to unfollow.
     try {
-           ListFollowedResponse result = apiInstance.lists().listUserUnfollow(id, listId);
+           ListFollowedResponse result = apiInstance.lists().listUserUnfollow(id, listId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserUnfollow");
@@ -1098,7 +1130,7 @@ public class Example {
 
 <a name="listUserUnpin"></a>
 # **listUserUnpin**
-> ListUnpinResponse listUserUnpin(id, listId)
+> ListUnpinResponse listUserUnpin(id, listId).execute();
 
 Unpin a List
 
@@ -1144,7 +1176,8 @@ public class Example {
     String id = "id_example"; // String | The ID of the authenticated source User for whom to return results.
     String listId = "listId_example"; // String | The ID of the List to unpin.
     try {
-           ListUnpinResponse result = apiInstance.lists().listUserUnpin(id, listId);
+           ListUnpinResponse result = apiInstance.lists().listUserUnpin(id, listId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#listUserUnpin");
@@ -1185,7 +1218,7 @@ public class Example {
 
 <a name="userFollowedLists"></a>
 # **userFollowedLists**
-> Get2UsersIdFollowedListsResponse userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields)
+> Get2UsersIdFollowedListsResponse userFollowedLists(id).maxResults(maxResults).paginationToken(paginationToken).listFields(listFields).expansions(expansions).userFields(userFields).execute();
 
 Get User&#39;s Followed Lists
 
@@ -1239,7 +1272,13 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           Get2UsersIdFollowedListsResponse result = apiInstance.lists().userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+           Get2UsersIdFollowedListsResponse result = apiInstance.lists().userFollowedLists(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .listFields(listFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListsApi#userFollowedLists");

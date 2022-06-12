@@ -59,7 +59,8 @@ public class ComplianceApiTest {
     @Test
     public void createBatchComplianceJobTest() throws ApiException {
         CreateComplianceJobRequest createComplianceJobRequest = null;
-                CreateComplianceJobResponse response = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest);
+                CreateComplianceJobResponse response = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -75,7 +76,9 @@ public class ComplianceApiTest {
     public void getBatchComplianceJobTest() throws ApiException {
         String id = null;
         Set<String> complianceJobFields = null;
-                Get2ComplianceJobsIdResponse response = apiInstance.compliance().getBatchComplianceJob(id, complianceJobFields);
+                Get2ComplianceJobsIdResponse response = apiInstance.compliance().getBatchComplianceJob(id)
+                .complianceJobFields(complianceJobFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -92,7 +95,10 @@ public class ComplianceApiTest {
         String type = null;
         String status = null;
         Set<String> complianceJobFields = null;
-                Get2ComplianceJobsResponse response = apiInstance.compliance().listBatchComplianceJobs(type, status, complianceJobFields);
+                Get2ComplianceJobsResponse response = apiInstance.compliance().listBatchComplianceJobs(type)
+                .status(status)
+                .complianceJobFields(complianceJobFields)
+                .execute();
         // TODO: test validations
     }
 

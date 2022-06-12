@@ -28,7 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.CashtagEntity;
-import com.twitter.clientlib.model.FullTextEntitiesAnnotationsInner;
+import com.twitter.clientlib.model.FullTextEntitiesAnnotations;
 import com.twitter.clientlib.model.HashtagEntity;
 import com.twitter.clientlib.model.MentionEntity;
 import com.twitter.clientlib.model.UrlEntity;

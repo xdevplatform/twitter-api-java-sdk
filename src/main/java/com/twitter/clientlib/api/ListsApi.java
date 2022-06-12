@@ -72,25 +72,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ListsApi extends ApiCommon {
 
-    /**
-     * Build call for getUserListMemberships
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getUserListMembershipsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getUserListMembershipsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -157,66 +139,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Get a User&#39;s List Memberships
-     * Get a User&#39;s List Memberships.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return Get2UsersIdListMembershipsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Get2UsersIdListMembershipsResponse getUserListMemberships(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-      ApiResponse<Get2UsersIdListMembershipsResponse> localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Get2UsersIdListMembershipsResponse getUserListMemberships(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        Get2UsersIdListMembershipsResponse localVarResp;
-        try{
-          localVarResp = getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return getUserListMemberships(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Get a User&#39;s List Memberships
-     * Get a User&#39;s List Memberships.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;Get2UsersIdListMembershipsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Get2UsersIdListMembershipsResponse> getUserListMembershipsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+    private ApiResponse<Get2UsersIdListMembershipsResponse> getUserListMembershipsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
         okhttp3.Call localVarCall = getUserListMembershipsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, null);
         try {
             Type localVarReturnType = new TypeToken<Get2UsersIdListMembershipsResponse>(){}.getType();
@@ -227,39 +151,161 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Get a User&#39;s List Memberships (asynchronously)
-     * Get a User&#39;s List Memberships.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getUserListMembershipsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdListMembershipsResponse> _callback) throws ApiException {
+    private okhttp3.Call getUserListMembershipsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdListMembershipsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getUserListMembershipsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
         Type localVarReturnType = new TypeToken<Get2UsersIdListMembershipsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIgetUserListMembershipsRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> listFields;
+        private Set<String> expansions;
+        private Set<String> userFields;
+
+        private APIgetUserListMembershipsRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIgetUserListMembershipsRequest
+         */
+        public APIgetUserListMembershipsRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIgetUserListMembershipsRequest
+         */
+        public APIgetUserListMembershipsRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set listFields
+         * @param listFields A comma separated list of List fields to display. (optional)
+         * @return APIgetUserListMembershipsRequest
+         */
+        public APIgetUserListMembershipsRequest listFields(Set<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIgetUserListMembershipsRequest
+         */
+        public APIgetUserListMembershipsRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIgetUserListMembershipsRequest
+         */
+        public APIgetUserListMembershipsRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Build call for getUserListMemberships
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getUserListMembershipsCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+
+        /**
+         * Execute getUserListMemberships request
+         * @return Get2UsersIdListMembershipsResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdListMembershipsResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdListMembershipsResponse> localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdListMembershipsResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdListMembershipsResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getUserListMemberships request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdListMembershipsResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdListMembershipsResponse> executeWithHttpInfo() throws ApiException {
+              return getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            }
+        /**
+         * Execute getUserListMemberships request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdListMembershipsResponse> _callback) throws ApiException {
+            return getUserListMembershipsAsync(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listAddMember
-     * @param listAddUserRequest  (optional)
-     * @param id The ID of the List for which to add a member. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Get a User&#39;s List Memberships
+     * Get a User&#39;s List Memberships.
+     * @param id The ID of the User to lookup. (required)
+     * @return APIgetUserListMembershipsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -267,7 +313,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAddMemberCall(ListAddUserRequest listAddUserRequest, String id, final ApiCallback _callback) throws ApiException {
+    public APIgetUserListMembershipsRequest getUserListMemberships(String id) {
+        return new APIgetUserListMembershipsRequest(id);
+    }
+    private okhttp3.Call listAddMemberCall(ListAddUserRequest listAddUserRequest, String id, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = listAddUserRequest;
 
         // create path and map variables
@@ -314,58 +363,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Add a List member
-     * Causes a User to become a member of a List.
-     * @param listAddUserRequest  (optional)
-     * @param id The ID of the List for which to add a member. (required)
-     * @return ListMutateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListMutateResponse listAddMember(ListAddUserRequest listAddUserRequest, String id) throws ApiException {
-      ApiResponse<ListMutateResponse> localVarResp = listAddMemberWithHttpInfo(listAddUserRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListMutateResponse listAddMember(Integer retries, ListAddUserRequest listAddUserRequest, String id) throws ApiException {
-        ListMutateResponse localVarResp;
-        try{
-          localVarResp = listAddMember(listAddUserRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listAddMember(retries - 1, listAddUserRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Add a List member
-     * Causes a User to become a member of a List.
-     * @param listAddUserRequest  (optional)
-     * @param id The ID of the List for which to add a member. (required)
-     * @return ApiResponse&lt;ListMutateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListMutateResponse> listAddMemberWithHttpInfo(ListAddUserRequest listAddUserRequest, String id) throws ApiException {
+    private ApiResponse<ListMutateResponse> listAddMemberWithHttpInfo(ListAddUserRequest listAddUserRequest, String id) throws ApiException {
         okhttp3.Call localVarCall = listAddMemberValidateBeforeCall(listAddUserRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<ListMutateResponse>(){}.getType();
@@ -376,34 +375,117 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Add a List member (asynchronously)
-     * Causes a User to become a member of a List.
-     * @param listAddUserRequest  (optional)
-     * @param id The ID of the List for which to add a member. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listAddMemberAsync(ListAddUserRequest listAddUserRequest, String id, final ApiCallback<ListMutateResponse> _callback) throws ApiException {
+    private okhttp3.Call listAddMemberAsync(ListAddUserRequest listAddUserRequest, String id, final ApiCallback<ListMutateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listAddMemberValidateBeforeCall(listAddUserRequest, id, _callback);
         Type localVarReturnType = new TypeToken<ListMutateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistAddMemberRequest {
+        private final String id;
+        private ListAddUserRequest listAddUserRequest;
+
+        private APIlistAddMemberRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set listAddUserRequest
+         * @param listAddUserRequest  (optional)
+         * @return APIlistAddMemberRequest
+         */
+        public APIlistAddMemberRequest listAddUserRequest(ListAddUserRequest listAddUserRequest) {
+            this.listAddUserRequest = listAddUserRequest;
+            return this;
+        }
+
+        /**
+         * Build call for listAddMember
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listAddMemberCall(listAddUserRequest, id, _callback);
+        }
+
+        /**
+         * Execute listAddMember request
+         * @return ListMutateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListMutateResponse execute() throws ApiException {
+            ApiResponse<ListMutateResponse> localVarResp = listAddMemberWithHttpInfo(listAddUserRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListMutateResponse  execute(Integer retries) throws ApiException {
+          ListMutateResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listAddMember request with HTTP info returned
+         * @return ApiResponse&lt;ListMutateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListMutateResponse> executeWithHttpInfo() throws ApiException {
+              return listAddMemberWithHttpInfo(listAddUserRequest, id);
+            }
+        /**
+         * Execute listAddMember request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListMutateResponse> _callback) throws ApiException {
+            return listAddMemberAsync(listAddUserRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for listIdCreate
-     * @param listCreateRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Add a List member
+     * Causes a User to become a member of a List.
+     * @param id The ID of the List for which to add a member. (required)
+     * @return APIlistAddMemberRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -411,7 +493,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listIdCreateCall(ListCreateRequest listCreateRequest, final ApiCallback _callback) throws ApiException {
+    public APIlistAddMemberRequest listAddMember(String id) {
+        return new APIlistAddMemberRequest(id);
+    }
+    private okhttp3.Call listIdCreateCall(ListCreateRequest listCreateRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = listCreateRequest;
 
         // create path and map variables
@@ -452,56 +537,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Create List
-     * Creates a new List.
-     * @param listCreateRequest  (optional)
-     * @return ListCreateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListCreateResponse listIdCreate(ListCreateRequest listCreateRequest) throws ApiException {
-      ApiResponse<ListCreateResponse> localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListCreateResponse listIdCreate(Integer retries, ListCreateRequest listCreateRequest) throws ApiException {
-        ListCreateResponse localVarResp;
-        try{
-          localVarResp = listIdCreate(listCreateRequest);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listIdCreate(retries - 1, listCreateRequest);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Create List
-     * Creates a new List.
-     * @param listCreateRequest  (optional)
-     * @return ApiResponse&lt;ListCreateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListCreateResponse> listIdCreateWithHttpInfo(ListCreateRequest listCreateRequest) throws ApiException {
+    private ApiResponse<ListCreateResponse> listIdCreateWithHttpInfo(ListCreateRequest listCreateRequest) throws ApiException {
         okhttp3.Call localVarCall = listIdCreateValidateBeforeCall(listCreateRequest, null);
         try {
             Type localVarReturnType = new TypeToken<ListCreateResponse>(){}.getType();
@@ -512,33 +549,114 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Create List (asynchronously)
-     * Creates a new List.
-     * @param listCreateRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listIdCreateAsync(ListCreateRequest listCreateRequest, final ApiCallback<ListCreateResponse> _callback) throws ApiException {
+    private okhttp3.Call listIdCreateAsync(ListCreateRequest listCreateRequest, final ApiCallback<ListCreateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listIdCreateValidateBeforeCall(listCreateRequest, _callback);
         Type localVarReturnType = new TypeToken<ListCreateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistIdCreateRequest {
+        private ListCreateRequest listCreateRequest;
+
+        private APIlistIdCreateRequest() {
+        }
+
+        /**
+         * Set listCreateRequest
+         * @param listCreateRequest  (optional)
+         * @return APIlistIdCreateRequest
+         */
+        public APIlistIdCreateRequest listCreateRequest(ListCreateRequest listCreateRequest) {
+            this.listCreateRequest = listCreateRequest;
+            return this;
+        }
+
+        /**
+         * Build call for listIdCreate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listIdCreateCall(listCreateRequest, _callback);
+        }
+
+        /**
+         * Execute listIdCreate request
+         * @return ListCreateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListCreateResponse execute() throws ApiException {
+            ApiResponse<ListCreateResponse> localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListCreateResponse  execute(Integer retries) throws ApiException {
+          ListCreateResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listIdCreate request with HTTP info returned
+         * @return ApiResponse&lt;ListCreateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListCreateResponse> executeWithHttpInfo() throws ApiException {
+              return listIdCreateWithHttpInfo(listCreateRequest);
+            }
+        /**
+         * Execute listIdCreate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListCreateResponse> _callback) throws ApiException {
+            return listIdCreateAsync(listCreateRequest, _callback);
+        }
+    }
+
     /**
-     * Build call for listIdDelete
-     * @param id The ID of the List to delete. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Create List
+     * Creates a new List.
+     * @return APIlistIdCreateRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -546,7 +664,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listIdDeleteCall(String id, final ApiCallback _callback) throws ApiException {
+    public APIlistIdCreateRequest listIdCreate() {
+        return new APIlistIdCreateRequest();
+    }
+    private okhttp3.Call listIdDeleteCall(String id, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -593,56 +714,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Delete List
-     * Delete a List that you own.
-     * @param id The ID of the List to delete. (required)
-     * @return ListDeleteResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListDeleteResponse listIdDelete(String id) throws ApiException {
-      ApiResponse<ListDeleteResponse> localVarResp = listIdDeleteWithHttpInfo(id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListDeleteResponse listIdDelete(Integer retries, String id) throws ApiException {
-        ListDeleteResponse localVarResp;
-        try{
-          localVarResp = listIdDelete(id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listIdDelete(retries - 1, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Delete List
-     * Delete a List that you own.
-     * @param id The ID of the List to delete. (required)
-     * @return ApiResponse&lt;ListDeleteResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListDeleteResponse> listIdDeleteWithHttpInfo(String id) throws ApiException {
+    private ApiResponse<ListDeleteResponse> listIdDeleteWithHttpInfo(String id) throws ApiException {
         okhttp3.Call localVarCall = listIdDeleteValidateBeforeCall(id, null);
         try {
             Type localVarReturnType = new TypeToken<ListDeleteResponse>(){}.getType();
@@ -653,36 +726,106 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Delete List (asynchronously)
-     * Delete a List that you own.
-     * @param id The ID of the List to delete. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listIdDeleteAsync(String id, final ApiCallback<ListDeleteResponse> _callback) throws ApiException {
+    private okhttp3.Call listIdDeleteAsync(String id, final ApiCallback<ListDeleteResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listIdDeleteValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<ListDeleteResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistIdDeleteRequest {
+        private final String id;
+
+        private APIlistIdDeleteRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Build call for listIdDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listIdDeleteCall(id, _callback);
+        }
+
+        /**
+         * Execute listIdDelete request
+         * @return ListDeleteResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListDeleteResponse execute() throws ApiException {
+            ApiResponse<ListDeleteResponse> localVarResp = listIdDeleteWithHttpInfo(id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListDeleteResponse  execute(Integer retries) throws ApiException {
+          ListDeleteResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listIdDelete request with HTTP info returned
+         * @return ApiResponse&lt;ListDeleteResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListDeleteResponse> executeWithHttpInfo() throws ApiException {
+              return listIdDeleteWithHttpInfo(id);
+            }
+        /**
+         * Execute listIdDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListDeleteResponse> _callback) throws ApiException {
+            return listIdDeleteAsync(id, _callback);
+        }
+    }
+
     /**
-     * Build call for listIdGet
-     * @param id The ID of the List. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Delete List
+     * Delete a List that you own.
+     * @param id The ID of the List to delete. (required)
+     * @return APIlistIdDeleteRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -690,7 +833,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listIdGetCall(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIlistIdDeleteRequest listIdDelete(String id) {
+        return new APIlistIdDeleteRequest(id);
+    }
+    private okhttp3.Call listIdGetCall(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -749,62 +895,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * List lookup by List ID.
-     * Returns a List.
-     * @param id The ID of the List. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return Get2ListsIdResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Get2ListsIdResponse listIdGet(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-      ApiResponse<Get2ListsIdResponse> localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Get2ListsIdResponse listIdGet(Integer retries, String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        Get2ListsIdResponse localVarResp;
-        try{
-          localVarResp = listIdGet(id, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listIdGet(retries - 1, id, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * List lookup by List ID.
-     * Returns a List.
-     * @param id The ID of the List. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;Get2ListsIdResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Get2ListsIdResponse> listIdGetWithHttpInfo(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+    private ApiResponse<Get2ListsIdResponse> listIdGetWithHttpInfo(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
         okhttp3.Call localVarCall = listIdGetValidateBeforeCall(id, listFields, expansions, userFields, null);
         try {
             Type localVarReturnType = new TypeToken<Get2ListsIdResponse>(){}.getType();
@@ -815,37 +907,139 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * List lookup by List ID. (asynchronously)
-     * Returns a List.
-     * @param id The ID of the List. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listIdGetAsync(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2ListsIdResponse> _callback) throws ApiException {
+    private okhttp3.Call listIdGetAsync(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2ListsIdResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listIdGetValidateBeforeCall(id, listFields, expansions, userFields, _callback);
         Type localVarReturnType = new TypeToken<Get2ListsIdResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistIdGetRequest {
+        private final String id;
+        private Set<String> listFields;
+        private Set<String> expansions;
+        private Set<String> userFields;
+
+        private APIlistIdGetRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set listFields
+         * @param listFields A comma separated list of List fields to display. (optional)
+         * @return APIlistIdGetRequest
+         */
+        public APIlistIdGetRequest listFields(Set<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIlistIdGetRequest
+         */
+        public APIlistIdGetRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIlistIdGetRequest
+         */
+        public APIlistIdGetRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Build call for listIdGet
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listIdGetCall(id, listFields, expansions, userFields, _callback);
+        }
+
+        /**
+         * Execute listIdGet request
+         * @return Get2ListsIdResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2ListsIdResponse execute() throws ApiException {
+            ApiResponse<Get2ListsIdResponse> localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2ListsIdResponse  execute(Integer retries) throws ApiException {
+          Get2ListsIdResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listIdGet request with HTTP info returned
+         * @return ApiResponse&lt;Get2ListsIdResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2ListsIdResponse> executeWithHttpInfo() throws ApiException {
+              return listIdGetWithHttpInfo(id, listFields, expansions, userFields);
+            }
+        /**
+         * Execute listIdGet request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2ListsIdResponse> _callback) throws ApiException {
+            return listIdGetAsync(id, listFields, expansions, userFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listIdUpdate
-     * @param listUpdateRequest  (optional)
-     * @param id The ID of the List to modify. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * List lookup by List ID.
+     * Returns a List.
+     * @param id The ID of the List. (required)
+     * @return APIlistIdGetRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -853,7 +1047,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listIdUpdateCall(ListUpdateRequest listUpdateRequest, String id, final ApiCallback _callback) throws ApiException {
+    public APIlistIdGetRequest listIdGet(String id) {
+        return new APIlistIdGetRequest(id);
+    }
+    private okhttp3.Call listIdUpdateCall(ListUpdateRequest listUpdateRequest, String id, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = listUpdateRequest;
 
         // create path and map variables
@@ -900,58 +1097,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Update List.
-     * Update a List that you own.
-     * @param listUpdateRequest  (optional)
-     * @param id The ID of the List to modify. (required)
-     * @return ListUpdateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListUpdateResponse listIdUpdate(ListUpdateRequest listUpdateRequest, String id) throws ApiException {
-      ApiResponse<ListUpdateResponse> localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListUpdateResponse listIdUpdate(Integer retries, ListUpdateRequest listUpdateRequest, String id) throws ApiException {
-        ListUpdateResponse localVarResp;
-        try{
-          localVarResp = listIdUpdate(listUpdateRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listIdUpdate(retries - 1, listUpdateRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Update List.
-     * Update a List that you own.
-     * @param listUpdateRequest  (optional)
-     * @param id The ID of the List to modify. (required)
-     * @return ApiResponse&lt;ListUpdateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListUpdateResponse> listIdUpdateWithHttpInfo(ListUpdateRequest listUpdateRequest, String id) throws ApiException {
+    private ApiResponse<ListUpdateResponse> listIdUpdateWithHttpInfo(ListUpdateRequest listUpdateRequest, String id) throws ApiException {
         okhttp3.Call localVarCall = listIdUpdateValidateBeforeCall(listUpdateRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<ListUpdateResponse>(){}.getType();
@@ -962,35 +1109,117 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Update List. (asynchronously)
-     * Update a List that you own.
-     * @param listUpdateRequest  (optional)
-     * @param id The ID of the List to modify. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listIdUpdateAsync(ListUpdateRequest listUpdateRequest, String id, final ApiCallback<ListUpdateResponse> _callback) throws ApiException {
+    private okhttp3.Call listIdUpdateAsync(ListUpdateRequest listUpdateRequest, String id, final ApiCallback<ListUpdateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listIdUpdateValidateBeforeCall(listUpdateRequest, id, _callback);
         Type localVarReturnType = new TypeToken<ListUpdateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistIdUpdateRequest {
+        private final String id;
+        private ListUpdateRequest listUpdateRequest;
+
+        private APIlistIdUpdateRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set listUpdateRequest
+         * @param listUpdateRequest  (optional)
+         * @return APIlistIdUpdateRequest
+         */
+        public APIlistIdUpdateRequest listUpdateRequest(ListUpdateRequest listUpdateRequest) {
+            this.listUpdateRequest = listUpdateRequest;
+            return this;
+        }
+
+        /**
+         * Build call for listIdUpdate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listIdUpdateCall(listUpdateRequest, id, _callback);
+        }
+
+        /**
+         * Execute listIdUpdate request
+         * @return ListUpdateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListUpdateResponse execute() throws ApiException {
+            ApiResponse<ListUpdateResponse> localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListUpdateResponse  execute(Integer retries) throws ApiException {
+          ListUpdateResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listIdUpdate request with HTTP info returned
+         * @return ApiResponse&lt;ListUpdateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListUpdateResponse> executeWithHttpInfo() throws ApiException {
+              return listIdUpdateWithHttpInfo(listUpdateRequest, id);
+            }
+        /**
+         * Execute listIdUpdate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListUpdateResponse> _callback) throws ApiException {
+            return listIdUpdateAsync(listUpdateRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for listRemoveMember
-     * @param id The ID of the List to remove a member. (required)
-     * @param userId The ID of User that will be removed from the List. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Update List.
+     * Update a List that you own.
+     * @param id The ID of the List to modify. (required)
+     * @return APIlistIdUpdateRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -998,7 +1227,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listRemoveMemberCall(String id, String userId, final ApiCallback _callback) throws ApiException {
+    public APIlistIdUpdateRequest listIdUpdate(String id) {
+        return new APIlistIdUpdateRequest(id);
+    }
+    private okhttp3.Call listRemoveMemberCall(String id, String userId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1051,58 +1283,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Remove a List member
-     * Causes a User to be removed from the members of a List.
-     * @param id The ID of the List to remove a member. (required)
-     * @param userId The ID of User that will be removed from the List. (required)
-     * @return ListMutateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListMutateResponse listRemoveMember(String id, String userId) throws ApiException {
-      ApiResponse<ListMutateResponse> localVarResp = listRemoveMemberWithHttpInfo(id, userId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListMutateResponse listRemoveMember(Integer retries, String id, String userId) throws ApiException {
-        ListMutateResponse localVarResp;
-        try{
-          localVarResp = listRemoveMember(id, userId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listRemoveMember(retries - 1, id, userId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Remove a List member
-     * Causes a User to be removed from the members of a List.
-     * @param id The ID of the List to remove a member. (required)
-     * @param userId The ID of User that will be removed from the List. (required)
-     * @return ApiResponse&lt;ListMutateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListMutateResponse> listRemoveMemberWithHttpInfo(String id, String userId) throws ApiException {
+    private ApiResponse<ListMutateResponse> listRemoveMemberWithHttpInfo(String id, String userId) throws ApiException {
         okhttp3.Call localVarCall = listRemoveMemberValidateBeforeCall(id, userId, null);
         try {
             Type localVarReturnType = new TypeToken<ListMutateResponse>(){}.getType();
@@ -1113,35 +1295,109 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Remove a List member (asynchronously)
-     * Causes a User to be removed from the members of a List.
-     * @param id The ID of the List to remove a member. (required)
-     * @param userId The ID of User that will be removed from the List. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listRemoveMemberAsync(String id, String userId, final ApiCallback<ListMutateResponse> _callback) throws ApiException {
+    private okhttp3.Call listRemoveMemberAsync(String id, String userId, final ApiCallback<ListMutateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listRemoveMemberValidateBeforeCall(id, userId, _callback);
         Type localVarReturnType = new TypeToken<ListMutateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistRemoveMemberRequest {
+        private final String id;
+        private final String userId;
+
+        private APIlistRemoveMemberRequest(String id, String userId) {
+            this.id = id;
+            this.userId = userId;
+        }
+
+        /**
+         * Build call for listRemoveMember
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listRemoveMemberCall(id, userId, _callback);
+        }
+
+        /**
+         * Execute listRemoveMember request
+         * @return ListMutateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListMutateResponse execute() throws ApiException {
+            ApiResponse<ListMutateResponse> localVarResp = listRemoveMemberWithHttpInfo(id, userId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListMutateResponse  execute(Integer retries) throws ApiException {
+          ListMutateResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listRemoveMember request with HTTP info returned
+         * @return ApiResponse&lt;ListMutateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListMutateResponse> executeWithHttpInfo() throws ApiException {
+              return listRemoveMemberWithHttpInfo(id, userId);
+            }
+        /**
+         * Execute listRemoveMember request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListMutateResponse> _callback) throws ApiException {
+            return listRemoveMemberAsync(id, userId, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserFollow
-     * @param listFollowedRequest  (optional)
-     * @param id The ID of the authenticated source User that will follow the List. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Remove a List member
+     * Causes a User to be removed from the members of a List.
+     * @param id The ID of the List to remove a member. (required)
+     * @param userId The ID of User that will be removed from the List. (required)
+     * @return APIlistRemoveMemberRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1149,7 +1405,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserFollowCall(ListFollowedRequest listFollowedRequest, String id, final ApiCallback _callback) throws ApiException {
+    public APIlistRemoveMemberRequest listRemoveMember(String id, String userId) {
+        return new APIlistRemoveMemberRequest(id, userId);
+    }
+    private okhttp3.Call listUserFollowCall(ListFollowedRequest listFollowedRequest, String id, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = listFollowedRequest;
 
         // create path and map variables
@@ -1196,58 +1455,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Follow a List
-     * Causes a User to follow a List.
-     * @param listFollowedRequest  (optional)
-     * @param id The ID of the authenticated source User that will follow the List. (required)
-     * @return ListFollowedResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListFollowedResponse listUserFollow(ListFollowedRequest listFollowedRequest, String id) throws ApiException {
-      ApiResponse<ListFollowedResponse> localVarResp = listUserFollowWithHttpInfo(listFollowedRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListFollowedResponse listUserFollow(Integer retries, ListFollowedRequest listFollowedRequest, String id) throws ApiException {
-        ListFollowedResponse localVarResp;
-        try{
-          localVarResp = listUserFollow(listFollowedRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserFollow(retries - 1, listFollowedRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Follow a List
-     * Causes a User to follow a List.
-     * @param listFollowedRequest  (optional)
-     * @param id The ID of the authenticated source User that will follow the List. (required)
-     * @return ApiResponse&lt;ListFollowedResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListFollowedResponse> listUserFollowWithHttpInfo(ListFollowedRequest listFollowedRequest, String id) throws ApiException {
+    private ApiResponse<ListFollowedResponse> listUserFollowWithHttpInfo(ListFollowedRequest listFollowedRequest, String id) throws ApiException {
         okhttp3.Call localVarCall = listUserFollowValidateBeforeCall(listFollowedRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<ListFollowedResponse>(){}.getType();
@@ -1258,39 +1467,117 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Follow a List (asynchronously)
-     * Causes a User to follow a List.
-     * @param listFollowedRequest  (optional)
-     * @param id The ID of the authenticated source User that will follow the List. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserFollowAsync(ListFollowedRequest listFollowedRequest, String id, final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserFollowAsync(ListFollowedRequest listFollowedRequest, String id, final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserFollowValidateBeforeCall(listFollowedRequest, id, _callback);
         Type localVarReturnType = new TypeToken<ListFollowedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserFollowRequest {
+        private final String id;
+        private ListFollowedRequest listFollowedRequest;
+
+        private APIlistUserFollowRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set listFollowedRequest
+         * @param listFollowedRequest  (optional)
+         * @return APIlistUserFollowRequest
+         */
+        public APIlistUserFollowRequest listFollowedRequest(ListFollowedRequest listFollowedRequest) {
+            this.listFollowedRequest = listFollowedRequest;
+            return this;
+        }
+
+        /**
+         * Build call for listUserFollow
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserFollowCall(listFollowedRequest, id, _callback);
+        }
+
+        /**
+         * Execute listUserFollow request
+         * @return ListFollowedResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListFollowedResponse execute() throws ApiException {
+            ApiResponse<ListFollowedResponse> localVarResp = listUserFollowWithHttpInfo(listFollowedRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListFollowedResponse  execute(Integer retries) throws ApiException {
+          ListFollowedResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserFollow request with HTTP info returned
+         * @return ApiResponse&lt;ListFollowedResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListFollowedResponse> executeWithHttpInfo() throws ApiException {
+              return listUserFollowWithHttpInfo(listFollowedRequest, id);
+            }
+        /**
+         * Execute listUserFollow request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
+            return listUserFollowAsync(listFollowedRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserOwnedLists
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Follow a List
+     * Causes a User to follow a List.
+     * @param id The ID of the authenticated source User that will follow the List. (required)
+     * @return APIlistUserFollowRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1298,7 +1585,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserOwnedListsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIlistUserFollowRequest listUserFollow(String id) {
+        return new APIlistUserFollowRequest(id);
+    }
+    private okhttp3.Call listUserOwnedListsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1365,66 +1655,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Get a User&#39;s Owned Lists.
-     * Get a User&#39;s Owned Lists.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return Get2UsersIdOwnedListsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Get2UsersIdOwnedListsResponse listUserOwnedLists(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-      ApiResponse<Get2UsersIdOwnedListsResponse> localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Get2UsersIdOwnedListsResponse listUserOwnedLists(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        Get2UsersIdOwnedListsResponse localVarResp;
-        try{
-          localVarResp = listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserOwnedLists(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Get a User&#39;s Owned Lists.
-     * Get a User&#39;s Owned Lists.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;Get2UsersIdOwnedListsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Get2UsersIdOwnedListsResponse> listUserOwnedListsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+    private ApiResponse<Get2UsersIdOwnedListsResponse> listUserOwnedListsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
         okhttp3.Call localVarCall = listUserOwnedListsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, null);
         try {
             Type localVarReturnType = new TypeToken<Get2UsersIdOwnedListsResponse>(){}.getType();
@@ -1435,39 +1667,161 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Get a User&#39;s Owned Lists. (asynchronously)
-     * Get a User&#39;s Owned Lists.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserOwnedListsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdOwnedListsResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserOwnedListsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdOwnedListsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserOwnedListsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
         Type localVarReturnType = new TypeToken<Get2UsersIdOwnedListsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserOwnedListsRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> listFields;
+        private Set<String> expansions;
+        private Set<String> userFields;
+
+        private APIlistUserOwnedListsRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIlistUserOwnedListsRequest
+         */
+        public APIlistUserOwnedListsRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIlistUserOwnedListsRequest
+         */
+        public APIlistUserOwnedListsRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set listFields
+         * @param listFields A comma separated list of List fields to display. (optional)
+         * @return APIlistUserOwnedListsRequest
+         */
+        public APIlistUserOwnedListsRequest listFields(Set<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIlistUserOwnedListsRequest
+         */
+        public APIlistUserOwnedListsRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIlistUserOwnedListsRequest
+         */
+        public APIlistUserOwnedListsRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Build call for listUserOwnedLists
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserOwnedListsCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+
+        /**
+         * Execute listUserOwnedLists request
+         * @return Get2UsersIdOwnedListsResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdOwnedListsResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdOwnedListsResponse> localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdOwnedListsResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdOwnedListsResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserOwnedLists request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdOwnedListsResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdOwnedListsResponse> executeWithHttpInfo() throws ApiException {
+              return listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            }
+        /**
+         * Execute listUserOwnedLists request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdOwnedListsResponse> _callback) throws ApiException {
+            return listUserOwnedListsAsync(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserPin
-     * @param listPinnedRequest  (required)
-     * @param id The ID of the authenticated source User that will pin the List. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Get a User&#39;s Owned Lists.
+     * Get a User&#39;s Owned Lists.
+     * @param id The ID of the User to lookup. (required)
+     * @return APIlistUserOwnedListsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1475,7 +1829,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserPinCall(ListPinnedRequest listPinnedRequest, String id, final ApiCallback _callback) throws ApiException {
+    public APIlistUserOwnedListsRequest listUserOwnedLists(String id) {
+        return new APIlistUserOwnedListsRequest(id);
+    }
+    private okhttp3.Call listUserPinCall(ListPinnedRequest listPinnedRequest, String id, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = listPinnedRequest;
 
         // create path and map variables
@@ -1527,58 +1884,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Pin a List
-     * Causes a User to pin a List.
-     * @param listPinnedRequest  (required)
-     * @param id The ID of the authenticated source User that will pin the List. (required)
-     * @return ListPinnedResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListPinnedResponse listUserPin(ListPinnedRequest listPinnedRequest, String id) throws ApiException {
-      ApiResponse<ListPinnedResponse> localVarResp = listUserPinWithHttpInfo(listPinnedRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListPinnedResponse listUserPin(Integer retries, ListPinnedRequest listPinnedRequest, String id) throws ApiException {
-        ListPinnedResponse localVarResp;
-        try{
-          localVarResp = listUserPin(listPinnedRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserPin(retries - 1, listPinnedRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Pin a List
-     * Causes a User to pin a List.
-     * @param listPinnedRequest  (required)
-     * @param id The ID of the authenticated source User that will pin the List. (required)
-     * @return ApiResponse&lt;ListPinnedResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListPinnedResponse> listUserPinWithHttpInfo(ListPinnedRequest listPinnedRequest, String id) throws ApiException {
+    private ApiResponse<ListPinnedResponse> listUserPinWithHttpInfo(ListPinnedRequest listPinnedRequest, String id) throws ApiException {
         okhttp3.Call localVarCall = listUserPinValidateBeforeCall(listPinnedRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<ListPinnedResponse>(){}.getType();
@@ -1589,37 +1896,109 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Pin a List (asynchronously)
-     * Causes a User to pin a List.
-     * @param listPinnedRequest  (required)
-     * @param id The ID of the authenticated source User that will pin the List. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserPinAsync(ListPinnedRequest listPinnedRequest, String id, final ApiCallback<ListPinnedResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserPinAsync(ListPinnedRequest listPinnedRequest, String id, final ApiCallback<ListPinnedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserPinValidateBeforeCall(listPinnedRequest, id, _callback);
         Type localVarReturnType = new TypeToken<ListPinnedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserPinRequest {
+        private final ListPinnedRequest listPinnedRequest;
+        private final String id;
+
+        private APIlistUserPinRequest(ListPinnedRequest listPinnedRequest, String id) {
+            this.listPinnedRequest = listPinnedRequest;
+            this.id = id;
+        }
+
+        /**
+         * Build call for listUserPin
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserPinCall(listPinnedRequest, id, _callback);
+        }
+
+        /**
+         * Execute listUserPin request
+         * @return ListPinnedResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListPinnedResponse execute() throws ApiException {
+            ApiResponse<ListPinnedResponse> localVarResp = listUserPinWithHttpInfo(listPinnedRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListPinnedResponse  execute(Integer retries) throws ApiException {
+          ListPinnedResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserPin request with HTTP info returned
+         * @return ApiResponse&lt;ListPinnedResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListPinnedResponse> executeWithHttpInfo() throws ApiException {
+              return listUserPinWithHttpInfo(listPinnedRequest, id);
+            }
+        /**
+         * Execute listUserPin request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListPinnedResponse> _callback) throws ApiException {
+            return listUserPinAsync(listPinnedRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserPinnedLists
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Pin a List
+     * Causes a User to pin a List.
+     * @param listPinnedRequest  (required)
+     * @param id The ID of the authenticated source User that will pin the List. (required)
+     * @return APIlistUserPinRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1627,7 +2006,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserPinnedListsCall(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIlistUserPinRequest listUserPin(ListPinnedRequest listPinnedRequest, String id) {
+        return new APIlistUserPinRequest(listPinnedRequest, id);
+    }
+    private okhttp3.Call listUserPinnedListsCall(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1686,62 +2068,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Get a User&#39;s Pinned Lists
-     * Get a User&#39;s Pinned Lists.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return Get2UsersIdPinnedListsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Get2UsersIdPinnedListsResponse listUserPinnedLists(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-      ApiResponse<Get2UsersIdPinnedListsResponse> localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Get2UsersIdPinnedListsResponse listUserPinnedLists(Integer retries, String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        Get2UsersIdPinnedListsResponse localVarResp;
-        try{
-          localVarResp = listUserPinnedLists(id, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserPinnedLists(retries - 1, id, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Get a User&#39;s Pinned Lists
-     * Get a User&#39;s Pinned Lists.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;Get2UsersIdPinnedListsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Get2UsersIdPinnedListsResponse> listUserPinnedListsWithHttpInfo(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+    private ApiResponse<Get2UsersIdPinnedListsResponse> listUserPinnedListsWithHttpInfo(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
         okhttp3.Call localVarCall = listUserPinnedListsValidateBeforeCall(id, listFields, expansions, userFields, null);
         try {
             Type localVarReturnType = new TypeToken<Get2UsersIdPinnedListsResponse>(){}.getType();
@@ -1752,37 +2080,139 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Get a User&#39;s Pinned Lists (asynchronously)
-     * Get a User&#39;s Pinned Lists.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserPinnedListsAsync(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdPinnedListsResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserPinnedListsAsync(String id, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdPinnedListsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserPinnedListsValidateBeforeCall(id, listFields, expansions, userFields, _callback);
         Type localVarReturnType = new TypeToken<Get2UsersIdPinnedListsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserPinnedListsRequest {
+        private final String id;
+        private Set<String> listFields;
+        private Set<String> expansions;
+        private Set<String> userFields;
+
+        private APIlistUserPinnedListsRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set listFields
+         * @param listFields A comma separated list of List fields to display. (optional)
+         * @return APIlistUserPinnedListsRequest
+         */
+        public APIlistUserPinnedListsRequest listFields(Set<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIlistUserPinnedListsRequest
+         */
+        public APIlistUserPinnedListsRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIlistUserPinnedListsRequest
+         */
+        public APIlistUserPinnedListsRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Build call for listUserPinnedLists
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserPinnedListsCall(id, listFields, expansions, userFields, _callback);
+        }
+
+        /**
+         * Execute listUserPinnedLists request
+         * @return Get2UsersIdPinnedListsResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdPinnedListsResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdPinnedListsResponse> localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdPinnedListsResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdPinnedListsResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserPinnedLists request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdPinnedListsResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdPinnedListsResponse> executeWithHttpInfo() throws ApiException {
+              return listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
+            }
+        /**
+         * Execute listUserPinnedLists request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdPinnedListsResponse> _callback) throws ApiException {
+            return listUserPinnedListsAsync(id, listFields, expansions, userFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserUnfollow
-     * @param id The ID of the authenticated source User that will unfollow the List. (required)
-     * @param listId The ID of the List to unfollow. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Get a User&#39;s Pinned Lists
+     * Get a User&#39;s Pinned Lists.
+     * @param id The ID of the authenticated source User for whom to return results. (required)
+     * @return APIlistUserPinnedListsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1790,7 +2220,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserUnfollowCall(String id, String listId, final ApiCallback _callback) throws ApiException {
+    public APIlistUserPinnedListsRequest listUserPinnedLists(String id) {
+        return new APIlistUserPinnedListsRequest(id);
+    }
+    private okhttp3.Call listUserUnfollowCall(String id, String listId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1843,58 +2276,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Unfollow a List
-     * Causes a User to unfollow a List.
-     * @param id The ID of the authenticated source User that will unfollow the List. (required)
-     * @param listId The ID of the List to unfollow. (required)
-     * @return ListFollowedResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListFollowedResponse listUserUnfollow(String id, String listId) throws ApiException {
-      ApiResponse<ListFollowedResponse> localVarResp = listUserUnfollowWithHttpInfo(id, listId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListFollowedResponse listUserUnfollow(Integer retries, String id, String listId) throws ApiException {
-        ListFollowedResponse localVarResp;
-        try{
-          localVarResp = listUserUnfollow(id, listId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserUnfollow(retries - 1, id, listId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Unfollow a List
-     * Causes a User to unfollow a List.
-     * @param id The ID of the authenticated source User that will unfollow the List. (required)
-     * @param listId The ID of the List to unfollow. (required)
-     * @return ApiResponse&lt;ListFollowedResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListFollowedResponse> listUserUnfollowWithHttpInfo(String id, String listId) throws ApiException {
+    private ApiResponse<ListFollowedResponse> listUserUnfollowWithHttpInfo(String id, String listId) throws ApiException {
         okhttp3.Call localVarCall = listUserUnfollowValidateBeforeCall(id, listId, null);
         try {
             Type localVarReturnType = new TypeToken<ListFollowedResponse>(){}.getType();
@@ -1905,35 +2288,109 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Unfollow a List (asynchronously)
-     * Causes a User to unfollow a List.
-     * @param id The ID of the authenticated source User that will unfollow the List. (required)
-     * @param listId The ID of the List to unfollow. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserUnfollowAsync(String id, String listId, final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserUnfollowAsync(String id, String listId, final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserUnfollowValidateBeforeCall(id, listId, _callback);
         Type localVarReturnType = new TypeToken<ListFollowedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserUnfollowRequest {
+        private final String id;
+        private final String listId;
+
+        private APIlistUserUnfollowRequest(String id, String listId) {
+            this.id = id;
+            this.listId = listId;
+        }
+
+        /**
+         * Build call for listUserUnfollow
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserUnfollowCall(id, listId, _callback);
+        }
+
+        /**
+         * Execute listUserUnfollow request
+         * @return ListFollowedResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListFollowedResponse execute() throws ApiException {
+            ApiResponse<ListFollowedResponse> localVarResp = listUserUnfollowWithHttpInfo(id, listId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListFollowedResponse  execute(Integer retries) throws ApiException {
+          ListFollowedResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserUnfollow request with HTTP info returned
+         * @return ApiResponse&lt;ListFollowedResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListFollowedResponse> executeWithHttpInfo() throws ApiException {
+              return listUserUnfollowWithHttpInfo(id, listId);
+            }
+        /**
+         * Execute listUserUnfollow request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListFollowedResponse> _callback) throws ApiException {
+            return listUserUnfollowAsync(id, listId, _callback);
+        }
+    }
+
     /**
-     * Build call for listUserUnpin
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listId The ID of the List to unpin. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Unfollow a List
+     * Causes a User to unfollow a List.
+     * @param id The ID of the authenticated source User that will unfollow the List. (required)
+     * @param listId The ID of the List to unfollow. (required)
+     * @return APIlistUserUnfollowRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1941,7 +2398,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listUserUnpinCall(String id, String listId, final ApiCallback _callback) throws ApiException {
+    public APIlistUserUnfollowRequest listUserUnfollow(String id, String listId) {
+        return new APIlistUserUnfollowRequest(id, listId);
+    }
+    private okhttp3.Call listUserUnpinCall(String id, String listId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1994,58 +2454,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Unpin a List
-     * Causes a User to remove a pinned List.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listId The ID of the List to unpin. (required)
-     * @return ListUnpinResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListUnpinResponse listUserUnpin(String id, String listId) throws ApiException {
-      ApiResponse<ListUnpinResponse> localVarResp = listUserUnpinWithHttpInfo(id, listId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListUnpinResponse listUserUnpin(Integer retries, String id, String listId) throws ApiException {
-        ListUnpinResponse localVarResp;
-        try{
-          localVarResp = listUserUnpin(id, listId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listUserUnpin(retries - 1, id, listId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Unpin a List
-     * Causes a User to remove a pinned List.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listId The ID of the List to unpin. (required)
-     * @return ApiResponse&lt;ListUnpinResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListUnpinResponse> listUserUnpinWithHttpInfo(String id, String listId) throws ApiException {
+    private ApiResponse<ListUnpinResponse> listUserUnpinWithHttpInfo(String id, String listId) throws ApiException {
         okhttp3.Call localVarCall = listUserUnpinValidateBeforeCall(id, listId, null);
         try {
             Type localVarReturnType = new TypeToken<ListUnpinResponse>(){}.getType();
@@ -2056,39 +2466,109 @@ public class ListsApi extends ApiCommon {
         }
     }
 
-    /**
-     * Unpin a List (asynchronously)
-     * Causes a User to remove a pinned List.
-     * @param id The ID of the authenticated source User for whom to return results. (required)
-     * @param listId The ID of the List to unpin. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listUserUnpinAsync(String id, String listId, final ApiCallback<ListUnpinResponse> _callback) throws ApiException {
+    private okhttp3.Call listUserUnpinAsync(String id, String listId, final ApiCallback<ListUnpinResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listUserUnpinValidateBeforeCall(id, listId, _callback);
         Type localVarReturnType = new TypeToken<ListUnpinResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistUserUnpinRequest {
+        private final String id;
+        private final String listId;
+
+        private APIlistUserUnpinRequest(String id, String listId) {
+            this.id = id;
+            this.listId = listId;
+        }
+
+        /**
+         * Build call for listUserUnpin
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listUserUnpinCall(id, listId, _callback);
+        }
+
+        /**
+         * Execute listUserUnpin request
+         * @return ListUnpinResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListUnpinResponse execute() throws ApiException {
+            ApiResponse<ListUnpinResponse> localVarResp = listUserUnpinWithHttpInfo(id, listId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public ListUnpinResponse  execute(Integer retries) throws ApiException {
+          ListUnpinResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listUserUnpin request with HTTP info returned
+         * @return ApiResponse&lt;ListUnpinResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<ListUnpinResponse> executeWithHttpInfo() throws ApiException {
+              return listUserUnpinWithHttpInfo(id, listId);
+            }
+        /**
+         * Execute listUserUnpin request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListUnpinResponse> _callback) throws ApiException {
+            return listUserUnpinAsync(id, listId, _callback);
+        }
+    }
+
     /**
-     * Build call for userFollowedLists
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Unpin a List
+     * Causes a User to remove a pinned List.
+     * @param id The ID of the authenticated source User for whom to return results. (required)
+     * @param listId The ID of the List to unpin. (required)
+     * @return APIlistUserUnpinRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -2096,7 +2576,10 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call userFollowedListsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIlistUserUnpinRequest listUserUnpin(String id, String listId) {
+        return new APIlistUserUnpinRequest(id, listId);
+    }
+    private okhttp3.Call userFollowedListsCall(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2163,66 +2646,8 @@ public class ListsApi extends ApiCommon {
 
     }
 
-    /**
-     * Get User&#39;s Followed Lists
-     * Returns a User&#39;s followed Lists.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return Get2UsersIdFollowedListsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Get2UsersIdFollowedListsResponse userFollowedLists(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-      ApiResponse<Get2UsersIdFollowedListsResponse> localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Get2UsersIdFollowedListsResponse userFollowedLists(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
-        Get2UsersIdFollowedListsResponse localVarResp;
-        try{
-          localVarResp = userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return userFollowedLists(retries - 1, id, maxResults, paginationToken, listFields, expansions, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Get User&#39;s Followed Lists
-     * Returns a User&#39;s followed Lists.
-     * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;Get2UsersIdFollowedListsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Get2UsersIdFollowedListsResponse> userFollowedListsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
+    private ApiResponse<Get2UsersIdFollowedListsResponse> userFollowedListsWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields) throws ApiException {
         okhttp3.Call localVarCall = userFollowedListsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, null);
         try {
             Type localVarReturnType = new TypeToken<Get2UsersIdFollowedListsResponse>(){}.getType();
@@ -2233,18 +2658,161 @@ public class ListsApi extends ApiCommon {
         }
     }
 
+    private okhttp3.Call userFollowedListsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdFollowedListsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = userFollowedListsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdFollowedListsResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIuserFollowedListsRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> listFields;
+        private Set<String> expansions;
+        private Set<String> userFields;
+
+        private APIuserFollowedListsRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIuserFollowedListsRequest
+         */
+        public APIuserFollowedListsRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIuserFollowedListsRequest
+         */
+        public APIuserFollowedListsRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set listFields
+         * @param listFields A comma separated list of List fields to display. (optional)
+         * @return APIuserFollowedListsRequest
+         */
+        public APIuserFollowedListsRequest listFields(Set<String> listFields) {
+            this.listFields = listFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIuserFollowedListsRequest
+         */
+        public APIuserFollowedListsRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIuserFollowedListsRequest
+         */
+        public APIuserFollowedListsRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Build call for userFollowedLists
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return userFollowedListsCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+
+        /**
+         * Execute userFollowedLists request
+         * @return Get2UsersIdFollowedListsResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdFollowedListsResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdFollowedListsResponse> localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdFollowedListsResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdFollowedListsResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute userFollowedLists request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdFollowedListsResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdFollowedListsResponse> executeWithHttpInfo() throws ApiException {
+              return userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
+            }
+        /**
+         * Execute userFollowedLists request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdFollowedListsResponse> _callback) throws ApiException {
+            return userFollowedListsAsync(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
+        }
+    }
+
     /**
-     * Get User&#39;s Followed Lists (asynchronously)
+     * Get User&#39;s Followed Lists
      * Returns a User&#39;s followed Lists.
      * @param id The ID of the User to lookup. (required)
-     * @param maxResults The maximum number of results. (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param listFields A comma separated list of List fields to display. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @return APIuserFollowedListsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -2252,11 +2820,7 @@ public class ListsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call userFollowedListsAsync(String id, Integer maxResults, String paginationToken, Set<String> listFields, Set<String> expansions, Set<String> userFields, final ApiCallback<Get2UsersIdFollowedListsResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = userFollowedListsValidateBeforeCall(id, maxResults, paginationToken, listFields, expansions, userFields, _callback);
-        Type localVarReturnType = new TypeToken<Get2UsersIdFollowedListsResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public APIuserFollowedListsRequest userFollowedLists(String id) {
+        return new APIuserFollowedListsRequest(id);
     }
 }

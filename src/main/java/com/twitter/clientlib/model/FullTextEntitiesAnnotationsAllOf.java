@@ -29,8 +29,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.EntityIndicesInclusiveInclusive;
-import com.twitter.clientlib.model.FullTextEntitiesAnnotationsInnerAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -56,19 +54,11 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Annotation for entities based on the Tweet text.
+ * Represents the data for the annotation.
  */
-@ApiModel(description = "Annotation for entities based on the Tweet text.")
+@ApiModel(description = "Represents the data for the annotation.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FullTextEntitiesAnnotationsInner {
-  public static final String SERIALIZED_NAME_END = "end";
-  @SerializedName(SERIALIZED_NAME_END)
-  private Integer end;
-
-  public static final String SERIALIZED_NAME_START = "start";
-  @SerializedName(SERIALIZED_NAME_START)
-  private Integer start;
-
+public class FullTextEntitiesAnnotationsAllOf {
   public static final String SERIALIZED_NAME_NORMALIZED_TEXT = "normalized_text";
   @SerializedName(SERIALIZED_NAME_NORMALIZED_TEXT)
   private String normalizedText;
@@ -81,58 +71,10 @@ public class FullTextEntitiesAnnotationsInner {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
-  public FullTextEntitiesAnnotationsInner() { 
+  public FullTextEntitiesAnnotationsAllOf() { 
   }
 
-  public FullTextEntitiesAnnotationsInner end(Integer end) {
-    
-    this.end = end;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity ends.  The index is inclusive.
-   * minimum: 0
-   * @return end
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "61", required = true, value = "Index (zero-based) at which position this entity ends.  The index is inclusive.")
-
-  public Integer getEnd() {
-    return end;
-  }
-
-
-  public void setEnd(Integer end) {
-    this.end = end;
-  }
-
-
-  public FullTextEntitiesAnnotationsInner start(Integer start) {
-    
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity starts.  The index is inclusive.
-   * minimum: 0
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
-
-  public Integer getStart() {
-    return start;
-  }
-
-
-  public void setStart(Integer start) {
-    this.start = start;
-  }
-
-
-  public FullTextEntitiesAnnotationsInner normalizedText(String normalizedText) {
+  public FullTextEntitiesAnnotationsAllOf normalizedText(String normalizedText) {
     
     this.normalizedText = normalizedText;
     return this;
@@ -155,7 +97,7 @@ public class FullTextEntitiesAnnotationsInner {
   }
 
 
-  public FullTextEntitiesAnnotationsInner probability(Double probability) {
+  public FullTextEntitiesAnnotationsAllOf probability(Double probability) {
     
     this.probability = probability;
     return this;
@@ -180,7 +122,7 @@ public class FullTextEntitiesAnnotationsInner {
   }
 
 
-  public FullTextEntitiesAnnotationsInner type(String type) {
+  public FullTextEntitiesAnnotationsAllOf type(String type) {
     
     this.type = type;
     return this;
@@ -212,25 +154,21 @@ public class FullTextEntitiesAnnotationsInner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FullTextEntitiesAnnotationsInner fullTextEntitiesAnnotationsInner = (FullTextEntitiesAnnotationsInner) o;
-    return Objects.equals(this.end, fullTextEntitiesAnnotationsInner.end) &&
-        Objects.equals(this.start, fullTextEntitiesAnnotationsInner.start) &&
-        Objects.equals(this.normalizedText, fullTextEntitiesAnnotationsInner.normalizedText) &&
-        Objects.equals(this.probability, fullTextEntitiesAnnotationsInner.probability) &&
-        Objects.equals(this.type, fullTextEntitiesAnnotationsInner.type);
+    FullTextEntitiesAnnotationsAllOf fullTextEntitiesAnnotationsAllOf = (FullTextEntitiesAnnotationsAllOf) o;
+    return Objects.equals(this.normalizedText, fullTextEntitiesAnnotationsAllOf.normalizedText) &&
+        Objects.equals(this.probability, fullTextEntitiesAnnotationsAllOf.probability) &&
+        Objects.equals(this.type, fullTextEntitiesAnnotationsAllOf.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(end, start, normalizedText, probability, type);
+    return Objects.hash(normalizedText, probability, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FullTextEntitiesAnnotationsInner {\n");
-    sb.append("    end: ").append(toIndentedString(end)).append("\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
+    sb.append("class FullTextEntitiesAnnotationsAllOf {\n");
     sb.append("    normalizedText: ").append(toIndentedString(normalizedText)).append("\n");
     sb.append("    probability: ").append(toIndentedString(probability)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
@@ -256,40 +194,29 @@ public class FullTextEntitiesAnnotationsInner {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("end");
-    openapiFields.add("start");
     openapiFields.add("normalized_text");
     openapiFields.add("probability");
     openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("end");
-    openapiRequiredFields.add("start");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to FullTextEntitiesAnnotationsInner
+  * @throws IOException if the JSON Object is invalid with respect to FullTextEntitiesAnnotationsAllOf
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (FullTextEntitiesAnnotationsInner.openapiRequiredFields.isEmpty()) {
+     //   if (FullTextEntitiesAnnotationsAllOf.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in FullTextEntitiesAnnotationsInner is not found in the empty JSON string", FullTextEntitiesAnnotationsInner.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in FullTextEntitiesAnnotationsAllOf is not found in the empty JSON string", FullTextEntitiesAnnotationsAllOf.openapiRequiredFields.toString()));
      //   }
      // }
 
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FullTextEntitiesAnnotationsInner.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
       if (jsonObj.get("normalized_text") != null && !jsonObj.get("normalized_text").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `normalized_text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("normalized_text").toString()));
       }
@@ -302,22 +229,22 @@ public class FullTextEntitiesAnnotationsInner {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FullTextEntitiesAnnotationsInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FullTextEntitiesAnnotationsInner' and its subtypes
+       if (!FullTextEntitiesAnnotationsAllOf.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FullTextEntitiesAnnotationsAllOf' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FullTextEntitiesAnnotationsInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FullTextEntitiesAnnotationsInner.class));
+       final TypeAdapter<FullTextEntitiesAnnotationsAllOf> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FullTextEntitiesAnnotationsAllOf.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FullTextEntitiesAnnotationsInner>() {
+       return (TypeAdapter<T>) new TypeAdapter<FullTextEntitiesAnnotationsAllOf>() {
            @Override
-           public void write(JsonWriter out, FullTextEntitiesAnnotationsInner value) throws IOException {
+           public void write(JsonWriter out, FullTextEntitiesAnnotationsAllOf value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FullTextEntitiesAnnotationsInner read(JsonReader in) throws IOException {
+           public FullTextEntitiesAnnotationsAllOf read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -328,18 +255,18 @@ public class FullTextEntitiesAnnotationsInner {
   }
 
  /**
-  * Create an instance of FullTextEntitiesAnnotationsInner given an JSON string
+  * Create an instance of FullTextEntitiesAnnotationsAllOf given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of FullTextEntitiesAnnotationsInner
-  * @throws IOException if the JSON string is invalid with respect to FullTextEntitiesAnnotationsInner
+  * @return An instance of FullTextEntitiesAnnotationsAllOf
+  * @throws IOException if the JSON string is invalid with respect to FullTextEntitiesAnnotationsAllOf
   */
-  public static FullTextEntitiesAnnotationsInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FullTextEntitiesAnnotationsInner.class);
+  public static FullTextEntitiesAnnotationsAllOf fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FullTextEntitiesAnnotationsAllOf.class);
   }
 
  /**
-  * Convert an instance of FullTextEntitiesAnnotationsInner to an JSON string
+  * Convert an instance of FullTextEntitiesAnnotationsAllOf to an JSON string
   *
   * @return JSON string
   */

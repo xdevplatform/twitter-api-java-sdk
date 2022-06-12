@@ -51,7 +51,8 @@ public class GeneralApiTest {
      */
     @Test
     public void getOpenApiSpecTest() throws ApiException {
-                Object response = apiInstance.general().getOpenApiSpec();
+                Object response = apiInstance.general().getOpenApiSpec()
+                .execute();
         // TODO: test validations
     }
 

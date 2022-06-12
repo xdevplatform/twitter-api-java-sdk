@@ -9,7 +9,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="getOpenApiSpec"></a>
 # **getOpenApiSpec**
-> Object getOpenApiSpec()
+> Object getOpenApiSpec().execute();
 
 Returns the OpenAPI Specification document.
 
@@ -44,7 +44,8 @@ public class Example {
 
     // Set the params values
     try {
-           Object result = apiInstance.general().getOpenApiSpec();
+           Object result = apiInstance.general().getOpenApiSpec()
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralApi#getOpenApiSpec");

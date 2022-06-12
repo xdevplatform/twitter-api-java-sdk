@@ -1,6 +1,6 @@
 
 
-# FilteredStreamingTweetResponseMatchingRulesInner
+# FilteredStreamingTweetResponseMatchingRules
 
 
 ## Properties

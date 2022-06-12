@@ -35,41 +35,41 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for FullTextEntitiesAnnotationsInnerAllOf
+ * Model tests for SpaceTopics
  */
-public class FullTextEntitiesAnnotationsInnerAllOfTest {
-    private final FullTextEntitiesAnnotationsInnerAllOf model = new FullTextEntitiesAnnotationsInnerAllOf();
+public class SpaceTopicsTest {
+    private final SpaceTopics model = new SpaceTopics();
 
     /**
-     * Model tests for FullTextEntitiesAnnotationsInnerAllOf
+     * Model tests for SpaceTopics
      */
     @Test
-    public void testFullTextEntitiesAnnotationsInnerAllOf() {
-        // TODO: test FullTextEntitiesAnnotationsInnerAllOf
+    public void testSpaceTopics() {
+        // TODO: test SpaceTopics
     }
 
     /**
-     * Test the property 'normalizedText'
+     * Test the property 'description'
      */
     @Test
-    public void normalizedTextTest() {
-        // TODO: test normalizedText
+    public void descriptionTest() {
+        // TODO: test description
     }
 
     /**
-     * Test the property 'probability'
+     * Test the property 'id'
      */
     @Test
-    public void probabilityTest() {
-        // TODO: test probability
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'name'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void nameTest() {
+        // TODO: test name
     }
 
 }

@@ -77,7 +77,13 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                Get2UsersIdListMembershipsResponse response = apiInstance.lists().getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdListMembershipsResponse response = apiInstance.lists().getUserListMemberships(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -93,7 +99,9 @@ public class ListsApiTest {
     public void listAddMemberTest() throws ApiException {
         ListAddUserRequest listAddUserRequest = null;
         String id = null;
-                ListMutateResponse response = apiInstance.lists().listAddMember(listAddUserRequest, id);
+                ListMutateResponse response = apiInstance.lists().listAddMember(id)
+                .listAddUserRequest(listAddUserRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -108,7 +116,9 @@ public class ListsApiTest {
     @Test
     public void listIdCreateTest() throws ApiException {
         ListCreateRequest listCreateRequest = null;
-                ListCreateResponse response = apiInstance.lists().listIdCreate(listCreateRequest);
+                ListCreateResponse response = apiInstance.lists().listIdCreate()
+                .listCreateRequest(listCreateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -123,7 +133,8 @@ public class ListsApiTest {
     @Test
     public void listIdDeleteTest() throws ApiException {
         String id = null;
-                ListDeleteResponse response = apiInstance.lists().listIdDelete(id);
+                ListDeleteResponse response = apiInstance.lists().listIdDelete(id)
+                .execute();
         // TODO: test validations
     }
 
@@ -141,7 +152,11 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                Get2ListsIdResponse response = apiInstance.lists().listIdGet(id, listFields, expansions, userFields);
+                Get2ListsIdResponse response = apiInstance.lists().listIdGet(id)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -157,7 +172,9 @@ public class ListsApiTest {
     public void listIdUpdateTest() throws ApiException {
         ListUpdateRequest listUpdateRequest = null;
         String id = null;
-                ListUpdateResponse response = apiInstance.lists().listIdUpdate(listUpdateRequest, id);
+                ListUpdateResponse response = apiInstance.lists().listIdUpdate(id)
+                .listUpdateRequest(listUpdateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -173,7 +190,8 @@ public class ListsApiTest {
     public void listRemoveMemberTest() throws ApiException {
         String id = null;
         String userId = null;
-                ListMutateResponse response = apiInstance.lists().listRemoveMember(id, userId);
+                ListMutateResponse response = apiInstance.lists().listRemoveMember(id, userId)
+                .execute();
         // TODO: test validations
     }
 
@@ -189,7 +207,9 @@ public class ListsApiTest {
     public void listUserFollowTest() throws ApiException {
         ListFollowedRequest listFollowedRequest = null;
         String id = null;
-                ListFollowedResponse response = apiInstance.lists().listUserFollow(listFollowedRequest, id);
+                ListFollowedResponse response = apiInstance.lists().listUserFollow(id)
+                .listFollowedRequest(listFollowedRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -209,7 +229,13 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                Get2UsersIdOwnedListsResponse response = apiInstance.lists().listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdOwnedListsResponse response = apiInstance.lists().listUserOwnedLists(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -225,7 +251,8 @@ public class ListsApiTest {
     public void listUserPinTest() throws ApiException {
         ListPinnedRequest listPinnedRequest = null;
         String id = null;
-                ListPinnedResponse response = apiInstance.lists().listUserPin(listPinnedRequest, id);
+                ListPinnedResponse response = apiInstance.lists().listUserPin(listPinnedRequest, id)
+                .execute();
         // TODO: test validations
     }
 
@@ -243,7 +270,11 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                Get2UsersIdPinnedListsResponse response = apiInstance.lists().listUserPinnedLists(id, listFields, expansions, userFields);
+                Get2UsersIdPinnedListsResponse response = apiInstance.lists().listUserPinnedLists(id)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -259,7 +290,8 @@ public class ListsApiTest {
     public void listUserUnfollowTest() throws ApiException {
         String id = null;
         String listId = null;
-                ListFollowedResponse response = apiInstance.lists().listUserUnfollow(id, listId);
+                ListFollowedResponse response = apiInstance.lists().listUserUnfollow(id, listId)
+                .execute();
         // TODO: test validations
     }
 
@@ -275,7 +307,8 @@ public class ListsApiTest {
     public void listUserUnpinTest() throws ApiException {
         String id = null;
         String listId = null;
-                ListUnpinResponse response = apiInstance.lists().listUserUnpin(id, listId);
+                ListUnpinResponse response = apiInstance.lists().listUserUnpin(id, listId)
+                .execute();
         // TODO: test validations
     }
 
@@ -295,7 +328,13 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                Get2UsersIdFollowedListsResponse response = apiInstance.lists().userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdFollowedListsResponse response = apiInstance.lists().userFollowedLists(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
