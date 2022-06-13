@@ -32,6 +32,8 @@ import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.TweetsStreamListenersExecutor;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.*;
+import com.twitter.clientlib.query.StreamQueryParameters;
+import com.twitter.clientlib.query.model.TweetField;
 
 
 public class HelloWorldStreaming {
@@ -47,13 +49,11 @@ public class HelloWorldStreaming {
     TwitterApi apiInstance = new TwitterApi();
     apiInstance.setTwitterCredentials(credentials);
 
-    Set<String> tweetFields = new HashSet<>();
-    tweetFields.add("author_id");
-    tweetFields.add("id");
-    tweetFields.add("created_at");
-
     try {
-      InputStream streamResult = apiInstance.tweets().sampleStream(null, tweetFields, null , null, null, null, 0);
+      InputStream streamResult = apiInstance.tweets().sampleStream(
+              new StreamQueryParameters.Builder()
+                      .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+                      .build());
       // sampleStream with TweetsStreamListenersExecutor
       Responder responder = new Responder();
       TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);

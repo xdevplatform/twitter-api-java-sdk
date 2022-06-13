@@ -54,7 +54,6 @@ import com.twitter.clientlib.model.MultiUserLookupResponse;
 import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
 import com.twitter.clientlib.model.QuoteTweetLookupResponse;
-import java.util.Set;
 import com.twitter.clientlib.model.SingleTweetLookupResponse;
 import com.twitter.clientlib.model.StreamingTweet;
 import com.twitter.clientlib.model.TweetCountsResponse;
@@ -68,13 +67,14 @@ import com.twitter.clientlib.model.UsersLikesDeleteResponse;
 import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
 import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
 import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
+import com.twitter.clientlib.query.StreamQueryParameters;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
+import java.util.Set;
 import java.io.InputStream;
 import javax.ws.rs.core.GenericType;
 
@@ -1599,13 +1599,7 @@ public class TweetsApi extends ApiCommon {
     }
     /**
      * Build call for sampleStream
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1616,7 +1610,7 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sampleStreamCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call sampleStreamCall(StreamQueryParameters streamParameters, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1628,32 +1622,32 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (streamParameters.getExpansions() != null && !streamParameters.getExpansions().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", streamParameters.getExpansions()));
         }
 
-        if (tweetFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        if (streamParameters.getTweetFields() != null && !streamParameters.getTweetFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", streamParameters.getTweetFields()));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (streamParameters.getUserFields() != null && !streamParameters.getUserFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", streamParameters.getUserFields()));
         }
 
-        if (mediaFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        if (streamParameters.getMediaFields() != null && !streamParameters.getMediaFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", streamParameters.getMediaFields()));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        if (streamParameters.getPlaceFields() != null && !streamParameters.getPlaceFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", streamParameters.getPlaceFields()));
         }
 
-        if (pollFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        if (streamParameters.getPollFields() != null && !streamParameters.getPollFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", streamParameters.getPollFields()));
         }
 
-        if (backfillMinutes != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        if (streamParameters.getBackFillMinutes() != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", streamParameters.getBackFillMinutes()));
         }
 
         final String[] localVarAccepts = {
@@ -1677,10 +1671,10 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sampleStreamValidateBeforeCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sampleStreamValidateBeforeCall(StreamQueryParameters streamParameters, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = sampleStreamCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = sampleStreamCall(streamParameters, _callback);
         return localVarCall;
 
     }
@@ -1688,13 +1682,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @return StreamingTweet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1704,8 +1692,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStream(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        InputStream localVarResp = sampleStreamWithHttpInfo(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+    public InputStream sampleStream(StreamQueryParameters streamParameters) throws ApiException {
+        InputStream localVarResp = sampleStreamWithHttpInfo(streamParameters);
         return localVarResp;
     }
 
@@ -1713,14 +1701,14 @@ public class TweetsApi extends ApiCommon {
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream sampleStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+    public InputStream sampleStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
         InputStream localVarResp;
         try{
-          localVarResp = sampleStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          localVarResp = sampleStream(streamParameters);
         }
         catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return sampleStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+            return sampleStream(retries - 1, streamParameters);
           } else {
             throw e;
           }
@@ -1732,13 +1720,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @return ApiResponse&lt;StreamingTweet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1748,8 +1730,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStreamWithHttpInfo(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, null);
+    public InputStream sampleStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
+        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(streamParameters, null);
         try {
             Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
@@ -1762,13 +1744,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Sample stream (asynchronously)
      * Streams a deterministic 1% of public Tweets.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1779,22 +1755,16 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sampleStreamAsync(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback<StreamingTweet> _callback) throws ApiException {
+    public okhttp3.Call sampleStreamAsync(StreamQueryParameters streamParameters, final ApiCallback<StreamingTweet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(streamParameters, _callback);
         Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchStream
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1805,7 +1775,7 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchStreamCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchStreamCall(StreamQueryParameters streamParameters, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1817,32 +1787,32 @@ public class TweetsApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        if (streamParameters.getExpansions() != null && !streamParameters.getExpansions().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", streamParameters.getExpansions()));
         }
 
-        if (tweetFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        if (streamParameters.getTweetFields() != null && !streamParameters.getTweetFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", streamParameters.getTweetFields()));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (streamParameters.getUserFields() != null && !streamParameters.getUserFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", streamParameters.getUserFields()));
         }
 
-        if (mediaFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        if (streamParameters.getMediaFields() != null && !streamParameters.getMediaFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", streamParameters.getMediaFields()));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        if (streamParameters.getPlaceFields() != null && !streamParameters.getPlaceFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", streamParameters.getPlaceFields()));
         }
 
-        if (pollFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        if (streamParameters.getPollFields() != null && !streamParameters.getPollFields().isEmpty()) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", streamParameters.getPollFields()));
         }
 
-        if (backfillMinutes != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        if (streamParameters.getBackFillMinutes() != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", streamParameters.getBackFillMinutes()));
         }
 
         final String[] localVarAccepts = {
@@ -1866,10 +1836,10 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchStreamValidateBeforeCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchStreamValidateBeforeCall(StreamQueryParameters streamParameters, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = searchStreamCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = searchStreamCall(streamParameters, _callback);
         return localVarCall;
 
     }
@@ -1877,13 +1847,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @return FilteredStreamingTweet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1893,8 +1857,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStream(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        InputStream localVarResp = searchStreamWithHttpInfo(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+    public InputStream searchStream(StreamQueryParameters streamParameters) throws ApiException {
+        InputStream localVarResp = searchStreamWithHttpInfo(streamParameters);
         return localVarResp;
     }
 
@@ -1902,14 +1866,14 @@ public class TweetsApi extends ApiCommon {
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream searchStream(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
+    public InputStream searchStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
         InputStream localVarResp;
         try{
-          localVarResp = searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+          localVarResp = searchStream(streamParameters);
         }
         catch (ApiException e) {
           if(handleRateLimit(e, retries)) {
-            return searchStream(retries - 1, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+            return searchStream(retries - 1, streamParameters);
           } else {
             throw e;
           }
@@ -1921,13 +1885,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @return ApiResponse&lt;FilteredStreamingTweet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1937,8 +1895,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStreamWithHttpInfo(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes) throws ApiException {
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, null);
+    public InputStream searchStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(streamParameters, null);
         try {
             Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
@@ -1951,13 +1909,7 @@ public class TweetsApi extends ApiCommon {
     /**
      * Filtered stream (asynchronously)
      * Streams Tweets matching the stream&#39;s active rule set.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param backfillMinutes The number of minutes of backfill requested (optional)
+     * @param streamParameters {@link StreamQueryParameters} contains the parameters for this request
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1968,9 +1920,9 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchStreamAsync(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, Integer backfillMinutes, final ApiCallback<FilteredStreamingTweet> _callback) throws ApiException {
+    public okhttp3.Call searchStreamAsync(StreamQueryParameters streamParameters, final ApiCallback<FilteredStreamingTweet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes, _callback);
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(streamParameters, _callback);
         Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
