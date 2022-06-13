@@ -1,6 +1,6 @@
 
 
-# SpaceTopics
+# SpaceTopicsInner
 
 The Twitter Topic object.
 

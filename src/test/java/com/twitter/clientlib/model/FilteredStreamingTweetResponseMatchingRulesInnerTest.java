@@ -27,8 +27,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.EntityIndicesInclusiveInclusive;
-import com.twitter.clientlib.model.FullTextEntitiesAnnotationsAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -37,57 +35,33 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for FullTextEntitiesAnnotations
+ * Model tests for FilteredStreamingTweetResponseMatchingRulesInner
  */
-public class FullTextEntitiesAnnotationsTest {
-    private final FullTextEntitiesAnnotations model = new FullTextEntitiesAnnotations();
+public class FilteredStreamingTweetResponseMatchingRulesInnerTest {
+    private final FilteredStreamingTweetResponseMatchingRulesInner model = new FilteredStreamingTweetResponseMatchingRulesInner();
 
     /**
-     * Model tests for FullTextEntitiesAnnotations
+     * Model tests for FilteredStreamingTweetResponseMatchingRulesInner
      */
     @Test
-    public void testFullTextEntitiesAnnotations() {
-        // TODO: test FullTextEntitiesAnnotations
+    public void testFilteredStreamingTweetResponseMatchingRulesInner() {
+        // TODO: test FilteredStreamingTweetResponseMatchingRulesInner
     }
 
     /**
-     * Test the property 'end'
+     * Test the property 'id'
      */
     @Test
-    public void endTest() {
-        // TODO: test end
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
-     * Test the property 'start'
+     * Test the property 'tag'
      */
     @Test
-    public void startTest() {
-        // TODO: test start
-    }
-
-    /**
-     * Test the property 'normalizedText'
-     */
-    @Test
-    public void normalizedTextTest() {
-        // TODO: test normalizedText
-    }
-
-    /**
-     * Test the property 'probability'
-     */
-    @Test
-    public void probabilityTest() {
-        // TODO: test probability
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
+    public void tagTest() {
+        // TODO: test tag
     }
 
 }

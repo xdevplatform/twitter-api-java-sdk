@@ -14,7 +14,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="findSpaceById"></a>
 # **findSpaceById**
-> Get2SpacesIdResponse findSpaceById(id).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
+> Get2SpacesIdResponse findSpaceById(id, spaceFields, expansions, userFields, topicFields)
 
 Space lookup by Space ID
 
@@ -66,12 +66,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           Get2SpacesIdResponse result = apiInstance.spaces().findSpaceById(id)
-            .spaceFields(spaceFields)
-            .expansions(expansions)
-            .userFields(userFields)
-            .topicFields(topicFields)
-            .execute();
+           Get2SpacesIdResponse result = apiInstance.spaces().findSpaceById(id, spaceFields, expansions, userFields, topicFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpaceById");
@@ -115,7 +110,7 @@ public class Example {
 
 <a name="findSpacesByCreatorIds"></a>
 # **findSpacesByCreatorIds**
-> Get2SpacesByCreatorIdsResponse findSpacesByCreatorIds(userIds).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
+> Get2SpacesByCreatorIdsResponse findSpacesByCreatorIds(userIds, spaceFields, expansions, userFields, topicFields)
 
 Space lookup by their creators
 
@@ -167,12 +162,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           Get2SpacesByCreatorIdsResponse result = apiInstance.spaces().findSpacesByCreatorIds(userIds)
-            .spaceFields(spaceFields)
-            .expansions(expansions)
-            .userFields(userFields)
-            .topicFields(topicFields)
-            .execute();
+           Get2SpacesByCreatorIdsResponse result = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions, userFields, topicFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpacesByCreatorIds");
@@ -216,7 +206,7 @@ public class Example {
 
 <a name="findSpacesByIds"></a>
 # **findSpacesByIds**
-> Get2SpacesResponse findSpacesByIds(ids).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
+> Get2SpacesResponse findSpacesByIds(ids, spaceFields, expansions, userFields, topicFields)
 
 Space lookup up Space IDs
 
@@ -268,12 +258,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           Get2SpacesResponse result = apiInstance.spaces().findSpacesByIds(ids)
-            .spaceFields(spaceFields)
-            .expansions(expansions)
-            .userFields(userFields)
-            .topicFields(topicFields)
-            .execute();
+           Get2SpacesResponse result = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions, userFields, topicFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpacesByIds");
@@ -317,7 +302,7 @@ public class Example {
 
 <a name="searchSpaces"></a>
 # **searchSpaces**
-> Get2SpacesSearchResponse searchSpaces(query).state(state).maxResults(maxResults).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
+> Get2SpacesSearchResponse searchSpaces(query, state, maxResults, spaceFields, expansions, userFields, topicFields)
 
 Search for Spaces
 
@@ -371,14 +356,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(query)
-            .state(state)
-            .maxResults(maxResults)
-            .spaceFields(spaceFields)
-            .expansions(expansions)
-            .userFields(userFields)
-            .topicFields(topicFields)
-            .execute();
+           Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#searchSpaces");
@@ -424,7 +402,7 @@ public class Example {
 
 <a name="spaceBuyers"></a>
 # **spaceBuyers**
-> Get2SpacesIdBuyersResponse spaceBuyers(id).paginationToken(paginationToken).maxResults(maxResults).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2SpacesIdBuyersResponse spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields)
 
 Retrieve the list of Users who purchased a ticket to the given space
 
@@ -473,13 +451,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2SpacesIdBuyersResponse result = apiInstance.spaces().spaceBuyers(id)
-            .paginationToken(paginationToken)
-            .maxResults(maxResults)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2SpacesIdBuyersResponse result = apiInstance.spaces().spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#spaceBuyers");
@@ -524,7 +496,7 @@ public class Example {
 
 <a name="spaceTweets"></a>
 # **spaceTweets**
-> Get2SpacesIdTweetsResponse spaceTweets(id).maxResults(maxResults).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2SpacesIdTweetsResponse spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Retrieve Tweets from a Space.
 
@@ -579,15 +551,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(id)
-            .maxResults(maxResults)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#spaceTweets");

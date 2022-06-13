@@ -65,12 +65,7 @@ public class SpacesApiTest {
         Set<String> expansions = null;
         Set<String> userFields = null;
         Set<String> topicFields = null;
-                Get2SpacesIdResponse response = apiInstance.spaces().findSpaceById(id)
-                .spaceFields(spaceFields)
-                .expansions(expansions)
-                .userFields(userFields)
-                .topicFields(topicFields)
-                .execute();
+                Get2SpacesIdResponse response = apiInstance.spaces().findSpaceById(id, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -89,12 +84,7 @@ public class SpacesApiTest {
         Set<String> expansions = null;
         Set<String> userFields = null;
         Set<String> topicFields = null;
-                Get2SpacesByCreatorIdsResponse response = apiInstance.spaces().findSpacesByCreatorIds(userIds)
-                .spaceFields(spaceFields)
-                .expansions(expansions)
-                .userFields(userFields)
-                .topicFields(topicFields)
-                .execute();
+                Get2SpacesByCreatorIdsResponse response = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -113,12 +103,7 @@ public class SpacesApiTest {
         Set<String> expansions = null;
         Set<String> userFields = null;
         Set<String> topicFields = null;
-                Get2SpacesResponse response = apiInstance.spaces().findSpacesByIds(ids)
-                .spaceFields(spaceFields)
-                .expansions(expansions)
-                .userFields(userFields)
-                .topicFields(topicFields)
-                .execute();
+                Get2SpacesResponse response = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -139,14 +124,7 @@ public class SpacesApiTest {
         Set<String> expansions = null;
         Set<String> userFields = null;
         Set<String> topicFields = null;
-                Get2SpacesSearchResponse response = apiInstance.spaces().searchSpaces(query)
-                .state(state)
-                .maxResults(maxResults)
-                .spaceFields(spaceFields)
-                .expansions(expansions)
-                .userFields(userFields)
-                .topicFields(topicFields)
-                .execute();
+                Get2SpacesSearchResponse response = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
         // TODO: test validations
     }
 
@@ -166,13 +144,7 @@ public class SpacesApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2SpacesIdBuyersResponse response = apiInstance.spaces().spaceBuyers(id)
-                .paginationToken(paginationToken)
-                .maxResults(maxResults)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2SpacesIdBuyersResponse response = apiInstance.spaces().spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -194,15 +166,7 @@ public class SpacesApiTest {
         Set<String> pollFields = null;
         Set<String> userFields = null;
         Set<String> placeFields = null;
-                Get2SpacesIdTweetsResponse response = apiInstance.spaces().spaceTweets(id)
-                .maxResults(maxResults)
-                .tweetFields(tweetFields)
-                .expansions(expansions)
-                .mediaFields(mediaFields)
-                .pollFields(pollFields)
-                .userFields(userFields)
-                .placeFields(placeFields)
-                .execute();
+                Get2SpacesIdTweetsResponse response = apiInstance.spaces().spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         // TODO: test validations
     }
 

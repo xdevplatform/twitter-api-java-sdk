@@ -35,17 +35,17 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for TweetReferencedTweets
+ * Model tests for TweetReferencedTweetsInner
  */
-public class TweetReferencedTweetsTest {
-    private final TweetReferencedTweets model = new TweetReferencedTweets();
+public class TweetReferencedTweetsInnerTest {
+    private final TweetReferencedTweetsInner model = new TweetReferencedTweetsInner();
 
     /**
-     * Model tests for TweetReferencedTweets
+     * Model tests for TweetReferencedTweetsInner
      */
     @Test
-    public void testTweetReferencedTweets() {
-        // TODO: test TweetReferencedTweets
+    public void testTweetReferencedTweetsInner() {
+        // TODO: test TweetReferencedTweetsInner
     }
 
     /**

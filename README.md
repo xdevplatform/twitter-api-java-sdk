@@ -168,9 +168,7 @@ public class TwitterApiExample {
 
     try {
      // findTweetById
-     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
-       .tweetFields(tweetFields)
-       .execute();
+     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20", tweetFields, null, null , null, null, null);
      if(result.getErrors() != null && result.getErrors().size() > 0) {
        System.out.println("Error:");
 
@@ -232,9 +230,7 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 
 ```java
   int retries = 4;
-  streamResult = apiInstance.tweets()apiInstance.tweets().sampleStream()
-                      .tweetFields(tweetFields)
-                      .execute(retries);
+  streamResult = apiInstance.tweets().sampleStream(retries, null, tweetFields, null, null, null, null, 0);
 
 ```
   
@@ -362,10 +358,10 @@ Class | Method | HTTP request | Description
  - [FieldUnauthorizedProblem](docs/FieldUnauthorizedProblem.md)
  - [FieldUnauthorizedProblemAllOf](docs/FieldUnauthorizedProblemAllOf.md)
  - [FilteredStreamingTweetResponse](docs/FilteredStreamingTweetResponse.md)
- - [FilteredStreamingTweetResponseMatchingRules](docs/FilteredStreamingTweetResponseMatchingRules.md)
+ - [FilteredStreamingTweetResponseMatchingRulesInner](docs/FilteredStreamingTweetResponseMatchingRulesInner.md)
  - [FullTextEntities](docs/FullTextEntities.md)
- - [FullTextEntitiesAnnotations](docs/FullTextEntitiesAnnotations.md)
- - [FullTextEntitiesAnnotationsAllOf](docs/FullTextEntitiesAnnotationsAllOf.md)
+ - [FullTextEntitiesAnnotationsInner](docs/FullTextEntitiesAnnotationsInner.md)
+ - [FullTextEntitiesAnnotationsInnerAllOf](docs/FullTextEntitiesAnnotationsInnerAllOf.md)
  - [GenericProblem](docs/GenericProblem.md)
  - [Geo](docs/Geo.md)
  - [Get2ComplianceJobsIdResponse](docs/Get2ComplianceJobsIdResponse.md)
@@ -479,7 +475,7 @@ Class | Method | HTTP request | Description
  - [RulesResponseMetadata](docs/RulesResponseMetadata.md)
  - [SearchCount](docs/SearchCount.md)
  - [Space](docs/Space.md)
- - [SpaceTopics](docs/SpaceTopics.md)
+ - [SpaceTopicsInner](docs/SpaceTopicsInner.md)
  - [StreamingTweetResponse](docs/StreamingTweetResponse.md)
  - [Topic](docs/Topic.md)
  - [Tweet](docs/Tweet.md)
@@ -501,7 +497,7 @@ Class | Method | HTTP request | Description
  - [TweetOrganicMetrics](docs/TweetOrganicMetrics.md)
  - [TweetPromotedMetrics](docs/TweetPromotedMetrics.md)
  - [TweetPublicMetrics](docs/TweetPublicMetrics.md)
- - [TweetReferencedTweets](docs/TweetReferencedTweets.md)
+ - [TweetReferencedTweetsInner](docs/TweetReferencedTweetsInner.md)
  - [TweetWithheld](docs/TweetWithheld.md)
  - [UnsupportedAuthenticationProblem](docs/UnsupportedAuthenticationProblem.md)
  - [UrlEntity](docs/UrlEntity.md)

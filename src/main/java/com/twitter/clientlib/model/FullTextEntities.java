@@ -30,7 +30,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.CashtagEntity;
-import com.twitter.clientlib.model.FullTextEntitiesAnnotations;
+import com.twitter.clientlib.model.FullTextEntitiesAnnotationsInner;
 import com.twitter.clientlib.model.HashtagEntity;
 import com.twitter.clientlib.model.MentionEntity;
 import com.twitter.clientlib.model.UrlEntity;
@@ -67,7 +67,7 @@ import com.twitter.clientlib.JSON;
 public class FullTextEntities {
   public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
   @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
-  private List<FullTextEntitiesAnnotations> annotations = null;
+  private List<FullTextEntitiesAnnotationsInner> annotations = null;
 
   public static final String SERIALIZED_NAME_CASHTAGS = "cashtags";
   @SerializedName(SERIALIZED_NAME_CASHTAGS)
@@ -88,13 +88,13 @@ public class FullTextEntities {
   public FullTextEntities() { 
   }
 
-  public FullTextEntities annotations(List<FullTextEntitiesAnnotations> annotations) {
+  public FullTextEntities annotations(List<FullTextEntitiesAnnotationsInner> annotations) {
     
     this.annotations = annotations;
     return this;
   }
 
-  public FullTextEntities addAnnotationsItem(FullTextEntitiesAnnotations annotationsItem) {
+  public FullTextEntities addAnnotationsItem(FullTextEntitiesAnnotationsInner annotationsItem) {
     if (this.annotations == null) {
       this.annotations = new ArrayList<>();
     }
@@ -109,12 +109,12 @@ public class FullTextEntities {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<FullTextEntitiesAnnotations> getAnnotations() {
+  public List<FullTextEntitiesAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
 
-  public void setAnnotations(List<FullTextEntitiesAnnotations> annotations) {
+  public void setAnnotations(List<FullTextEntitiesAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 
@@ -330,7 +330,7 @@ public class FullTextEntities {
 
         // validate the optional field `annotations` (array)
         for (int i = 0; i < jsonArrayannotations.size(); i++) {
-          FullTextEntitiesAnnotations.validateJsonObject(jsonArrayannotations.get(i).getAsJsonObject());
+          FullTextEntitiesAnnotationsInner.validateJsonObject(jsonArrayannotations.get(i).getAsJsonObject());
         };
       }
       JsonArray jsonArraycashtags = jsonObj.getAsJsonArray("cashtags");

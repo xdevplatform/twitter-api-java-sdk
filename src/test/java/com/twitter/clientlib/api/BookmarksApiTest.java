@@ -66,16 +66,7 @@ public class BookmarksApiTest {
         Set<String> pollFields = null;
         Set<String> userFields = null;
         Set<String> placeFields = null;
-                Get2UsersIdBookmarksResponse response = apiInstance.bookmarks().getUsersIdBookmarks(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .tweetFields(tweetFields)
-                .expansions(expansions)
-                .mediaFields(mediaFields)
-                .pollFields(pollFields)
-                .userFields(userFields)
-                .placeFields(placeFields)
-                .execute();
+                Get2UsersIdBookmarksResponse response = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         // TODO: test validations
     }
 
@@ -91,8 +82,7 @@ public class BookmarksApiTest {
     public void postUsersIdBookmarksTest() throws ApiException {
         BookmarkAddRequest bookmarkAddRequest = null;
         String id = null;
-                BookmarkMutationResponse response = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id)
-                .execute();
+                BookmarkMutationResponse response = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id);
         // TODO: test validations
     }
 
@@ -108,8 +98,7 @@ public class BookmarksApiTest {
     public void usersIdBookmarksDeleteTest() throws ApiException {
         String id = null;
         String tweetId = null;
-                BookmarkMutationResponse response = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId)
-                .execute();
+                BookmarkMutationResponse response = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId);
         // TODO: test validations
     }
 

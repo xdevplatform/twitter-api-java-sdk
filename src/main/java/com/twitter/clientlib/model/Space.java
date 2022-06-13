@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.SpaceTopics;
+import com.twitter.clientlib.model.SpaceTopicsInner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -174,7 +174,7 @@ public class Space {
 
   public static final String SERIALIZED_NAME_TOPICS = "topics";
   @SerializedName(SERIALIZED_NAME_TOPICS)
-  private List<SpaceTopics> topics = null;
+  private List<SpaceTopicsInner> topics = null;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
@@ -552,13 +552,13 @@ public class Space {
   }
 
 
-  public Space topics(List<SpaceTopics> topics) {
+  public Space topics(List<SpaceTopicsInner> topics) {
     
     this.topics = topics;
     return this;
   }
 
-  public Space addTopicsItem(SpaceTopics topicsItem) {
+  public Space addTopicsItem(SpaceTopicsInner topicsItem) {
     if (this.topics == null) {
       this.topics = new ArrayList<>();
     }
@@ -573,12 +573,12 @@ public class Space {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The topics of a Space, as selected by its creator.")
 
-  public List<SpaceTopics> getTopics() {
+  public List<SpaceTopicsInner> getTopics() {
     return topics;
   }
 
 
-  public void setTopics(List<SpaceTopics> topics) {
+  public void setTopics(List<SpaceTopicsInner> topics) {
     this.topics = topics;
   }
 
@@ -765,7 +765,7 @@ public class Space {
 
         // validate the optional field `topics` (array)
         for (int i = 0; i < jsonArraytopics.size(); i++) {
-          SpaceTopics.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
+          SpaceTopicsInner.validateJsonObject(jsonArraytopics.get(i).getAsJsonObject());
         };
       }
   }

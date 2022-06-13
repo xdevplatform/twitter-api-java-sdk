@@ -77,11 +77,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersMeResponse response = apiInstance.users().findMyUser()
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersMeResponse response = apiInstance.users().findMyUser(userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -99,11 +95,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersIdResponse response = apiInstance.users().findUserById(id)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersIdResponse response = apiInstance.users().findUserById(id, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -121,11 +113,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersByUsernameUsernameResponse response = apiInstance.users().findUserByUsername(username)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersByUsernameUsernameResponse response = apiInstance.users().findUserByUsername(username, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -143,11 +131,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersResponse response = apiInstance.users().findUsersById(ids)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersResponse response = apiInstance.users().findUsersById(ids, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -165,11 +149,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersByResponse response = apiInstance.users().findUsersByUsername(usernames)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersByResponse response = apiInstance.users().findUsersByUsername(usernames, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -189,13 +169,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2ListsIdFollowersResponse response = apiInstance.users().listGetFollowers(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2ListsIdFollowersResponse response = apiInstance.users().listGetFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -215,13 +189,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2ListsIdMembersResponse response = apiInstance.users().listGetMembers(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2ListsIdMembersResponse response = apiInstance.users().listGetMembers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -241,13 +209,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2TweetsIdLikingUsersResponse response = apiInstance.users().tweetsIdLikingUsers(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2TweetsIdLikingUsersResponse response = apiInstance.users().tweetsIdLikingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -267,13 +229,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2TweetsIdRetweetedByResponse response = apiInstance.users().tweetsIdRetweetingUsers(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2TweetsIdRetweetedByResponse response = apiInstance.users().tweetsIdRetweetingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -289,8 +245,7 @@ public class UsersApiTest {
     public void usersIdBlockTest() throws ApiException {
         BlockUserRequest blockUserRequest = null;
         String id = null;
-                BlockUserMutationResponse response = apiInstance.users().usersIdBlock(blockUserRequest, id)
-                .execute();
+                BlockUserMutationResponse response = apiInstance.users().usersIdBlock(blockUserRequest, id);
         // TODO: test validations
     }
 
@@ -310,13 +265,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersIdBlockingResponse response = apiInstance.users().usersIdBlocking(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersIdBlockingResponse response = apiInstance.users().usersIdBlocking(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -332,9 +281,7 @@ public class UsersApiTest {
     public void usersIdFollowTest() throws ApiException {
         UsersFollowingCreateRequest usersFollowingCreateRequest = null;
         String id = null;
-                UsersFollowingCreateResponse response = apiInstance.users().usersIdFollow(id)
-                .usersFollowingCreateRequest(usersFollowingCreateRequest)
-                .execute();
+                UsersFollowingCreateResponse response = apiInstance.users().usersIdFollow(usersFollowingCreateRequest, id);
         // TODO: test validations
     }
 
@@ -354,13 +301,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersIdFollowersResponse response = apiInstance.users().usersIdFollowers(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersIdFollowersResponse response = apiInstance.users().usersIdFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -380,13 +321,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersIdFollowingResponse response = apiInstance.users().usersIdFollowing(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersIdFollowingResponse response = apiInstance.users().usersIdFollowing(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -402,9 +337,7 @@ public class UsersApiTest {
     public void usersIdMuteTest() throws ApiException {
         MuteUserRequest muteUserRequest = null;
         String id = null;
-                MuteUserMutationResponse response = apiInstance.users().usersIdMute(id)
-                .muteUserRequest(muteUserRequest)
-                .execute();
+                MuteUserMutationResponse response = apiInstance.users().usersIdMute(muteUserRequest, id);
         // TODO: test validations
     }
 
@@ -424,13 +357,7 @@ public class UsersApiTest {
         Set<String> userFields = null;
         Set<String> expansions = null;
         Set<String> tweetFields = null;
-                Get2UsersIdMutingResponse response = apiInstance.users().usersIdMuting(id)
-                .maxResults(maxResults)
-                .paginationToken(paginationToken)
-                .userFields(userFields)
-                .expansions(expansions)
-                .tweetFields(tweetFields)
-                .execute();
+                Get2UsersIdMutingResponse response = apiInstance.users().usersIdMuting(id, maxResults, paginationToken, userFields, expansions, tweetFields);
         // TODO: test validations
     }
 
@@ -446,8 +373,7 @@ public class UsersApiTest {
     public void usersIdUnblockTest() throws ApiException {
         String sourceUserId = null;
         String targetUserId = null;
-                BlockUserMutationResponse response = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId)
-                .execute();
+                BlockUserMutationResponse response = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId);
         // TODO: test validations
     }
 
@@ -463,8 +389,7 @@ public class UsersApiTest {
     public void usersIdUnfollowTest() throws ApiException {
         String sourceUserId = null;
         String targetUserId = null;
-                UsersFollowingDeleteResponse response = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId)
-                .execute();
+                UsersFollowingDeleteResponse response = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId);
         // TODO: test validations
     }
 
@@ -480,8 +405,7 @@ public class UsersApiTest {
     public void usersIdUnmuteTest() throws ApiException {
         String sourceUserId = null;
         String targetUserId = null;
-                MuteUserMutationResponse response = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId)
-                .execute();
+                MuteUserMutationResponse response = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId);
         // TODO: test validations
     }
 

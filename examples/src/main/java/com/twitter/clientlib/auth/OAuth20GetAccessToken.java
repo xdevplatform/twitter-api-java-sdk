@@ -113,9 +113,8 @@ public class OAuth20GetAccessToken {
 
     try {
       // findTweetById
-      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
-        .tweetFields(tweetFields)
-        .execute();
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20", tweetFields, null, null,
+          null, null, null);
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");
         result.getErrors().forEach(e -> {

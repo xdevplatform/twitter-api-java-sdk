@@ -54,10 +54,10 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * TweetReferencedTweets
+ * TweetReferencedTweetsInner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TweetReferencedTweets {
+public class TweetReferencedTweetsInner {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -115,10 +115,10 @@ public class TweetReferencedTweets {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public TweetReferencedTweets() { 
+  public TweetReferencedTweetsInner() { 
   }
 
-  public TweetReferencedTweets id(String id) {
+  public TweetReferencedTweetsInner id(String id) {
     
     this.id = id;
     return this;
@@ -141,7 +141,7 @@ public class TweetReferencedTweets {
   }
 
 
-  public TweetReferencedTweets type(TypeEnum type) {
+  public TweetReferencedTweetsInner type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -173,9 +173,9 @@ public class TweetReferencedTweets {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TweetReferencedTweets tweetReferencedTweets = (TweetReferencedTweets) o;
-    return Objects.equals(this.id, tweetReferencedTweets.id) &&
-        Objects.equals(this.type, tweetReferencedTweets.type);
+    TweetReferencedTweetsInner tweetReferencedTweetsInner = (TweetReferencedTweetsInner) o;
+    return Objects.equals(this.id, tweetReferencedTweetsInner.id) &&
+        Objects.equals(this.type, tweetReferencedTweetsInner.type);
   }
 
   @Override
@@ -186,7 +186,7 @@ public class TweetReferencedTweets {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TweetReferencedTweets {\n");
+    sb.append("class TweetReferencedTweetsInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
@@ -224,20 +224,20 @@ public class TweetReferencedTweets {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to TweetReferencedTweets
+  * @throws IOException if the JSON Object is invalid with respect to TweetReferencedTweetsInner
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (TweetReferencedTweets.openapiRequiredFields.isEmpty()) {
+     //   if (TweetReferencedTweetsInner.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetReferencedTweets is not found in the empty JSON string", TweetReferencedTweets.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetReferencedTweetsInner is not found in the empty JSON string", TweetReferencedTweetsInner.openapiRequiredFields.toString()));
      //   }
      // }
 
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : TweetReferencedTweets.openapiRequiredFields) {
+      for (String requiredField : TweetReferencedTweetsInner.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
@@ -254,22 +254,22 @@ public class TweetReferencedTweets {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!TweetReferencedTweets.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'TweetReferencedTweets' and its subtypes
+       if (!TweetReferencedTweetsInner.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TweetReferencedTweetsInner' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<TweetReferencedTweets> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(TweetReferencedTweets.class));
+       final TypeAdapter<TweetReferencedTweetsInner> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TweetReferencedTweetsInner.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<TweetReferencedTweets>() {
+       return (TypeAdapter<T>) new TypeAdapter<TweetReferencedTweetsInner>() {
            @Override
-           public void write(JsonWriter out, TweetReferencedTweets value) throws IOException {
+           public void write(JsonWriter out, TweetReferencedTweetsInner value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public TweetReferencedTweets read(JsonReader in) throws IOException {
+           public TweetReferencedTweetsInner read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -280,18 +280,18 @@ public class TweetReferencedTweets {
   }
 
  /**
-  * Create an instance of TweetReferencedTweets given an JSON string
+  * Create an instance of TweetReferencedTweetsInner given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of TweetReferencedTweets
-  * @throws IOException if the JSON string is invalid with respect to TweetReferencedTweets
+  * @return An instance of TweetReferencedTweetsInner
+  * @throws IOException if the JSON string is invalid with respect to TweetReferencedTweetsInner
   */
-  public static TweetReferencedTweets fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, TweetReferencedTweets.class);
+  public static TweetReferencedTweetsInner fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TweetReferencedTweetsInner.class);
   }
 
  /**
-  * Convert an instance of TweetReferencedTweets to an JSON string
+  * Convert an instance of TweetReferencedTweetsInner to an JSON string
   *
   * @return JSON string
   */

@@ -23,7 +23,7 @@
 |**state** | [**StateEnum**](#StateEnum) | The current state of the Space. |  |
 |**subscriberCount** | **Integer** | The number of people who have either purchased a ticket or set a reminder for this Space. |  [optional] |
 |**title** | **String** | The title of the Space. |  [optional] |
-|**topics** | [**List&lt;SpaceTopics&gt;**](SpaceTopics.md) | The topics of a Space, as selected by its creator. |  [optional] |
+|**topics** | [**List&lt;SpaceTopicsInner&gt;**](SpaceTopicsInner.md) | The topics of a Space, as selected by its creator. |  [optional] |
 |**updatedAt** | **OffsetDateTime** | When the Space was last updated. |  [optional] |
 
 

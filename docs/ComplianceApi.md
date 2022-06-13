@@ -11,7 +11,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="createBatchComplianceJob"></a>
 # **createBatchComplianceJob**
-> CreateComplianceJobResponse createBatchComplianceJob(createComplianceJobRequest).execute();
+> CreateComplianceJobResponse createBatchComplianceJob(createComplianceJobRequest)
 
 Create compliance job
 
@@ -52,8 +52,7 @@ public class Example {
     // Set the params values
     CreateComplianceJobRequest createComplianceJobRequest = new CreateComplianceJobRequest(); // CreateComplianceJobRequest | 
     try {
-           CreateComplianceJobResponse result = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest)
-            .execute();
+           CreateComplianceJobResponse result = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#createBatchComplianceJob");
@@ -93,7 +92,7 @@ public class Example {
 
 <a name="getBatchComplianceJob"></a>
 # **getBatchComplianceJob**
-> Get2ComplianceJobsIdResponse getBatchComplianceJob(id).complianceJobFields(complianceJobFields).execute();
+> Get2ComplianceJobsIdResponse getBatchComplianceJob(id, complianceJobFields)
 
 Get Compliance Job
 
@@ -135,9 +134,7 @@ public class Example {
     String id = "id_example"; // String | The ID of the Compliance Job to retrieve.
     Set<String> complianceJobFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of ComplianceJob fields to display.
     try {
-           Get2ComplianceJobsIdResponse result = apiInstance.compliance().getBatchComplianceJob(id)
-            .complianceJobFields(complianceJobFields)
-            .execute();
+           Get2ComplianceJobsIdResponse result = apiInstance.compliance().getBatchComplianceJob(id, complianceJobFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#getBatchComplianceJob");
@@ -178,7 +175,7 @@ public class Example {
 
 <a name="listBatchComplianceJobs"></a>
 # **listBatchComplianceJobs**
-> Get2ComplianceJobsResponse listBatchComplianceJobs(type).status(status).complianceJobFields(complianceJobFields).execute();
+> Get2ComplianceJobsResponse listBatchComplianceJobs(type, status, complianceJobFields)
 
 List Compliance Jobs
 
@@ -221,10 +218,7 @@ public class Example {
     String status = "created"; // String | Status of Compliance Job to list.
     Set<String> complianceJobFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of ComplianceJob fields to display.
     try {
-           Get2ComplianceJobsResponse result = apiInstance.compliance().listBatchComplianceJobs(type)
-            .status(status)
-            .complianceJobFields(complianceJobFields)
-            .execute();
+           Get2ComplianceJobsResponse result = apiInstance.compliance().listBatchComplianceJobs(type, status, complianceJobFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#listBatchComplianceJobs");

@@ -27,7 +27,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="findMyUser"></a>
 # **findMyUser**
-> Get2UsersMeResponse findMyUser().userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersMeResponse findMyUser(userFields, expansions, tweetFields)
 
 User lookup me
 
@@ -74,11 +74,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersMeResponse result = apiInstance.users().findMyUser()
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersMeResponse result = apiInstance.users().findMyUser(userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findMyUser");
@@ -120,7 +116,7 @@ public class Example {
 
 <a name="findUserById"></a>
 # **findUserById**
-> Get2UsersIdResponse findUserById(id).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersIdResponse findUserById(id, userFields, expansions, tweetFields)
 
 User lookup by ID
 
@@ -172,11 +168,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersIdResponse result = apiInstance.users().findUserById(id)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersIdResponse result = apiInstance.users().findUserById(id, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUserById");
@@ -219,7 +211,7 @@ public class Example {
 
 <a name="findUserByUsername"></a>
 # **findUserByUsername**
-> Get2UsersByUsernameUsernameResponse findUserByUsername(username).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersByUsernameUsernameResponse findUserByUsername(username, userFields, expansions, tweetFields)
 
 User lookup by username
 
@@ -271,11 +263,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersByUsernameUsernameResponse result = apiInstance.users().findUserByUsername(username)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersByUsernameUsernameResponse result = apiInstance.users().findUserByUsername(username, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUserByUsername");
@@ -318,7 +306,7 @@ public class Example {
 
 <a name="findUsersById"></a>
 # **findUsersById**
-> Get2UsersResponse findUsersById(ids).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersResponse findUsersById(ids, userFields, expansions, tweetFields)
 
 User lookup by IDs
 
@@ -370,11 +358,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersResponse result = apiInstance.users().findUsersById(ids)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersResponse result = apiInstance.users().findUsersById(ids, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUsersById");
@@ -417,7 +401,7 @@ public class Example {
 
 <a name="findUsersByUsername"></a>
 # **findUsersByUsername**
-> Get2UsersByResponse findUsersByUsername(usernames).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersByResponse findUsersByUsername(usernames, userFields, expansions, tweetFields)
 
 User lookup by usernames
 
@@ -469,11 +453,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersByResponse result = apiInstance.users().findUsersByUsername(usernames)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersByResponse result = apiInstance.users().findUsersByUsername(usernames, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUsersByUsername");
@@ -516,7 +496,7 @@ public class Example {
 
 <a name="listGetFollowers"></a>
 # **listGetFollowers**
-> Get2ListsIdFollowersResponse listGetFollowers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2ListsIdFollowersResponse listGetFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that follow a List by the provided List ID
 
@@ -570,13 +550,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2ListsIdFollowersResponse result = apiInstance.users().listGetFollowers(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2ListsIdFollowersResponse result = apiInstance.users().listGetFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#listGetFollowers");
@@ -621,7 +595,7 @@ public class Example {
 
 <a name="listGetMembers"></a>
 # **listGetMembers**
-> Get2ListsIdMembersResponse listGetMembers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2ListsIdMembersResponse listGetMembers(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that are members of a List by the provided List ID.
 
@@ -675,13 +649,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2ListsIdMembersResponse result = apiInstance.users().listGetMembers(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2ListsIdMembersResponse result = apiInstance.users().listGetMembers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#listGetMembers");
@@ -726,7 +694,7 @@ public class Example {
 
 <a name="tweetsIdLikingUsers"></a>
 # **tweetsIdLikingUsers**
-> Get2TweetsIdLikingUsersResponse tweetsIdLikingUsers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2TweetsIdLikingUsersResponse tweetsIdLikingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that have liked the provided Tweet ID
 
@@ -780,13 +748,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#tweetsIdLikingUsers");
@@ -831,7 +793,7 @@ public class Example {
 
 <a name="tweetsIdRetweetingUsers"></a>
 # **tweetsIdRetweetingUsers**
-> Get2TweetsIdRetweetedByResponse tweetsIdRetweetingUsers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2TweetsIdRetweetedByResponse tweetsIdRetweetingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that have retweeted the provided Tweet ID
 
@@ -885,13 +847,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2TweetsIdRetweetedByResponse result = apiInstance.users().tweetsIdRetweetingUsers(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2TweetsIdRetweetedByResponse result = apiInstance.users().tweetsIdRetweetingUsers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#tweetsIdRetweetingUsers");
@@ -936,7 +892,7 @@ public class Example {
 
 <a name="usersIdBlock"></a>
 # **usersIdBlock**
-> BlockUserMutationResponse usersIdBlock(blockUserRequest, id).execute();
+> BlockUserMutationResponse usersIdBlock(blockUserRequest, id)
 
 Block User by User ID
 
@@ -982,8 +938,7 @@ public class Example {
     BlockUserRequest blockUserRequest = new BlockUserRequest(); // BlockUserRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to block the target User.
     try {
-           BlockUserMutationResponse result = apiInstance.users().usersIdBlock(blockUserRequest, id)
-            .execute();
+           BlockUserMutationResponse result = apiInstance.users().usersIdBlock(blockUserRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdBlock");
@@ -1024,7 +979,7 @@ public class Example {
 
 <a name="usersIdBlocking"></a>
 # **usersIdBlocking**
-> Get2UsersIdBlockingResponse usersIdBlocking(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersIdBlockingResponse usersIdBlocking(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that are blocked by provided User ID
 
@@ -1074,13 +1029,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersIdBlockingResponse result = apiInstance.users().usersIdBlocking(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersIdBlockingResponse result = apiInstance.users().usersIdBlocking(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdBlocking");
@@ -1125,7 +1074,7 @@ public class Example {
 
 <a name="usersIdFollow"></a>
 # **usersIdFollow**
-> UsersFollowingCreateResponse usersIdFollow(id).usersFollowingCreateRequest(usersFollowingCreateRequest).execute();
+> UsersFollowingCreateResponse usersIdFollow(usersFollowingCreateRequest, id)
 
 Follow User
 
@@ -1171,9 +1120,7 @@ public class Example {
     UsersFollowingCreateRequest usersFollowingCreateRequest = new UsersFollowingCreateRequest(); // UsersFollowingCreateRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to follow the target User.
     try {
-           UsersFollowingCreateResponse result = apiInstance.users().usersIdFollow(id)
-            .usersFollowingCreateRequest(usersFollowingCreateRequest)
-            .execute();
+           UsersFollowingCreateResponse result = apiInstance.users().usersIdFollow(usersFollowingCreateRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollow");
@@ -1214,7 +1161,7 @@ public class Example {
 
 <a name="usersIdFollowers"></a>
 # **usersIdFollowers**
-> Get2UsersIdFollowersResponse usersIdFollowers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersIdFollowersResponse usersIdFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that follow a List by the provided User ID
 
@@ -1268,13 +1215,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollowers");
@@ -1319,7 +1260,7 @@ public class Example {
 
 <a name="usersIdFollowing"></a>
 # **usersIdFollowing**
-> Get2UsersIdFollowingResponse usersIdFollowing(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersIdFollowingResponse usersIdFollowing(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Following by User ID
 
@@ -1373,13 +1314,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersIdFollowingResponse result = apiInstance.users().usersIdFollowing(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersIdFollowingResponse result = apiInstance.users().usersIdFollowing(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollowing");
@@ -1424,7 +1359,7 @@ public class Example {
 
 <a name="usersIdMute"></a>
 # **usersIdMute**
-> MuteUserMutationResponse usersIdMute(id).muteUserRequest(muteUserRequest).execute();
+> MuteUserMutationResponse usersIdMute(muteUserRequest, id)
 
 Mute User by User ID.
 
@@ -1470,9 +1405,7 @@ public class Example {
     MuteUserRequest muteUserRequest = new MuteUserRequest(); // MuteUserRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to mute the target User.
     try {
-           MuteUserMutationResponse result = apiInstance.users().usersIdMute(id)
-            .muteUserRequest(muteUserRequest)
-            .execute();
+           MuteUserMutationResponse result = apiInstance.users().usersIdMute(muteUserRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdMute");
@@ -1513,7 +1446,7 @@ public class Example {
 
 <a name="usersIdMuting"></a>
 # **usersIdMuting**
-> Get2UsersIdMutingResponse usersIdMuting(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2UsersIdMutingResponse usersIdMuting(id, maxResults, paginationToken, userFields, expansions, tweetFields)
 
 Returns User objects that are muted by the provided User ID
 
@@ -1563,13 +1496,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2UsersIdMutingResponse result = apiInstance.users().usersIdMuting(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2UsersIdMutingResponse result = apiInstance.users().usersIdMuting(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdMuting");
@@ -1614,7 +1541,7 @@ public class Example {
 
 <a name="usersIdUnblock"></a>
 # **usersIdUnblock**
-> BlockUserMutationResponse usersIdUnblock(sourceUserId, targetUserId).execute();
+> BlockUserMutationResponse usersIdUnblock(sourceUserId, targetUserId)
 
 Unblock User by User ID
 
@@ -1660,8 +1587,7 @@ public class Example {
     String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unblock the target User.
     String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unblock.
     try {
-           BlockUserMutationResponse result = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId)
-            .execute();
+           BlockUserMutationResponse result = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnblock");
@@ -1702,7 +1628,7 @@ public class Example {
 
 <a name="usersIdUnfollow"></a>
 # **usersIdUnfollow**
-> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserId, targetUserId).execute();
+> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserId, targetUserId)
 
 Unfollow User
 
@@ -1748,8 +1674,7 @@ public class Example {
     String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unfollow the target User.
     String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unfollow.
     try {
-           UsersFollowingDeleteResponse result = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId)
-            .execute();
+           UsersFollowingDeleteResponse result = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnfollow");
@@ -1790,7 +1715,7 @@ public class Example {
 
 <a name="usersIdUnmute"></a>
 # **usersIdUnmute**
-> MuteUserMutationResponse usersIdUnmute(sourceUserId, targetUserId).execute();
+> MuteUserMutationResponse usersIdUnmute(sourceUserId, targetUserId)
 
 Unmute User by User ID
 
@@ -1836,8 +1761,7 @@ public class Example {
     String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unmute the target User.
     String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unmute.
     try {
-           MuteUserMutationResponse result = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId)
-            .execute();
+           MuteUserMutationResponse result = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnmute");

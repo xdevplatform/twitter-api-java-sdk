@@ -30,7 +30,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.Expansions;
-import com.twitter.clientlib.model.FilteredStreamingTweetResponseMatchingRules;
+import com.twitter.clientlib.model.FilteredStreamingTweetResponseMatchingRulesInner;
 import com.twitter.clientlib.model.Problem;
 import com.twitter.clientlib.model.Tweet;
 import io.swagger.annotations.ApiModel;
@@ -79,7 +79,7 @@ public class FilteredStreamingTweetResponse {
 
   public static final String SERIALIZED_NAME_MATCHING_RULES = "matching_rules";
   @SerializedName(SERIALIZED_NAME_MATCHING_RULES)
-  private List<FilteredStreamingTweetResponseMatchingRules> matchingRules = null;
+  private List<FilteredStreamingTweetResponseMatchingRulesInner> matchingRules = null;
 
   public FilteredStreamingTweetResponse() { 
   }
@@ -161,13 +161,13 @@ public class FilteredStreamingTweetResponse {
   }
 
 
-  public FilteredStreamingTweetResponse matchingRules(List<FilteredStreamingTweetResponseMatchingRules> matchingRules) {
+  public FilteredStreamingTweetResponse matchingRules(List<FilteredStreamingTweetResponseMatchingRulesInner> matchingRules) {
     
     this.matchingRules = matchingRules;
     return this;
   }
 
-  public FilteredStreamingTweetResponse addMatchingRulesItem(FilteredStreamingTweetResponseMatchingRules matchingRulesItem) {
+  public FilteredStreamingTweetResponse addMatchingRulesItem(FilteredStreamingTweetResponseMatchingRulesInner matchingRulesItem) {
     if (this.matchingRules == null) {
       this.matchingRules = new ArrayList<>();
     }
@@ -182,12 +182,12 @@ public class FilteredStreamingTweetResponse {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The list of rules which matched the Tweet")
 
-  public List<FilteredStreamingTweetResponseMatchingRules> getMatchingRules() {
+  public List<FilteredStreamingTweetResponseMatchingRulesInner> getMatchingRules() {
     return matchingRules;
   }
 
 
-  public void setMatchingRules(List<FilteredStreamingTweetResponseMatchingRules> matchingRules) {
+  public void setMatchingRules(List<FilteredStreamingTweetResponseMatchingRulesInner> matchingRules) {
     this.matchingRules = matchingRules;
   }
 
@@ -296,7 +296,7 @@ public class FilteredStreamingTweetResponse {
 
         // validate the optional field `matching_rules` (array)
         for (int i = 0; i < jsonArraymatchingRules.size(); i++) {
-          FilteredStreamingTweetResponseMatchingRules.validateJsonObject(jsonArraymatchingRules.get(i).getAsJsonObject());
+          FilteredStreamingTweetResponseMatchingRulesInner.validateJsonObject(jsonArraymatchingRules.get(i).getAsJsonObject());
         };
       }
   }

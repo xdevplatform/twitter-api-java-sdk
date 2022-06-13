@@ -33,7 +33,7 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="addOrDeleteRules"></a>
 # **addOrDeleteRules**
-> AddOrDeleteRulesResponse addOrDeleteRules(addOrDeleteRulesRequest).dryRun(dryRun).execute();
+> AddOrDeleteRulesResponse addOrDeleteRules(addOrDeleteRulesRequest, dryRun)
 
 Add/Delete rules
 
@@ -75,9 +75,7 @@ public class Example {
     AddOrDeleteRulesRequest addOrDeleteRulesRequest = new AddOrDeleteRulesRequest(); // AddOrDeleteRulesRequest | 
     Boolean dryRun = true; // Boolean | Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes.
     try {
-           AddOrDeleteRulesResponse result = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest)
-            .dryRun(dryRun)
-            .execute();
+           AddOrDeleteRulesResponse result = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest, dryRun);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#addOrDeleteRules");
@@ -118,7 +116,7 @@ public class Example {
 
 <a name="createTweet"></a>
 # **createTweet**
-> TweetCreateResponse createTweet(tweetCreateRequest).execute();
+> TweetCreateResponse createTweet(tweetCreateRequest)
 
 Creation of a Tweet
 
@@ -163,8 +161,7 @@ public class Example {
     // Set the params values
     TweetCreateRequest tweetCreateRequest = new TweetCreateRequest(); // TweetCreateRequest | 
     try {
-           TweetCreateResponse result = apiInstance.tweets().createTweet(tweetCreateRequest)
-            .execute();
+           TweetCreateResponse result = apiInstance.tweets().createTweet(tweetCreateRequest);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#createTweet");
@@ -204,7 +201,7 @@ public class Example {
 
 <a name="deleteTweetById"></a>
 # **deleteTweetById**
-> TweetDeleteResponse deleteTweetById(id).execute();
+> TweetDeleteResponse deleteTweetById(id)
 
 Tweet delete by Tweet ID
 
@@ -249,8 +246,7 @@ public class Example {
     // Set the params values
     String id = "id_example"; // String | The ID of the Tweet to be deleted.
     try {
-           TweetDeleteResponse result = apiInstance.tweets().deleteTweetById(id)
-            .execute();
+           TweetDeleteResponse result = apiInstance.tweets().deleteTweetById(id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#deleteTweetById");
@@ -290,7 +286,7 @@ public class Example {
 
 <a name="findTweetById"></a>
 # **findTweetById**
-> Get2TweetsIdResponse findTweetById(id).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2TweetsIdResponse findTweetById(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Tweet lookup by Tweet ID
 
@@ -345,14 +341,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(id)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#findTweetById");
@@ -398,7 +387,7 @@ public class Example {
 
 <a name="findTweetsById"></a>
 # **findTweetsById**
-> Get2TweetsResponse findTweetsById(ids).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2TweetsResponse findTweetsById(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Tweet lookup by Tweet IDs
 
@@ -453,14 +442,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2TweetsResponse result = apiInstance.tweets().findTweetsById(ids)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2TweetsResponse result = apiInstance.tweets().findTweetsById(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#findTweetsById");
@@ -506,7 +488,7 @@ public class Example {
 
 <a name="findTweetsThatQuoteATweet"></a>
 # **findTweetsThatQuoteATweet**
-> Get2TweetsIdQuoteTweetsResponse findTweetsThatQuoteATweet(id).maxResults(maxResults).paginationToken(paginationToken).exclude(exclude).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2TweetsIdQuoteTweetsResponse findTweetsThatQuoteATweet(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Retrieve Tweets that quote a Tweet.
 
@@ -564,17 +546,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2TweetsIdQuoteTweetsResponse result = apiInstance.tweets().findTweetsThatQuoteATweet(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .exclude(exclude)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2TweetsIdQuoteTweetsResponse result = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#findTweetsThatQuoteATweet");
@@ -623,7 +595,7 @@ public class Example {
 
 <a name="getRules"></a>
 # **getRules**
-> RulesLookupResponse getRules().ids(ids).maxResults(maxResults).paginationToken(paginationToken).execute();
+> RulesLookupResponse getRules(ids, maxResults, paginationToken)
 
 Rules lookup
 
@@ -666,11 +638,7 @@ public class Example {
     Integer maxResults = 1000; // Integer | The maximum number of results.
     String paginationToken = "paginationToken_example"; // String | This value is populated by passing the 'next_token' returned in a request to paginate through results.
     try {
-           RulesLookupResponse result = apiInstance.tweets().getRules()
-            .ids(ids)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .execute();
+           RulesLookupResponse result = apiInstance.tweets().getRules(ids, maxResults, paginationToken);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#getRules");
@@ -712,7 +680,7 @@ public class Example {
 
 <a name="hideReplyById"></a>
 # **hideReplyById**
-> TweetHideResponse hideReplyById(tweetId).tweetHideRequest(tweetHideRequest).execute();
+> TweetHideResponse hideReplyById(tweetHideRequest, tweetId)
 
 Hide replies
 
@@ -758,9 +726,7 @@ public class Example {
     TweetHideRequest tweetHideRequest = new TweetHideRequest(); // TweetHideRequest | 
     String tweetId = "tweetId_example"; // String | The ID of the reply that you want to hide or unhide.
     try {
-           TweetHideResponse result = apiInstance.tweets().hideReplyById(tweetId)
-            .tweetHideRequest(tweetHideRequest)
-            .execute();
+           TweetHideResponse result = apiInstance.tweets().hideReplyById(tweetHideRequest, tweetId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#hideReplyById");
@@ -801,7 +767,7 @@ public class Example {
 
 <a name="listsIdTweets"></a>
 # **listsIdTweets**
-> Get2ListsIdTweetsResponse listsIdTweets(id).maxResults(maxResults).paginationToken(paginationToken).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2ListsIdTweetsResponse listsIdTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 List Tweets timeline by List ID.
 
@@ -858,16 +824,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#listsIdTweets");
@@ -915,7 +872,7 @@ public class Example {
 
 <a name="sampleStream"></a>
 # **sampleStream**
-> StreamingTweetResponse sampleStream().backfillMinutes(backfillMinutes).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> StreamingTweetResponse sampleStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Sample stream
 
@@ -967,15 +924,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-            InputStream result = apiInstance.tweets().sampleStream()
-             .backfillMinutes(backfillMinutes)
-             .tweetFields(tweetFields)
-             .expansions(expansions)
-             .mediaFields(mediaFields)
-             .pollFields(pollFields)
-             .userFields(userFields)
-             .placeFields(placeFields)
-                .execute();
+            InputStream result = apiInstance.tweets().sampleStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             try{
                JSON json = new JSON();
                Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
@@ -1039,7 +988,7 @@ public class Example {
 
 <a name="searchStream"></a>
 # **searchStream**
-> FilteredStreamingTweetResponse searchStream().backfillMinutes(backfillMinutes).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> FilteredStreamingTweetResponse searchStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Filtered stream
 
@@ -1091,15 +1040,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-            InputStream result = apiInstance.tweets().searchStream()
-             .backfillMinutes(backfillMinutes)
-             .tweetFields(tweetFields)
-             .expansions(expansions)
-             .mediaFields(mediaFields)
-             .pollFields(pollFields)
-             .userFields(userFields)
-             .placeFields(placeFields)
-                .execute();
+            InputStream result = apiInstance.tweets().searchStream(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             try{
                JSON json = new JSON();
                Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
@@ -1163,7 +1104,7 @@ public class Example {
 
 <a name="spaceBuyers"></a>
 # **spaceBuyers**
-> Get2SpacesIdBuyersResponse spaceBuyers(id).paginationToken(paginationToken).maxResults(maxResults).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
+> Get2SpacesIdBuyersResponse spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields)
 
 Retrieve the list of Users who purchased a ticket to the given space
 
@@ -1212,13 +1153,7 @@ public class Example {
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           Get2SpacesIdBuyersResponse result = apiInstance.spaces().spaceBuyers(id)
-            .paginationToken(paginationToken)
-            .maxResults(maxResults)
-            .userFields(userFields)
-            .expansions(expansions)
-            .tweetFields(tweetFields)
-            .execute();
+           Get2SpacesIdBuyersResponse result = apiInstance.spaces().spaceBuyers(id, paginationToken, maxResults, userFields, expansions, tweetFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#spaceBuyers");
@@ -1263,7 +1198,7 @@ public class Example {
 
 <a name="spaceTweets"></a>
 # **spaceTweets**
-> Get2SpacesIdTweetsResponse spaceTweets(id).maxResults(maxResults).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2SpacesIdTweetsResponse spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Retrieve Tweets from a Space.
 
@@ -1318,15 +1253,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(id)
-            .maxResults(maxResults)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#spaceTweets");
@@ -1373,7 +1300,7 @@ public class Example {
 
 <a name="tweetCountsFullArchiveSearch"></a>
 # **tweetCountsFullArchiveSearch**
-> Get2TweetsCountsAllResponse tweetCountsFullArchiveSearch(query).startTime(startTime).endTime(endTime).sinceId(sinceId).untilId(untilId).nextToken(nextToken).paginationToken(paginationToken).granularity(granularity).searchCountFields(searchCountFields).execute();
+> Get2TweetsCountsAllResponse tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields)
 
 Full archive search counts
 
@@ -1422,16 +1349,7 @@ public class Example {
     String granularity = "minute"; // String | The granularity for the search counts results.
     Set<String> searchCountFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of SearchCount fields to display.
     try {
-           Get2TweetsCountsAllResponse result = apiInstance.tweets().tweetCountsFullArchiveSearch(query)
-            .startTime(startTime)
-            .endTime(endTime)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .nextToken(nextToken)
-            .paginationToken(paginationToken)
-            .granularity(granularity)
-            .searchCountFields(searchCountFields)
-            .execute();
+           Get2TweetsCountsAllResponse result = apiInstance.tweets().tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#tweetCountsFullArchiveSearch");
@@ -1479,7 +1397,7 @@ public class Example {
 
 <a name="tweetCountsRecentSearch"></a>
 # **tweetCountsRecentSearch**
-> Get2TweetsCountsRecentResponse tweetCountsRecentSearch(query).startTime(startTime).endTime(endTime).sinceId(sinceId).untilId(untilId).nextToken(nextToken).paginationToken(paginationToken).granularity(granularity).searchCountFields(searchCountFields).execute();
+> Get2TweetsCountsRecentResponse tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields)
 
 Recent search counts
 
@@ -1528,16 +1446,7 @@ public class Example {
     String granularity = "minute"; // String | The granularity for the search counts results.
     Set<String> searchCountFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of SearchCount fields to display.
     try {
-           Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query)
-            .startTime(startTime)
-            .endTime(endTime)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .nextToken(nextToken)
-            .paginationToken(paginationToken)
-            .granularity(granularity)
-            .searchCountFields(searchCountFields)
-            .execute();
+           Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#tweetCountsRecentSearch");
@@ -1585,7 +1494,7 @@ public class Example {
 
 <a name="tweetsFullarchiveSearch"></a>
 # **tweetsFullarchiveSearch**
-> Get2TweetsSearchAllResponse tweetsFullarchiveSearch(query).startTime(startTime).endTime(endTime).sinceId(sinceId).untilId(untilId).maxResults(maxResults).nextToken(nextToken).paginationToken(paginationToken).sortOrder(sortOrder).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2TweetsSearchAllResponse tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Full-archive search
 
@@ -1640,22 +1549,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2TweetsSearchAllResponse result = apiInstance.tweets().tweetsFullarchiveSearch(query)
-            .startTime(startTime)
-            .endTime(endTime)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .maxResults(maxResults)
-            .nextToken(nextToken)
-            .paginationToken(paginationToken)
-            .sortOrder(sortOrder)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2TweetsSearchAllResponse result = apiInstance.tweets().tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#tweetsFullarchiveSearch");
@@ -1709,7 +1603,7 @@ public class Example {
 
 <a name="tweetsRecentSearch"></a>
 # **tweetsRecentSearch**
-> Get2TweetsSearchRecentResponse tweetsRecentSearch(query).startTime(startTime).endTime(endTime).sinceId(sinceId).untilId(untilId).maxResults(maxResults).nextToken(nextToken).paginationToken(paginationToken).sortOrder(sortOrder).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2TweetsSearchRecentResponse tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Recent search
 
@@ -1772,22 +1666,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(query)
-            .startTime(startTime)
-            .endTime(endTime)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .maxResults(maxResults)
-            .nextToken(nextToken)
-            .paginationToken(paginationToken)
-            .sortOrder(sortOrder)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#tweetsRecentSearch");
@@ -1841,7 +1720,7 @@ public class Example {
 
 <a name="usersIdLike"></a>
 # **usersIdLike**
-> UsersLikesCreateResponse usersIdLike(id).usersLikesCreateRequest(usersLikesCreateRequest).execute();
+> UsersLikesCreateResponse usersIdLike(usersLikesCreateRequest, id)
 
 Causes the User (in the path) to like the specified Tweet
 
@@ -1887,9 +1766,7 @@ public class Example {
     UsersLikesCreateRequest usersLikesCreateRequest = new UsersLikesCreateRequest(); // UsersLikesCreateRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to like the Tweet.
     try {
-           UsersLikesCreateResponse result = apiInstance.tweets().usersIdLike(id)
-            .usersLikesCreateRequest(usersLikesCreateRequest)
-            .execute();
+           UsersLikesCreateResponse result = apiInstance.tweets().usersIdLike(usersLikesCreateRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdLike");
@@ -1930,7 +1807,7 @@ public class Example {
 
 <a name="usersIdLikedTweets"></a>
 # **usersIdLikedTweets**
-> Get2UsersIdLikedTweetsResponse usersIdLikedTweets(id).maxResults(maxResults).paginationToken(paginationToken).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2UsersIdLikedTweetsResponse usersIdLikedTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 Returns Tweet objects liked by the provided User ID
 
@@ -1987,16 +1864,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(id)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdLikedTweets");
@@ -2044,7 +1912,7 @@ public class Example {
 
 <a name="usersIdMentions"></a>
 # **usersIdMentions**
-> Get2UsersIdMentionsResponse usersIdMentions(id).sinceId(sinceId).untilId(untilId).maxResults(maxResults).paginationToken(paginationToken).startTime(startTime).endTime(endTime).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2UsersIdMentionsResponse usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 User mention timeline by User ID
 
@@ -2105,20 +1973,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(id)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .startTime(startTime)
-            .endTime(endTime)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdMentions");
@@ -2170,7 +2025,7 @@ public class Example {
 
 <a name="usersIdRetweets"></a>
 # **usersIdRetweets**
-> UsersRetweetsCreateResponse usersIdRetweets(id).usersRetweetsCreateRequest(usersRetweetsCreateRequest).execute();
+> UsersRetweetsCreateResponse usersIdRetweets(usersRetweetsCreateRequest, id)
 
 Causes the User (in the path) to retweet the specified Tweet.
 
@@ -2216,9 +2071,7 @@ public class Example {
     UsersRetweetsCreateRequest usersRetweetsCreateRequest = new UsersRetweetsCreateRequest(); // UsersRetweetsCreateRequest | 
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to retweet the Tweet.
     try {
-           UsersRetweetsCreateResponse result = apiInstance.tweets().usersIdRetweets(id)
-            .usersRetweetsCreateRequest(usersRetweetsCreateRequest)
-            .execute();
+           UsersRetweetsCreateResponse result = apiInstance.tweets().usersIdRetweets(usersRetweetsCreateRequest, id);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdRetweets");
@@ -2259,7 +2112,7 @@ public class Example {
 
 <a name="usersIdTimeline"></a>
 # **usersIdTimeline**
-> Get2UsersIdTimelinesReverseChronologicalResponse usersIdTimeline(id).sinceId(sinceId).untilId(untilId).maxResults(maxResults).paginationToken(paginationToken).exclude(exclude).startTime(startTime).endTime(endTime).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2UsersIdTimelinesReverseChronologicalResponse usersIdTimeline(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 User home timeline by User ID
 
@@ -2317,21 +2170,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2UsersIdTimelinesReverseChronologicalResponse result = apiInstance.tweets().usersIdTimeline(id)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .exclude(exclude)
-            .startTime(startTime)
-            .endTime(endTime)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2UsersIdTimelinesReverseChronologicalResponse result = apiInstance.tweets().usersIdTimeline(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdTimeline");
@@ -2384,7 +2223,7 @@ public class Example {
 
 <a name="usersIdTweets"></a>
 # **usersIdTweets**
-> Get2UsersIdTweetsResponse usersIdTweets(id).sinceId(sinceId).untilId(untilId).maxResults(maxResults).paginationToken(paginationToken).exclude(exclude).startTime(startTime).endTime(endTime).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+> Get2UsersIdTweetsResponse usersIdTweets(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields)
 
 User Tweets timeline by User ID
 
@@ -2446,21 +2285,7 @@ public class Example {
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(id)
-            .sinceId(sinceId)
-            .untilId(untilId)
-            .maxResults(maxResults)
-            .paginationToken(paginationToken)
-            .exclude(exclude)
-            .startTime(startTime)
-            .endTime(endTime)
-            .tweetFields(tweetFields)
-            .expansions(expansions)
-            .mediaFields(mediaFields)
-            .pollFields(pollFields)
-            .userFields(userFields)
-            .placeFields(placeFields)
-            .execute();
+           Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdTweets");
@@ -2513,7 +2338,7 @@ public class Example {
 
 <a name="usersIdUnlike"></a>
 # **usersIdUnlike**
-> UsersLikesDeleteResponse usersIdUnlike(id, tweetId).execute();
+> UsersLikesDeleteResponse usersIdUnlike(id, tweetId)
 
 Causes the User (in the path) to unlike the specified Tweet
 
@@ -2559,8 +2384,7 @@ public class Example {
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to unlike the Tweet.
     String tweetId = "tweetId_example"; // String | The ID of the Tweet that the User is requesting to unlike.
     try {
-           UsersLikesDeleteResponse result = apiInstance.tweets().usersIdUnlike(id, tweetId)
-            .execute();
+           UsersLikesDeleteResponse result = apiInstance.tweets().usersIdUnlike(id, tweetId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdUnlike");
@@ -2601,7 +2425,7 @@ public class Example {
 
 <a name="usersIdUnretweets"></a>
 # **usersIdUnretweets**
-> UsersRetweetsDeleteResponse usersIdUnretweets(id, sourceTweetId).execute();
+> UsersRetweetsDeleteResponse usersIdUnretweets(id, sourceTweetId)
 
 Causes the User (in the path) to unretweet the specified Tweet
 
@@ -2647,8 +2471,7 @@ public class Example {
     String id = "id_example"; // String | The ID of the authenticated source User that is requesting to retweet the Tweet.
     String sourceTweetId = "sourceTweetId_example"; // String | The ID of the Tweet that the User is requesting to unretweet.
     try {
-           UsersRetweetsDeleteResponse result = apiInstance.tweets().usersIdUnretweets(id, sourceTweetId)
-            .execute();
+           UsersRetweetsDeleteResponse result = apiInstance.tweets().usersIdUnretweets(id, sourceTweetId);
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TweetsApi#usersIdUnretweets");

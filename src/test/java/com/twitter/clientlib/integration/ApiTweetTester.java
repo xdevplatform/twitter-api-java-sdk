@@ -22,7 +22,6 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.integration;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,28 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.Get2TweetsIdLikingUsersResponse;
-import com.twitter.clientlib.model.Get2TweetsIdResponse;
-import com.twitter.clientlib.model.Get2TweetsIdRetweetedByResponse;
-import com.twitter.clientlib.model.Get2TweetsResponse;
-import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
-import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
-import com.twitter.clientlib.model.Get2UsersIdMentionsResponse;
-import com.twitter.clientlib.model.Get2UsersIdTweetsResponse;
-import com.twitter.clientlib.model.InvalidRequestProblem;
-import com.twitter.clientlib.model.TweetCreateRequest;
-import com.twitter.clientlib.model.TweetCreateRequestMedia;
-import com.twitter.clientlib.model.TweetCreateResponse;
-import com.twitter.clientlib.model.TweetCreateResponseData;
-import com.twitter.clientlib.model.TweetDeleteResponse;
-import com.twitter.clientlib.model.TweetDeleteResponseData;
-import com.twitter.clientlib.model.User;
-import com.twitter.clientlib.model.UsersLikesCreateRequest;
-import com.twitter.clientlib.model.UsersLikesCreateResponse;
-import com.twitter.clientlib.model.UsersLikesDeleteResponse;
-import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
-import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
-import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
+import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -78,11 +56,7 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void findTweetByIdTest() throws ApiException {
-    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId, tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     checkTweetData(result.getData());
     checkTweetIncludes(result.getIncludes());
@@ -90,11 +64,8 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void findTweetByIdErrorTest() throws ApiException {
-    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetIdNotFound)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetIdNotFound,
+      tweetFields, expansions, null, null, userFields, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
@@ -103,11 +74,7 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void findTweetsByIdTest() throws ApiException {
-    Get2TweetsResponse result = apiInstance.tweets().findTweetsById(tweetIds)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsResponse result = apiInstance.tweets().findTweetsById(tweetIds, tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -116,11 +83,7 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void findTweetsByIdErrorTest() throws ApiException {
-    Get2TweetsResponse result = apiInstance.tweets().findTweetsById(tweetIdsNotFound)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsResponse result = apiInstance.tweets().findTweetsById(tweetIdsNotFound, tweetFields, expansions, null, null, userFields, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
@@ -129,12 +92,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void tweetsRecentSearchTest() throws ApiException {
-    Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(query)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(query, null, null, null,
+      null, maxResults, null,
+      null, null, tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -143,12 +103,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void tweetsRecentSearchNoTweetFoundTest() throws ApiException {
-    Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(queryNotFound)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2TweetsSearchRecentResponse result = apiInstance.tweets().tweetsRecentSearch(queryNotFound, null, null,
+      null, null, maxResults, null,
+      null, null, tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNull(result.getData());
     assertNotNull(result.getMeta());
@@ -159,7 +116,7 @@ public class ApiTweetTester extends ApiTester {
   public void createDeleteTweetTest() throws ApiException {
     TweetCreateRequest req = new TweetCreateRequest();
     req.setText("createTweetTest");
-    TweetCreateResponse result = apiInstance.tweets().createTweet(req).execute();
+    TweetCreateResponse result = apiInstance.tweets().createTweet(req);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     TweetCreateResponseData tweet = result.getData();
@@ -167,7 +124,7 @@ public class ApiTweetTester extends ApiTester {
     assertNotNull(tweet.getId());
     String toDeleteId = tweet.getId();
 
-    TweetDeleteResponse deleteResponse = apiInstance.tweets().deleteTweetById(toDeleteId).execute();
+    TweetDeleteResponse deleteResponse = apiInstance.tweets().deleteTweetById(toDeleteId);
     checkErrors(false, deleteResponse.getErrors());
     assertNotNull(deleteResponse.getData());
     TweetDeleteResponseData deleteData = deleteResponse.getData();
@@ -176,7 +133,7 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void deleteTweetByIdhTweetNotFoundTest() throws ApiException {
-    TweetDeleteResponse result = apiInstance.tweets().deleteTweetById(tweetIdNotFound).execute();
+    TweetDeleteResponse result = apiInstance.tweets().deleteTweetById(tweetIdNotFound);
     assertNotNull(result.getData());
     assertTrue(result.getData().getDeleted());
     checkErrors(false, result.getErrors());
@@ -191,7 +148,7 @@ public class ApiTweetTester extends ApiTester {
     req.setMedia(media);
 
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.tweets().createTweet(req).execute();
+      apiInstance.tweets().createTweet(req);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class, "Your media IDs are invalid.",
         "Invalid Request", "One or more parameters to your request was invalid.");
@@ -199,12 +156,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdTweetsTest() throws ApiException {
-    Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(userId)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(userId, null, null,
+      maxResults,null, null, null, null,
+      tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -213,12 +167,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdTweetsNotFoundTest() throws ApiException {
-    Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(userNotExists)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdTweetsResponse result = apiInstance.tweets().usersIdTweets(userNotExists, null,
+      null, maxResults,
+      null, null, null, null, tweetFields, expansions, null, null, userFields, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
@@ -226,12 +177,10 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdMentionsTest() throws ApiException {
-    Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(popularUserId)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(popularUserId,
+      null, null, maxResults,
+      null, null, null,
+      tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -242,12 +191,10 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdMentionsNotFoundTest() throws ApiException {
-    Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(userNotExists)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdMentionsResponse result = apiInstance.tweets().usersIdMentions(userNotExists,
+      null, null, maxResults,
+      null, null, null,
+      tweetFields, expansions, null, null, userFields, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
@@ -256,9 +203,8 @@ public class ApiTweetTester extends ApiTester {
   @Test
   public void tweetsIdRetweetingUsersTest() throws ApiException {
     Get2TweetsIdRetweetedByResponse result = apiInstance.users().tweetsIdRetweetingUsers(
-            tweetIdPopular)
-        .maxResults(maxResults)
-        .execute();
+        tweetIdPopular,
+        maxResults, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     User user = result.getData().get(0);
@@ -270,9 +216,8 @@ public class ApiTweetTester extends ApiTester {
   @Test
   public void tweetsIdRetweetingUsersNotFoundTest() throws ApiException {
     Get2TweetsIdRetweetedByResponse result = apiInstance.users().tweetsIdRetweetingUsers(
-            tweetIdNotFound)
-        .maxResults(maxResults)
-        .execute();
+        tweetIdNotFound,
+        maxResults, null, null, null, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
@@ -283,9 +228,9 @@ public class ApiTweetTester extends ApiTester {
   public void usersIdRetweetsTest() throws ApiException {
     UsersRetweetsCreateRequest usersRetweetsCreateRequest = new UsersRetweetsCreateRequest();
     usersRetweetsCreateRequest.setTweetId(tweetIdPopular);
-    UsersRetweetsCreateResponse result = apiInstance.tweets().usersIdRetweets(userId)
-        .usersRetweetsCreateRequest(usersRetweetsCreateRequest)
-        .execute();
+    UsersRetweetsCreateResponse result = apiInstance.tweets().usersIdRetweets(
+        usersRetweetsCreateRequest,
+        userId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getRetweeted());
@@ -297,9 +242,7 @@ public class ApiTweetTester extends ApiTester {
     usersRetweetsCreateRequest.setTweetId(tweetIdNotFound);
 
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.tweets().usersIdRetweets(userId)
-          .usersRetweetsCreateRequest(usersRetweetsCreateRequest)
-          .execute();
+      apiInstance.tweets().usersIdRetweets(usersRetweetsCreateRequest, userId);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class, "This Tweet cannot be found.",
         "Invalid Request", "One or more parameters to your request was invalid.");
@@ -308,7 +251,7 @@ public class ApiTweetTester extends ApiTester {
   @Test
   public void usersIdUnretweetsTest() throws ApiException {
     UsersRetweetsDeleteResponse result = apiInstance.tweets().usersIdUnretweets(userId,
-        tweetIdPopular).execute();
+        tweetIdPopular);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getRetweeted());
@@ -317,7 +260,7 @@ public class ApiTweetTester extends ApiTester {
   @Test
   public void usersIdUnretweetsNotFoundTest() throws ApiException {
     UsersRetweetsDeleteResponse result = apiInstance.tweets().usersIdUnretweets(userId,
-        tweetIdPopular).execute();
+        tweetIdPopular);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getRetweeted());
@@ -325,9 +268,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void tweetsIdLikingUsersTest() throws ApiException {
-    Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(tweetIdPopular)
-        .maxResults(maxResults)
-        .execute();
+    Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(
+        tweetIdPopular,
+        maxResults, null, null, null, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     User user = result.getData().get(0);
@@ -339,9 +282,8 @@ public class ApiTweetTester extends ApiTester {
   @Test
   public void tweetsIdLikingUsersNotFoundTest() throws ApiException {
     Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(
-            tweetIdNotFound)
-        .maxResults(maxResults)
-        .execute();
+        tweetIdNotFound,
+        maxResults, null, null, null, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
@@ -350,12 +292,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdLikedTweetsTest() throws ApiException {
-    Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(popularUserId)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(popularUserId,
+      maxResults,
+      null, tweetFields, expansions, null, null, userFields, null);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -366,12 +305,9 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdLikedTweetsNotFoundTest() throws ApiException {
-    Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(tweetIdNotFound)
-        .maxResults(maxResults)
-        .tweetFields(tweetFields)
-        .expansions(expansions)
-        .userFields(userFields)
-        .execute();
+    Get2UsersIdLikedTweetsResponse result = apiInstance.tweets().usersIdLikedTweets(tweetIdNotFound,
+      maxResults,
+      null, tweetFields, expansions, null, null, userFields, null);
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
@@ -380,8 +316,7 @@ public class ApiTweetTester extends ApiTester {
 
   @Test
   public void usersIdUnlikeTest() throws ApiException {
-    UsersLikesDeleteResponse result = apiInstance.tweets().usersIdUnlike(userId,
-        tweetIdPopular).execute();
+    UsersLikesDeleteResponse result = apiInstance.tweets().usersIdUnlike(userId, tweetIdPopular);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getLiked());
@@ -391,9 +326,8 @@ public class ApiTweetTester extends ApiTester {
   public void usersIdLikeTest() throws ApiException {
     UsersLikesCreateRequest usersLikesCreateRequest = new UsersLikesCreateRequest();
     usersLikesCreateRequest.setTweetId(tweetIdPopular);
-    UsersLikesCreateResponse result = apiInstance.tweets().usersIdLike(userId)
-        .usersLikesCreateRequest(usersLikesCreateRequest)
-        .execute();
+    UsersLikesCreateResponse result = apiInstance.tweets().usersIdLike(usersLikesCreateRequest,
+        userId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getLiked());
@@ -404,8 +338,7 @@ public class ApiTweetTester extends ApiTester {
     UsersLikesCreateRequest usersLikesCreateRequest = new UsersLikesCreateRequest();
     usersLikesCreateRequest.setTweetId(tweetIdNotFound);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.tweets().usersIdLike(userId).usersLikesCreateRequest(
-          usersLikesCreateRequest).execute();
+      apiInstance.tweets().usersIdLike(usersLikesCreateRequest, userId);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class, "This tweet cannot be found.",
         "Invalid Request", "One or more parameters to your request was invalid.");
@@ -416,8 +349,7 @@ public class ApiTweetTester extends ApiTester {
     UsersLikesCreateRequest usersLikesCreateRequest = new UsersLikesCreateRequest();
     usersLikesCreateRequest.setTweetId(tweetIdPopular);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.tweets().usersIdLike(userNotExists).usersLikesCreateRequest(
-          usersLikesCreateRequest).execute();
+      apiInstance.tweets().usersIdLike(usersLikesCreateRequest, userNotExists);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user [" + userId + "]",
