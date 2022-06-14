@@ -55,11 +55,11 @@ public class PhotoTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'height'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void heightTest() {
+        // TODO: test height
     }
 
     /**
@@ -71,11 +71,11 @@ public class PhotoTest {
     }
 
     /**
-     * Test the property 'height'
+     * Test the property 'type'
      */
     @Test
-    public void heightTest() {
-        // TODO: test height
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**
@@ -87,19 +87,19 @@ public class PhotoTest {
     }
 
     /**
-     * Test the property 'url'
-     */
-    @Test
-    public void urlTest() {
-        // TODO: test url
-    }
-
-    /**
      * Test the property 'altText'
      */
     @Test
     public void altTextTest() {
         // TODO: test altText
+    }
+
+    /**
+     * Test the property 'url'
+     */
+    @Test
+    public void urlTest() {
+        // TODO: test url
     }
 
 }

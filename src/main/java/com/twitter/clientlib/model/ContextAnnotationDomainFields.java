@@ -59,6 +59,10 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Represents the data for the context annotation domain.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContextAnnotationDomainFields {
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -67,12 +71,31 @@ public class ContextAnnotationDomainFields {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
-
   public ContextAnnotationDomainFields() { 
   }
+
+  public ContextAnnotationDomainFields description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Description of the context annotation domain.
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Description of the context annotation domain.")
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
 
   public ContextAnnotationDomainFields id(String id) {
     
@@ -120,29 +143,6 @@ public class ContextAnnotationDomainFields {
   }
 
 
-  public ContextAnnotationDomainFields description(String description) {
-    
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Description of the context annotation domain.
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the context annotation domain.")
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -153,23 +153,23 @@ public class ContextAnnotationDomainFields {
       return false;
     }
     ContextAnnotationDomainFields contextAnnotationDomainFields = (ContextAnnotationDomainFields) o;
-    return Objects.equals(this.id, contextAnnotationDomainFields.id) &&
-        Objects.equals(this.name, contextAnnotationDomainFields.name) &&
-        Objects.equals(this.description, contextAnnotationDomainFields.description);
+    return Objects.equals(this.description, contextAnnotationDomainFields.description) &&
+        Objects.equals(this.id, contextAnnotationDomainFields.id) &&
+        Objects.equals(this.name, contextAnnotationDomainFields.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description);
+    return Objects.hash(description, id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContextAnnotationDomainFields {\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -192,9 +192,9 @@ public class ContextAnnotationDomainFields {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("description");
     openapiFields.add("id");
     openapiFields.add("name");
-    openapiFields.add("description");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -223,14 +223,14 @@ public class ContextAnnotationDomainFields {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
   }
 

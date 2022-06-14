@@ -34,8 +34,7 @@ import java.util.Queue;
 
 import com.google.gson.reflect.TypeToken;
 
-import com.twitter.clientlib.model.StreamingTweet;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.StreamingTweetResponse;
 
 public class TweetsStreamListenersExecutor {
   private final ITweetsQueue tweetsQueue;
@@ -84,7 +83,7 @@ public class TweetsStreamListenersExecutor {
     }
 
     private void processTweets() {
-      StreamingTweet streamingTweet;
+      StreamingTweetResponse streamingTweet;
       try {
         while (isRunning) {
           streamingTweet = tweetsQueue.poll();
@@ -109,9 +108,6 @@ public class TweetsStreamListenersExecutor {
     }
 
     public void queueTweets() {
-      JSON json = new JSON();
-      Type localVarReturnType = new TypeToken<SingleTweetLookupResponse>() {}.getType();
-
       String line = null;
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
         while (isRunning) {
@@ -121,7 +117,7 @@ public class TweetsStreamListenersExecutor {
             continue;
           }
           try {
-            tweetsQueue.add(StreamingTweet.fromJson(line));
+            tweetsQueue.add(StreamingTweetResponse.fromJson(line));
           } catch (Exception interExcep) {
             interExcep.printStackTrace();
           }
@@ -135,20 +131,20 @@ public class TweetsStreamListenersExecutor {
 }
 
 interface ITweetsQueue {
-  StreamingTweet poll();
-  void add(StreamingTweet streamingTweet);
+  StreamingTweetResponse poll();
+  void add(StreamingTweetResponse streamingTweet);
 }
 
 class LinkedListTweetsQueue implements ITweetsQueue {
-  private final Queue<StreamingTweet> tweetsQueue = new LinkedList<>();
+  private final Queue<StreamingTweetResponse> tweetsQueue = new LinkedList<>();
 
   @Override
-  public StreamingTweet poll() {
+  public StreamingTweetResponse poll() {
     return tweetsQueue.poll();
   }
 
   @Override
-  public void add(StreamingTweet streamingTweet) {
+  public void add(StreamingTweetResponse streamingTweet) {
     tweetsQueue.add(streamingTweet);
   }
 }

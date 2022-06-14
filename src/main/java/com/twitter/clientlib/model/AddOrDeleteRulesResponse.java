@@ -68,13 +68,13 @@ public class AddOrDeleteRulesResponse {
   @SerializedName(SERIALIZED_NAME_DATA)
   private List<Rule> data = null;
 
-  public static final String SERIALIZED_NAME_META = "meta";
-  @SerializedName(SERIALIZED_NAME_META)
-  private RulesResponseMetadata meta;
-
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   private List<Problem> errors = null;
+
+  public static final String SERIALIZED_NAME_META = "meta";
+  @SerializedName(SERIALIZED_NAME_META)
+  private RulesResponseMetadata meta;
 
   public AddOrDeleteRulesResponse() { 
   }
@@ -110,29 +110,6 @@ public class AddOrDeleteRulesResponse {
   }
 
 
-  public AddOrDeleteRulesResponse meta(RulesResponseMetadata meta) {
-    
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public RulesResponseMetadata getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(RulesResponseMetadata meta) {
-    this.meta = meta;
-  }
-
-
   public AddOrDeleteRulesResponse errors(List<Problem> errors) {
     
     this.errors = errors;
@@ -164,6 +141,29 @@ public class AddOrDeleteRulesResponse {
   }
 
 
+  public AddOrDeleteRulesResponse meta(RulesResponseMetadata meta) {
+    
+    this.meta = meta;
+    return this;
+  }
+
+   /**
+   * Get meta
+   * @return meta
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public RulesResponseMetadata getMeta() {
+    return meta;
+  }
+
+
+  public void setMeta(RulesResponseMetadata meta) {
+    this.meta = meta;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -175,13 +175,13 @@ public class AddOrDeleteRulesResponse {
     }
     AddOrDeleteRulesResponse addOrDeleteRulesResponse = (AddOrDeleteRulesResponse) o;
     return Objects.equals(this.data, addOrDeleteRulesResponse.data) &&
-        Objects.equals(this.meta, addOrDeleteRulesResponse.meta) &&
-        Objects.equals(this.errors, addOrDeleteRulesResponse.errors);
+        Objects.equals(this.errors, addOrDeleteRulesResponse.errors) &&
+        Objects.equals(this.meta, addOrDeleteRulesResponse.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, meta, errors);
+    return Objects.hash(data, errors, meta);
   }
 
   @Override
@@ -189,8 +189,8 @@ public class AddOrDeleteRulesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddOrDeleteRulesResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -214,8 +214,8 @@ public class AddOrDeleteRulesResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("data");
-    openapiFields.add("meta");
     openapiFields.add("errors");
+    openapiFields.add("meta");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -256,10 +256,6 @@ public class AddOrDeleteRulesResponse {
           Rule.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
         };
       }
-      // validate the optional field `meta`
-      if (jsonObj.getAsJsonObject("meta") != null) {
-        RulesResponseMetadata.validateJsonObject(jsonObj.getAsJsonObject("meta"));
-      }
       JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
       if (jsonArrayerrors != null) {
         // ensure the json data is an array
@@ -271,6 +267,10 @@ public class AddOrDeleteRulesResponse {
         for (int i = 0; i < jsonArrayerrors.size(); i++) {
           Problem.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
         };
+      }
+      // validate the optional field `meta`
+      if (jsonObj.getAsJsonObject("meta") != null) {
+        RulesResponseMetadata.validateJsonObject(jsonObj.getAsJsonObject("meta"));
       }
   }
 

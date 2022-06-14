@@ -54,9 +54,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * A list of metrics for this user
+ * A list of metrics for this User.
  */
-@ApiModel(description = "A list of metrics for this user")
+@ApiModel(description = "A list of metrics for this User.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserPublicMetrics {
   public static final String SERIALIZED_NAME_FOLLOWERS_COUNT = "followers_count";
@@ -67,13 +67,13 @@ public class UserPublicMetrics {
   @SerializedName(SERIALIZED_NAME_FOLLOWING_COUNT)
   private Integer followingCount;
 
-  public static final String SERIALIZED_NAME_TWEET_COUNT = "tweet_count";
-  @SerializedName(SERIALIZED_NAME_TWEET_COUNT)
-  private Integer tweetCount;
-
   public static final String SERIALIZED_NAME_LISTED_COUNT = "listed_count";
   @SerializedName(SERIALIZED_NAME_LISTED_COUNT)
   private Integer listedCount;
+
+  public static final String SERIALIZED_NAME_TWEET_COUNT = "tweet_count";
+  @SerializedName(SERIALIZED_NAME_TWEET_COUNT)
+  private Integer tweetCount;
 
   public UserPublicMetrics() { 
   }
@@ -85,11 +85,11 @@ public class UserPublicMetrics {
   }
 
    /**
-   * Number of users who are following this user.
+   * Number of Users who are following this User.
    * @return followersCount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of users who are following this user.")
+  @ApiModelProperty(required = true, value = "Number of Users who are following this User.")
 
   public Integer getFollowersCount() {
     return followersCount;
@@ -108,11 +108,11 @@ public class UserPublicMetrics {
   }
 
    /**
-   * Number of users this user is following.
+   * Number of Users this User is following.
    * @return followingCount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of users this user is following.")
+  @ApiModelProperty(required = true, value = "Number of Users this User is following.")
 
   public Integer getFollowingCount() {
     return followingCount;
@@ -124,29 +124,6 @@ public class UserPublicMetrics {
   }
 
 
-  public UserPublicMetrics tweetCount(Integer tweetCount) {
-    
-    this.tweetCount = tweetCount;
-    return this;
-  }
-
-   /**
-   * The number of Tweets (including Retweets) posted by this user.
-   * @return tweetCount
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The number of Tweets (including Retweets) posted by this user.")
-
-  public Integer getTweetCount() {
-    return tweetCount;
-  }
-
-
-  public void setTweetCount(Integer tweetCount) {
-    this.tweetCount = tweetCount;
-  }
-
-
   public UserPublicMetrics listedCount(Integer listedCount) {
     
     this.listedCount = listedCount;
@@ -154,11 +131,11 @@ public class UserPublicMetrics {
   }
 
    /**
-   * The number of lists that include this user.
+   * The number of lists that include this User.
    * @return listedCount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The number of lists that include this user.")
+  @ApiModelProperty(required = true, value = "The number of lists that include this User.")
 
   public Integer getListedCount() {
     return listedCount;
@@ -167,6 +144,29 @@ public class UserPublicMetrics {
 
   public void setListedCount(Integer listedCount) {
     this.listedCount = listedCount;
+  }
+
+
+  public UserPublicMetrics tweetCount(Integer tweetCount) {
+    
+    this.tweetCount = tweetCount;
+    return this;
+  }
+
+   /**
+   * The number of Tweets (including Retweets) posted by this User.
+   * @return tweetCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The number of Tweets (including Retweets) posted by this User.")
+
+  public Integer getTweetCount() {
+    return tweetCount;
+  }
+
+
+  public void setTweetCount(Integer tweetCount) {
+    this.tweetCount = tweetCount;
   }
 
 
@@ -182,13 +182,13 @@ public class UserPublicMetrics {
     UserPublicMetrics userPublicMetrics = (UserPublicMetrics) o;
     return Objects.equals(this.followersCount, userPublicMetrics.followersCount) &&
         Objects.equals(this.followingCount, userPublicMetrics.followingCount) &&
-        Objects.equals(this.tweetCount, userPublicMetrics.tweetCount) &&
-        Objects.equals(this.listedCount, userPublicMetrics.listedCount);
+        Objects.equals(this.listedCount, userPublicMetrics.listedCount) &&
+        Objects.equals(this.tweetCount, userPublicMetrics.tweetCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(followersCount, followingCount, tweetCount, listedCount);
+    return Objects.hash(followersCount, followingCount, listedCount, tweetCount);
   }
 
   @Override
@@ -197,8 +197,8 @@ public class UserPublicMetrics {
     sb.append("class UserPublicMetrics {\n");
     sb.append("    followersCount: ").append(toIndentedString(followersCount)).append("\n");
     sb.append("    followingCount: ").append(toIndentedString(followingCount)).append("\n");
-    sb.append("    tweetCount: ").append(toIndentedString(tweetCount)).append("\n");
     sb.append("    listedCount: ").append(toIndentedString(listedCount)).append("\n");
+    sb.append("    tweetCount: ").append(toIndentedString(tweetCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -223,15 +223,15 @@ public class UserPublicMetrics {
     openapiFields = new HashSet<String>();
     openapiFields.add("followers_count");
     openapiFields.add("following_count");
-    openapiFields.add("tweet_count");
     openapiFields.add("listed_count");
+    openapiFields.add("tweet_count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("followers_count");
     openapiRequiredFields.add("following_count");
-    openapiRequiredFields.add("tweet_count");
     openapiRequiredFields.add("listed_count");
+    openapiRequiredFields.add("tweet_count");
   }
 
  /**

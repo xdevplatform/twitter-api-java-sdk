@@ -59,66 +59,20 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "A user-provided stream filtering rule.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Rule {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
   private String tag;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   public Rule() { 
   }
-
-  public Rule value(String value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The filterlang value of the rule.
-   * @return value
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "coffee -is:retweet", required = true, value = "The filterlang value of the rule.")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
-  public Rule tag(String tag) {
-    
-    this.tag = tag;
-    return this;
-  }
-
-   /**
-   * A tag meant for the labeling of user provided rules.
-   * @return tag
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Non-retweeted coffee tweets", value = "A tag meant for the labeling of user provided rules.")
-
-  public String getTag() {
-    return tag;
-  }
-
-
-  public void setTag(String tag) {
-    this.tag = tag;
-  }
-
 
   public Rule id(String id) {
     
@@ -143,6 +97,52 @@ public class Rule {
   }
 
 
+  public Rule tag(String tag) {
+    
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * A tag meant for the labeling of user provided rules.
+   * @return tag
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Non-retweeted coffee Tweets", value = "A tag meant for the labeling of user provided rules.")
+
+  public String getTag() {
+    return tag;
+  }
+
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+
+  public Rule value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The filterlang value of the rule.
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "coffee -is:retweet", required = true, value = "The filterlang value of the rule.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -153,23 +153,23 @@ public class Rule {
       return false;
     }
     Rule rule = (Rule) o;
-    return Objects.equals(this.value, rule.value) &&
+    return Objects.equals(this.id, rule.id) &&
         Objects.equals(this.tag, rule.tag) &&
-        Objects.equals(this.id, rule.id);
+        Objects.equals(this.value, rule.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, tag, id);
+    return Objects.hash(id, tag, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Rule {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -192,9 +192,9 @@ public class Rule {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
-    openapiFields.add("tag");
     openapiFields.add("id");
+    openapiFields.add("tag");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -223,14 +223,14 @@ public class Rule {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

@@ -6,12 +6,12 @@ An HTTP Problem Details object, as defined in IETF RFC 7807 (https://tools.ietf.
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**type** | **String** |  | 
-**title** | **String** |  | 
-**detail** | **String** |  |  [optional]
-**status** | **Integer** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**detail** | **String** |  |  [optional] |
+|**status** | **Integer** |  |  [optional] |
+|**title** | **String** |  |  |
+|**type** | **String** |  |  |
 
 
 

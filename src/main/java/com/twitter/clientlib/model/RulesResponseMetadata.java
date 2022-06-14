@@ -59,14 +59,6 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RulesResponseMetadata {
-  public static final String SERIALIZED_NAME_SENT = "sent";
-  @SerializedName(SERIALIZED_NAME_SENT)
-  private String sent;
-
-  public static final String SERIALIZED_NAME_SUMMARY = "summary";
-  @SerializedName(SERIALIZED_NAME_SUMMARY)
-  private RulesRequestSummary summary;
-
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "next_token";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
   private String nextToken;
@@ -75,8 +67,62 @@ public class RulesResponseMetadata {
   @SerializedName(SERIALIZED_NAME_RESULT_COUNT)
   private Integer resultCount;
 
+  public static final String SERIALIZED_NAME_SENT = "sent";
+  @SerializedName(SERIALIZED_NAME_SENT)
+  private String sent;
+
+  public static final String SERIALIZED_NAME_SUMMARY = "summary";
+  @SerializedName(SERIALIZED_NAME_SUMMARY)
+  private RulesRequestSummary summary;
+
   public RulesResponseMetadata() { 
   }
+
+  public RulesResponseMetadata nextToken(String nextToken) {
+    
+    this.nextToken = nextToken;
+    return this;
+  }
+
+   /**
+   * The next token.
+   * @return nextToken
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The next token.")
+
+  public String getNextToken() {
+    return nextToken;
+  }
+
+
+  public void setNextToken(String nextToken) {
+    this.nextToken = nextToken;
+  }
+
+
+  public RulesResponseMetadata resultCount(Integer resultCount) {
+    
+    this.resultCount = resultCount;
+    return this;
+  }
+
+   /**
+   * Number of Rules in result set.
+   * @return resultCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of Rules in result set.")
+
+  public Integer getResultCount() {
+    return resultCount;
+  }
+
+
+  public void setResultCount(Integer resultCount) {
+    this.resultCount = resultCount;
+  }
+
 
   public RulesResponseMetadata sent(String sent) {
     
@@ -124,52 +170,6 @@ public class RulesResponseMetadata {
   }
 
 
-  public RulesResponseMetadata nextToken(String nextToken) {
-    
-    this.nextToken = nextToken;
-    return this;
-  }
-
-   /**
-   * This parameter is used to get the next &#39;page&#39; of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified.
-   * @return nextToken
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "This parameter is used to get the next 'page' of results. The value used with the parameter is pulled directly from the response provided by the API, and should not be modified.")
-
-  public String getNextToken() {
-    return nextToken;
-  }
-
-
-  public void setNextToken(String nextToken) {
-    this.nextToken = nextToken;
-  }
-
-
-  public RulesResponseMetadata resultCount(Integer resultCount) {
-    
-    this.resultCount = resultCount;
-    return this;
-  }
-
-   /**
-   * Number of Rules in result set
-   * @return resultCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of Rules in result set")
-
-  public Integer getResultCount() {
-    return resultCount;
-  }
-
-
-  public void setResultCount(Integer resultCount) {
-    this.resultCount = resultCount;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -180,25 +180,25 @@ public class RulesResponseMetadata {
       return false;
     }
     RulesResponseMetadata rulesResponseMetadata = (RulesResponseMetadata) o;
-    return Objects.equals(this.sent, rulesResponseMetadata.sent) &&
-        Objects.equals(this.summary, rulesResponseMetadata.summary) &&
-        Objects.equals(this.nextToken, rulesResponseMetadata.nextToken) &&
-        Objects.equals(this.resultCount, rulesResponseMetadata.resultCount);
+    return Objects.equals(this.nextToken, rulesResponseMetadata.nextToken) &&
+        Objects.equals(this.resultCount, rulesResponseMetadata.resultCount) &&
+        Objects.equals(this.sent, rulesResponseMetadata.sent) &&
+        Objects.equals(this.summary, rulesResponseMetadata.summary);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sent, summary, nextToken, resultCount);
+    return Objects.hash(nextToken, resultCount, sent, summary);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RulesResponseMetadata {\n");
-    sb.append("    sent: ").append(toIndentedString(sent)).append("\n");
-    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    nextToken: ").append(toIndentedString(nextToken)).append("\n");
     sb.append("    resultCount: ").append(toIndentedString(resultCount)).append("\n");
+    sb.append("    sent: ").append(toIndentedString(sent)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,10 +221,10 @@ public class RulesResponseMetadata {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("sent");
-    openapiFields.add("summary");
     openapiFields.add("next_token");
     openapiFields.add("result_count");
+    openapiFields.add("sent");
+    openapiFields.add("summary");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -253,15 +253,15 @@ public class RulesResponseMetadata {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("next_token") != null && !jsonObj.get("next_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `next_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("next_token").toString()));
+      }
       if (jsonObj.get("sent") != null && !jsonObj.get("sent").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sent").toString()));
       }
       // validate the optional field `summary`
       if (jsonObj.getAsJsonObject("summary") != null) {
         RulesRequestSummary.validateJsonObject(jsonObj.getAsJsonObject("summary"));
-      }
-      if (jsonObj.get("next_token") != null && !jsonObj.get("next_token").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `next_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("next_token").toString()));
       }
   }
 

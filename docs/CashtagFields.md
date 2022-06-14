@@ -6,9 +6,9 @@ Represent the portion of text recognized as a Cashtag, and its start and end pos
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tag** | **String** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tag** | **String** |  |  |
 
 
 

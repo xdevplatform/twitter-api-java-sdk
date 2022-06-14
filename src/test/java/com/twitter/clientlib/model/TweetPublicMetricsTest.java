@@ -49,22 +49,6 @@ public class TweetPublicMetricsTest {
     }
 
     /**
-     * Test the property 'retweetCount'
-     */
-    @Test
-    public void retweetCountTest() {
-        // TODO: test retweetCount
-    }
-
-    /**
-     * Test the property 'replyCount'
-     */
-    @Test
-    public void replyCountTest() {
-        // TODO: test replyCount
-    }
-
-    /**
      * Test the property 'likeCount'
      */
     @Test
@@ -78,6 +62,22 @@ public class TweetPublicMetricsTest {
     @Test
     public void quoteCountTest() {
         // TODO: test quoteCount
+    }
+
+    /**
+     * Test the property 'replyCount'
+     */
+    @Test
+    public void replyCountTest() {
+        // TODO: test replyCount
+    }
+
+    /**
+     * Test the property 'retweetCount'
+     */
+    @Test
+    public void retweetCountTest() {
+        // TODO: test retweetCount
     }
 
 }

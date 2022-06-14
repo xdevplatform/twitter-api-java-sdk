@@ -49,19 +49,19 @@ public class PollOptionTest {
     }
 
     /**
-     * Test the property 'position'
-     */
-    @Test
-    public void positionTest() {
-        // TODO: test position
-    }
-
-    /**
      * Test the property 'label'
      */
     @Test
     public void labelTest() {
         // TODO: test label
+    }
+
+    /**
+     * Test the property 'position'
+     */
+    @Test
+    public void positionTest() {
+        // TODO: test position
     }
 
     /**

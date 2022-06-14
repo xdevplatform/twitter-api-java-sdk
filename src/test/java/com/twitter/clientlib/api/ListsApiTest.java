@@ -22,25 +22,28 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.ListAddMemberRequest;
+import com.twitter.clientlib.model.Get2ListsIdResponse;
+import com.twitter.clientlib.model.Get2UsersIdFollowedListsResponse;
+import com.twitter.clientlib.model.Get2UsersIdListMembershipsResponse;
+import com.twitter.clientlib.model.Get2UsersIdOwnedListsResponse;
+import com.twitter.clientlib.model.Get2UsersIdPinnedListsResponse;
+import com.twitter.clientlib.model.ListAddUserRequest;
 import com.twitter.clientlib.model.ListCreateRequest;
 import com.twitter.clientlib.model.ListCreateResponse;
 import com.twitter.clientlib.model.ListDeleteResponse;
-import com.twitter.clientlib.model.ListFollowRequest;
+import com.twitter.clientlib.model.ListFollowedRequest;
 import com.twitter.clientlib.model.ListFollowedResponse;
-import com.twitter.clientlib.model.ListMemberResponse;
-import com.twitter.clientlib.model.ListPinRequest;
+import com.twitter.clientlib.model.ListMutateResponse;
+import com.twitter.clientlib.model.ListPinnedRequest;
 import com.twitter.clientlib.model.ListPinnedResponse;
+import com.twitter.clientlib.model.ListUnpinResponse;
 import com.twitter.clientlib.model.ListUpdateRequest;
 import com.twitter.clientlib.model.ListUpdateResponse;
-import com.twitter.clientlib.model.MultiListNoPaginationResponse;
-import com.twitter.clientlib.model.MultiListResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleListLookupResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +59,7 @@ import java.io.InputStream;
 @Disabled
 public class ListsApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**
@@ -70,11 +73,17 @@ public class ListsApiTest {
     public void getUserListMembershipsTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
-        Long paginationToken = null;
+        String paginationToken = null;
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                MultiListResponse response = apiInstance.lists().getUserListMemberships(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdListMembershipsResponse response = apiInstance.lists().getUserListMemberships(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -82,15 +91,17 @@ public class ListsApiTest {
     /**
      * Add a List member
      *
-     * Causes a user to become a member of a List.
+     * Causes a User to become a member of a List.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void listAddMemberTest() throws ApiException {
-        ListAddMemberRequest listAddMemberRequest = null;
+        ListAddUserRequest listAddUserRequest = null;
         String id = null;
-                ListMemberResponse response = apiInstance.lists().listAddMember(listAddMemberRequest, id);
+                ListMutateResponse response = apiInstance.lists().listAddMember(id)
+                .listAddUserRequest(listAddUserRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -105,7 +116,9 @@ public class ListsApiTest {
     @Test
     public void listIdCreateTest() throws ApiException {
         ListCreateRequest listCreateRequest = null;
-                ListCreateResponse response = apiInstance.lists().listIdCreate(listCreateRequest);
+                ListCreateResponse response = apiInstance.lists().listIdCreate()
+                .listCreateRequest(listCreateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -120,15 +133,16 @@ public class ListsApiTest {
     @Test
     public void listIdDeleteTest() throws ApiException {
         String id = null;
-                ListDeleteResponse response = apiInstance.lists().listIdDelete(id);
+                ListDeleteResponse response = apiInstance.lists().listIdDelete(id)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * List lookup by List ID
+     * List lookup by List ID.
      *
-     * Returns a List
+     * Returns a List.
      *
      * @throws ApiException if the Api call fails
      */
@@ -138,13 +152,17 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                SingleListLookupResponse response = apiInstance.lists().listIdGet(id, listFields, expansions, userFields);
+                Get2ListsIdResponse response = apiInstance.lists().listIdGet(id)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Update List
+     * Update List.
      *
      * Update a List that you own.
      *
@@ -154,7 +172,9 @@ public class ListsApiTest {
     public void listIdUpdateTest() throws ApiException {
         ListUpdateRequest listUpdateRequest = null;
         String id = null;
-                ListUpdateResponse response = apiInstance.lists().listIdUpdate(listUpdateRequest, id);
+                ListUpdateResponse response = apiInstance.lists().listIdUpdate(id)
+                .listUpdateRequest(listUpdateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -162,7 +182,7 @@ public class ListsApiTest {
     /**
      * Remove a List member
      *
-     * Causes a user to be removed from the members of a List.
+     * Causes a User to be removed from the members of a List.
      *
      * @throws ApiException if the Api call fails
      */
@@ -170,7 +190,8 @@ public class ListsApiTest {
     public void listRemoveMemberTest() throws ApiException {
         String id = null;
         String userId = null;
-                ListMemberResponse response = apiInstance.lists().listRemoveMember(id, userId);
+                ListMutateResponse response = apiInstance.lists().listRemoveMember(id, userId)
+                .execute();
         // TODO: test validations
     }
 
@@ -178,21 +199,23 @@ public class ListsApiTest {
     /**
      * Follow a List
      *
-     * Causes a user to follow a List.
+     * Causes a User to follow a List.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void listUserFollowTest() throws ApiException {
-        ListFollowRequest listFollowRequest = null;
+        ListFollowedRequest listFollowedRequest = null;
         String id = null;
-                ListFollowedResponse response = apiInstance.lists().listUserFollow(listFollowRequest, id);
+                ListFollowedResponse response = apiInstance.lists().listUserFollow(id)
+                .listFollowedRequest(listFollowedRequest)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Get a User&#39;s Owned Lists
+     * Get a User&#39;s Owned Lists.
      *
      * Get a User&#39;s Owned Lists.
      *
@@ -202,11 +225,17 @@ public class ListsApiTest {
     public void listUserOwnedListsTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
-        Long paginationToken = null;
+        String paginationToken = null;
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                MultiListResponse response = apiInstance.lists().listUserOwnedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdOwnedListsResponse response = apiInstance.lists().listUserOwnedLists(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -214,15 +243,16 @@ public class ListsApiTest {
     /**
      * Pin a List
      *
-     * Causes a user to pin a List.
+     * Causes a User to pin a List.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void listUserPinTest() throws ApiException {
-        ListPinRequest listPinRequest = null;
+        ListPinnedRequest listPinnedRequest = null;
         String id = null;
-                ListPinnedResponse response = apiInstance.lists().listUserPin(listPinRequest, id);
+                ListPinnedResponse response = apiInstance.lists().listUserPin(listPinnedRequest, id)
+                .execute();
         // TODO: test validations
     }
 
@@ -240,7 +270,11 @@ public class ListsApiTest {
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                MultiListNoPaginationResponse response = apiInstance.lists().listUserPinnedLists(id, listFields, expansions, userFields);
+                Get2UsersIdPinnedListsResponse response = apiInstance.lists().listUserPinnedLists(id)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -248,7 +282,7 @@ public class ListsApiTest {
     /**
      * Unfollow a List
      *
-     * Causes a user to unfollow a List.
+     * Causes a User to unfollow a List.
      *
      * @throws ApiException if the Api call fails
      */
@@ -256,7 +290,8 @@ public class ListsApiTest {
     public void listUserUnfollowTest() throws ApiException {
         String id = null;
         String listId = null;
-                ListFollowedResponse response = apiInstance.lists().listUserUnfollow(id, listId);
+                ListFollowedResponse response = apiInstance.lists().listUserUnfollow(id, listId)
+                .execute();
         // TODO: test validations
     }
 
@@ -264,7 +299,7 @@ public class ListsApiTest {
     /**
      * Unpin a List
      *
-     * Causes a user to remove a pinned List.
+     * Causes a User to remove a pinned List.
      *
      * @throws ApiException if the Api call fails
      */
@@ -272,7 +307,8 @@ public class ListsApiTest {
     public void listUserUnpinTest() throws ApiException {
         String id = null;
         String listId = null;
-                ListPinnedResponse response = apiInstance.lists().listUserUnpin(id, listId);
+                ListUnpinResponse response = apiInstance.lists().listUserUnpin(id, listId)
+                .execute();
         // TODO: test validations
     }
 
@@ -280,7 +316,7 @@ public class ListsApiTest {
     /**
      * Get User&#39;s Followed Lists
      *
-     * Returns a user&#39;s followed Lists.
+     * Returns a User&#39;s followed Lists.
      *
      * @throws ApiException if the Api call fails
      */
@@ -288,11 +324,17 @@ public class ListsApiTest {
     public void userFollowedListsTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
-        Long paginationToken = null;
+        String paginationToken = null;
         Set<String> listFields = null;
         Set<String> expansions = null;
         Set<String> userFields = null;
-                MultiListResponse response = apiInstance.lists().userFollowedLists(id, maxResults, paginationToken, listFields, expansions, userFields);
+                Get2UsersIdFollowedListsResponse response = apiInstance.lists().userFollowedLists(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .listFields(listFields)
+                .expansions(expansions)
+                .userFields(userFields)
+                .execute();
         // TODO: test validations
     }
 

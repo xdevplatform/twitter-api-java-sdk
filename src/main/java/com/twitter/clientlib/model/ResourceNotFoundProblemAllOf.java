@@ -62,10 +62,6 @@ public class ResourceNotFoundProblemAllOf {
   @SerializedName(SERIALIZED_NAME_PARAMETER)
   private String parameter;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private Object value = null;
-
   public static final String SERIALIZED_NAME_RESOURCE_ID = "resource_id";
   @SerializedName(SERIALIZED_NAME_RESOURCE_ID)
   private String resourceId;
@@ -127,6 +123,10 @@ public class ResourceNotFoundProblemAllOf {
   @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
   private ResourceTypeEnum resourceType;
 
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
   public ResourceNotFoundProblemAllOf() { 
   }
 
@@ -150,29 +150,6 @@ public class ResourceNotFoundProblemAllOf {
 
   public void setParameter(String parameter) {
     this.parameter = parameter;
-  }
-
-
-  public ResourceNotFoundProblemAllOf value(Object value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Value will match the schema of the field.
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "Value will match the schema of the field.")
-
-  public Object getValue() {
-    return value;
-  }
-
-
-  public void setValue(Object value) {
-    this.value = value;
   }
 
 
@@ -222,6 +199,29 @@ public class ResourceNotFoundProblemAllOf {
   }
 
 
+  public ResourceNotFoundProblemAllOf value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Value will match the schema of the field.
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Value will match the schema of the field.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -233,14 +233,14 @@ public class ResourceNotFoundProblemAllOf {
     }
     ResourceNotFoundProblemAllOf resourceNotFoundProblemAllOf = (ResourceNotFoundProblemAllOf) o;
     return Objects.equals(this.parameter, resourceNotFoundProblemAllOf.parameter) &&
-        Objects.equals(this.value, resourceNotFoundProblemAllOf.value) &&
         Objects.equals(this.resourceId, resourceNotFoundProblemAllOf.resourceId) &&
-        Objects.equals(this.resourceType, resourceNotFoundProblemAllOf.resourceType);
+        Objects.equals(this.resourceType, resourceNotFoundProblemAllOf.resourceType) &&
+        Objects.equals(this.value, resourceNotFoundProblemAllOf.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parameter, value, resourceId, resourceType);
+    return Objects.hash(parameter, resourceId, resourceType, value);
   }
 
   @Override
@@ -248,9 +248,9 @@ public class ResourceNotFoundProblemAllOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceNotFoundProblemAllOf {\n");
     sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    resourceId: ").append(toIndentedString(resourceId)).append("\n");
     sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -274,16 +274,16 @@ public class ResourceNotFoundProblemAllOf {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("parameter");
-    openapiFields.add("value");
     openapiFields.add("resource_id");
     openapiFields.add("resource_type");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("parameter");
-    openapiRequiredFields.add("value");
     openapiRequiredFields.add("resource_id");
     openapiRequiredFields.add("resource_type");
+    openapiRequiredFields.add("value");
   }
 
  /**
@@ -316,6 +316,9 @@ public class ResourceNotFoundProblemAllOf {
       }
       if (jsonObj.get("resource_type") != null && !jsonObj.get("resource_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `resource_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("resource_type").toString()));
+      }
+      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

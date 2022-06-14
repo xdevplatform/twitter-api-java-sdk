@@ -61,6 +61,18 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Geo {
+  public static final String SERIALIZED_NAME_BBOX = "bbox";
+  @SerializedName(SERIALIZED_NAME_BBOX)
+  private List<Double> bbox = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_GEOMETRY = "geometry";
+  @SerializedName(SERIALIZED_NAME_GEOMETRY)
+  private Point geometry;
+
+  public static final String SERIALIZED_NAME_PROPERTIES = "properties";
+  @SerializedName(SERIALIZED_NAME_PROPERTIES)
+  private Object properties;
+
   /**
    * Gets or Sets type
    */
@@ -110,43 +122,8 @@ public class Geo {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_BBOX = "bbox";
-  @SerializedName(SERIALIZED_NAME_BBOX)
-  private List<Double> bbox = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_GEOMETRY = "geometry";
-  @SerializedName(SERIALIZED_NAME_GEOMETRY)
-  private Point geometry;
-
-  public static final String SERIALIZED_NAME_PROPERTIES = "properties";
-  @SerializedName(SERIALIZED_NAME_PROPERTIES)
-  private Object properties;
-
   public Geo() { 
   }
-
-  public Geo type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
 
   public Geo bbox(List<Double> bbox) {
     
@@ -222,6 +199,29 @@ public class Geo {
   }
 
 
+  public Geo type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -232,25 +232,25 @@ public class Geo {
       return false;
     }
     Geo geo = (Geo) o;
-    return Objects.equals(this.type, geo.type) &&
-        Objects.equals(this.bbox, geo.bbox) &&
+    return Objects.equals(this.bbox, geo.bbox) &&
         Objects.equals(this.geometry, geo.geometry) &&
-        Objects.equals(this.properties, geo.properties);
+        Objects.equals(this.properties, geo.properties) &&
+        Objects.equals(this.type, geo.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, bbox, geometry, properties);
+    return Objects.hash(bbox, geometry, properties, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Geo {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    bbox: ").append(toIndentedString(bbox)).append("\n");
     sb.append("    geometry: ").append(toIndentedString(geometry)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -273,16 +273,16 @@ public class Geo {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
     openapiFields.add("bbox");
     openapiFields.add("geometry");
     openapiFields.add("properties");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("bbox");
     openapiRequiredFields.add("properties");
+    openapiRequiredFields.add("type");
   }
 
  /**
@@ -307,9 +307,6 @@ public class Geo {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
       // ensure the json data is an array
       if (jsonObj.get("bbox") != null && !jsonObj.get("bbox").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `bbox` to be an array in the JSON string but got `%s`", jsonObj.get("bbox").toString()));
@@ -317,6 +314,9 @@ public class Geo {
       // validate the optional field `geometry`
       if (jsonObj.getAsJsonObject("geometry") != null) {
         Point.validateJsonObject(jsonObj.getAsJsonObject("geometry"));
+      }
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
   }
 

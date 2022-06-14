@@ -61,17 +61,17 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Media {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  protected String type;
+  public static final String SERIALIZED_NAME_HEIGHT = "height";
+  @SerializedName(SERIALIZED_NAME_HEIGHT)
+  private Integer height;
 
   public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
   @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
   private String mediaKey;
 
-  public static final String SERIALIZED_NAME_HEIGHT = "height";
-  @SerializedName(SERIALIZED_NAME_HEIGHT)
-  private Integer height;
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  protected String type;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
@@ -81,26 +81,27 @@ public class Media {
     this.type = this.getClass().getSimpleName();
   }
 
-  public Media type(String type) {
+  public Media height(Integer height) {
     
-    this.type = type;
+    this.height = height;
     return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * The height of the media in pixels.
+   * minimum: 0
+   * @return height
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The height of the media in pixels.")
 
-  public String getType() {
-    return type;
+  public Integer getHeight() {
+    return height;
   }
 
 
-  public void setType(String type) {
-    this.type = type;
+  public void setHeight(Integer height) {
+    this.height = height;
   }
 
 
@@ -127,27 +128,26 @@ public class Media {
   }
 
 
-  public Media height(Integer height) {
+  public Media type(String type) {
     
-    this.height = height;
+    this.type = type;
     return this;
   }
 
    /**
-   * The height of the media in pixels
-   * minimum: 0
-   * @return height
+   * Get type
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The height of the media in pixels")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
-  public Integer getHeight() {
-    return height;
+  public String getType() {
+    return type;
   }
 
 
-  public void setHeight(Integer height) {
-    this.height = height;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -158,12 +158,12 @@ public class Media {
   }
 
    /**
-   * The width of the media in pixels
+   * The width of the media in pixels.
    * minimum: 0
    * @return width
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The width of the media in pixels")
+  @ApiModelProperty(value = "The width of the media in pixels.")
 
   public Integer getWidth() {
     return width;
@@ -185,24 +185,24 @@ public class Media {
       return false;
     }
     Media media = (Media) o;
-    return Objects.equals(this.type, media.type) &&
+    return Objects.equals(this.height, media.height) &&
         Objects.equals(this.mediaKey, media.mediaKey) &&
-        Objects.equals(this.height, media.height) &&
+        Objects.equals(this.type, media.type) &&
         Objects.equals(this.width, media.width);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, mediaKey, height, width);
+    return Objects.hash(height, mediaKey, type, width);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Media {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    mediaKey: ").append(toIndentedString(mediaKey)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    mediaKey: ").append(toIndentedString(mediaKey)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -226,9 +226,9 @@ public class Media {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("media_key");
     openapiFields.add("height");
+    openapiFields.add("media_key");
+    openapiFields.add("type");
     openapiFields.add("width");
 
     // a set of required properties/fields (JSON key names)

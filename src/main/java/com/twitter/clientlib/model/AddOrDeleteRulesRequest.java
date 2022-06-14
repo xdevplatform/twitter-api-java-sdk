@@ -118,29 +118,32 @@ public class AddOrDeleteRulesRequest extends AbstractOpenApiSchema {
                     JsonObject jsonObject = elementAdapter.read(in).getAsJsonObject();
 
                     int match = 0;
+                    ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
                     // deserialize AddRulesRequest
                     try {
-                        // validate the JSON object to see if any excpetion is thrown
+                        // validate the JSON object to see if any exception is thrown
                         AddRulesRequest.validateJsonObject(jsonObject);
                         actualAdapter = adapterAddRulesRequest;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'AddRulesRequest'");
                     } catch (Exception e) {
                         // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for AddRulesRequest failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'AddRulesRequest'", e);
                     }
 
                     // deserialize DeleteRulesRequest
                     try {
-                        // validate the JSON object to see if any excpetion is thrown
+                        // validate the JSON object to see if any exception is thrown
                         DeleteRulesRequest.validateJsonObject(jsonObject);
                         actualAdapter = adapterDeleteRulesRequest;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'DeleteRulesRequest'");
                     } catch (Exception e) {
                         // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DeleteRulesRequest failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'DeleteRulesRequest'", e);
                     }
 
@@ -150,7 +153,7 @@ public class AddOrDeleteRulesRequest extends AbstractOpenApiSchema {
                         return ret;
                     }
 
-                    throw new IOException(String.format("Failed deserialization for AddOrDeleteRulesRequest: %d classes match result, expected 1. JSON: %s", match, jsonObject.toString()));
+                    throw new IOException(String.format("Failed deserialization for AddOrDeleteRulesRequest: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonObject.toString()));
                 }
             }.nullSafe();
         }
@@ -251,11 +254,13 @@ public class AddOrDeleteRulesRequest extends AbstractOpenApiSchema {
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
     // validate oneOf schemas one by one
     int validCount = 0;
+    ArrayList<String> errorMessages = new ArrayList<>();
     // validate the json string with AddRulesRequest
     try {
       AddRulesRequest.validateJsonObject(jsonObj);
       validCount++;
     } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for AddRulesRequest failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
     // validate the json string with DeleteRulesRequest
@@ -263,10 +268,11 @@ public class AddOrDeleteRulesRequest extends AbstractOpenApiSchema {
       DeleteRulesRequest.validateJsonObject(jsonObj);
       validCount++;
     } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for DeleteRulesRequest failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
     if (validCount != 1) {
-      throw new IOException(String.format("The JSON string is invalid for AddOrDeleteRulesRequest with oneOf schemas: AddRulesRequest, DeleteRulesRequest. %d class(es) match the result, expected 1. JSON: %s", validCount, jsonObj.toString()));
+      throw new IOException(String.format("The JSON string is invalid for AddOrDeleteRulesRequest with oneOf schemas: AddRulesRequest, DeleteRulesRequest. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonObj.toString()));
     }
   }
 

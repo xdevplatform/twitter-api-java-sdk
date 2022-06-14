@@ -49,11 +49,11 @@ public class RuleTest {
     }
 
     /**
-     * Test the property 'value'
+     * Test the property 'id'
      */
     @Test
-    public void valueTest() {
-        // TODO: test value
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
@@ -65,11 +65,11 @@ public class RuleTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'value'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

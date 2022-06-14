@@ -69,22 +69,6 @@ public class DuplicateRuleProblemTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
      * Test the property 'detail'
      */
     @Test
@@ -101,11 +85,19 @@ public class DuplicateRuleProblemTest {
     }
 
     /**
-     * Test the property 'value'
+     * Test the property 'title'
      */
     @Test
-    public void valueTest() {
-        // TODO: test value
+    public void titleTest() {
+        // TODO: test title
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**
@@ -114,6 +106,14 @@ public class DuplicateRuleProblemTest {
     @Test
     public void idTest() {
         // TODO: test id
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

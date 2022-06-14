@@ -59,16 +59,39 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "A user-provided stream filtering rule.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RuleNoId {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
-
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
   private String tag;
 
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
   public RuleNoId() { 
   }
+
+  public RuleNoId tag(String tag) {
+    
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * A tag meant for the labeling of user provided rules.
+   * @return tag
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Non-retweeted coffee Tweets", value = "A tag meant for the labeling of user provided rules.")
+
+  public String getTag() {
+    return tag;
+  }
+
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
 
   public RuleNoId value(String value) {
     
@@ -93,29 +116,6 @@ public class RuleNoId {
   }
 
 
-  public RuleNoId tag(String tag) {
-    
-    this.tag = tag;
-    return this;
-  }
-
-   /**
-   * A tag meant for the labeling of user provided rules.
-   * @return tag
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Non-retweeted coffee tweets", value = "A tag meant for the labeling of user provided rules.")
-
-  public String getTag() {
-    return tag;
-  }
-
-
-  public void setTag(String tag) {
-    this.tag = tag;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -126,21 +126,21 @@ public class RuleNoId {
       return false;
     }
     RuleNoId ruleNoId = (RuleNoId) o;
-    return Objects.equals(this.value, ruleNoId.value) &&
-        Objects.equals(this.tag, ruleNoId.tag);
+    return Objects.equals(this.tag, ruleNoId.tag) &&
+        Objects.equals(this.value, ruleNoId.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, tag);
+    return Objects.hash(tag, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RuleNoId {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -163,8 +163,8 @@ public class RuleNoId {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
     openapiFields.add("tag");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -193,11 +193,11 @@ public class RuleNoId {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
-      }
       if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      }
+      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

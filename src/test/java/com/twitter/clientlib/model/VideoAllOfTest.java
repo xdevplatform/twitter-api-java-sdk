@@ -27,11 +27,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.twitter.clientlib.model.Variant;
 import com.twitter.clientlib.model.VideoAllOfNonPublicMetrics;
 import com.twitter.clientlib.model.VideoAllOfOrganicMetrics;
 import com.twitter.clientlib.model.VideoAllOfPromotedMetrics;
 import com.twitter.clientlib.model.VideoAllOfPublicMetrics;
-import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -57,35 +57,11 @@ public class VideoAllOfTest {
     }
 
     /**
-     * Test the property 'previewImageUrl'
-     */
-    @Test
-    public void previewImageUrlTest() {
-        // TODO: test previewImageUrl
-    }
-
-    /**
      * Test the property 'durationMs'
      */
     @Test
     public void durationMsTest() {
         // TODO: test durationMs
-    }
-
-    /**
-     * Test the property 'variants'
-     */
-    @Test
-    public void variantsTest() {
-        // TODO: test variants
-    }
-
-    /**
-     * Test the property 'publicMetrics'
-     */
-    @Test
-    public void publicMetricsTest() {
-        // TODO: test publicMetrics
     }
 
     /**
@@ -105,11 +81,35 @@ public class VideoAllOfTest {
     }
 
     /**
+     * Test the property 'previewImageUrl'
+     */
+    @Test
+    public void previewImageUrlTest() {
+        // TODO: test previewImageUrl
+    }
+
+    /**
      * Test the property 'promotedMetrics'
      */
     @Test
     public void promotedMetricsTest() {
         // TODO: test promotedMetrics
+    }
+
+    /**
+     * Test the property 'publicMetrics'
+     */
+    @Test
+    public void publicMetricsTest() {
+        // TODO: test publicMetrics
+    }
+
+    /**
+     * Test the property 'variants'
+     */
+    @Test
+    public void variantsTest() {
+        // TODO: test variants
     }
 
 }

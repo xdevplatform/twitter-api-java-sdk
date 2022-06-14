@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.VideoAllOfVariants;
+import com.twitter.clientlib.model.Variant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -68,7 +68,7 @@ public class AnimatedGifAllOf {
 
   public static final String SERIALIZED_NAME_VARIANTS = "variants";
   @SerializedName(SERIALIZED_NAME_VARIANTS)
-  private List<VideoAllOfVariants> variants = null;
+  private List<Variant> variants = null;
 
   public AnimatedGifAllOf() { 
   }
@@ -96,13 +96,13 @@ public class AnimatedGifAllOf {
   }
 
 
-  public AnimatedGifAllOf variants(List<VideoAllOfVariants> variants) {
+  public AnimatedGifAllOf variants(List<Variant> variants) {
     
     this.variants = variants;
     return this;
   }
 
-  public AnimatedGifAllOf addVariantsItem(VideoAllOfVariants variantsItem) {
+  public AnimatedGifAllOf addVariantsItem(Variant variantsItem) {
     if (this.variants == null) {
       this.variants = new ArrayList<>();
     }
@@ -111,18 +111,18 @@ public class AnimatedGifAllOf {
   }
 
    /**
-   * An array of all available variants of the media
+   * An array of all available variants of the media.
    * @return variants
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of all available variants of the media")
+  @ApiModelProperty(value = "An array of all available variants of the media.")
 
-  public List<VideoAllOfVariants> getVariants() {
+  public List<Variant> getVariants() {
     return variants;
   }
 
 
-  public void setVariants(List<VideoAllOfVariants> variants) {
+  public void setVariants(List<Variant> variants) {
     this.variants = variants;
   }
 
@@ -208,7 +208,7 @@ public class AnimatedGifAllOf {
 
         // validate the optional field `variants` (array)
         for (int i = 0; i < jsonArrayvariants.size(); i++) {
-          VideoAllOfVariants.validateJsonObject(jsonArrayvariants.get(i).getAsJsonObject());
+          Variant.validateJsonObject(jsonArrayvariants.get(i).getAsJsonObject());
         };
       }
   }

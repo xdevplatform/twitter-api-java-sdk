@@ -79,6 +79,67 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "A problem that indicates that you are not allowed to see a particular field on a Tweet, User, etc.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FieldUnauthorizedProblem extends Problem {
+  public static final String SERIALIZED_NAME_FIELD = "field";
+  @SerializedName(SERIALIZED_NAME_FIELD)
+  private String field;
+
+  /**
+   * Gets or Sets resourceType
+   */
+  @JsonAdapter(ResourceTypeEnum.Adapter.class)
+  public enum ResourceTypeEnum {
+    USER("user"),
+    
+    TWEET("tweet"),
+    
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
+
+    private String value;
+
+    ResourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ResourceTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  private ResourceTypeEnum resourceType;
+
   /**
    * Gets or Sets section
    */
@@ -130,91 +191,30 @@ public class FieldUnauthorizedProblem extends Problem {
   @SerializedName(SERIALIZED_NAME_SECTION)
   private SectionEnum section;
 
-  /**
-   * Gets or Sets resourceType
-   */
-  @JsonAdapter(ResourceTypeEnum.Adapter.class)
-  public enum ResourceTypeEnum {
-    TWEET("tweet"),
-    
-    USER("user"),
-    
-    MEDIA("media"),
-    
-    LIST("list"),
-    
-    SPACE("space");
-
-    private String value;
-
-    ResourceTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ResourceTypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
-  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
-  private ResourceTypeEnum resourceType;
-
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
-  private String field;
-
   public FieldUnauthorizedProblem() { 
     this.type = this.getClass().getSimpleName();
   }
 
-  public FieldUnauthorizedProblem section(SectionEnum section) {
+  public FieldUnauthorizedProblem field(String field) {
     
-    this.section = section;
+    this.field = field;
     return this;
   }
 
    /**
-   * Get section
-   * @return section
+   * Get field
+   * @return field
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public SectionEnum getSection() {
-    return section;
+  public String getField() {
+    return field;
   }
 
 
-  public void setSection(SectionEnum section) {
-    this.section = section;
+  public void setField(String field) {
+    this.field = field;
   }
 
 
@@ -241,26 +241,26 @@ public class FieldUnauthorizedProblem extends Problem {
   }
 
 
-  public FieldUnauthorizedProblem field(String field) {
+  public FieldUnauthorizedProblem section(SectionEnum section) {
     
-    this.field = field;
+    this.section = section;
     return this;
   }
 
    /**
-   * Get field
-   * @return field
+   * Get section
+   * @return section
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public String getField() {
-    return field;
+  public SectionEnum getSection() {
+    return section;
   }
 
 
-  public void setField(String field) {
-    this.field = field;
+  public void setSection(SectionEnum section) {
+    this.section = section;
   }
 
 
@@ -274,15 +274,15 @@ public class FieldUnauthorizedProblem extends Problem {
       return false;
     }
     FieldUnauthorizedProblem fieldUnauthorizedProblem = (FieldUnauthorizedProblem) o;
-    return Objects.equals(this.section, fieldUnauthorizedProblem.section) &&
+    return Objects.equals(this.field, fieldUnauthorizedProblem.field) &&
         Objects.equals(this.resourceType, fieldUnauthorizedProblem.resourceType) &&
-        Objects.equals(this.field, fieldUnauthorizedProblem.field) &&
+        Objects.equals(this.section, fieldUnauthorizedProblem.section) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(section, resourceType, field, super.hashCode());
+    return Objects.hash(field, resourceType, section, super.hashCode());
   }
 
   @Override
@@ -290,9 +290,9 @@ public class FieldUnauthorizedProblem extends Problem {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldUnauthorizedProblem {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    section: ").append(toIndentedString(section)).append("\n");
-    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
+    sb.append("    section: ").append(toIndentedString(section)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -315,21 +315,21 @@ public class FieldUnauthorizedProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
-    openapiFields.add("section");
-    openapiFields.add("resource_type");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("field");
+    openapiFields.add("resource_type");
+    openapiFields.add("section");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("section");
-    openapiRequiredFields.add("resource_type");
     openapiRequiredFields.add("field");
-    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("resource_type");
+    openapiRequiredFields.add("section");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

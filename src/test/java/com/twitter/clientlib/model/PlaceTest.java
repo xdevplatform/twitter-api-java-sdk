@@ -53,6 +53,46 @@ public class PlaceTest {
     }
 
     /**
+     * Test the property 'containedWithin'
+     */
+    @Test
+    public void containedWithinTest() {
+        // TODO: test containedWithin
+    }
+
+    /**
+     * Test the property 'country'
+     */
+    @Test
+    public void countryTest() {
+        // TODO: test country
+    }
+
+    /**
+     * Test the property 'countryCode'
+     */
+    @Test
+    public void countryCodeTest() {
+        // TODO: test countryCode
+    }
+
+    /**
+     * Test the property 'fullName'
+     */
+    @Test
+    public void fullNameTest() {
+        // TODO: test fullName
+    }
+
+    /**
+     * Test the property 'geo'
+     */
+    @Test
+    public void geoTest() {
+        // TODO: test geo
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -69,51 +109,11 @@ public class PlaceTest {
     }
 
     /**
-     * Test the property 'countryCode'
-     */
-    @Test
-    public void countryCodeTest() {
-        // TODO: test countryCode
-    }
-
-    /**
      * Test the property 'placeType'
      */
     @Test
     public void placeTypeTest() {
         // TODO: test placeType
-    }
-
-    /**
-     * Test the property 'fullName'
-     */
-    @Test
-    public void fullNameTest() {
-        // TODO: test fullName
-    }
-
-    /**
-     * Test the property 'country'
-     */
-    @Test
-    public void countryTest() {
-        // TODO: test country
-    }
-
-    /**
-     * Test the property 'containedWithin'
-     */
-    @Test
-    public void containedWithinTest() {
-        // TODO: test containedWithin
-    }
-
-    /**
-     * Test the property 'geo'
-     */
-    @Test
-    public void geoTest() {
-        // TODO: test geo
     }
 
 }

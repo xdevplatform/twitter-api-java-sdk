@@ -51,19 +51,19 @@ public class CashtagEntityTest {
     }
 
     /**
-     * Test the property 'start'
-     */
-    @Test
-    public void startTest() {
-        // TODO: test start
-    }
-
-    /**
      * Test the property 'end'
      */
     @Test
     public void endTest() {
         // TODO: test end
+    }
+
+    /**
+     * Test the property 'start'
+     */
+    @Test
+    public void startTest() {
+        // TODO: test start
     }
 
     /**

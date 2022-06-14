@@ -54,18 +54,18 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * The Twitter Topic object
+ * The Twitter Topic object.
  */
-@ApiModel(description = "The Twitter Topic object")
+@ApiModel(description = "The Twitter Topic object.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SpaceTopics {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -73,29 +73,6 @@ public class SpaceTopics {
 
   public SpaceTopics() { 
   }
-
-  public SpaceTopics id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * An ID suitable for use in the REST API.
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "An ID suitable for use in the REST API.")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
 
   public SpaceTopics description(String description) {
     
@@ -117,6 +94,29 @@ public class SpaceTopics {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public SpaceTopics id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * An ID suitable for use in the REST API.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "An ID suitable for use in the REST API.")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -153,22 +153,22 @@ public class SpaceTopics {
       return false;
     }
     SpaceTopics spaceTopics = (SpaceTopics) o;
-    return Objects.equals(this.id, spaceTopics.id) &&
-        Objects.equals(this.description, spaceTopics.description) &&
+    return Objects.equals(this.description, spaceTopics.description) &&
+        Objects.equals(this.id, spaceTopics.id) &&
         Objects.equals(this.name, spaceTopics.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, description, name);
+    return Objects.hash(description, id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SpaceTopics {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -192,8 +192,8 @@ public class SpaceTopics {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
     openapiFields.add("description");
+    openapiFields.add("id");
     openapiFields.add("name");
 
     // a set of required properties/fields (JSON key names)
@@ -224,11 +224,11 @@ public class SpaceTopics {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
       if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));

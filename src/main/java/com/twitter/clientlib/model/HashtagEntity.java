@@ -60,13 +60,13 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class HashtagEntity {
-  public static final String SERIALIZED_NAME_START = "start";
-  @SerializedName(SERIALIZED_NAME_START)
-  private Integer start;
-
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
   private Integer end;
+
+  public static final String SERIALIZED_NAME_START = "start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private Integer start;
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
@@ -74,30 +74,6 @@ public class HashtagEntity {
 
   public HashtagEntity() { 
   }
-
-  public HashtagEntity start(Integer start) {
-    
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity starts.  The index is inclusive.
-   * minimum: 0
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
-
-  public Integer getStart() {
-    return start;
-  }
-
-
-  public void setStart(Integer start) {
-    this.start = start;
-  }
-
 
   public HashtagEntity end(Integer end) {
     
@@ -123,6 +99,30 @@ public class HashtagEntity {
   }
 
 
+  public HashtagEntity start(Integer start) {
+    
+    this.start = start;
+    return this;
+  }
+
+   /**
+   * Index (zero-based) at which position this entity starts.  The index is inclusive.
+   * minimum: 0
+   * @return start
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
+
+  public Integer getStart() {
+    return start;
+  }
+
+
+  public void setStart(Integer start) {
+    this.start = start;
+  }
+
+
   public HashtagEntity tag(String tag) {
     
     this.tag = tag;
@@ -130,11 +130,11 @@ public class HashtagEntity {
   }
 
    /**
-   * The text of the Hashtag
+   * The text of the Hashtag.
    * @return tag
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "MondayMotivation", required = true, value = "The text of the Hashtag")
+  @ApiModelProperty(example = "MondayMotivation", required = true, value = "The text of the Hashtag.")
 
   public String getTag() {
     return tag;
@@ -156,22 +156,22 @@ public class HashtagEntity {
       return false;
     }
     HashtagEntity hashtagEntity = (HashtagEntity) o;
-    return Objects.equals(this.start, hashtagEntity.start) &&
-        Objects.equals(this.end, hashtagEntity.end) &&
+    return Objects.equals(this.end, hashtagEntity.end) &&
+        Objects.equals(this.start, hashtagEntity.start) &&
         Objects.equals(this.tag, hashtagEntity.tag);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end, tag);
+    return Objects.hash(end, start, tag);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HashtagEntity {\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -195,14 +195,14 @@ public class HashtagEntity {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("start");
     openapiFields.add("end");
+    openapiFields.add("start");
     openapiFields.add("tag");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("start");
     openapiRequiredFields.add("end");
+    openapiRequiredFields.add("start");
     openapiRequiredFields.add("tag");
   }
 

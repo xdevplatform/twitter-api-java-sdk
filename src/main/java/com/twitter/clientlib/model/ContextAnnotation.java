@@ -56,9 +56,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Annotation inferred from the tweet text.
+ * Annotation inferred from the Tweet text.
  */
-@ApiModel(description = "Annotation inferred from the tweet text.")
+@ApiModel(description = "Annotation inferred from the Tweet text.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContextAnnotation {
   public static final String SERIALIZED_NAME_DOMAIN = "domain";

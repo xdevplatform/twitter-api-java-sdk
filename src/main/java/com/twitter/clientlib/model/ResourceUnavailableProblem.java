@@ -268,10 +268,10 @@ public class ResourceUnavailableProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("parameter");
     openapiFields.add("resource_id");
     openapiFields.add("resource_type");
@@ -281,8 +281,8 @@ public class ResourceUnavailableProblem extends Problem {
     openapiRequiredFields.add("parameter");
     openapiRequiredFields.add("resource_id");
     openapiRequiredFields.add("resource_type");
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

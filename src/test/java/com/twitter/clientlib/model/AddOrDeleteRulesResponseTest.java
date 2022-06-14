@@ -62,19 +62,19 @@ public class AddOrDeleteRulesResponseTest {
     }
 
     /**
-     * Test the property 'meta'
-     */
-    @Test
-    public void metaTest() {
-        // TODO: test meta
-    }
-
-    /**
      * Test the property 'errors'
      */
     @Test
     public void errorsTest() {
         // TODO: test errors
+    }
+
+    /**
+     * Test the property 'meta'
+     */
+    @Test
+    public void metaTest() {
+        // TODO: test meta
     }
 
 }

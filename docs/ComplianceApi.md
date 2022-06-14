@@ -5,13 +5,13 @@ All URIs are relative to *https://api.twitter.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createBatchComplianceJob**](ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job |
-| [**getBatchComplianceJob**](ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get compliance job |
-| [**listBatchComplianceJobs**](ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List compliance jobs |
+| [**getBatchComplianceJob**](ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get Compliance Job |
+| [**listBatchComplianceJobs**](ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List Compliance Jobs |
 
 
 <a name="createBatchComplianceJob"></a>
 # **createBatchComplianceJob**
-> SingleComplianceJobResponse createBatchComplianceJob(createBatchComplianceJobRequest)
+> CreateComplianceJobResponse createBatchComplianceJob(createComplianceJobRequest).execute();
 
 Create compliance job
 
@@ -38,7 +38,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -47,12 +46,13 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+        TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    CreateBatchComplianceJobRequest createBatchComplianceJobRequest = new CreateBatchComplianceJobRequest(); // CreateBatchComplianceJobRequest | 
+    CreateComplianceJobRequest createComplianceJobRequest = new CreateComplianceJobRequest(); // CreateComplianceJobRequest | 
     try {
-           SingleComplianceJobResponse result = apiInstance.compliance().createBatchComplianceJob(createBatchComplianceJobRequest);
+           CreateComplianceJobResponse result = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#createBatchComplianceJob");
@@ -69,11 +69,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createBatchComplianceJobRequest** | [**CreateBatchComplianceJobRequest**](CreateBatchComplianceJobRequest.md)|  | |
+| **createComplianceJobRequest** | [**CreateComplianceJobRequest**](CreateComplianceJobRequest.md)|  | |
 
 ### Return type
 
-[**SingleComplianceJobResponse**](SingleComplianceJobResponse.md)
+[**CreateComplianceJobResponse**](CreateComplianceJobResponse.md)
 
 ### Authorization
 
@@ -87,16 +87,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="getBatchComplianceJob"></a>
 # **getBatchComplianceJob**
-> SingleComplianceJobResponse getBatchComplianceJob(id)
+> Get2ComplianceJobsIdResponse getBatchComplianceJob(id).complianceJobFields(complianceJobFields).execute();
 
-Get compliance job
+Get Compliance Job
 
-Returns a single compliance job by ID
+Returns a single Compliance Job by ID
 
 ### Example
 ```java
@@ -119,7 +119,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -128,12 +127,15 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+        TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | ID of the compliance job to retrieve.
+    String id = "id_example"; // String | The ID of the Compliance Job to retrieve.
+    Set<String> complianceJobFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of ComplianceJob fields to display.
     try {
-           SingleComplianceJobResponse result = apiInstance.compliance().getBatchComplianceJob(id);
+           Get2ComplianceJobsIdResponse result = apiInstance.compliance().getBatchComplianceJob(id)
+            .complianceJobFields(complianceJobFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#getBatchComplianceJob");
@@ -150,11 +152,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| ID of the compliance job to retrieve. | |
+| **id** | **String**| The ID of the Compliance Job to retrieve. | |
+| **complianceJobFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of ComplianceJob fields to display. | [optional] [enum: created_at, download_expires_at, download_url, id, name, resumable, status, type, upload_expires_at, upload_url] |
 
 ### Return type
 
-[**SingleComplianceJobResponse**](SingleComplianceJobResponse.md)
+[**Get2ComplianceJobsIdResponse**](Get2ComplianceJobsIdResponse.md)
 
 ### Authorization
 
@@ -168,16 +171,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="listBatchComplianceJobs"></a>
 # **listBatchComplianceJobs**
-> MultiComplianceJobResponse listBatchComplianceJobs(type, status)
+> Get2ComplianceJobsResponse listBatchComplianceJobs(type).status(status).complianceJobFields(complianceJobFields).execute();
 
-List compliance jobs
+List Compliance Jobs
 
-Returns recent compliance jobs for a given job type and optional job status
+Returns recent Compliance Jobs for a given job type and optional job status
 
 ### Example
 ```java
@@ -200,7 +203,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -209,13 +211,17 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+        TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    ComplianceJobType type = ComplianceJobType.fromValue("tweets"); // ComplianceJobType | Type of compliance job to list.
-    ComplianceJobStatus status = ComplianceJobStatus.fromValue("created"); // ComplianceJobStatus | Status of compliance job to list.
+    String type = "tweets"; // String | Type of Compliance Job to list.
+    String status = "created"; // String | Status of Compliance Job to list.
+    Set<String> complianceJobFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of ComplianceJob fields to display.
     try {
-           MultiComplianceJobResponse result = apiInstance.compliance().listBatchComplianceJobs(type, status);
+           Get2ComplianceJobsResponse result = apiInstance.compliance().listBatchComplianceJobs(type)
+            .status(status)
+            .complianceJobFields(complianceJobFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ComplianceApi#listBatchComplianceJobs");
@@ -232,12 +238,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | [**ComplianceJobType**](.md)| Type of compliance job to list. | [enum: tweets, users] |
-| **status** | [**ComplianceJobStatus**](.md)| Status of compliance job to list. | [optional] [enum: created, in_progress, failed, complete] |
+| **type** | **String**| Type of Compliance Job to list. | [enum: tweets, users] |
+| **status** | **String**| Status of Compliance Job to list. | [optional] [enum: created, in_progress, failed, complete] |
+| **complianceJobFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of ComplianceJob fields to display. | [optional] [enum: created_at, download_expires_at, download_url, id, name, resumable, status, type, upload_expires_at, upload_url] |
 
 ### Return type
 
-[**MultiComplianceJobResponse**](MultiComplianceJobResponse.md)
+[**Get2ComplianceJobsResponse**](Get2ComplianceJobsResponse.md)
 
 ### Authorization
 
@@ -251,6 +258,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List compliance jobs response |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 

@@ -6,10 +6,10 @@ Represents the response in case of throwing an exception. Mainly for the openapi
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**code** | **Integer** |  | 
-**message** | **String** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**code** | **Integer** |  |  |
+|**message** | **String** |  |  |
 
 
 

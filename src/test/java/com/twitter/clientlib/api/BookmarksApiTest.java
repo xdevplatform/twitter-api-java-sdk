@@ -22,12 +22,12 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.AddBookmarkRequest;
+import com.twitter.clientlib.model.BookmarkAddRequest;
 import com.twitter.clientlib.model.BookmarkMutationResponse;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
+import com.twitter.clientlib.model.Get2UsersIdBookmarksResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
 import org.junit.jupiter.api.Disabled;
@@ -45,13 +45,13 @@ import java.io.InputStream;
 @Disabled
 public class BookmarksApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**
      * Bookmarks by User
      *
-     * Returns Tweet objects that have been bookmarked by the requesting user
+     * Returns Tweet objects that have been bookmarked by the requesting User
      *
      * @throws ApiException if the Api call fails
      */
@@ -60,13 +60,22 @@ public class BookmarksApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                GenericTweetsTimelineResponse response = apiInstance.bookmarks().getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2UsersIdBookmarksResponse response = apiInstance.bookmarks().getUsersIdBookmarks(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -74,15 +83,16 @@ public class BookmarksApiTest {
     /**
      * Add Tweet to Bookmarks
      *
-     * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
+     * Adds a Tweet (ID in the body) to the requesting User&#39;s (in the path) bookmarks
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void postUsersIdBookmarksTest() throws ApiException {
-        AddBookmarkRequest addBookmarkRequest = null;
+        BookmarkAddRequest bookmarkAddRequest = null;
         String id = null;
-                BookmarkMutationResponse response = apiInstance.bookmarks().postUsersIdBookmarks(addBookmarkRequest, id);
+                BookmarkMutationResponse response = apiInstance.bookmarks().postUsersIdBookmarks(bookmarkAddRequest, id)
+                .execute();
         // TODO: test validations
     }
 
@@ -90,7 +100,7 @@ public class BookmarksApiTest {
     /**
      * Remove a bookmarked Tweet
      *
-     * Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
+     * Removes a Tweet from the requesting User&#39;s bookmarked Tweets.
      *
      * @throws ApiException if the Api call fails
      */
@@ -98,7 +108,8 @@ public class BookmarksApiTest {
     public void usersIdBookmarksDeleteTest() throws ApiException {
         String id = null;
         String tweetId = null;
-                BookmarkMutationResponse response = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId);
+                BookmarkMutationResponse response = apiInstance.bookmarks().usersIdBookmarksDelete(id, tweetId)
+                .execute();
         // TODO: test validations
     }
 

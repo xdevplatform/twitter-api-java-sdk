@@ -34,7 +34,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Status of a compliance job
+ * Status of a compliance job.
  */
 @JsonAdapter(ComplianceJobStatus.Adapter.class)
 public enum ComplianceJobStatus {

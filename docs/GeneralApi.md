@@ -4,16 +4,16 @@ All URIs are relative to *https://api.twitter.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the open api spec document. |
+| [**getOpenApiSpec**](GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the OpenAPI Specification document. |
 
 
 <a name="getOpenApiSpec"></a>
 # **getOpenApiSpec**
-> Object getOpenApiSpec()
+> Object getOpenApiSpec().execute();
 
-Returns the open api spec document.
+Returns the OpenAPI Specification document.
 
-Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
 
 ### Example
 ```java
@@ -35,16 +35,17 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
 
     // Uncomment and set the credentials configuration
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
     try {
-           Object result = apiInstance.general().getOpenApiSpec();
+           Object result = apiInstance.general().getOpenApiSpec()
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralApi#getOpenApiSpec");

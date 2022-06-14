@@ -22,7 +22,7 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -39,19 +39,20 @@ import java.io.InputStream;
 @Disabled
 public class GeneralApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**
-     * Returns the open api spec document.
+     * Returns the OpenAPI Specification document.
      *
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void getOpenApiSpecTest() throws ApiException {
-                Object response = apiInstance.general().getOpenApiSpec();
+                Object response = apiInstance.general().getOpenApiSpec()
+                .execute();
         // TODO: test validations
     }
 

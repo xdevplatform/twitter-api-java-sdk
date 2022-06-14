@@ -49,6 +49,14 @@ public class ContextAnnotationDomainFieldsTest {
     }
 
     /**
+     * Test the property 'description'
+     */
+    @Test
+    public void descriptionTest() {
+        // TODO: test description
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -62,14 +70,6 @@ public class ContextAnnotationDomainFieldsTest {
     @Test
     public void nameTest() {
         // TODO: test name
-    }
-
-    /**
-     * Test the property 'description'
-     */
-    @Test
-    public void descriptionTest() {
-        // TODO: test description
     }
 
 }

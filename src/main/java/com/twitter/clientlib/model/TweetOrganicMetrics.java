@@ -63,17 +63,17 @@ public class TweetOrganicMetrics {
   @SerializedName(SERIALIZED_NAME_IMPRESSION_COUNT)
   private Integer impressionCount;
 
-  public static final String SERIALIZED_NAME_RETWEET_COUNT = "retweet_count";
-  @SerializedName(SERIALIZED_NAME_RETWEET_COUNT)
-  private Integer retweetCount;
+  public static final String SERIALIZED_NAME_LIKE_COUNT = "like_count";
+  @SerializedName(SERIALIZED_NAME_LIKE_COUNT)
+  private Integer likeCount;
 
   public static final String SERIALIZED_NAME_REPLY_COUNT = "reply_count";
   @SerializedName(SERIALIZED_NAME_REPLY_COUNT)
   private Integer replyCount;
 
-  public static final String SERIALIZED_NAME_LIKE_COUNT = "like_count";
-  @SerializedName(SERIALIZED_NAME_LIKE_COUNT)
-  private Integer likeCount;
+  public static final String SERIALIZED_NAME_RETWEET_COUNT = "retweet_count";
+  @SerializedName(SERIALIZED_NAME_RETWEET_COUNT)
+  private Integer retweetCount;
 
   public TweetOrganicMetrics() { 
   }
@@ -88,8 +88,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been viewed.
    * @return impressionCount
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of times this Tweet has been viewed.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been viewed.")
 
   public Integer getImpressionCount() {
     return impressionCount;
@@ -98,52 +98,6 @@ public class TweetOrganicMetrics {
 
   public void setImpressionCount(Integer impressionCount) {
     this.impressionCount = impressionCount;
-  }
-
-
-  public TweetOrganicMetrics retweetCount(Integer retweetCount) {
-    
-    this.retweetCount = retweetCount;
-    return this;
-  }
-
-   /**
-   * Number of times this Tweet has been Retweeted.
-   * @return retweetCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of times this Tweet has been Retweeted.")
-
-  public Integer getRetweetCount() {
-    return retweetCount;
-  }
-
-
-  public void setRetweetCount(Integer retweetCount) {
-    this.retweetCount = retweetCount;
-  }
-
-
-  public TweetOrganicMetrics replyCount(Integer replyCount) {
-    
-    this.replyCount = replyCount;
-    return this;
-  }
-
-   /**
-   * Number of times this Tweet has been replied to.
-   * @return replyCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of times this Tweet has been replied to.")
-
-  public Integer getReplyCount() {
-    return replyCount;
-  }
-
-
-  public void setReplyCount(Integer replyCount) {
-    this.replyCount = replyCount;
   }
 
 
@@ -157,8 +111,8 @@ public class TweetOrganicMetrics {
    * Number of times this Tweet has been liked.
    * @return likeCount
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of times this Tweet has been liked.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been liked.")
 
   public Integer getLikeCount() {
     return likeCount;
@@ -167,6 +121,52 @@ public class TweetOrganicMetrics {
 
   public void setLikeCount(Integer likeCount) {
     this.likeCount = likeCount;
+  }
+
+
+  public TweetOrganicMetrics replyCount(Integer replyCount) {
+    
+    this.replyCount = replyCount;
+    return this;
+  }
+
+   /**
+   * Number of times this Tweet has been replied to.
+   * @return replyCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been replied to.")
+
+  public Integer getReplyCount() {
+    return replyCount;
+  }
+
+
+  public void setReplyCount(Integer replyCount) {
+    this.replyCount = replyCount;
+  }
+
+
+  public TweetOrganicMetrics retweetCount(Integer retweetCount) {
+    
+    this.retweetCount = retweetCount;
+    return this;
+  }
+
+   /**
+   * Number of times this Tweet has been Retweeted.
+   * @return retweetCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been Retweeted.")
+
+  public Integer getRetweetCount() {
+    return retweetCount;
+  }
+
+
+  public void setRetweetCount(Integer retweetCount) {
+    this.retweetCount = retweetCount;
   }
 
 
@@ -181,14 +181,14 @@ public class TweetOrganicMetrics {
     }
     TweetOrganicMetrics tweetOrganicMetrics = (TweetOrganicMetrics) o;
     return Objects.equals(this.impressionCount, tweetOrganicMetrics.impressionCount) &&
-        Objects.equals(this.retweetCount, tweetOrganicMetrics.retweetCount) &&
+        Objects.equals(this.likeCount, tweetOrganicMetrics.likeCount) &&
         Objects.equals(this.replyCount, tweetOrganicMetrics.replyCount) &&
-        Objects.equals(this.likeCount, tweetOrganicMetrics.likeCount);
+        Objects.equals(this.retweetCount, tweetOrganicMetrics.retweetCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressionCount, retweetCount, replyCount, likeCount);
+    return Objects.hash(impressionCount, likeCount, replyCount, retweetCount);
   }
 
   @Override
@@ -196,9 +196,9 @@ public class TweetOrganicMetrics {
     StringBuilder sb = new StringBuilder();
     sb.append("class TweetOrganicMetrics {\n");
     sb.append("    impressionCount: ").append(toIndentedString(impressionCount)).append("\n");
-    sb.append("    retweetCount: ").append(toIndentedString(retweetCount)).append("\n");
-    sb.append("    replyCount: ").append(toIndentedString(replyCount)).append("\n");
     sb.append("    likeCount: ").append(toIndentedString(likeCount)).append("\n");
+    sb.append("    replyCount: ").append(toIndentedString(replyCount)).append("\n");
+    sb.append("    retweetCount: ").append(toIndentedString(retweetCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -222,12 +222,16 @@ public class TweetOrganicMetrics {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("impression_count");
-    openapiFields.add("retweet_count");
-    openapiFields.add("reply_count");
     openapiFields.add("like_count");
+    openapiFields.add("reply_count");
+    openapiFields.add("retweet_count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("impression_count");
+    openapiRequiredFields.add("like_count");
+    openapiRequiredFields.add("reply_count");
+    openapiRequiredFields.add("retweet_count");
   }
 
  /**
@@ -245,6 +249,13 @@ public class TweetOrganicMetrics {
      //   }
      // }
 
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TweetOrganicMetrics.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -28,8 +28,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.EntityIndicesInclusiveExclusive;
-import com.twitter.clientlib.model.URLFields;
-import com.twitter.clientlib.model.URLImage;
+import com.twitter.clientlib.model.UrlFields;
+import com.twitter.clientlib.model.UrlImage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -55,14 +55,6 @@ public class UrlEntityTest {
     }
 
     /**
-     * Test the property 'start'
-     */
-    @Test
-    public void startTest() {
-        // TODO: test start
-    }
-
-    /**
      * Test the property 'end'
      */
     @Test
@@ -71,19 +63,19 @@ public class UrlEntityTest {
     }
 
     /**
-     * Test the property 'url'
+     * Test the property 'start'
      */
     @Test
-    public void urlTest() {
-        // TODO: test url
+    public void startTest() {
+        // TODO: test start
     }
 
     /**
-     * Test the property 'expandedUrl'
+     * Test the property 'description'
      */
     @Test
-    public void expandedUrlTest() {
-        // TODO: test expandedUrl
+    public void descriptionTest() {
+        // TODO: test description
     }
 
     /**
@@ -95,11 +87,27 @@ public class UrlEntityTest {
     }
 
     /**
-     * Test the property 'unwoundUrl'
+     * Test the property 'expandedUrl'
      */
     @Test
-    public void unwoundUrlTest() {
-        // TODO: test unwoundUrl
+    public void expandedUrlTest() {
+        // TODO: test expandedUrl
+    }
+
+    /**
+     * Test the property 'images'
+     */
+    @Test
+    public void imagesTest() {
+        // TODO: test images
+    }
+
+    /**
+     * Test the property 'mediaKey'
+     */
+    @Test
+    public void mediaKeyTest() {
+        // TODO: test mediaKey
     }
 
     /**
@@ -119,27 +127,19 @@ public class UrlEntityTest {
     }
 
     /**
-     * Test the property 'description'
+     * Test the property 'unwoundUrl'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
+    public void unwoundUrlTest() {
+        // TODO: test unwoundUrl
     }
 
     /**
-     * Test the property 'images'
+     * Test the property 'url'
      */
     @Test
-    public void imagesTest() {
-        // TODO: test images
-    }
-
-    /**
-     * Test the property 'mediaKey'
-     */
-    @Test
-    public void mediaKeyTest() {
-        // TODO: test mediaKey
+    public void urlTest() {
+        // TODO: test url
     }
 
 }

@@ -57,6 +57,14 @@ public class VideoAllOfNonPublicMetricsTest {
     }
 
     /**
+     * Test the property 'playback100Count'
+     */
+    @Test
+    public void playback100CountTest() {
+        // TODO: test playback100Count
+    }
+
+    /**
      * Test the property 'playback25Count'
      */
     @Test
@@ -78,14 +86,6 @@ public class VideoAllOfNonPublicMetricsTest {
     @Test
     public void playback75CountTest() {
         // TODO: test playback75Count
-    }
-
-    /**
-     * Test the property 'playback100Count'
-     */
-    @Test
-    public void playback100CountTest() {
-        // TODO: test playback100Count
     }
 
 }

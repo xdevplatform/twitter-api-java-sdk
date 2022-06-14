@@ -43,9 +43,7 @@ public class HelloWorldStreaming {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
@@ -53,7 +51,10 @@ public class HelloWorldStreaming {
     tweetFields.add("created_at");
 
     try {
-      InputStream streamResult = apiInstance.tweets().sampleStream(null, tweetFields, null , null, null, null, 0);
+      InputStream streamResult = apiInstance.tweets().sampleStream()
+        .backfillMinutes(0)
+        .tweetFields(tweetFields)
+        .execute();
       // sampleStream with TweetsStreamListenersExecutor
       Responder responder = new Responder();
       TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);
@@ -71,7 +72,7 @@ public class HelloWorldStreaming {
 //      // An example of how to use the streaming directly using the InputStream result (Without TweetsStreamListenersExecutor)
 //      try{
 //         JSON json = new JSON();
-//         Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
+//         Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
 //         BufferedReader reader = new BufferedReader(new InputStreamReader(streamResult));
 //         String line = reader.readLine();
 //         while (line != null) {
@@ -99,7 +100,7 @@ public class HelloWorldStreaming {
 
 class Responder implements com.twitter.clientlib.TweetsStreamListener {
   @Override
-  public void actionOnTweetsStream(StreamingTweet streamingTweet) {
+  public void actionOnTweetsStream(StreamingTweetResponse streamingTweet) {
     if(streamingTweet == null) {
       System.err.println("Error: actionOnTweetsStream - streamingTweet is null ");
       return;
