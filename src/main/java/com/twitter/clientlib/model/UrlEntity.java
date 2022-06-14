@@ -30,8 +30,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.EntityIndicesInclusiveExclusive;
-import com.twitter.clientlib.model.URLFields;
-import com.twitter.clientlib.model.URLImage;
+import com.twitter.clientlib.model.UrlFields;
+import com.twitter.clientlib.model.UrlImage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -65,29 +65,33 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Represent the portion of text recognized as a URL, and its start and end position within the text.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UrlEntity {
-  public static final String SERIALIZED_NAME_START = "start";
-  @SerializedName(SERIALIZED_NAME_START)
-  private Integer start;
-
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
   private Integer end;
 
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private URL url;
+  public static final String SERIALIZED_NAME_START = "start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private Integer start;
 
-  public static final String SERIALIZED_NAME_EXPANDED_URL = "expanded_url";
-  @SerializedName(SERIALIZED_NAME_EXPANDED_URL)
-  private URL expandedUrl;
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
   public static final String SERIALIZED_NAME_DISPLAY_URL = "display_url";
   @SerializedName(SERIALIZED_NAME_DISPLAY_URL)
   private String displayUrl;
 
-  public static final String SERIALIZED_NAME_UNWOUND_URL = "unwound_url";
-  @SerializedName(SERIALIZED_NAME_UNWOUND_URL)
-  private URL unwoundUrl;
+  public static final String SERIALIZED_NAME_EXPANDED_URL = "expanded_url";
+  @SerializedName(SERIALIZED_NAME_EXPANDED_URL)
+  private URL expandedUrl;
+
+  public static final String SERIALIZED_NAME_IMAGES = "images";
+  @SerializedName(SERIALIZED_NAME_IMAGES)
+  private List<UrlImage> images = null;
+
+  public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
+  @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
+  private String mediaKey;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -97,44 +101,16 @@ public class UrlEntity {
   @SerializedName(SERIALIZED_NAME_TITLE)
   private String title;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+  public static final String SERIALIZED_NAME_UNWOUND_URL = "unwound_url";
+  @SerializedName(SERIALIZED_NAME_UNWOUND_URL)
+  private URL unwoundUrl;
 
-  public static final String SERIALIZED_NAME_IMAGES = "images";
-  @SerializedName(SERIALIZED_NAME_IMAGES)
-  private List<URLImage> images = null;
-
-  public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
-  @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
-  private String mediaKey;
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private URL url;
 
   public UrlEntity() { 
   }
-
-  public UrlEntity start(Integer start) {
-    
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity starts.  The index is inclusive.
-   * minimum: 0
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
-
-  public Integer getStart() {
-    return start;
-  }
-
-
-  public void setStart(Integer start) {
-    this.start = start;
-  }
-
 
   public UrlEntity end(Integer end) {
     
@@ -160,49 +136,50 @@ public class UrlEntity {
   }
 
 
-  public UrlEntity url(URL url) {
+  public UrlEntity start(Integer start) {
     
-    this.url = url;
+    this.start = start;
     return this;
   }
 
    /**
-   * Get url
-   * @return url
+   * Index (zero-based) at which position this entity starts.  The index is inclusive.
+   * minimum: 0
+   * @return start
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
 
-  public URL getUrl() {
-    return url;
+  public Integer getStart() {
+    return start;
   }
 
 
-  public void setUrl(URL url) {
-    this.url = url;
+  public void setStart(Integer start) {
+    this.start = start;
   }
 
 
-  public UrlEntity expandedUrl(URL expandedUrl) {
+  public UrlEntity description(String description) {
     
-    this.expandedUrl = expandedUrl;
+    this.description = description;
     return this;
   }
 
    /**
-   * Get expandedUrl
-   * @return expandedUrl
+   * Description of the URL landing page.
+   * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "This is a description of the website.", value = "Description of the URL landing page.")
 
-  public URL getExpandedUrl() {
-    return expandedUrl;
+  public String getDescription() {
+    return description;
   }
 
 
-  public void setExpandedUrl(URL expandedUrl) {
-    this.expandedUrl = expandedUrl;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -229,26 +206,80 @@ public class UrlEntity {
   }
 
 
-  public UrlEntity unwoundUrl(URL unwoundUrl) {
+  public UrlEntity expandedUrl(URL expandedUrl) {
     
-    this.unwoundUrl = unwoundUrl;
+    this.expandedUrl = expandedUrl;
     return this;
   }
 
    /**
-   * Fully resolved url
-   * @return unwoundUrl
+   * A validly formatted URL.
+   * @return expandedUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://twittercommunity.com/t/introducing-the-v2-follow-lookup-endpoints/147118", value = "Fully resolved url")
+  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", value = "A validly formatted URL.")
 
-  public URL getUnwoundUrl() {
-    return unwoundUrl;
+  public URL getExpandedUrl() {
+    return expandedUrl;
   }
 
 
-  public void setUnwoundUrl(URL unwoundUrl) {
-    this.unwoundUrl = unwoundUrl;
+  public void setExpandedUrl(URL expandedUrl) {
+    this.expandedUrl = expandedUrl;
+  }
+
+
+  public UrlEntity images(List<UrlImage> images) {
+    
+    this.images = images;
+    return this;
+  }
+
+  public UrlEntity addImagesItem(UrlImage imagesItem) {
+    if (this.images == null) {
+      this.images = new ArrayList<>();
+    }
+    this.images.add(imagesItem);
+    return this;
+  }
+
+   /**
+   * Get images
+   * @return images
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<UrlImage> getImages() {
+    return images;
+  }
+
+
+  public void setImages(List<UrlImage> images) {
+    this.images = images;
+  }
+
+
+  public UrlEntity mediaKey(String mediaKey) {
+    
+    this.mediaKey = mediaKey;
+    return this;
+  }
+
+   /**
+   * The Media Key identifier for this attachment.
+   * @return mediaKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Media Key identifier for this attachment.")
+
+  public String getMediaKey() {
+    return mediaKey;
+  }
+
+
+  public void setMediaKey(String mediaKey) {
+    this.mediaKey = mediaKey;
   }
 
 
@@ -300,80 +331,49 @@ public class UrlEntity {
   }
 
 
-  public UrlEntity description(String description) {
+  public UrlEntity unwoundUrl(URL unwoundUrl) {
     
-    this.description = description;
+    this.unwoundUrl = unwoundUrl;
     return this;
   }
 
    /**
-   * Description of the URL landing page.
-   * @return description
+   * Fully resolved url.
+   * @return unwoundUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "This is a description of the website.", value = "Description of the URL landing page.")
+  @ApiModelProperty(example = "https://twittercommunity.com/t/introducing-the-v2-follow-lookup-endpoints/147118", value = "Fully resolved url.")
 
-  public String getDescription() {
-    return description;
+  public URL getUnwoundUrl() {
+    return unwoundUrl;
   }
 
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setUnwoundUrl(URL unwoundUrl) {
+    this.unwoundUrl = unwoundUrl;
   }
 
 
-  public UrlEntity images(List<URLImage> images) {
+  public UrlEntity url(URL url) {
     
-    this.images = images;
-    return this;
-  }
-
-  public UrlEntity addImagesItem(URLImage imagesItem) {
-    if (this.images == null) {
-      this.images = new ArrayList<>();
-    }
-    this.images.add(imagesItem);
+    this.url = url;
     return this;
   }
 
    /**
-   * Get images
-   * @return images
+   * A validly formatted URL.
+   * @return url
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", required = true, value = "A validly formatted URL.")
 
-  public List<URLImage> getImages() {
-    return images;
+  public URL getUrl() {
+    return url;
   }
 
 
-  public void setImages(List<URLImage> images) {
-    this.images = images;
-  }
-
-
-  public UrlEntity mediaKey(String mediaKey) {
-    
-    this.mediaKey = mediaKey;
-    return this;
-  }
-
-   /**
-   * The Media Key identifier for this attachment.
-   * @return mediaKey
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Media Key identifier for this attachment.")
-
-  public String getMediaKey() {
-    return mediaKey;
-  }
-
-
-  public void setMediaKey(String mediaKey) {
-    this.mediaKey = mediaKey;
+  public void setUrl(URL url) {
+    this.url = url;
   }
 
 
@@ -387,39 +387,39 @@ public class UrlEntity {
       return false;
     }
     UrlEntity urlEntity = (UrlEntity) o;
-    return Objects.equals(this.start, urlEntity.start) &&
-        Objects.equals(this.end, urlEntity.end) &&
-        Objects.equals(this.url, urlEntity.url) &&
-        Objects.equals(this.expandedUrl, urlEntity.expandedUrl) &&
+    return Objects.equals(this.end, urlEntity.end) &&
+        Objects.equals(this.start, urlEntity.start) &&
+        Objects.equals(this.description, urlEntity.description) &&
         Objects.equals(this.displayUrl, urlEntity.displayUrl) &&
-        Objects.equals(this.unwoundUrl, urlEntity.unwoundUrl) &&
+        Objects.equals(this.expandedUrl, urlEntity.expandedUrl) &&
+        Objects.equals(this.images, urlEntity.images) &&
+        Objects.equals(this.mediaKey, urlEntity.mediaKey) &&
         Objects.equals(this.status, urlEntity.status) &&
         Objects.equals(this.title, urlEntity.title) &&
-        Objects.equals(this.description, urlEntity.description) &&
-        Objects.equals(this.images, urlEntity.images) &&
-        Objects.equals(this.mediaKey, urlEntity.mediaKey);
+        Objects.equals(this.unwoundUrl, urlEntity.unwoundUrl) &&
+        Objects.equals(this.url, urlEntity.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end, url, expandedUrl, displayUrl, unwoundUrl, status, title, description, images, mediaKey);
+    return Objects.hash(end, start, description, displayUrl, expandedUrl, images, mediaKey, status, title, unwoundUrl, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UrlEntity {\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    expandedUrl: ").append(toIndentedString(expandedUrl)).append("\n");
-    sb.append("    displayUrl: ").append(toIndentedString(displayUrl)).append("\n");
-    sb.append("    unwoundUrl: ").append(toIndentedString(unwoundUrl)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    displayUrl: ").append(toIndentedString(displayUrl)).append("\n");
+    sb.append("    expandedUrl: ").append(toIndentedString(expandedUrl)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    mediaKey: ").append(toIndentedString(mediaKey)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    unwoundUrl: ").append(toIndentedString(unwoundUrl)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -442,22 +442,22 @@ public class UrlEntity {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("start");
     openapiFields.add("end");
-    openapiFields.add("url");
-    openapiFields.add("expanded_url");
-    openapiFields.add("display_url");
-    openapiFields.add("unwound_url");
-    openapiFields.add("status");
-    openapiFields.add("title");
+    openapiFields.add("start");
     openapiFields.add("description");
+    openapiFields.add("display_url");
+    openapiFields.add("expanded_url");
     openapiFields.add("images");
     openapiFields.add("media_key");
+    openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("unwound_url");
+    openapiFields.add("url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("start");
     openapiRequiredFields.add("end");
+    openapiRequiredFields.add("start");
     openapiRequiredFields.add("url");
   }
 
@@ -483,17 +483,14 @@ public class UrlEntity {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       if (jsonObj.get("display_url") != null && !jsonObj.get("display_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `display_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_url").toString()));
       }
-      if (jsonObj.get("unwound_url") != null && !jsonObj.get("unwound_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `unwound_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unwound_url").toString()));
-      }
-      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
-      }
-      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      if (jsonObj.get("expanded_url") != null && !jsonObj.get("expanded_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expanded_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expanded_url").toString()));
       }
       JsonArray jsonArrayimages = jsonObj.getAsJsonArray("images");
       if (jsonArrayimages != null) {
@@ -504,11 +501,20 @@ public class UrlEntity {
 
         // validate the optional field `images` (array)
         for (int i = 0; i < jsonArrayimages.size(); i++) {
-          URLImage.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
+          UrlImage.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
         };
       }
       if (jsonObj.get("media_key") != null && !jsonObj.get("media_key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `media_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("media_key").toString()));
+      }
+      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if (jsonObj.get("unwound_url") != null && !jsonObj.get("unwound_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `unwound_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unwound_url").toString()));
+      }
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
       }
   }
 

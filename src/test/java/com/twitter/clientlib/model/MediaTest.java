@@ -52,11 +52,11 @@ public class MediaTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'height'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void heightTest() {
+        // TODO: test height
     }
 
     /**
@@ -68,11 +68,11 @@ public class MediaTest {
     }
 
     /**
-     * Test the property 'height'
+     * Test the property 'type'
      */
     @Test
-    public void heightTest() {
-        // TODO: test height
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**

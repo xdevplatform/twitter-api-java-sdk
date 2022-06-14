@@ -32,7 +32,7 @@ import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.auth.TwitterOAuth20AppOnlyService;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
 
 /**
 * This is an example of getting an OAuth2 bearer boken (app-only) and using it to call an API.
@@ -79,8 +79,7 @@ public class OAuth20AppOnlyGetAccessToken {
   }
 
   public void callApi(TwitterCredentialsBearer credentials) {
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
@@ -89,8 +88,9 @@ public class OAuth20AppOnlyGetAccessToken {
 
     try {
       // findTweetById
-      SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null,
-          null, null, null);
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+        .tweetFields(tweetFields)
+        .execute();
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");
         result.getErrors().forEach(e -> {

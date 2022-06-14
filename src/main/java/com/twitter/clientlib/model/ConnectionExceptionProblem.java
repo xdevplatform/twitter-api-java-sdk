@@ -74,9 +74,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * A problem that indicates something is wrong with the connection
+ * A problem that indicates something is wrong with the connection.
  */
-@ApiModel(description = "A problem that indicates something is wrong with the connection")
+@ApiModel(description = "A problem that indicates something is wrong with the connection.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectionExceptionProblem extends Problem {
   /**
@@ -208,16 +208,16 @@ public class ConnectionExceptionProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("connection_issue");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**parameters** | **Map&lt;String, List&lt;String&gt;&gt;** |  |  [optional]
-**message** | **String** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**message** | **String** |  |  [optional] |
+|**parameters** | **Map&lt;String, List&lt;String&gt;&gt;** |  |  [optional] |
 
 
 

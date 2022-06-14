@@ -52,19 +52,19 @@ public class InvalidRequestProblemAllOfErrorsTest {
     }
 
     /**
-     * Test the property 'parameters'
-     */
-    @Test
-    public void parametersTest() {
-        // TODO: test parameters
-    }
-
-    /**
      * Test the property 'message'
      */
     @Test
     public void messageTest() {
         // TODO: test message
+    }
+
+    /**
+     * Test the property 'parameters'
+     */
+    @Test
+    public void parametersTest() {
+        // TODO: test parameters
     }
 
 }

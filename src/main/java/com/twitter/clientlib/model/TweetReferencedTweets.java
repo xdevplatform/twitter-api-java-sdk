@@ -58,6 +58,10 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetReferencedTweets {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   /**
    * Gets or Sets type
    */
@@ -111,35 +115,8 @@ public class TweetReferencedTweets {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
   public TweetReferencedTweets() { 
   }
-
-  public TweetReferencedTweets type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
 
   public TweetReferencedTweets id(String id) {
     
@@ -164,6 +141,29 @@ public class TweetReferencedTweets {
   }
 
 
+  public TweetReferencedTweets type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -174,21 +174,21 @@ public class TweetReferencedTweets {
       return false;
     }
     TweetReferencedTweets tweetReferencedTweets = (TweetReferencedTweets) o;
-    return Objects.equals(this.type, tweetReferencedTweets.type) &&
-        Objects.equals(this.id, tweetReferencedTweets.id);
+    return Objects.equals(this.id, tweetReferencedTweets.id) &&
+        Objects.equals(this.type, tweetReferencedTweets.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id);
+    return Objects.hash(id, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TweetReferencedTweets {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,13 +211,13 @@ public class TweetReferencedTweets {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
     openapiFields.add("id");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("id");
+    openapiRequiredFields.add("type");
   }
 
  /**
@@ -242,11 +242,11 @@ public class TweetReferencedTweets {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
   }
 

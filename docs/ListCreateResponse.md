@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**data** | [**ModelList**](ModelList.md) |  |  [optional]
-**errors** | [**List&lt;Problem&gt;**](Problem.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**data** | [**ListCreateResponseData**](ListCreateResponseData.md) |  |  [optional] |
+|**errors** | [**List&lt;Problem&gt;**](Problem.md) |  |  [optional] |
 
 
 

@@ -83,10 +83,6 @@ public class ResourceNotFoundProblem extends Problem {
   @SerializedName(SERIALIZED_NAME_PARAMETER)
   private String parameter;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private Object value = null;
-
   public static final String SERIALIZED_NAME_RESOURCE_ID = "resource_id";
   @SerializedName(SERIALIZED_NAME_RESOURCE_ID)
   private String resourceId;
@@ -148,6 +144,10 @@ public class ResourceNotFoundProblem extends Problem {
   @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
   private ResourceTypeEnum resourceType;
 
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
   public ResourceNotFoundProblem() { 
     this.type = this.getClass().getSimpleName();
   }
@@ -172,29 +172,6 @@ public class ResourceNotFoundProblem extends Problem {
 
   public void setParameter(String parameter) {
     this.parameter = parameter;
-  }
-
-
-  public ResourceNotFoundProblem value(Object value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Value will match the schema of the field.
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "Value will match the schema of the field.")
-
-  public Object getValue() {
-    return value;
-  }
-
-
-  public void setValue(Object value) {
-    this.value = value;
   }
 
 
@@ -244,6 +221,29 @@ public class ResourceNotFoundProblem extends Problem {
   }
 
 
+  public ResourceNotFoundProblem value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Value will match the schema of the field.
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Value will match the schema of the field.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -255,15 +255,15 @@ public class ResourceNotFoundProblem extends Problem {
     }
     ResourceNotFoundProblem resourceNotFoundProblem = (ResourceNotFoundProblem) o;
     return Objects.equals(this.parameter, resourceNotFoundProblem.parameter) &&
-        Objects.equals(this.value, resourceNotFoundProblem.value) &&
         Objects.equals(this.resourceId, resourceNotFoundProblem.resourceId) &&
         Objects.equals(this.resourceType, resourceNotFoundProblem.resourceType) &&
+        Objects.equals(this.value, resourceNotFoundProblem.value) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parameter, value, resourceId, resourceType, super.hashCode());
+    return Objects.hash(parameter, resourceId, resourceType, value, super.hashCode());
   }
 
   @Override
@@ -272,9 +272,9 @@ public class ResourceNotFoundProblem extends Problem {
     sb.append("class ResourceNotFoundProblem {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    resourceId: ").append(toIndentedString(resourceId)).append("\n");
     sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -297,23 +297,23 @@ public class ResourceNotFoundProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("parameter");
-    openapiFields.add("value");
     openapiFields.add("resource_id");
     openapiFields.add("resource_type");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("parameter");
-    openapiRequiredFields.add("value");
     openapiRequiredFields.add("resource_id");
     openapiRequiredFields.add("resource_type");
-    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("value");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

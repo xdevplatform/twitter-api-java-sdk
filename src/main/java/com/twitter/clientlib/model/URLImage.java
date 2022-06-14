@@ -55,62 +55,39 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Represent the information for the URL image
+ * Represent the information for the URL image.
  */
-@ApiModel(description = "Represent the information for the URL image")
+@ApiModel(description = "Represent the information for the URL image.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class URLImage {
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private URL url;
-
+public class UrlImage {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
   private Integer height;
+
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private URL url;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
   private Integer width;
 
-  public URLImage() { 
+  public UrlImage() { 
   }
 
-  public URLImage url(URL url) {
-    
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public URL getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(URL url) {
-    this.url = url;
-  }
-
-
-  public URLImage height(Integer height) {
+  public UrlImage height(Integer height) {
     
     this.height = height;
     return this;
   }
 
    /**
-   * The height of the media in pixels
+   * The height of the media in pixels.
    * minimum: 0
    * @return height
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The height of the media in pixels")
+  @ApiModelProperty(value = "The height of the media in pixels.")
 
   public Integer getHeight() {
     return height;
@@ -122,19 +99,42 @@ public class URLImage {
   }
 
 
-  public URLImage width(Integer width) {
+  public UrlImage url(URL url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * A validly formatted URL.
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", value = "A validly formatted URL.")
+
+  public URL getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(URL url) {
+    this.url = url;
+  }
+
+
+  public UrlImage width(Integer width) {
     
     this.width = width;
     return this;
   }
 
    /**
-   * The width of the media in pixels
+   * The width of the media in pixels.
    * minimum: 0
    * @return width
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The width of the media in pixels")
+  @ApiModelProperty(value = "The width of the media in pixels.")
 
   public Integer getWidth() {
     return width;
@@ -155,23 +155,23 @@ public class URLImage {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    URLImage urLImage = (URLImage) o;
-    return Objects.equals(this.url, urLImage.url) &&
-        Objects.equals(this.height, urLImage.height) &&
-        Objects.equals(this.width, urLImage.width);
+    UrlImage urlImage = (UrlImage) o;
+    return Objects.equals(this.height, urlImage.height) &&
+        Objects.equals(this.url, urlImage.url) &&
+        Objects.equals(this.width, urlImage.width);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, height, width);
+    return Objects.hash(height, url, width);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class URLImage {\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("class UrlImage {\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -195,8 +195,8 @@ public class URLImage {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("url");
     openapiFields.add("height");
+    openapiFields.add("url");
     openapiFields.add("width");
 
     // a set of required properties/fields (JSON key names)
@@ -207,39 +207,42 @@ public class URLImage {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to URLImage
+  * @throws IOException if the JSON Object is invalid with respect to UrlImage
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (URLImage.openapiRequiredFields.isEmpty()) {
+     //   if (UrlImage.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in URLImage is not found in the empty JSON string", URLImage.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in UrlImage is not found in the empty JSON string", UrlImage.openapiRequiredFields.toString()));
      //   }
      // }
 
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!URLImage.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'URLImage' and its subtypes
+       if (!UrlImage.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UrlImage' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<URLImage> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(URLImage.class));
+       final TypeAdapter<UrlImage> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UrlImage.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<URLImage>() {
+       return (TypeAdapter<T>) new TypeAdapter<UrlImage>() {
            @Override
-           public void write(JsonWriter out, URLImage value) throws IOException {
+           public void write(JsonWriter out, UrlImage value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public URLImage read(JsonReader in) throws IOException {
+           public UrlImage read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -250,18 +253,18 @@ public class URLImage {
   }
 
  /**
-  * Create an instance of URLImage given an JSON string
+  * Create an instance of UrlImage given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of URLImage
-  * @throws IOException if the JSON string is invalid with respect to URLImage
+  * @return An instance of UrlImage
+  * @throws IOException if the JSON string is invalid with respect to UrlImage
   */
-  public static URLImage fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, URLImage.class);
+  public static UrlImage fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UrlImage.class);
   }
 
  /**
-  * Convert an instance of URLImage to an JSON string
+  * Convert an instance of UrlImage to an JSON string
   *
   * @return JSON string
   */

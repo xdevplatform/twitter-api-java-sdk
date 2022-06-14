@@ -50,22 +50,6 @@ public class RulesResponseMetadataTest {
     }
 
     /**
-     * Test the property 'sent'
-     */
-    @Test
-    public void sentTest() {
-        // TODO: test sent
-    }
-
-    /**
-     * Test the property 'summary'
-     */
-    @Test
-    public void summaryTest() {
-        // TODO: test summary
-    }
-
-    /**
      * Test the property 'nextToken'
      */
     @Test
@@ -79,6 +63,22 @@ public class RulesResponseMetadataTest {
     @Test
     public void resultCountTest() {
         // TODO: test resultCount
+    }
+
+    /**
+     * Test the property 'sent'
+     */
+    @Test
+    public void sentTest() {
+        // TODO: test sent
+    }
+
+    /**
+     * Test the property 'summary'
+     */
+    @Test
+    public void summaryTest() {
+        // TODO: test summary
     }
 
 }

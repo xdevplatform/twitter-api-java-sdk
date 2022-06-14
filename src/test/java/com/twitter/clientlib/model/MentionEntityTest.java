@@ -51,14 +51,6 @@ public class MentionEntityTest {
     }
 
     /**
-     * Test the property 'start'
-     */
-    @Test
-    public void startTest() {
-        // TODO: test start
-    }
-
-    /**
      * Test the property 'end'
      */
     @Test
@@ -67,11 +59,11 @@ public class MentionEntityTest {
     }
 
     /**
-     * Test the property 'username'
+     * Test the property 'start'
      */
     @Test
-    public void usernameTest() {
-        // TODO: test username
+    public void startTest() {
+        // TODO: test start
     }
 
     /**
@@ -80,6 +72,14 @@ public class MentionEntityTest {
     @Test
     public void idTest() {
         // TODO: test id
+    }
+
+    /**
+     * Test the property 'username'
+     */
+    @Test
+    public void usernameTest() {
+        // TODO: test username
     }
 
 }

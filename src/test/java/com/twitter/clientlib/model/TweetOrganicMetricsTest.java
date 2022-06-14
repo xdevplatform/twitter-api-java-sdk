@@ -57,11 +57,11 @@ public class TweetOrganicMetricsTest {
     }
 
     /**
-     * Test the property 'retweetCount'
+     * Test the property 'likeCount'
      */
     @Test
-    public void retweetCountTest() {
-        // TODO: test retweetCount
+    public void likeCountTest() {
+        // TODO: test likeCount
     }
 
     /**
@@ -73,11 +73,11 @@ public class TweetOrganicMetricsTest {
     }
 
     /**
-     * Test the property 'likeCount'
+     * Test the property 'retweetCount'
      */
     @Test
-    public void likeCountTest() {
-        // TODO: test likeCount
+    public void retweetCountTest() {
+        // TODO: test retweetCount
     }
 
 }

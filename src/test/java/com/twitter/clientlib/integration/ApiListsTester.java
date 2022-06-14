@@ -58,11 +58,14 @@ public class ApiListsTester extends ApiTester {
     request.setName("MyList");
     request.setPrivate(true);
     request.setDescription("MyList description");
-    return apiInstance.lists().listIdCreate(request);
+    return apiInstance.lists().listIdCreate()
+        .listCreateRequest(request)
+        .execute();
   }
 
   private ListDeleteResponse deleteList(String id) throws ApiException {
-    return apiInstance.lists().listIdDelete(id);
+    return apiInstance.lists().listIdDelete(id)
+        .execute();
   }
 
   @BeforeAll
@@ -72,9 +75,11 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listIdGetTest() throws ApiException {
-    SingleListLookupResponse result = apiInstance.lists().listIdGet(listId, listFields,
-        listsExpansions,
-        userFields);
+    Get2ListsIdResponse result = apiInstance.lists().listIdGet(listId)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(false, result.getErrors());
     checkListData(result.getData());
     assertNotNull(result.getIncludes());
@@ -84,8 +89,11 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listIdGetListNotFoundTest() throws ApiException {
-    SingleListLookupResponse result = apiInstance.lists().listIdGet(listIdNotFound, listFields,
-        listsExpansions, userFields);
+    Get2ListsIdResponse result = apiInstance.lists().listIdGet(listIdNotFound)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -95,9 +103,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserOwnedListsTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().listUserOwnedLists(listOwnerUserId, maxResults,
-        null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdOwnedListsResponse result = apiInstance.lists().listUserOwnedLists(listOwnerUserId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkListData(result.getData().get(0));
@@ -110,9 +122,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserOwnedListsListNotFoundTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().listUserOwnedLists(userNotExists, maxResults,
-        null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdOwnedListsResponse result = apiInstance.lists().listUserOwnedLists(userNotExists)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -139,7 +155,9 @@ public class ApiListsTester extends ApiTester {
   @Test
   public void listIdCreateEmptyValuesTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listIdCreate(null);
+      apiInstance.lists().listIdCreate()
+          .listCreateRequest(null)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `name` field in the request body can not be empty",
@@ -154,8 +172,9 @@ public class ApiListsTester extends ApiTester {
       ListUpdateRequest request = new ListUpdateRequest();
       request.setName("MyNewList Updated");
       request.setDescription("updated description");
-      ListUpdateResponse result = apiInstance.lists().listIdUpdate(request,
-          list.getData().getId());
+      ListUpdateResponse result = apiInstance.lists().listIdUpdate(list.getData().getId())
+          .listUpdateRequest(request)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertTrue(result.getData().getUpdated());
@@ -172,7 +191,9 @@ public class ApiListsTester extends ApiTester {
     request.setName("MyNewList Updated");
     request.setDescription("updated description");
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listIdUpdate(request, listIdNotFound);
+      apiInstance.lists().listIdUpdate(listIdNotFound)
+          .listUpdateRequest(request)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "You cannot update a List that does not exist.",
@@ -184,7 +205,9 @@ public class ApiListsTester extends ApiTester {
     ListCreateResponse list = null;
     try {
       list = listIdCreate();
-      ListUpdateResponse result = apiInstance.lists().listIdUpdate(null, list.getData().getId());
+      ListUpdateResponse result = apiInstance.lists().listIdUpdate(list.getData().getId())
+          .listUpdateRequest(null)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertTrue(result.getData().getUpdated());
@@ -200,7 +223,9 @@ public class ApiListsTester extends ApiTester {
     ListCreateResponse list = null;
     try {
       list = listIdCreate();
-      ListUpdateResponse result = apiInstance.lists().listIdUpdate(null, list.getData().getId());
+      ListUpdateResponse result = apiInstance.lists().listIdUpdate(list.getData().getId())
+          .listUpdateRequest(null)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertTrue(result.getData().getUpdated());
@@ -240,8 +265,16 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listsIdTweetsTest() throws ApiException {
-    ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(listId, maxResults, null,
-        expansions, tweetFields, userFields, null, null, null);
+    Get2ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(listId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .tweetFields(tweetFields)
+        .expansions(expansions)
+        .mediaFields(null)
+        .pollFields(null)
+        .userFields(userFields)
+        .placeFields(null)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkTweetData(result.getData().get(0));
@@ -254,9 +287,16 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listsIdTweetsListNotFoundTest() throws ApiException {
-    ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(listIdNotFound, maxResults,
-        null,
-        expansions, tweetFields, userFields, null, null, null);
+    Get2ListsIdTweetsResponse result = apiInstance.tweets().listsIdTweets(listIdNotFound)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .tweetFields(tweetFields)
+        .expansions(expansions)
+        .mediaFields(null)
+        .pollFields(null)
+        .userFields(userFields)
+        .placeFields(null)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -270,10 +310,11 @@ public class ApiListsTester extends ApiTester {
     ListCreateResponse list = null;
     try {
       list = listIdCreate();
-      ListAddMemberRequest request = new ListAddMemberRequest();
+      ListAddUserRequest request = new ListAddUserRequest();
       request.setUserId(userId);
-      ListMemberResponse result = apiInstance.lists().listAddMember(request,
-          list.getData().getId());
+      ListMutateResponse result = apiInstance.lists().listAddMember(list.getData().getId())
+          .listAddUserRequest(request)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertTrue(result.getData().getIsMember());
@@ -290,10 +331,12 @@ public class ApiListsTester extends ApiTester {
     try {
       list = listIdCreate();
       String id = list.getData().getId();
-      ListAddMemberRequest request = new ListAddMemberRequest();
+      ListAddUserRequest request = new ListAddUserRequest();
       request.setUserId(userNotExists);
       ApiException exception = assertThrows(ApiException.class, () -> {
-        apiInstance.lists().listAddMember(request, id);
+        apiInstance.lists().listAddMember(id)
+            .listAddUserRequest(request)
+            .execute();
       });
       checkApiExceptionProblem(exception, InvalidRequestProblem.class,
           "You cannot add a member that does not exist.",
@@ -310,12 +353,14 @@ public class ApiListsTester extends ApiTester {
     ListCreateResponse list = null;
     try {
       list = listIdCreate();
-      ListAddMemberRequest addRrequest = new ListAddMemberRequest();
+      ListAddUserRequest addRrequest = new ListAddUserRequest();
       addRrequest.setUserId(userId);
-      apiInstance.lists().listAddMember(addRrequest, list.getData().getId());
-
-      ListMemberResponse result = apiInstance.lists().listRemoveMember(list.getData().getId(),
-          userId);
+      apiInstance.lists().listAddMember(list.getData().getId())
+          .listAddUserRequest(addRrequest)
+          .execute();
+      ListMutateResponse result = apiInstance.lists().listRemoveMember(list.getData().getId(),
+              userId)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertFalse(result.getData().getIsMember());
@@ -331,12 +376,14 @@ public class ApiListsTester extends ApiTester {
     ListCreateResponse list = null;
     try {
       list = listIdCreate();
-      ListAddMemberRequest addRrequest = new ListAddMemberRequest();
+      ListAddUserRequest addRrequest = new ListAddUserRequest();
       addRrequest.setUserId(userId);
-      apiInstance.lists().listAddMember(addRrequest, list.getData().getId());
-
-      ListMemberResponse result = apiInstance.lists().listRemoveMember(list.getData().getId(),
-          userNotExists);
+      apiInstance.lists().listAddMember(list.getData().getId())
+          .listAddUserRequest(addRrequest)
+          .execute();
+      ListMutateResponse result = apiInstance.lists().listRemoveMember(list.getData().getId(),
+              userNotExists)
+          .execute();
       checkErrors(false, result.getErrors());
       assertNotNull(result.getData());
       assertFalse(result.getData().getIsMember());
@@ -349,10 +396,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listGetMembersTest() throws ApiException {
-    ListLookupMultipleUsersLookupResponse result = apiInstance.users().listGetMembers(listId,
-        maxResults,
-        null,
-        expansionsPinnedTweetId, tweetFields, userFields);
+    Get2ListsIdMembersResponse result = apiInstance.users().listGetMembers(listId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .userFields(userFields)
+        .expansions(expansionsPinnedTweetId)
+        .tweetFields(tweetFields)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -365,10 +415,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listGetMembersListNotFoundTest() throws ApiException {
-    ListLookupMultipleUsersLookupResponse result = apiInstance.users().listGetMembers(
-        listIdNotFound,
-        maxResults, null,
-        expansionsPinnedTweetId, tweetFields, userFields);
+    Get2ListsIdMembersResponse result = apiInstance.users().listGetMembers(listIdNotFound)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .userFields(userFields)
+        .expansions(expansionsPinnedTweetId)
+        .tweetFields(tweetFields)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -379,9 +432,14 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void getUserListMembershipsTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().getUserListMemberships(listOwnerUserId,
-        maxResults, null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdListMembershipsResponse result = apiInstance.lists().getUserListMemberships(
+            listOwnerUserId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkListData(result.getData().get(0));
@@ -394,9 +452,14 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void getUserListMembershipsListNotFoundTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().getUserListMemberships(userNotExists,
-        maxResults, null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdListMembershipsResponse result = apiInstance.lists().getUserListMemberships(
+            userNotExists)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -406,8 +469,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void usersIdFollowersTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdFollowers(popularUserId,
-        maxResults, null);
+    Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(popularUserId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .userFields(null)
+        .expansions(null)
+        .tweetFields(null)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkUserData(result.getData().get(0));
@@ -418,8 +486,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void usersIdFollowersUserNotExistsTest() throws ApiException {
-    GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdFollowers(userNotExists,
-        maxResults, null);
+    Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(userNotExists)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .userFields(null)
+        .expansions(null)
+        .tweetFields(null)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -429,9 +502,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void userFollowedListsTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().userFollowedLists(popularUserId, maxResults,
-        null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdFollowedListsResponse result = apiInstance.lists().userFollowedLists(popularUserId)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     checkListData(result.getData().get(0));
@@ -444,9 +521,13 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void userFollowedListsUserNotFoundTest() throws ApiException {
-    MultiListResponse result = apiInstance.lists().userFollowedLists(userNotExists, maxResults,
-        null,
-        listFields, listsExpansions, userFields);
+    Get2UsersIdFollowedListsResponse result = apiInstance.lists().userFollowedLists(userNotExists)
+        .maxResults(maxResults)
+        .paginationToken(null)
+        .listFields(listFields)
+        .expansions(listsExpansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());
     assertNull(result.getIncludes());
@@ -456,9 +537,11 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowTest() throws ApiException {
-    ListFollowRequest request = new ListFollowRequest();
+    ListFollowedRequest request = new ListFollowedRequest();
     request.setListId(listId);
-    ListFollowedResponse result = apiInstance.lists().listUserFollow(request, userId);
+    ListFollowedResponse result = apiInstance.lists().listUserFollow(userId)
+        .listFollowedRequest(request)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getFollowing());
@@ -466,10 +549,12 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowListNotFoundTest() throws ApiException {
-    ListFollowRequest request = new ListFollowRequest();
+    ListFollowedRequest request = new ListFollowedRequest();
     request.setListId(listIdNotFound);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserFollow(request, userId);
+      apiInstance.lists().listUserFollow(userId)
+          .listFollowedRequest(request)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "You cannot follow a List that does not exist.",
@@ -478,10 +563,12 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowUserNotExistsTest() throws ApiException {
-    ListFollowRequest request = new ListFollowRequest();
+    ListFollowedRequest request = new ListFollowedRequest();
     request.setListId(listId);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserFollow(request, userNotExists);
+      apiInstance.lists().listUserFollow(userNotExists)
+          .listFollowedRequest(request)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -490,9 +577,9 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserPinTest() throws ApiException {
-    ListPinRequest request = new ListPinRequest();
+    ListPinnedRequest request = new ListPinnedRequest();
     request.setListId(listId);
-    ListPinnedResponse result = apiInstance.lists().listUserPin(request, userId);
+    ListPinnedResponse result = apiInstance.lists().listUserPin(request, userId).execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getPinned());
@@ -500,10 +587,10 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserPinListNotFoundTest() throws ApiException {
-    ListPinRequest request = new ListPinRequest();
+    ListPinnedRequest request = new ListPinnedRequest();
     request.setListId(listIdNotFound);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserPin(request, userId);
+      apiInstance.lists().listUserPin(request, userId).execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "You cannot pin a List that does not exist.",
@@ -512,10 +599,10 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserPinUserNotExistsTest() throws ApiException {
-    ListPinRequest request = new ListPinRequest();
+    ListPinnedRequest request = new ListPinnedRequest();
     request.setListId(listId);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserPin(request, userNotExists);
+      apiInstance.lists().listUserPin(request, userNotExists).execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -524,7 +611,7 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserUnpinTest() throws ApiException {
-    ListPinnedResponse result = apiInstance.lists().listUserUnpin(userId, listId);
+    ListUnpinResponse result = apiInstance.lists().listUserUnpin(userId, listId).execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getPinned());
@@ -532,7 +619,7 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserUnpinListNotFoundTest() throws ApiException {
-    ListPinnedResponse result = apiInstance.lists().listUserUnpin(userId, listIdNotFound);
+    ListUnpinResponse result = apiInstance.lists().listUserUnpin(userId, listIdNotFound).execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getPinned());
@@ -541,7 +628,7 @@ public class ApiListsTester extends ApiTester {
   @Test
   public void listUserUnpinUserNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserUnpin(userNotExists, listId);
+      apiInstance.lists().listUserUnpin(userNotExists, listId).execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",

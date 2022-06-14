@@ -59,7 +59,9 @@ public class ApiTweetBearerTester extends ApiTester {
     rule.setValue(ruleStrValue);
     add.addAddItem(rule);
     request.setActualInstance(add);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
+    return apiInstance.tweets().addOrDeleteRules(request)
+        .dryRun(false)
+        .execute();
   }
 
   private AddOrDeleteRulesResponse deleteRule(String ruleStrValue) throws ApiException {
@@ -69,7 +71,8 @@ public class ApiTweetBearerTester extends ApiTester {
     drd.setValues(Arrays.asList(ruleStrValue));
     dr.setDelete(drd);
     request.setActualInstance(dr);
-    return apiInstance.tweets().addOrDeleteRules(request, false);
+    return apiInstance.tweets().addOrDeleteRules(request).dryRun(false)
+        .execute();
   }
 
 
@@ -160,9 +163,9 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchNotFoundTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(queryNotFound, null,
-        null,
-        null, null, null, null, null);
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(
+            queryNotFound)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));
@@ -173,8 +176,8 @@ public class ApiTweetBearerTester extends ApiTester {
 
   @Test
   public void tweetCountsRecentSearchTest() throws ApiException {
-    TweetCountsResponse result = apiInstance.tweets().tweetCountsRecentSearch(query, null, null,
-        null, null, null, null, null);
+    Get2TweetsCountsRecentResponse result = apiInstance.tweets().tweetCountsRecentSearch(query)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotNull(result.getData().get(0));

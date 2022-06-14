@@ -58,43 +58,20 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ListCreateRequest {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_PRIVATE = "private";
   @SerializedName(SERIALIZED_NAME_PRIVATE)
-  private Boolean _private;
+  private Boolean _private = false;
 
   public ListCreateRequest() { 
   }
-
-  public ListCreateRequest name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
 
   public ListCreateRequest description(String description) {
     
@@ -116,6 +93,29 @@ public class ListCreateRequest {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public ListCreateRequest name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -152,22 +152,22 @@ public class ListCreateRequest {
       return false;
     }
     ListCreateRequest listCreateRequest = (ListCreateRequest) o;
-    return Objects.equals(this.name, listCreateRequest.name) &&
-        Objects.equals(this.description, listCreateRequest.description) &&
+    return Objects.equals(this.description, listCreateRequest.description) &&
+        Objects.equals(this.name, listCreateRequest.name) &&
         Objects.equals(this._private, listCreateRequest._private);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, _private);
+    return Objects.hash(description, name, _private);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListCreateRequest {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -191,8 +191,8 @@ public class ListCreateRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("name");
     openapiFields.add("private");
 
     // a set of required properties/fields (JSON key names)
@@ -222,11 +222,11 @@ public class ListCreateRequest {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
       if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }
 

@@ -73,11 +73,11 @@ public class HashtagFields {
   }
 
    /**
-   * The text of the Hashtag
+   * The text of the Hashtag.
    * @return tag
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "MondayMotivation", required = true, value = "The text of the Hashtag")
+  @ApiModelProperty(example = "MondayMotivation", required = true, value = "The text of the Hashtag.")
 
   public String getTag() {
     return tag;

@@ -30,13 +30,13 @@ import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.AnimatedGif;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
+import com.twitter.clientlib.model.Variant;
 import com.twitter.clientlib.model.Video;
 import com.twitter.clientlib.model.VideoAllOf;
 import com.twitter.clientlib.model.VideoAllOfNonPublicMetrics;
 import com.twitter.clientlib.model.VideoAllOfOrganicMetrics;
 import com.twitter.clientlib.model.VideoAllOfPromotedMetrics;
 import com.twitter.clientlib.model.VideoAllOfPublicMetrics;
-import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -62,11 +62,11 @@ public class VideoTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property 'height'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void heightTest() {
+        // TODO: test height
     }
 
     /**
@@ -78,11 +78,11 @@ public class VideoTest {
     }
 
     /**
-     * Test the property 'height'
+     * Test the property 'type'
      */
     @Test
-    public void heightTest() {
-        // TODO: test height
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**
@@ -94,35 +94,11 @@ public class VideoTest {
     }
 
     /**
-     * Test the property 'previewImageUrl'
-     */
-    @Test
-    public void previewImageUrlTest() {
-        // TODO: test previewImageUrl
-    }
-
-    /**
      * Test the property 'durationMs'
      */
     @Test
     public void durationMsTest() {
         // TODO: test durationMs
-    }
-
-    /**
-     * Test the property 'variants'
-     */
-    @Test
-    public void variantsTest() {
-        // TODO: test variants
-    }
-
-    /**
-     * Test the property 'publicMetrics'
-     */
-    @Test
-    public void publicMetricsTest() {
-        // TODO: test publicMetrics
     }
 
     /**
@@ -142,11 +118,35 @@ public class VideoTest {
     }
 
     /**
+     * Test the property 'previewImageUrl'
+     */
+    @Test
+    public void previewImageUrlTest() {
+        // TODO: test previewImageUrl
+    }
+
+    /**
      * Test the property 'promotedMetrics'
      */
     @Test
     public void promotedMetricsTest() {
         // TODO: test promotedMetrics
+    }
+
+    /**
+     * Test the property 'publicMetrics'
+     */
+    @Test
+    public void publicMetricsTest() {
+        // TODO: test publicMetrics
+    }
+
+    /**
+     * Test the property 'variants'
+     */
+    @Test
+    public void variantsTest() {
+        // TODO: test variants
     }
 
 }

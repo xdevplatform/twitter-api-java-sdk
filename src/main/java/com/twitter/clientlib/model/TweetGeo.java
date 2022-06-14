@@ -101,11 +101,11 @@ public class TweetGeo {
   }
 
    /**
-   * The identifier for this place
+   * The identifier for this place.
    * @return placeId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "f7eb2fa2fea288b1", value = "The identifier for this place")
+  @ApiModelProperty(example = "f7eb2fa2fea288b1", value = "The identifier for this place.")
 
   public String getPlaceId() {
     return placeId;

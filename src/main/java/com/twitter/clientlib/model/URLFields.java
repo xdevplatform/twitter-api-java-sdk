@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.URLImage;
+import com.twitter.clientlib.model.UrlImage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -62,22 +62,26 @@ import com.twitter.clientlib.JSON;
  */
 @ApiModel(description = "Represent the portion of text recognized as a URL.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class URLFields {
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private URL url;
-
-  public static final String SERIALIZED_NAME_EXPANDED_URL = "expanded_url";
-  @SerializedName(SERIALIZED_NAME_EXPANDED_URL)
-  private URL expandedUrl;
+public class UrlFields {
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
   public static final String SERIALIZED_NAME_DISPLAY_URL = "display_url";
   @SerializedName(SERIALIZED_NAME_DISPLAY_URL)
   private String displayUrl;
 
-  public static final String SERIALIZED_NAME_UNWOUND_URL = "unwound_url";
-  @SerializedName(SERIALIZED_NAME_UNWOUND_URL)
-  private URL unwoundUrl;
+  public static final String SERIALIZED_NAME_EXPANDED_URL = "expanded_url";
+  @SerializedName(SERIALIZED_NAME_EXPANDED_URL)
+  private URL expandedUrl;
+
+  public static final String SERIALIZED_NAME_IMAGES = "images";
+  @SerializedName(SERIALIZED_NAME_IMAGES)
+  private List<UrlImage> images = null;
+
+  public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
+  @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
+  private String mediaKey;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -87,68 +91,41 @@ public class URLFields {
   @SerializedName(SERIALIZED_NAME_TITLE)
   private String title;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+  public static final String SERIALIZED_NAME_UNWOUND_URL = "unwound_url";
+  @SerializedName(SERIALIZED_NAME_UNWOUND_URL)
+  private URL unwoundUrl;
 
-  public static final String SERIALIZED_NAME_IMAGES = "images";
-  @SerializedName(SERIALIZED_NAME_IMAGES)
-  private List<URLImage> images = null;
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private URL url;
 
-  public static final String SERIALIZED_NAME_MEDIA_KEY = "media_key";
-  @SerializedName(SERIALIZED_NAME_MEDIA_KEY)
-  private String mediaKey;
-
-  public URLFields() { 
+  public UrlFields() { 
   }
 
-  public URLFields url(URL url) {
+  public UrlFields description(String description) {
     
-    this.url = url;
+    this.description = description;
     return this;
   }
 
    /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public URL getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(URL url) {
-    this.url = url;
-  }
-
-
-  public URLFields expandedUrl(URL expandedUrl) {
-    
-    this.expandedUrl = expandedUrl;
-    return this;
-  }
-
-   /**
-   * Get expandedUrl
-   * @return expandedUrl
+   * Description of the URL landing page.
+   * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "This is a description of the website.", value = "Description of the URL landing page.")
 
-  public URL getExpandedUrl() {
-    return expandedUrl;
+  public String getDescription() {
+    return description;
   }
 
 
-  public void setExpandedUrl(URL expandedUrl) {
-    this.expandedUrl = expandedUrl;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
-  public URLFields displayUrl(String displayUrl) {
+  public UrlFields displayUrl(String displayUrl) {
     
     this.displayUrl = displayUrl;
     return this;
@@ -171,30 +148,84 @@ public class URLFields {
   }
 
 
-  public URLFields unwoundUrl(URL unwoundUrl) {
+  public UrlFields expandedUrl(URL expandedUrl) {
     
-    this.unwoundUrl = unwoundUrl;
+    this.expandedUrl = expandedUrl;
     return this;
   }
 
    /**
-   * Fully resolved url
-   * @return unwoundUrl
+   * A validly formatted URL.
+   * @return expandedUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://twittercommunity.com/t/introducing-the-v2-follow-lookup-endpoints/147118", value = "Fully resolved url")
+  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", value = "A validly formatted URL.")
 
-  public URL getUnwoundUrl() {
-    return unwoundUrl;
+  public URL getExpandedUrl() {
+    return expandedUrl;
   }
 
 
-  public void setUnwoundUrl(URL unwoundUrl) {
-    this.unwoundUrl = unwoundUrl;
+  public void setExpandedUrl(URL expandedUrl) {
+    this.expandedUrl = expandedUrl;
   }
 
 
-  public URLFields status(Integer status) {
+  public UrlFields images(List<UrlImage> images) {
+    
+    this.images = images;
+    return this;
+  }
+
+  public UrlFields addImagesItem(UrlImage imagesItem) {
+    if (this.images == null) {
+      this.images = new ArrayList<>();
+    }
+    this.images.add(imagesItem);
+    return this;
+  }
+
+   /**
+   * Get images
+   * @return images
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<UrlImage> getImages() {
+    return images;
+  }
+
+
+  public void setImages(List<UrlImage> images) {
+    this.images = images;
+  }
+
+
+  public UrlFields mediaKey(String mediaKey) {
+    
+    this.mediaKey = mediaKey;
+    return this;
+  }
+
+   /**
+   * The Media Key identifier for this attachment.
+   * @return mediaKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Media Key identifier for this attachment.")
+
+  public String getMediaKey() {
+    return mediaKey;
+  }
+
+
+  public void setMediaKey(String mediaKey) {
+    this.mediaKey = mediaKey;
+  }
+
+
+  public UrlFields status(Integer status) {
     
     this.status = status;
     return this;
@@ -219,7 +250,7 @@ public class URLFields {
   }
 
 
-  public URLFields title(String title) {
+  public UrlFields title(String title) {
     
     this.title = title;
     return this;
@@ -242,80 +273,49 @@ public class URLFields {
   }
 
 
-  public URLFields description(String description) {
+  public UrlFields unwoundUrl(URL unwoundUrl) {
     
-    this.description = description;
+    this.unwoundUrl = unwoundUrl;
     return this;
   }
 
    /**
-   * Description of the URL landing page.
-   * @return description
+   * Fully resolved url.
+   * @return unwoundUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "This is a description of the website.", value = "Description of the URL landing page.")
+  @ApiModelProperty(example = "https://twittercommunity.com/t/introducing-the-v2-follow-lookup-endpoints/147118", value = "Fully resolved url.")
 
-  public String getDescription() {
-    return description;
+  public URL getUnwoundUrl() {
+    return unwoundUrl;
   }
 
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setUnwoundUrl(URL unwoundUrl) {
+    this.unwoundUrl = unwoundUrl;
   }
 
 
-  public URLFields images(List<URLImage> images) {
+  public UrlFields url(URL url) {
     
-    this.images = images;
-    return this;
-  }
-
-  public URLFields addImagesItem(URLImage imagesItem) {
-    if (this.images == null) {
-      this.images = new ArrayList<>();
-    }
-    this.images.add(imagesItem);
+    this.url = url;
     return this;
   }
 
    /**
-   * Get images
-   * @return images
+   * A validly formatted URL.
+   * @return url
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "https://developer.twitter.com/en/docs/twitter-api", required = true, value = "A validly formatted URL.")
 
-  public List<URLImage> getImages() {
-    return images;
+  public URL getUrl() {
+    return url;
   }
 
 
-  public void setImages(List<URLImage> images) {
-    this.images = images;
-  }
-
-
-  public URLFields mediaKey(String mediaKey) {
-    
-    this.mediaKey = mediaKey;
-    return this;
-  }
-
-   /**
-   * The Media Key identifier for this attachment.
-   * @return mediaKey
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Media Key identifier for this attachment.")
-
-  public String getMediaKey() {
-    return mediaKey;
-  }
-
-
-  public void setMediaKey(String mediaKey) {
-    this.mediaKey = mediaKey;
+  public void setUrl(URL url) {
+    this.url = url;
   }
 
 
@@ -328,36 +328,36 @@ public class URLFields {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    URLFields urLFields = (URLFields) o;
-    return Objects.equals(this.url, urLFields.url) &&
-        Objects.equals(this.expandedUrl, urLFields.expandedUrl) &&
-        Objects.equals(this.displayUrl, urLFields.displayUrl) &&
-        Objects.equals(this.unwoundUrl, urLFields.unwoundUrl) &&
-        Objects.equals(this.status, urLFields.status) &&
-        Objects.equals(this.title, urLFields.title) &&
-        Objects.equals(this.description, urLFields.description) &&
-        Objects.equals(this.images, urLFields.images) &&
-        Objects.equals(this.mediaKey, urLFields.mediaKey);
+    UrlFields urlFields = (UrlFields) o;
+    return Objects.equals(this.description, urlFields.description) &&
+        Objects.equals(this.displayUrl, urlFields.displayUrl) &&
+        Objects.equals(this.expandedUrl, urlFields.expandedUrl) &&
+        Objects.equals(this.images, urlFields.images) &&
+        Objects.equals(this.mediaKey, urlFields.mediaKey) &&
+        Objects.equals(this.status, urlFields.status) &&
+        Objects.equals(this.title, urlFields.title) &&
+        Objects.equals(this.unwoundUrl, urlFields.unwoundUrl) &&
+        Objects.equals(this.url, urlFields.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, expandedUrl, displayUrl, unwoundUrl, status, title, description, images, mediaKey);
+    return Objects.hash(description, displayUrl, expandedUrl, images, mediaKey, status, title, unwoundUrl, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class URLFields {\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    expandedUrl: ").append(toIndentedString(expandedUrl)).append("\n");
-    sb.append("    displayUrl: ").append(toIndentedString(displayUrl)).append("\n");
-    sb.append("    unwoundUrl: ").append(toIndentedString(unwoundUrl)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("class UrlFields {\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    displayUrl: ").append(toIndentedString(displayUrl)).append("\n");
+    sb.append("    expandedUrl: ").append(toIndentedString(expandedUrl)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    mediaKey: ").append(toIndentedString(mediaKey)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    unwoundUrl: ").append(toIndentedString(unwoundUrl)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -380,15 +380,15 @@ public class URLFields {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("url");
-    openapiFields.add("expanded_url");
-    openapiFields.add("display_url");
-    openapiFields.add("unwound_url");
-    openapiFields.add("status");
-    openapiFields.add("title");
     openapiFields.add("description");
+    openapiFields.add("display_url");
+    openapiFields.add("expanded_url");
     openapiFields.add("images");
     openapiFields.add("media_key");
+    openapiFields.add("status");
+    openapiFields.add("title");
+    openapiFields.add("unwound_url");
+    openapiFields.add("url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -399,35 +399,32 @@ public class URLFields {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to URLFields
+  * @throws IOException if the JSON Object is invalid with respect to UrlFields
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (URLFields.openapiRequiredFields.isEmpty()) {
+     //   if (UrlFields.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in URLFields is not found in the empty JSON string", URLFields.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in UrlFields is not found in the empty JSON string", UrlFields.openapiRequiredFields.toString()));
      //   }
      // }
 
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : URLFields.openapiRequiredFields) {
+      for (String requiredField : UrlFields.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
       if (jsonObj.get("display_url") != null && !jsonObj.get("display_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `display_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_url").toString()));
       }
-      if (jsonObj.get("unwound_url") != null && !jsonObj.get("unwound_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `unwound_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unwound_url").toString()));
-      }
-      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
-      }
-      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      if (jsonObj.get("expanded_url") != null && !jsonObj.get("expanded_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expanded_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expanded_url").toString()));
       }
       JsonArray jsonArrayimages = jsonObj.getAsJsonArray("images");
       if (jsonArrayimages != null) {
@@ -438,11 +435,20 @@ public class URLFields {
 
         // validate the optional field `images` (array)
         for (int i = 0; i < jsonArrayimages.size(); i++) {
-          URLImage.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
+          UrlImage.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
         };
       }
       if (jsonObj.get("media_key") != null && !jsonObj.get("media_key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `media_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("media_key").toString()));
+      }
+      if (jsonObj.get("title") != null && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if (jsonObj.get("unwound_url") != null && !jsonObj.get("unwound_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `unwound_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unwound_url").toString()));
+      }
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
       }
   }
 
@@ -450,22 +456,22 @@ public class URLFields {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!URLFields.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'URLFields' and its subtypes
+       if (!UrlFields.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UrlFields' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<URLFields> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(URLFields.class));
+       final TypeAdapter<UrlFields> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UrlFields.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<URLFields>() {
+       return (TypeAdapter<T>) new TypeAdapter<UrlFields>() {
            @Override
-           public void write(JsonWriter out, URLFields value) throws IOException {
+           public void write(JsonWriter out, UrlFields value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public URLFields read(JsonReader in) throws IOException {
+           public UrlFields read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -476,18 +482,18 @@ public class URLFields {
   }
 
  /**
-  * Create an instance of URLFields given an JSON string
+  * Create an instance of UrlFields given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of URLFields
-  * @throws IOException if the JSON string is invalid with respect to URLFields
+  * @return An instance of UrlFields
+  * @throws IOException if the JSON string is invalid with respect to UrlFields
   */
-  public static URLFields fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, URLFields.class);
+  public static UrlFields fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UrlFields.class);
   }
 
  /**
-  * Convert an instance of URLFields to an JSON string
+  * Convert an instance of UrlFields to an JSON string
   *
   * @return JSON string
   */

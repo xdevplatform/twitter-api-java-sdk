@@ -33,8 +33,8 @@ import com.twitter.clientlib.model.AnimatedGif;
 import com.twitter.clientlib.model.AnimatedGifAllOf;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
+import com.twitter.clientlib.model.Variant;
 import com.twitter.clientlib.model.Video;
-import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class AnimatedGif extends Media {
 
   public static final String SERIALIZED_NAME_VARIANTS = "variants";
   @SerializedName(SERIALIZED_NAME_VARIANTS)
-  private List<VideoAllOfVariants> variants = null;
+  private List<Variant> variants = null;
 
   public AnimatedGif() { 
     this.type = this.getClass().getSimpleName();
@@ -102,13 +102,13 @@ public class AnimatedGif extends Media {
   }
 
 
-  public AnimatedGif variants(List<VideoAllOfVariants> variants) {
+  public AnimatedGif variants(List<Variant> variants) {
     
     this.variants = variants;
     return this;
   }
 
-  public AnimatedGif addVariantsItem(VideoAllOfVariants variantsItem) {
+  public AnimatedGif addVariantsItem(Variant variantsItem) {
     if (this.variants == null) {
       this.variants = new ArrayList<>();
     }
@@ -117,18 +117,18 @@ public class AnimatedGif extends Media {
   }
 
    /**
-   * An array of all available variants of the media
+   * An array of all available variants of the media.
    * @return variants
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of all available variants of the media")
+  @ApiModelProperty(value = "An array of all available variants of the media.")
 
-  public List<VideoAllOfVariants> getVariants() {
+  public List<Variant> getVariants() {
     return variants;
   }
 
 
-  public void setVariants(List<VideoAllOfVariants> variants) {
+  public void setVariants(List<Variant> variants) {
     this.variants = variants;
   }
 
@@ -182,9 +182,9 @@ public class AnimatedGif extends Media {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("media_key");
     openapiFields.add("height");
+    openapiFields.add("media_key");
+    openapiFields.add("type");
     openapiFields.add("width");
     openapiFields.add("preview_image_url");
     openapiFields.add("variants");

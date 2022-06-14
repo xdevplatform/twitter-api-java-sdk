@@ -62,33 +62,21 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ComplianceJob {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private ComplianceJobType type;
-
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
 
-  public static final String SERIALIZED_NAME_UPLOAD_URL = "upload_url";
-  @SerializedName(SERIALIZED_NAME_UPLOAD_URL)
-  private URL uploadUrl;
-
-  public static final String SERIALIZED_NAME_UPLOAD_EXPIRES_AT = "upload_expires_at";
-  @SerializedName(SERIALIZED_NAME_UPLOAD_EXPIRES_AT)
-  private OffsetDateTime uploadExpiresAt;
+  public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT = "download_expires_at";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT)
+  private OffsetDateTime downloadExpiresAt;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "download_url";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
   private URL downloadUrl;
 
-  public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT = "download_expires_at";
-  @SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRES_AT)
-  private OffsetDateTime downloadExpiresAt;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -98,54 +86,20 @@ public class ComplianceJob {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private ComplianceJobStatus status;
 
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private ComplianceJobType type;
+
+  public static final String SERIALIZED_NAME_UPLOAD_EXPIRES_AT = "upload_expires_at";
+  @SerializedName(SERIALIZED_NAME_UPLOAD_EXPIRES_AT)
+  private OffsetDateTime uploadExpiresAt;
+
+  public static final String SERIALIZED_NAME_UPLOAD_URL = "upload_url";
+  @SerializedName(SERIALIZED_NAME_UPLOAD_URL)
+  private URL uploadUrl;
+
   public ComplianceJob() { 
   }
-
-  public ComplianceJob id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Compliance Job ID
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1372966999991541762", required = true, value = "Compliance Job ID")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ComplianceJob type(ComplianceJobType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public ComplianceJobType getType() {
-    return type;
-  }
-
-
-  public void setType(ComplianceJobType type) {
-    this.type = type;
-  }
-
 
   public ComplianceJob createdAt(OffsetDateTime createdAt) {
     
@@ -170,75 +124,6 @@ public class ComplianceJob {
   }
 
 
-  public ComplianceJob uploadUrl(URL uploadUrl) {
-    
-    this.uploadUrl = uploadUrl;
-    return this;
-  }
-
-   /**
-   * URL to which the user will upload their tweet or user IDs
-   * @return uploadUrl
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "URL to which the user will upload their tweet or user IDs")
-
-  public URL getUploadUrl() {
-    return uploadUrl;
-  }
-
-
-  public void setUploadUrl(URL uploadUrl) {
-    this.uploadUrl = uploadUrl;
-  }
-
-
-  public ComplianceJob uploadExpiresAt(OffsetDateTime uploadExpiresAt) {
-    
-    this.uploadExpiresAt = uploadExpiresAt;
-    return this;
-  }
-
-   /**
-   * Expiration time of the upload URL
-   * @return uploadExpiresAt
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-01-06T18:40:40Z", required = true, value = "Expiration time of the upload URL")
-
-  public OffsetDateTime getUploadExpiresAt() {
-    return uploadExpiresAt;
-  }
-
-
-  public void setUploadExpiresAt(OffsetDateTime uploadExpiresAt) {
-    this.uploadExpiresAt = uploadExpiresAt;
-  }
-
-
-  public ComplianceJob downloadUrl(URL downloadUrl) {
-    
-    this.downloadUrl = downloadUrl;
-    return this;
-  }
-
-   /**
-   * URL from which the user will retrieve their compliance results
-   * @return downloadUrl
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "URL from which the user will retrieve their compliance results")
-
-  public URL getDownloadUrl() {
-    return downloadUrl;
-  }
-
-
-  public void setDownloadUrl(URL downloadUrl) {
-    this.downloadUrl = downloadUrl;
-  }
-
-
   public ComplianceJob downloadExpiresAt(OffsetDateTime downloadExpiresAt) {
     
     this.downloadExpiresAt = downloadExpiresAt;
@@ -246,11 +131,11 @@ public class ComplianceJob {
   }
 
    /**
-   * Expiration time of the download URL
+   * Expiration time of the download URL.
    * @return downloadExpiresAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-01-06T18:40:40Z", required = true, value = "Expiration time of the download URL")
+  @ApiModelProperty(example = "2021-01-06T18:40:40Z", required = true, value = "Expiration time of the download URL.")
 
   public OffsetDateTime getDownloadExpiresAt() {
     return downloadExpiresAt;
@@ -262,6 +147,52 @@ public class ComplianceJob {
   }
 
 
+  public ComplianceJob downloadUrl(URL downloadUrl) {
+    
+    this.downloadUrl = downloadUrl;
+    return this;
+  }
+
+   /**
+   * URL from which the user will retrieve their compliance results.
+   * @return downloadUrl
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "URL from which the user will retrieve their compliance results.")
+
+  public URL getDownloadUrl() {
+    return downloadUrl;
+  }
+
+
+  public void setDownloadUrl(URL downloadUrl) {
+    this.downloadUrl = downloadUrl;
+  }
+
+
+  public ComplianceJob id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Compliance Job ID.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "1372966999991541762", required = true, value = "Compliance Job ID.")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
   public ComplianceJob name(String name) {
     
     this.name = name;
@@ -269,11 +200,11 @@ public class ComplianceJob {
   }
 
    /**
-   * User-provided name for a compliance job
+   * User-provided name for a compliance job.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "my-job", value = "User-provided name for a compliance job")
+  @ApiModelProperty(example = "my-job", value = "User-provided name for a compliance job.")
 
   public String getName() {
     return name;
@@ -308,6 +239,75 @@ public class ComplianceJob {
   }
 
 
+  public ComplianceJob type(ComplianceJobType type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public ComplianceJobType getType() {
+    return type;
+  }
+
+
+  public void setType(ComplianceJobType type) {
+    this.type = type;
+  }
+
+
+  public ComplianceJob uploadExpiresAt(OffsetDateTime uploadExpiresAt) {
+    
+    this.uploadExpiresAt = uploadExpiresAt;
+    return this;
+  }
+
+   /**
+   * Expiration time of the upload URL.
+   * @return uploadExpiresAt
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2021-01-06T18:40:40Z", required = true, value = "Expiration time of the upload URL.")
+
+  public OffsetDateTime getUploadExpiresAt() {
+    return uploadExpiresAt;
+  }
+
+
+  public void setUploadExpiresAt(OffsetDateTime uploadExpiresAt) {
+    this.uploadExpiresAt = uploadExpiresAt;
+  }
+
+
+  public ComplianceJob uploadUrl(URL uploadUrl) {
+    
+    this.uploadUrl = uploadUrl;
+    return this;
+  }
+
+   /**
+   * URL to which the user will upload their Tweet or user IDs.
+   * @return uploadUrl
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "URL to which the user will upload their Tweet or user IDs.")
+
+  public URL getUploadUrl() {
+    return uploadUrl;
+  }
+
+
+  public void setUploadUrl(URL uploadUrl) {
+    this.uploadUrl = uploadUrl;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -318,35 +318,35 @@ public class ComplianceJob {
       return false;
     }
     ComplianceJob complianceJob = (ComplianceJob) o;
-    return Objects.equals(this.id, complianceJob.id) &&
-        Objects.equals(this.type, complianceJob.type) &&
-        Objects.equals(this.createdAt, complianceJob.createdAt) &&
-        Objects.equals(this.uploadUrl, complianceJob.uploadUrl) &&
-        Objects.equals(this.uploadExpiresAt, complianceJob.uploadExpiresAt) &&
-        Objects.equals(this.downloadUrl, complianceJob.downloadUrl) &&
+    return Objects.equals(this.createdAt, complianceJob.createdAt) &&
         Objects.equals(this.downloadExpiresAt, complianceJob.downloadExpiresAt) &&
+        Objects.equals(this.downloadUrl, complianceJob.downloadUrl) &&
+        Objects.equals(this.id, complianceJob.id) &&
         Objects.equals(this.name, complianceJob.name) &&
-        Objects.equals(this.status, complianceJob.status);
+        Objects.equals(this.status, complianceJob.status) &&
+        Objects.equals(this.type, complianceJob.type) &&
+        Objects.equals(this.uploadExpiresAt, complianceJob.uploadExpiresAt) &&
+        Objects.equals(this.uploadUrl, complianceJob.uploadUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, createdAt, uploadUrl, uploadExpiresAt, downloadUrl, downloadExpiresAt, name, status);
+    return Objects.hash(createdAt, downloadExpiresAt, downloadUrl, id, name, status, type, uploadExpiresAt, uploadUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ComplianceJob {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    uploadUrl: ").append(toIndentedString(uploadUrl)).append("\n");
-    sb.append("    uploadExpiresAt: ").append(toIndentedString(uploadExpiresAt)).append("\n");
-    sb.append("    downloadUrl: ").append(toIndentedString(downloadUrl)).append("\n");
     sb.append("    downloadExpiresAt: ").append(toIndentedString(downloadExpiresAt)).append("\n");
+    sb.append("    downloadUrl: ").append(toIndentedString(downloadUrl)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    uploadExpiresAt: ").append(toIndentedString(uploadExpiresAt)).append("\n");
+    sb.append("    uploadUrl: ").append(toIndentedString(uploadUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -369,26 +369,26 @@ public class ComplianceJob {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("type");
     openapiFields.add("created_at");
-    openapiFields.add("upload_url");
-    openapiFields.add("upload_expires_at");
-    openapiFields.add("download_url");
     openapiFields.add("download_expires_at");
+    openapiFields.add("download_url");
+    openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("status");
+    openapiFields.add("type");
+    openapiFields.add("upload_expires_at");
+    openapiFields.add("upload_url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("created_at");
-    openapiRequiredFields.add("upload_url");
-    openapiRequiredFields.add("upload_expires_at");
-    openapiRequiredFields.add("download_url");
     openapiRequiredFields.add("download_expires_at");
+    openapiRequiredFields.add("download_url");
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("status");
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("upload_expires_at");
+    openapiRequiredFields.add("upload_url");
   }
 
  /**
@@ -413,17 +413,17 @@ public class ComplianceJob {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (jsonObj.get("upload_url") != null && !jsonObj.get("upload_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `upload_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("upload_url").toString()));
-      }
       if (jsonObj.get("download_url") != null && !jsonObj.get("download_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `download_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("download_url").toString()));
       }
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
       if (jsonObj.get("name") != null && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (jsonObj.get("upload_url") != null && !jsonObj.get("upload_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `upload_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("upload_url").toString()));
       }
   }
 

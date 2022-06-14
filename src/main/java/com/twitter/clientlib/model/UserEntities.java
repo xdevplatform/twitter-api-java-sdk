@@ -56,44 +56,21 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * A list of metadata found in the user&#39;s profile description.
+ * A list of metadata found in the User&#39;s profile description.
  */
-@ApiModel(description = "A list of metadata found in the user's profile description.")
+@ApiModel(description = "A list of metadata found in the User's profile description.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserEntities {
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private UserEntitiesUrl url;
-
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private FullTextEntities description;
 
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private UserEntitiesUrl url;
+
   public UserEntities() { 
   }
-
-  public UserEntities url(UserEntitiesUrl url) {
-    
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UserEntitiesUrl getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(UserEntitiesUrl url) {
-    this.url = url;
-  }
-
 
   public UserEntities description(FullTextEntities description) {
     
@@ -118,6 +95,29 @@ public class UserEntities {
   }
 
 
+  public UserEntities url(UserEntitiesUrl url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UserEntitiesUrl getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(UserEntitiesUrl url) {
+    this.url = url;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -128,21 +128,21 @@ public class UserEntities {
       return false;
     }
     UserEntities userEntities = (UserEntities) o;
-    return Objects.equals(this.url, userEntities.url) &&
-        Objects.equals(this.description, userEntities.description);
+    return Objects.equals(this.description, userEntities.description) &&
+        Objects.equals(this.url, userEntities.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, description);
+    return Objects.hash(description, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserEntities {\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,8 +165,8 @@ public class UserEntities {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("url");
     openapiFields.add("description");
+    openapiFields.add("url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -187,13 +187,13 @@ public class UserEntities {
      //   }
      // }
 
-      // validate the optional field `url`
-      if (jsonObj.getAsJsonObject("url") != null) {
-        UserEntitiesUrl.validateJsonObject(jsonObj.getAsJsonObject("url"));
-      }
       // validate the optional field `description`
       if (jsonObj.getAsJsonObject("description") != null) {
         FullTextEntities.validateJsonObject(jsonObj.getAsJsonObject("description"));
+      }
+      // validate the optional field `url`
+      if (jsonObj.getAsJsonObject("url") != null) {
+        UserEntitiesUrl.validateJsonObject(jsonObj.getAsJsonObject("url"));
       }
   }
 

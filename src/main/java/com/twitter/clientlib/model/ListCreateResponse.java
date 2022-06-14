@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.ModelList;
+import com.twitter.clientlib.model.ListCreateResponseData;
 import com.twitter.clientlib.model.Problem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -64,7 +64,7 @@ import com.twitter.clientlib.JSON;
 public class ListCreateResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private ModelList data;
+  private ListCreateResponseData data;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -73,7 +73,7 @@ public class ListCreateResponse {
   public ListCreateResponse() { 
   }
 
-  public ListCreateResponse data(ModelList data) {
+  public ListCreateResponse data(ListCreateResponseData data) {
     
     this.data = data;
     return this;
@@ -86,12 +86,12 @@ public class ListCreateResponse {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public ModelList getData() {
+  public ListCreateResponseData getData() {
     return data;
   }
 
 
-  public void setData(ModelList data) {
+  public void setData(ListCreateResponseData data) {
     this.data = data;
   }
 
@@ -198,7 +198,7 @@ public class ListCreateResponse {
 
       // validate the optional field `data`
       if (jsonObj.getAsJsonObject("data") != null) {
-        ModelList.validateJsonObject(jsonObj.getAsJsonObject("data"));
+        ListCreateResponseData.validateJsonObject(jsonObj.getAsJsonObject("data"));
       }
       JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
       if (jsonArrayerrors != null) {

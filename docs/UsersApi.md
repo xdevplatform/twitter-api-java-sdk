@@ -9,17 +9,17 @@ All URIs are relative to *https://api.twitter.com*
 | [**findUserByUsername**](UsersApi.md#findUserByUsername) | **GET** /2/users/by/username/{username} | User lookup by username |
 | [**findUsersById**](UsersApi.md#findUsersById) | **GET** /2/users | User lookup by IDs |
 | [**findUsersByUsername**](UsersApi.md#findUsersByUsername) | **GET** /2/users/by | User lookup by usernames |
-| [**listGetFollowers**](UsersApi.md#listGetFollowers) | **GET** /2/lists/{id}/followers | Returns user objects that follow a List by the provided List ID |
-| [**listGetMembers**](UsersApi.md#listGetMembers) | **GET** /2/lists/{id}/members | Returns user objects that are members of a List by the provided List ID |
-| [**tweetsIdLikingUsers**](UsersApi.md#tweetsIdLikingUsers) | **GET** /2/tweets/{id}/liking_users | Returns user objects that have liked the provided Tweet ID |
-| [**tweetsIdRetweetingUsers**](UsersApi.md#tweetsIdRetweetingUsers) | **GET** /2/tweets/{id}/retweeted_by | Returns user objects that have retweeted the provided Tweet ID |
+| [**listGetFollowers**](UsersApi.md#listGetFollowers) | **GET** /2/lists/{id}/followers | Returns User objects that follow a List by the provided List ID |
+| [**listGetMembers**](UsersApi.md#listGetMembers) | **GET** /2/lists/{id}/members | Returns User objects that are members of a List by the provided List ID. |
+| [**tweetsIdLikingUsers**](UsersApi.md#tweetsIdLikingUsers) | **GET** /2/tweets/{id}/liking_users | Returns User objects that have liked the provided Tweet ID |
+| [**tweetsIdRetweetingUsers**](UsersApi.md#tweetsIdRetweetingUsers) | **GET** /2/tweets/{id}/retweeted_by | Returns User objects that have retweeted the provided Tweet ID |
 | [**usersIdBlock**](UsersApi.md#usersIdBlock) | **POST** /2/users/{id}/blocking | Block User by User ID |
-| [**usersIdBlocking**](UsersApi.md#usersIdBlocking) | **GET** /2/users/{id}/blocking | Returns user objects that are blocked by provided user ID |
+| [**usersIdBlocking**](UsersApi.md#usersIdBlocking) | **GET** /2/users/{id}/blocking | Returns User objects that are blocked by provided User ID |
 | [**usersIdFollow**](UsersApi.md#usersIdFollow) | **POST** /2/users/{id}/following | Follow User |
-| [**usersIdFollowers**](UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Returns user objects that follow the provided user ID |
+| [**usersIdFollowers**](UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Returns User objects that follow a List by the provided User ID |
 | [**usersIdFollowing**](UsersApi.md#usersIdFollowing) | **GET** /2/users/{id}/following | Following by User ID |
-| [**usersIdMute**](UsersApi.md#usersIdMute) | **POST** /2/users/{id}/muting | Mute User by User ID |
-| [**usersIdMuting**](UsersApi.md#usersIdMuting) | **GET** /2/users/{id}/muting | Returns user objects that are muted by the provided user ID |
+| [**usersIdMute**](UsersApi.md#usersIdMute) | **POST** /2/users/{id}/muting | Mute User by User ID. |
+| [**usersIdMuting**](UsersApi.md#usersIdMuting) | **GET** /2/users/{id}/muting | Returns User objects that are muted by the provided User ID |
 | [**usersIdUnblock**](UsersApi.md#usersIdUnblock) | **DELETE** /2/users/{source_user_id}/blocking/{target_user_id} | Unblock User by User ID |
 | [**usersIdUnfollow**](UsersApi.md#usersIdUnfollow) | **DELETE** /2/users/{source_user_id}/following/{target_user_id} | Unfollow User |
 | [**usersIdUnmute**](UsersApi.md#usersIdUnmute) | **DELETE** /2/users/{source_user_id}/muting/{target_user_id} | Unmute User by User ID |
@@ -27,11 +27,11 @@ All URIs are relative to *https://api.twitter.com*
 
 <a name="findMyUser"></a>
 # **findMyUser**
-> SingleUserLookupResponse findMyUser(expansions, tweetFields, userFields)
+> Get2UsersMeResponse findMyUser().userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 User lookup me
 
-This endpoint returns information about the requesting user.
+This endpoint returns information about the requesting User.
 
 ### Example
 ```java
@@ -54,7 +54,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -66,15 +65,18 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           SingleUserLookupResponse result = apiInstance.users().findMyUser(expansions, tweetFields, userFields);
+           Get2UsersMeResponse result = apiInstance.users().findMyUser()
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findMyUser");
@@ -91,13 +93,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**SingleUserLookupResponse**](SingleUserLookupResponse.md)
+[**Get2UsersMeResponse**](Get2UsersMeResponse.md)
 
 ### Authorization
 
@@ -111,16 +113,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findUserById"></a>
 # **findUserById**
-> SingleUserLookupResponse findUserById(id, expansions, tweetFields, userFields)
+> Get2UsersIdResponse findUserById(id).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 User lookup by ID
 
-This endpoint returns information about a user. Specify user by ID.
+This endpoint returns information about a User. Specify User by ID.
 
 ### Example
 ```java
@@ -143,7 +145,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -152,23 +153,25 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "2244994945"; // String | Required. A User ID.
+    String id = "2244994945"; // String | The ID of the User to lookup.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           SingleUserLookupResponse result = apiInstance.users().findUserById(id, expansions, tweetFields, userFields);
+           Get2UsersIdResponse result = apiInstance.users().findUserById(id)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUserById");
@@ -185,14 +188,14 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Required. A User ID. | |
+| **id** | **String**| The ID of the User to lookup. | |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**SingleUserLookupResponse**](SingleUserLookupResponse.md)
+[**Get2UsersIdResponse**](Get2UsersIdResponse.md)
 
 ### Authorization
 
@@ -206,16 +209,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findUserByUsername"></a>
 # **findUserByUsername**
-> SingleUserLookupResponse findUserByUsername(username, expansions, tweetFields, userFields)
+> Get2UsersByUsernameUsernameResponse findUserByUsername(username).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 User lookup by username
 
-This endpoint returns information about a user. Specify user by username.
+This endpoint returns information about a User. Specify User by username.
 
 ### Example
 ```java
@@ -238,7 +241,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -247,23 +249,25 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String username = "TwitterDev"; // String | Required. A username.
+    String username = "TwitterDev"; // String | A username.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           SingleUserLookupResponse result = apiInstance.users().findUserByUsername(username, expansions, tweetFields, userFields);
+           Get2UsersByUsernameUsernameResponse result = apiInstance.users().findUserByUsername(username)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUserByUsername");
@@ -280,14 +284,14 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **username** | **String**| Required. A username. | |
+| **username** | **String**| A username. | |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**SingleUserLookupResponse**](SingleUserLookupResponse.md)
+[**Get2UsersByUsernameUsernameResponse**](Get2UsersByUsernameUsernameResponse.md)
 
 ### Authorization
 
@@ -301,16 +305,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findUsersById"></a>
 # **findUsersById**
-> MultiUserLookupResponse findUsersById(ids, expansions, tweetFields, userFields)
+> Get2UsersResponse findUsersById(ids).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 User lookup by IDs
 
-This endpoint returns information about users. Specify users by their ID.
+This endpoint returns information about Users. Specify Users by their ID.
 
 ### Example
 ```java
@@ -333,7 +337,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -342,23 +345,25 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    List<String> ids = Arrays.asList(); // List<String> | Required. A list of User IDs, comma-separated. You can specify up to 100 IDs.
+    List<String> ids = Arrays.asList(); // List<String> | A list of User IDs, comma-separated. You can specify up to 100 IDs.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           MultiUserLookupResponse result = apiInstance.users().findUsersById(ids, expansions, tweetFields, userFields);
+           Get2UsersResponse result = apiInstance.users().findUsersById(ids)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUsersById");
@@ -375,14 +380,14 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **ids** | [**List&lt;String&gt;**](String.md)| Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. | |
+| **ids** | [**List&lt;String&gt;**](String.md)| A list of User IDs, comma-separated. You can specify up to 100 IDs. | |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**MultiUserLookupResponse**](MultiUserLookupResponse.md)
+[**Get2UsersResponse**](Get2UsersResponse.md)
 
 ### Authorization
 
@@ -396,16 +401,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findUsersByUsername"></a>
 # **findUsersByUsername**
-> MultiUserLookupResponse findUsersByUsername(usernames, expansions, tweetFields, userFields)
+> Get2UsersByResponse findUsersByUsername(usernames).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 User lookup by usernames
 
-This endpoint returns information about users. Specify users by their username.
+This endpoint returns information about Users. Specify Users by their username.
 
 ### Example
 ```java
@@ -428,7 +433,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -437,23 +441,25 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    List<String> usernames = Arrays.asList(); // List<String> | Required . A list of usernames, comma-separated. You can specify up to 100 usernames.
+    List<String> usernames = Arrays.asList(); // List<String> | A list of usernames, comma-separated.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           MultiUserLookupResponse result = apiInstance.users().findUsersByUsername(usernames, expansions, tweetFields, userFields);
+           Get2UsersByResponse result = apiInstance.users().findUsersByUsername(usernames)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#findUsersByUsername");
@@ -470,14 +476,14 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **usernames** | [**List&lt;String&gt;**](String.md)| Required . A list of usernames, comma-separated. You can specify up to 100 usernames. | |
+| **usernames** | [**List&lt;String&gt;**](String.md)| A list of usernames, comma-separated. | |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**MultiUserLookupResponse**](MultiUserLookupResponse.md)
+[**Get2UsersByResponse**](Get2UsersByResponse.md)
 
 ### Authorization
 
@@ -491,16 +497,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="listGetFollowers"></a>
 # **listGetFollowers**
-> ListLookupMultipleUsersLookupResponse listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields)
+> Get2ListsIdFollowersResponse listGetFollowers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that follow a List by the provided List ID
+Returns User objects that follow a List by the provided List ID
 
-Returns a list of users that follow a List by the provided List ID
+Returns a list of Users that follow a List by the provided List ID
 
 ### Example
 ```java
@@ -523,7 +529,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -532,25 +537,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the List for which to return followers
-    Integer maxResults = 100; // Integer | The maximum number of results
-    Long paginationToken = 56L; // Long | This parameter is used to get a specified 'page' of results.
+    String id = "id_example"; // String | The ID of the List.
+    Integer maxResults = 100; // Integer | The maximum number of results.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           ListLookupMultipleUsersLookupResponse result = apiInstance.users().listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+           Get2ListsIdFollowersResponse result = apiInstance.users().listGetFollowers(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#listGetFollowers");
@@ -567,16 +576,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the List for which to return followers | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
-| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **id** | **String**| The ID of the List. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**ListLookupMultipleUsersLookupResponse**](ListLookupMultipleUsersLookupResponse.md)
+[**Get2ListsIdFollowersResponse**](Get2ListsIdFollowersResponse.md)
 
 ### Authorization
 
@@ -590,16 +599,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="listGetMembers"></a>
 # **listGetMembers**
-> ListLookupMultipleUsersLookupResponse listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields)
+> Get2ListsIdMembersResponse listGetMembers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that are members of a List by the provided List ID
+Returns User objects that are members of a List by the provided List ID.
 
-Returns a list of users that are members of a List by the provided List ID
+Returns a list of Users that are members of a List by the provided List ID.
 
 ### Example
 ```java
@@ -622,7 +631,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -631,25 +639,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the List for which to return members
-    Integer maxResults = 100; // Integer | The maximum number of results
-    Long paginationToken = 56L; // Long | This parameter is used to get a specified 'page' of results.
+    String id = "id_example"; // String | The ID of the List.
+    Integer maxResults = 100; // Integer | The maximum number of results.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
     try {
-           ListLookupMultipleUsersLookupResponse result = apiInstance.users().listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
+           Get2ListsIdMembersResponse result = apiInstance.users().listGetMembers(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#listGetMembers");
@@ -666,16 +678,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the List for which to return members | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
-| **paginationToken** | **Long**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **id** | **String**| The ID of the List. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
 | **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**ListLookupMultipleUsersLookupResponse**](ListLookupMultipleUsersLookupResponse.md)
+[**Get2ListsIdMembersResponse**](Get2ListsIdMembersResponse.md)
 
 ### Authorization
 
@@ -689,16 +701,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="tweetsIdLikingUsers"></a>
 # **tweetsIdLikingUsers**
-> GenericMultipleUsersLookupResponse tweetsIdLikingUsers(id, maxResults, paginationToken)
+> Get2TweetsIdLikingUsersResponse tweetsIdLikingUsers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that have liked the provided Tweet ID
+Returns User objects that have liked the provided Tweet ID
 
-Returns a list of users that have liked the provided Tweet ID
+Returns a list of Users that have liked the provided Tweet ID
 
 ### Example
 ```java
@@ -721,7 +733,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -730,22 +741,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the Tweet for which to return results
-    Integer maxResults = 100; // Integer | The maximum number of results
+    String id = "id_example"; // String | A single Tweet ID.
+    Integer maxResults = 100; // Integer | The maximum number of results.
     String paginationToken = "paginationToken_example"; // String | This parameter is used to get the next 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           GenericMultipleUsersLookupResponse result = apiInstance.users().tweetsIdLikingUsers(id, maxResults, paginationToken);
+           Get2TweetsIdLikingUsersResponse result = apiInstance.users().tweetsIdLikingUsers(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#tweetsIdLikingUsers");
@@ -762,13 +780,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the Tweet for which to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **id** | **String**| A single Tweet ID. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
 | **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**GenericMultipleUsersLookupResponse**](GenericMultipleUsersLookupResponse.md)
+[**Get2TweetsIdLikingUsersResponse**](Get2TweetsIdLikingUsersResponse.md)
 
 ### Authorization
 
@@ -782,16 +803,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="tweetsIdRetweetingUsers"></a>
 # **tweetsIdRetweetingUsers**
-> GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(id, maxResults, paginationToken)
+> Get2TweetsIdRetweetedByResponse tweetsIdRetweetingUsers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that have retweeted the provided Tweet ID
+Returns User objects that have retweeted the provided Tweet ID
 
-Returns a list of users that have retweeted the provided Tweet ID
+Returns a list of Users that have retweeted the provided Tweet ID
 
 ### Example
 ```java
@@ -814,7 +835,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -823,22 +843,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the Tweet for which to return results
-    Integer maxResults = 100; // Integer | The maximum number of results
+    String id = "id_example"; // String | A single Tweet ID.
+    Integer maxResults = 100; // Integer | The maximum number of results.
     String paginationToken = "paginationToken_example"; // String | This parameter is used to get the next 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           GenericMultipleUsersLookupResponse result = apiInstance.users().tweetsIdRetweetingUsers(id, maxResults, paginationToken);
+           Get2TweetsIdRetweetedByResponse result = apiInstance.users().tweetsIdRetweetingUsers(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#tweetsIdRetweetingUsers");
@@ -855,13 +882,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the Tweet for which to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **id** | **String**| A single Tweet ID. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
 | **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**GenericMultipleUsersLookupResponse**](GenericMultipleUsersLookupResponse.md)
+[**Get2TweetsIdRetweetedByResponse**](Get2TweetsIdRetweetedByResponse.md)
 
 ### Authorization
 
@@ -875,16 +905,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdBlock"></a>
 # **usersIdBlock**
-> UsersBlockingMutationResponse usersIdBlock(usersIdBlockRequest, id)
+> BlockUserMutationResponse usersIdBlock(blockUserRequest, id).execute();
 
 Block User by User ID
 
-Causes the user (in the path) to block the target user. The user (in the path) must match the user context authorizing the request
+Causes the User (in the path) to block the target User. The User (in the path) must match the User context authorizing the request
 
 ### Example
 ```java
@@ -907,7 +937,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -919,14 +948,14 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    UsersIdBlockRequest usersIdBlockRequest = new UsersIdBlockRequest(); // UsersIdBlockRequest | 
-    String id = "id_example"; // String | The ID of the user that is requesting to block the target user
+    BlockUserRequest blockUserRequest = new BlockUserRequest(); // BlockUserRequest | 
+    String id = "id_example"; // String | The ID of the authenticated source User that is requesting to block the target User.
     try {
-           UsersBlockingMutationResponse result = apiInstance.users().usersIdBlock(usersIdBlockRequest, id);
+           BlockUserMutationResponse result = apiInstance.users().usersIdBlock(blockUserRequest, id)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdBlock");
@@ -943,12 +972,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **usersIdBlockRequest** | [**UsersIdBlockRequest**](UsersIdBlockRequest.md)|  | [optional] |
-| **id** | **String**| The ID of the user that is requesting to block the target user | |
+| **blockUserRequest** | [**BlockUserRequest**](BlockUserRequest.md)|  | |
+| **id** | **String**| The ID of the authenticated source User that is requesting to block the target User. | |
 
 ### Return type
 
-[**UsersBlockingMutationResponse**](UsersBlockingMutationResponse.md)
+[**BlockUserMutationResponse**](BlockUserMutationResponse.md)
 
 ### Authorization
 
@@ -962,16 +991,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdBlocking"></a>
 # **usersIdBlocking**
-> GenericMultipleUsersLookupResponse usersIdBlocking(id, maxResults, paginationToken)
+> Get2UsersIdBlockingResponse usersIdBlocking(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that are blocked by provided user ID
+Returns User objects that are blocked by provided User ID
 
-Returns a list of users that are blocked by the provided user ID
+Returns a list of Users that are blocked by the provided User ID
 
 ### Example
 ```java
@@ -994,7 +1023,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1006,15 +1034,23 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user for whom to return results
-    Integer maxResults = 56; // Integer | The maximum number of results
-    String paginationToken = "paginationToken_example"; // String | This value is populated by passing the 'next_token' or 'previous_token' returned in a request to paginate through results.
+    String id = "id_example"; // String | The ID of the authenticated source User for whom to return results.
+    Integer maxResults = 56; // Integer | The maximum number of results.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdBlocking(id, maxResults, paginationToken);
+           Get2UsersIdBlockingResponse result = apiInstance.users().usersIdBlocking(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdBlocking");
@@ -1031,13 +1067,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user for whom to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] |
-| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
+| **id** | **String**| The ID of the authenticated source User for whom to return results. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**GenericMultipleUsersLookupResponse**](GenericMultipleUsersLookupResponse.md)
+[**Get2UsersIdBlockingResponse**](Get2UsersIdBlockingResponse.md)
 
 ### Authorization
 
@@ -1051,16 +1090,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdFollow"></a>
 # **usersIdFollow**
-> UsersFollowingCreateResponse usersIdFollow(usersIdFollowRequest, id)
+> UsersFollowingCreateResponse usersIdFollow(id).usersFollowingCreateRequest(usersFollowingCreateRequest).execute();
 
 Follow User
 
-Causes the user(in the path) to follow, or “request to follow” for protected users, the target user. The user(in the path) must match the user context authorizing the request
+Causes the User(in the path) to follow, or “request to follow” for protected Users, the target User. The User(in the path) must match the User context authorizing the request
 
 ### Example
 ```java
@@ -1083,7 +1122,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1095,14 +1133,15 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    UsersIdFollowRequest usersIdFollowRequest = new UsersIdFollowRequest(); // UsersIdFollowRequest | 
-    String id = "id_example"; // String | The ID of the user that is requesting to follow the target user
+    UsersFollowingCreateRequest usersFollowingCreateRequest = new UsersFollowingCreateRequest(); // UsersFollowingCreateRequest | 
+    String id = "id_example"; // String | The ID of the authenticated source User that is requesting to follow the target User.
     try {
-           UsersFollowingCreateResponse result = apiInstance.users().usersIdFollow(usersIdFollowRequest, id);
+           UsersFollowingCreateResponse result = apiInstance.users().usersIdFollow(id)
+            .usersFollowingCreateRequest(usersFollowingCreateRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollow");
@@ -1119,8 +1158,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **usersIdFollowRequest** | [**UsersIdFollowRequest**](UsersIdFollowRequest.md)|  | [optional] |
-| **id** | **String**| The ID of the user that is requesting to follow the target user | |
+| **usersFollowingCreateRequest** | [**UsersFollowingCreateRequest**](UsersFollowingCreateRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the authenticated source User that is requesting to follow the target User. | |
 
 ### Return type
 
@@ -1138,16 +1177,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdFollowers"></a>
 # **usersIdFollowers**
-> GenericMultipleUsersLookupResponse usersIdFollowers(id, maxResults, paginationToken)
+> Get2UsersIdFollowersResponse usersIdFollowers(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that follow the provided user ID
+Returns User objects that follow a List by the provided User ID
 
-Returns a list of users that follow the provided user ID
+Returns a list of Users that follow the provided User ID
 
 ### Example
 ```java
@@ -1170,7 +1209,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1179,22 +1217,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user for whom to return results
-    Integer maxResults = 56; // Integer | The maximum number of results
-    String paginationToken = "paginationToken_example"; // String | This value is populated by passing the 'next_token' or 'previous_token' returned in a request to paginate through results.
+    String id = "2244994945"; // String | The ID of the User to lookup.
+    Integer maxResults = 56; // Integer | The maximum number of results.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdFollowers(id, maxResults, paginationToken);
+           Get2UsersIdFollowersResponse result = apiInstance.users().usersIdFollowers(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollowers");
@@ -1211,13 +1256,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user for whom to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] |
-| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
+| **id** | **String**| The ID of the User to lookup. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**GenericMultipleUsersLookupResponse**](GenericMultipleUsersLookupResponse.md)
+[**Get2UsersIdFollowersResponse**](Get2UsersIdFollowersResponse.md)
 
 ### Authorization
 
@@ -1231,16 +1279,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdFollowing"></a>
 # **usersIdFollowing**
-> UsersFollowingLookupResponse usersIdFollowing(id, maxResults, paginationToken)
+> Get2UsersIdFollowingResponse usersIdFollowing(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
 Following by User ID
 
-Returns a list of users that are being followed by the provided user ID
+Returns a list of Users that are being followed by the provided User ID
 
 ### Example
 ```java
@@ -1263,7 +1311,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1272,22 +1319,29 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user for whom to return results
-    Integer maxResults = 56; // Integer | The maximum number of results
-    String paginationToken = "paginationToken_example"; // String | This value is populated by passing the 'next_token' or 'previous_token' returned in a request to paginate through results.
+    String id = "2244994945"; // String | The ID of the User to lookup.
+    Integer maxResults = 56; // Integer | The maximum number of results.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           UsersFollowingLookupResponse result = apiInstance.users().usersIdFollowing(id, maxResults, paginationToken);
+           Get2UsersIdFollowingResponse result = apiInstance.users().usersIdFollowing(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdFollowing");
@@ -1304,13 +1358,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user for whom to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] |
-| **paginationToken** | **String**| This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. | [optional] |
+| **id** | **String**| The ID of the User to lookup. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**UsersFollowingLookupResponse**](UsersFollowingLookupResponse.md)
+[**Get2UsersIdFollowingResponse**](Get2UsersIdFollowingResponse.md)
 
 ### Authorization
 
@@ -1324,16 +1381,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdMute"></a>
 # **usersIdMute**
-> UsersMutingMutationResponse usersIdMute(usersIdMuteRequest, id)
+> MuteUserMutationResponse usersIdMute(id).muteUserRequest(muteUserRequest).execute();
 
-Mute User by User ID
+Mute User by User ID.
 
-Causes the user (in the path) to mute the target user. The user (in the path) must match the user context authorizing the request
+Causes the User (in the path) to mute the target User. The User (in the path) must match the User context authorizing the request.
 
 ### Example
 ```java
@@ -1356,7 +1413,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1368,14 +1424,15 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    UsersIdMuteRequest usersIdMuteRequest = new UsersIdMuteRequest(); // UsersIdMuteRequest | 
-    String id = "id_example"; // String | The ID of the user that is requesting to mute the target user
+    MuteUserRequest muteUserRequest = new MuteUserRequest(); // MuteUserRequest | 
+    String id = "id_example"; // String | The ID of the authenticated source User that is requesting to mute the target User.
     try {
-           UsersMutingMutationResponse result = apiInstance.users().usersIdMute(usersIdMuteRequest, id);
+           MuteUserMutationResponse result = apiInstance.users().usersIdMute(id)
+            .muteUserRequest(muteUserRequest)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdMute");
@@ -1392,12 +1449,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **usersIdMuteRequest** | [**UsersIdMuteRequest**](UsersIdMuteRequest.md)|  | [optional] |
-| **id** | **String**| The ID of the user that is requesting to mute the target user | |
+| **muteUserRequest** | [**MuteUserRequest**](MuteUserRequest.md)|  | [optional] |
+| **id** | **String**| The ID of the authenticated source User that is requesting to mute the target User. | |
 
 ### Return type
 
-[**UsersMutingMutationResponse**](UsersMutingMutationResponse.md)
+[**MuteUserMutationResponse**](MuteUserMutationResponse.md)
 
 ### Authorization
 
@@ -1411,16 +1468,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdMuting"></a>
 # **usersIdMuting**
-> GenericMultipleUsersLookupResponse usersIdMuting(id, maxResults, paginationToken)
+> Get2UsersIdMutingResponse usersIdMuting(id).maxResults(maxResults).paginationToken(paginationToken).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Returns user objects that are muted by the provided user ID
+Returns User objects that are muted by the provided User ID
 
-Returns a list of users that are muted by the provided user ID
+Returns a list of Users that are muted by the provided User ID
 
 ### Example
 ```java
@@ -1443,7 +1500,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1455,15 +1511,23 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The ID of the user for whom to return results
-    Integer maxResults = 100; // Integer | The maximum number of results
+    String id = "id_example"; // String | The ID of the authenticated source User for whom to return results.
+    Integer maxResults = 100; // Integer | The maximum number of results.
     String paginationToken = "paginationToken_example"; // String | This parameter is used to get the next 'page' of results.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           GenericMultipleUsersLookupResponse result = apiInstance.users().usersIdMuting(id, maxResults, paginationToken);
+           Get2UsersIdMutingResponse result = apiInstance.users().usersIdMuting(id)
+            .maxResults(maxResults)
+            .paginationToken(paginationToken)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdMuting");
@@ -1480,13 +1544,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The ID of the user for whom to return results | |
-| **maxResults** | **Integer**| The maximum number of results | [optional] [default to 100] |
+| **id** | **String**| The ID of the authenticated source User for whom to return results. | |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
 | **paginationToken** | **String**| This parameter is used to get the next &#39;page&#39; of results. | [optional] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**GenericMultipleUsersLookupResponse**](GenericMultipleUsersLookupResponse.md)
+[**Get2UsersIdMutingResponse**](Get2UsersIdMutingResponse.md)
 
 ### Authorization
 
@@ -1500,16 +1567,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdUnblock"></a>
 # **usersIdUnblock**
-> UsersBlockingMutationResponse usersIdUnblock(sourceUserId, targetUserId)
+> BlockUserMutationResponse usersIdUnblock(sourceUserId, targetUserId).execute();
 
 Unblock User by User ID
 
-Causes the source user to unblock the target user. The source user must match the user context authorizing the request
+Causes the source User to unblock the target User. The source User must match the User context authorizing the request
 
 ### Example
 ```java
@@ -1532,7 +1599,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1544,14 +1610,14 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String sourceUserId = "sourceUserId_example"; // String | The ID of the user that is requesting to unblock the target user
-    String targetUserId = "targetUserId_example"; // String | The ID of the user that the source user is requesting to unblock
+    String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unblock the target User.
+    String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unblock.
     try {
-           UsersBlockingMutationResponse result = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId);
+           BlockUserMutationResponse result = apiInstance.users().usersIdUnblock(sourceUserId, targetUserId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnblock");
@@ -1568,12 +1634,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sourceUserId** | **String**| The ID of the user that is requesting to unblock the target user | |
-| **targetUserId** | **String**| The ID of the user that the source user is requesting to unblock | |
+| **sourceUserId** | **String**| The ID of the authenticated source User that is requesting to unblock the target User. | |
+| **targetUserId** | **String**| The ID of the User that the source User is requesting to unblock. | |
 
 ### Return type
 
-[**UsersBlockingMutationResponse**](UsersBlockingMutationResponse.md)
+[**BlockUserMutationResponse**](BlockUserMutationResponse.md)
 
 ### Authorization
 
@@ -1587,16 +1653,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdUnfollow"></a>
 # **usersIdUnfollow**
-> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserId, targetUserId)
+> UsersFollowingDeleteResponse usersIdUnfollow(sourceUserId, targetUserId).execute();
 
 Unfollow User
 
-Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
+Causes the source User to unfollow the target User. The source User must match the User context authorizing the request
 
 ### Example
 ```java
@@ -1619,7 +1685,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1631,14 +1696,14 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String sourceUserId = "sourceUserId_example"; // String | The ID of the user that is requesting to unfollow the target user
-    String targetUserId = "targetUserId_example"; // String | The ID of the user that the source user is requesting to unfollow
+    String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unfollow the target User.
+    String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unfollow.
     try {
-           UsersFollowingDeleteResponse result = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId);
+           UsersFollowingDeleteResponse result = apiInstance.users().usersIdUnfollow(sourceUserId, targetUserId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnfollow");
@@ -1655,8 +1720,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sourceUserId** | **String**| The ID of the user that is requesting to unfollow the target user | |
-| **targetUserId** | **String**| The ID of the user that the source user is requesting to unfollow | |
+| **sourceUserId** | **String**| The ID of the authenticated source User that is requesting to unfollow the target User. | |
+| **targetUserId** | **String**| The ID of the User that the source User is requesting to unfollow. | |
 
 ### Return type
 
@@ -1674,16 +1739,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="usersIdUnmute"></a>
 # **usersIdUnmute**
-> UsersMutingMutationResponse usersIdUnmute(sourceUserId, targetUserId)
+> MuteUserMutationResponse usersIdUnmute(sourceUserId, targetUserId).execute();
 
 Unmute User by User ID
 
-Causes the source user to unmute the target user. The source user must match the user context authorizing the request
+Causes the source User to unmute the target User. The source User must match the User context authorizing the request
 
 ### Example
 ```java
@@ -1706,7 +1771,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -1718,14 +1782,14 @@ public class Example {
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String sourceUserId = "sourceUserId_example"; // String | The ID of the user that is requesting to unmute the target user
-    String targetUserId = "targetUserId_example"; // String | The ID of the user that the source user is requesting to unmute
+    String sourceUserId = "sourceUserId_example"; // String | The ID of the authenticated source User that is requesting to unmute the target User.
+    String targetUserId = "targetUserId_example"; // String | The ID of the User that the source User is requesting to unmute.
     try {
-           UsersMutingMutationResponse result = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId);
+           MuteUserMutationResponse result = apiInstance.users().usersIdUnmute(sourceUserId, targetUserId)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsersApi#usersIdUnmute");
@@ -1742,12 +1806,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sourceUserId** | **String**| The ID of the user that is requesting to unmute the target user | |
-| **targetUserId** | **String**| The ID of the user that the source user is requesting to unmute | |
+| **sourceUserId** | **String**| The ID of the authenticated source User that is requesting to unmute the target User. | |
+| **targetUserId** | **String**| The ID of the User that the source User is requesting to unmute. | |
 
 ### Return type
 
-[**UsersMutingMutationResponse**](UsersMutingMutationResponse.md)
+[**MuteUserMutationResponse**](MuteUserMutationResponse.md)
 
 ### Authorization
 
@@ -1761,6 +1825,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 

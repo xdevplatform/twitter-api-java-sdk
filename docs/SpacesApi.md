@@ -8,13 +8,13 @@ All URIs are relative to *https://api.twitter.com*
 | [**findSpacesByCreatorIds**](SpacesApi.md#findSpacesByCreatorIds) | **GET** /2/spaces/by/creator_ids | Space lookup by their creators |
 | [**findSpacesByIds**](SpacesApi.md#findSpacesByIds) | **GET** /2/spaces | Space lookup up Space IDs |
 | [**searchSpaces**](SpacesApi.md#searchSpaces) | **GET** /2/spaces/search | Search for Spaces |
-| [**spaceBuyers**](SpacesApi.md#spaceBuyers) | **GET** /2/spaces/{id}/buyers | Retrieve the list of users who purchased a ticket to the given space |
-| [**spaceTweets**](SpacesApi.md#spaceTweets) | **GET** /2/spaces/{id}/tweets | Retrieve tweets from a Space |
+| [**spaceBuyers**](SpacesApi.md#spaceBuyers) | **GET** /2/spaces/{id}/buyers | Retrieve the list of Users who purchased a ticket to the given space |
+| [**spaceTweets**](SpacesApi.md#spaceTweets) | **GET** /2/spaces/{id}/tweets | Retrieve Tweets from a Space. |
 
 
 <a name="findSpaceById"></a>
 # **findSpaceById**
-> SingleSpaceLookupResponse findSpaceById(id, spaceFields, expansions)
+> Get2SpacesIdResponse findSpaceById(id).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
 
 Space lookup by Space ID
 
@@ -41,7 +41,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -50,21 +49,27 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "id_example"; // String | The space id to be retrieved
+    String id = "1SLjjRYNejbKM"; // String | The ID of the Space to be retrieved.
     Set<String> spaceFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Space fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           SingleSpaceLookupResponse result = apiInstance.spaces().findSpaceById(id, spaceFields, expansions);
+           Get2SpacesIdResponse result = apiInstance.spaces().findSpaceById(id)
+            .spaceFields(spaceFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .topicFields(topicFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpaceById");
@@ -81,13 +86,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The space id to be retrieved | |
-| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, host_ids, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, title, updated_at] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids] |
+| **id** | **String**| The ID of the Space to be retrieved. | |
+| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, ended_at, host_ids, id, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, state, subscriber_count, title, topic_ids, updated_at] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids, topic_ids] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **topicFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Topic fields to display. | [optional] [enum: description, id, name] |
 
 ### Return type
 
-[**SingleSpaceLookupResponse**](SingleSpaceLookupResponse.md)
+[**Get2SpacesIdResponse**](Get2SpacesIdResponse.md)
 
 ### Authorization
 
@@ -101,12 +108,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findSpacesByCreatorIds"></a>
 # **findSpacesByCreatorIds**
-> MultiSpaceLookupResponse findSpacesByCreatorIds(userIds, spaceFields, expansions)
+> Get2SpacesByCreatorIdsResponse findSpacesByCreatorIds(userIds).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
 
 Space lookup by their creators
 
@@ -133,7 +140,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -142,21 +148,27 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    List<String> userIds = Arrays.asList(); // List<String> | The users to search through
+    List<String> userIds = Arrays.asList(); // List<String> | The IDs of Users to search through.
     Set<String> spaceFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Space fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           MultiSpaceLookupResponse result = apiInstance.spaces().findSpacesByCreatorIds(userIds, spaceFields, expansions);
+           Get2SpacesByCreatorIdsResponse result = apiInstance.spaces().findSpacesByCreatorIds(userIds)
+            .spaceFields(spaceFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .topicFields(topicFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpacesByCreatorIds");
@@ -173,13 +185,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userIds** | [**List&lt;String&gt;**](String.md)| The users to search through | |
-| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, host_ids, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, title, updated_at] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids] |
+| **userIds** | [**List&lt;String&gt;**](String.md)| The IDs of Users to search through. | |
+| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, ended_at, host_ids, id, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, state, subscriber_count, title, topic_ids, updated_at] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids, topic_ids] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **topicFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Topic fields to display. | [optional] [enum: description, id, name] |
 
 ### Return type
 
-[**MultiSpaceLookupResponse**](MultiSpaceLookupResponse.md)
+[**Get2SpacesByCreatorIdsResponse**](Get2SpacesByCreatorIdsResponse.md)
 
 ### Authorization
 
@@ -193,12 +207,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="findSpacesByIds"></a>
 # **findSpacesByIds**
-> MultiSpaceLookupResponse findSpacesByIds(ids, spaceFields, expansions)
+> Get2SpacesResponse findSpacesByIds(ids).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
 
 Space lookup up Space IDs
 
@@ -225,7 +239,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -234,21 +247,27 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    List<String> ids = Arrays.asList(); // List<String> | A list of space ids
+    List<String> ids = Arrays.asList(); // List<String> | The list of Space IDs to return.
     Set<String> spaceFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Space fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           MultiSpaceLookupResponse result = apiInstance.spaces().findSpacesByIds(ids, spaceFields, expansions);
+           Get2SpacesResponse result = apiInstance.spaces().findSpacesByIds(ids)
+            .spaceFields(spaceFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .topicFields(topicFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#findSpacesByIds");
@@ -265,13 +284,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **ids** | [**List&lt;String&gt;**](String.md)| A list of space ids | |
-| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, host_ids, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, title, updated_at] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids] |
+| **ids** | [**List&lt;String&gt;**](String.md)| The list of Space IDs to return. | |
+| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, ended_at, host_ids, id, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, state, subscriber_count, title, topic_ids, updated_at] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids, topic_ids] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **topicFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Topic fields to display. | [optional] [enum: description, id, name] |
 
 ### Return type
 
-[**MultiSpaceLookupResponse**](MultiSpaceLookupResponse.md)
+[**Get2SpacesResponse**](Get2SpacesResponse.md)
 
 ### Authorization
 
@@ -285,12 +306,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="searchSpaces"></a>
 # **searchSpaces**
-> MultiSpaceLookupResponse searchSpaces(query, state, maxResults, spaceFields, expansions)
+> Get2SpacesSearchResponse searchSpaces(query).state(state).maxResults(maxResults).spaceFields(spaceFields).expansions(expansions).userFields(userFields).topicFields(topicFields).execute();
 
 Search for Spaces
 
@@ -317,7 +338,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -326,23 +346,31 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String query = "crypto"; // String | The search query
-    String state = "live"; // String | The state of spaces to search for
-    Integer maxResults = 56; // Integer | The number of results to return. The maximum for this value is 100.
+    String query = "crypto"; // String | The search query.
+    String state = "live"; // String | The state of Spaces to search for.
+    Integer maxResults = 100; // Integer | The number of results to return.
     Set<String> spaceFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Space fields to display.
     Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> topicFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Topic fields to display.
     try {
-           MultiSpaceLookupResponse result = apiInstance.spaces().searchSpaces(query, state, maxResults, spaceFields, expansions);
+           Get2SpacesSearchResponse result = apiInstance.spaces().searchSpaces(query)
+            .state(state)
+            .maxResults(maxResults)
+            .spaceFields(spaceFields)
+            .expansions(expansions)
+            .userFields(userFields)
+            .topicFields(topicFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#searchSpaces");
@@ -359,15 +387,17 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **query** | **String**| The search query | |
-| **state** | **String**| The state of spaces to search for | [optional] [default to all] [enum: live, scheduled, all] |
-| **maxResults** | **Integer**| The number of results to return. The maximum for this value is 100. | [optional] |
-| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, host_ids, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, title, updated_at] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids] |
+| **query** | **String**| The search query. | |
+| **state** | **String**| The state of Spaces to search for. | [optional] [default to all] [enum: live, scheduled, all] |
+| **maxResults** | **Integer**| The number of results to return. | [optional] [default to 100] |
+| **spaceFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Space fields to display. | [optional] [enum: created_at, creator_id, ended_at, host_ids, id, invited_user_ids, is_ticketed, lang, participant_count, scheduled_start, speaker_ids, started_at, state, subscriber_count, title, topic_ids, updated_at] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: creator_id, host_ids, invited_user_ids, speaker_ids, topic_ids] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **topicFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Topic fields to display. | [optional] [enum: description, id, name] |
 
 ### Return type
 
-[**MultiSpaceLookupResponse**](MultiSpaceLookupResponse.md)
+[**Get2SpacesSearchResponse**](Get2SpacesSearchResponse.md)
 
 ### Authorization
 
@@ -381,16 +411,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="spaceBuyers"></a>
 # **spaceBuyers**
-> MultiUserLookupResponse spaceBuyers(id, userFields)
+> Get2SpacesIdBuyersResponse spaceBuyers(id).paginationToken(paginationToken).maxResults(maxResults).userFields(userFields).expansions(expansions).tweetFields(tweetFields).execute();
 
-Retrieve the list of users who purchased a ticket to the given space
+Retrieve the list of Users who purchased a ticket to the given space
 
-Retrieves the list of users who purchased a ticket to the given space
+Retrieves the list of Users who purchased a ticket to the given space
 
 ### Example
 ```java
@@ -413,30 +443,34 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
 
     // Uncomment and set the credentials configuration
       
-    // Configure HTTP bearer authorization:
-    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    String id = "1YqKDqWqdPLsV"; // String | The space id from which tweets will be retrieved
+    String id = "1SLjjRYNejbKM"; // String | The ID of the Space to be retrieved.
+    String paginationToken = "paginationToken_example"; // String | This parameter is used to get a specified 'page' of results.
+    Integer maxResults = 100; // Integer | The maximum number of results.
     Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
     try {
-           MultiUserLookupResponse result = apiInstance.spaces().spaceBuyers(id, userFields);
+           Get2SpacesIdBuyersResponse result = apiInstance.spaces().spaceBuyers(id)
+            .paginationToken(paginationToken)
+            .maxResults(maxResults)
+            .userFields(userFields)
+            .expansions(expansions)
+            .tweetFields(tweetFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#spaceBuyers");
@@ -453,16 +487,20 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| The space id from which tweets will be retrieved | |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: id, created_at, name, username, protected, verified, withheld, profile_image_url, location, url, description, entities, pinned_tweet_id, public_metrics] |
+| **id** | **String**| The ID of the Space to be retrieved. | |
+| **paginationToken** | **String**| This parameter is used to get a specified &#39;page&#39; of results. | [optional] |
+| **maxResults** | **Integer**| The maximum number of results. | [optional] [default to 100] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: pinned_tweet_id] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
 
 ### Return type
 
-[**MultiUserLookupResponse**](MultiUserLookupResponse.md)
+[**Get2SpacesIdBuyersResponse**](Get2SpacesIdBuyersResponse.md)
 
 ### Authorization
 
-[BearerToken](../README.md#BearerToken), [OAuth2UserToken](../README.md#OAuth2UserToken), [UserToken](../README.md#UserToken)
+[OAuth2UserToken](../README.md#OAuth2UserToken)
 
 ### HTTP request headers
 
@@ -472,16 +510,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 
 <a name="spaceTweets"></a>
 # **spaceTweets**
-> MultiTweetLookupResponse spaceTweets(maxResults, id, tweetFields)
+> Get2SpacesIdTweetsResponse spaceTweets(id).maxResults(maxResults).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
 
-Retrieve tweets from a Space
+Retrieve Tweets from a Space.
 
-Retrieves tweets shared in the specified space
+Retrieves Tweets shared in the specified Space.
 
 ### Example
 ```java
@@ -504,7 +542,6 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
@@ -513,21 +550,33 @@ public class Example {
       
     // Configure HTTP bearer authorization:
     // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
-
+    
     // Configure OAuth2 access token for authorization:
     // TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
     //     System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
     //     System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
     //     System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    // apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
-    Integer maxResults = 56; // Integer | The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100
-    String id = "1YqKDqWqdPLsV"; // String | The space id from which tweets will be retrieved
+    String id = "1SLjjRYNejbKM"; // String | The ID of the Space to be retrieved.
+    Integer maxResults = 100; // Integer | The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100.
     Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
+    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
+    Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
+    Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
+    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
+    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
     try {
-           MultiTweetLookupResponse result = apiInstance.spaces().spaceTweets(maxResults, id, tweetFields);
+           Get2SpacesIdTweetsResponse result = apiInstance.spaces().spaceTweets(id)
+            .maxResults(maxResults)
+            .tweetFields(tweetFields)
+            .expansions(expansions)
+            .mediaFields(mediaFields)
+            .pollFields(pollFields)
+            .userFields(userFields)
+            .placeFields(placeFields)
+            .execute();
             System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpacesApi#spaceTweets");
@@ -544,13 +593,18 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **maxResults** | **Integer**| The number of tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100 | [optional] |
-| **id** | **String**| The space id from which tweets will be retrieved | |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: id, created_at, text, author_id, in_reply_to_user_id, referenced_tweets, attachments, withheld, geo, entities, public_metrics, possibly_sensitive, source, lang, context_annotations, non_public_metrics, promoted_metrics, organic_metrics, conversation_id, reply_settings] |
+| **id** | **String**| The ID of the Space to be retrieved. | |
+| **maxResults** | **Integer**| The number of Tweets to fetch from the provided space. If not provided, the value will default to the maximum of 100. | [optional] [default to 100] |
+| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
+| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: attachments.media_keys, attachments.poll_ids, author_id, entities.mentions.username, geo.place_id, in_reply_to_user_id, referenced_tweets.id, referenced_tweets.id.author_id] |
+| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: alt_text, duration_ms, height, media_key, non_public_metrics, organic_metrics, preview_image_url, promoted_metrics, public_metrics, type, url, variants, width] |
+| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: duration_minutes, end_datetime, id, options, voting_status] |
+| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
+| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: contained_within, country, country_code, full_name, geo, id, name, place_type] |
 
 ### Return type
 
-[**MultiTweetLookupResponse**](MultiTweetLookupResponse.md)
+[**Get2SpacesIdTweetsResponse**](Get2SpacesIdTweetsResponse.md)
 
 ### Authorization
 
@@ -564,6 +618,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful |  -  |
+| **200** | The request has succeeded. |  -  |
 | **0** | The request has failed. |  -  |
 

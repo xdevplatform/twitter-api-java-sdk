@@ -59,13 +59,13 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Describes a choice in a Poll object.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PollOption {
-  public static final String SERIALIZED_NAME_POSITION = "position";
-  @SerializedName(SERIALIZED_NAME_POSITION)
-  private Integer position;
-
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
   private String label;
+
+  public static final String SERIALIZED_NAME_POSITION = "position";
+  @SerializedName(SERIALIZED_NAME_POSITION)
+  private Integer position;
 
   public static final String SERIALIZED_NAME_VOTES = "votes";
   @SerializedName(SERIALIZED_NAME_VOTES)
@@ -73,29 +73,6 @@ public class PollOption {
 
   public PollOption() { 
   }
-
-  public PollOption position(Integer position) {
-    
-    this.position = position;
-    return this;
-  }
-
-   /**
-   * Position of this choice in the poll.
-   * @return position
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Position of this choice in the poll.")
-
-  public Integer getPosition() {
-    return position;
-  }
-
-
-  public void setPosition(Integer position) {
-    this.position = position;
-  }
-
 
   public PollOption label(String label) {
     
@@ -117,6 +94,29 @@ public class PollOption {
 
   public void setLabel(String label) {
     this.label = label;
+  }
+
+
+  public PollOption position(Integer position) {
+    
+    this.position = position;
+    return this;
+  }
+
+   /**
+   * Position of this choice in the poll.
+   * @return position
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Position of this choice in the poll.")
+
+  public Integer getPosition() {
+    return position;
+  }
+
+
+  public void setPosition(Integer position) {
+    this.position = position;
   }
 
 
@@ -153,22 +153,22 @@ public class PollOption {
       return false;
     }
     PollOption pollOption = (PollOption) o;
-    return Objects.equals(this.position, pollOption.position) &&
-        Objects.equals(this.label, pollOption.label) &&
+    return Objects.equals(this.label, pollOption.label) &&
+        Objects.equals(this.position, pollOption.position) &&
         Objects.equals(this.votes, pollOption.votes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position, label, votes);
+    return Objects.hash(label, position, votes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PollOption {\n");
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    votes: ").append(toIndentedString(votes)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -192,14 +192,14 @@ public class PollOption {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("position");
     openapiFields.add("label");
+    openapiFields.add("position");
     openapiFields.add("votes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("position");
     openapiRequiredFields.add("label");
+    openapiRequiredFields.add("position");
     openapiRequiredFields.add("votes");
   }
 

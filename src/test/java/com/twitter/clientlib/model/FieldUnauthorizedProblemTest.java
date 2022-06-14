@@ -69,22 +69,6 @@ public class FieldUnauthorizedProblemTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
      * Test the property 'detail'
      */
     @Test
@@ -101,11 +85,27 @@ public class FieldUnauthorizedProblemTest {
     }
 
     /**
-     * Test the property 'section'
+     * Test the property 'title'
      */
     @Test
-    public void sectionTest() {
-        // TODO: test section
+    public void titleTest() {
+        // TODO: test title
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'field'
+     */
+    @Test
+    public void fieldTest() {
+        // TODO: test field
     }
 
     /**
@@ -117,11 +117,11 @@ public class FieldUnauthorizedProblemTest {
     }
 
     /**
-     * Test the property 'field'
+     * Test the property 'section'
      */
     @Test
-    public void fieldTest() {
-        // TODO: test field
+    public void sectionTest() {
+        // TODO: test section
     }
 
 }

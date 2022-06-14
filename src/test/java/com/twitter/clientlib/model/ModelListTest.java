@@ -50,22 +50,6 @@ public class ModelListTest {
     }
 
     /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
      * Test the property 'createdAt'
      */
     @Test
@@ -90,11 +74,27 @@ public class ModelListTest {
     }
 
     /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
      * Test the property 'memberCount'
      */
     @Test
     public void memberCountTest() {
         // TODO: test memberCount
+    }
+
+    /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**

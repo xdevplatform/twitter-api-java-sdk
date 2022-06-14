@@ -55,9 +55,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Represent a Search Count Result
+ * Represent a Search Count Result.
  */
-@ApiModel(description = "Represent a Search Count Result")
+@ApiModel(description = "Represent a Search Count Result.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SearchCount {
   public static final String SERIALIZED_NAME_END = "end";
@@ -82,11 +82,11 @@ public class SearchCount {
   }
 
    /**
-   * The end time of the bucket
+   * The end time of the bucket.
    * @return end
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The end time of the bucket")
+  @ApiModelProperty(required = true, value = "The end time of the bucket.")
 
   public OffsetDateTime getEnd() {
     return end;
@@ -105,11 +105,11 @@ public class SearchCount {
   }
 
    /**
-   * The start time of the bucket
+   * The start time of the bucket.
    * @return start
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The start time of the bucket")
+  @ApiModelProperty(required = true, value = "The start time of the bucket.")
 
   public OffsetDateTime getStart() {
     return start;
@@ -128,11 +128,11 @@ public class SearchCount {
   }
 
    /**
-   * The count for the bucket
+   * The count for the bucket.
    * @return tweetCount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The count for the bucket")
+  @ApiModelProperty(required = true, value = "The count for the bucket.")
 
   public Integer getTweetCount() {
     return tweetCount;

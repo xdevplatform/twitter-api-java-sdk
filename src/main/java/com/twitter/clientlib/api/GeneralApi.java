@@ -52,18 +52,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class GeneralApi extends ApiCommon {
 
-    /**
-     * Build call for getOpenApiSpec
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getOpenApiSpecCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getOpenApiSpecCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -104,52 +93,8 @@ public class GeneralApi extends ApiCommon {
 
     }
 
-    /**
-     * Returns the open api spec document.
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-     </table>
-     */
-    public Object getOpenApiSpec() throws ApiException {
-      ApiResponse<Object> localVarResp = getOpenApiSpecWithHttpInfo();
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public Object getOpenApiSpec(Integer retries) throws ApiException {
-        Object localVarResp;
-        try{
-          localVarResp = getOpenApiSpec();
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return getOpenApiSpec(retries - 1);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns the open api spec document.
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Object> getOpenApiSpecWithHttpInfo() throws ApiException {
+    private ApiResponse<Object> getOpenApiSpecWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getOpenApiSpecValidateBeforeCall(null);
         try {
             Type localVarReturnType = new TypeToken<Object>(){}.getType();
@@ -160,23 +105,106 @@ public class GeneralApi extends ApiCommon {
         }
     }
 
+    private okhttp3.Call getOpenApiSpecAsync(final ApiCallback<Object> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getOpenApiSpecValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetOpenApiSpecRequest {
+
+        private APIgetOpenApiSpecRequest() {
+        }
+
+        /**
+         * Build call for getOpenApiSpec
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getOpenApiSpecCall(_callback);
+        }
+
+        /**
+         * Execute getOpenApiSpec request
+         * @return Object
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+         </table>
+         */
+        public Object execute() throws ApiException {
+            ApiResponse<Object> localVarResp = getOpenApiSpecWithHttpInfo();
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Object  execute(Integer retries) throws ApiException {
+          Object localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getOpenApiSpec request with HTTP info returned
+         * @return ApiResponse&lt;Object&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
+              return getOpenApiSpecWithHttpInfo();
+            }
+        /**
+         * Execute getOpenApiSpec request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
+            return getOpenApiSpecAsync(_callback);
+        }
+    }
+
     /**
-     * Returns the open api spec document. (asynchronously)
-     * Full open api spec in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * Returns the OpenAPI Specification document.
+     * Full OpenAPI Specification in JSON format. (See https://github.com/OAI/OpenAPI-Specification/blob/master/README.md)
+     * @return APIgetOpenApiSpecRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOpenApiSpecAsync(final ApiCallback<Object> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getOpenApiSpecValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public APIgetOpenApiSpecRequest getOpenApiSpec() {
+        return new APIgetOpenApiSpecRequest();
     }
 }

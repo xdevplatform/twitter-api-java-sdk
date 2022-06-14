@@ -53,22 +53,6 @@ public class ComplianceJobTest {
     }
 
     /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
      * Test the property 'createdAt'
      */
     @Test
@@ -77,19 +61,11 @@ public class ComplianceJobTest {
     }
 
     /**
-     * Test the property 'uploadUrl'
+     * Test the property 'downloadExpiresAt'
      */
     @Test
-    public void uploadUrlTest() {
-        // TODO: test uploadUrl
-    }
-
-    /**
-     * Test the property 'uploadExpiresAt'
-     */
-    @Test
-    public void uploadExpiresAtTest() {
-        // TODO: test uploadExpiresAt
+    public void downloadExpiresAtTest() {
+        // TODO: test downloadExpiresAt
     }
 
     /**
@@ -101,11 +77,11 @@ public class ComplianceJobTest {
     }
 
     /**
-     * Test the property 'downloadExpiresAt'
+     * Test the property 'id'
      */
     @Test
-    public void downloadExpiresAtTest() {
-        // TODO: test downloadExpiresAt
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
@@ -122,6 +98,30 @@ public class ComplianceJobTest {
     @Test
     public void statusTest() {
         // TODO: test status
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'uploadExpiresAt'
+     */
+    @Test
+    public void uploadExpiresAtTest() {
+        // TODO: test uploadExpiresAt
+    }
+
+    /**
+     * Test the property 'uploadUrl'
+     */
+    @Test
+    public void uploadUrlTest() {
+        // TODO: test uploadUrl
     }
 
 }
