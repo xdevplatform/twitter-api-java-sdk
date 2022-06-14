@@ -22,7 +22,7 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.model.CreateComplianceJobRequest;
 import com.twitter.clientlib.model.CreateComplianceJobResponse;
@@ -46,7 +46,7 @@ import java.io.InputStream;
 @Disabled
 public class ComplianceApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**

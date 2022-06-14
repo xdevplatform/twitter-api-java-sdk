@@ -120,12 +120,10 @@ You can use the following objects in order to set the credentials:
 
 ```java
 
-TwitterApi apiInstance = new TwitterApi();
-TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
-        System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
-        System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
-        System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-apiInstance.setTwitterCredentials(credentials);
+TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+      System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+      System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+      System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
 
 ```
 
@@ -154,12 +152,10 @@ public class TwitterApiExample {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterApi apiInstance = new TwitterApi();
-    TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
           System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
           System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
-          System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    apiInstance.setTwitterCredentials(credentials);
+          System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");

@@ -103,8 +103,7 @@ public class OAuth20GetAccessToken {
   }
 
   public void callApi(TwitterCredentialsOAuth2 credentials) {
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");

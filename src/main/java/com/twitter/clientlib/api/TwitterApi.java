@@ -43,7 +43,15 @@ public class TwitterApi {
   private final UsersApi users = new UsersApi();
   private ApiClient localVarApiClient = new ApiClient();
 
-  public TwitterApi() {
+  public TwitterApi(TwitterCredentialsBearer credentials) {
+    localVarApiClient = new ApiClient();
+    localVarApiClient.setTwitterCredentials(credentials);
+    init();
+  }
+
+  public TwitterApi(TwitterCredentialsOAuth2 credentials) {
+    localVarApiClient = new ApiClient();
+    localVarApiClient.setTwitterCredentials(credentials);
     init();
   }
 
@@ -58,14 +66,6 @@ public class TwitterApi {
 
   public void setApiClient(ApiClient apiClient) {
     this.localVarApiClient = apiClient;
-  }
-
-  public void setTwitterCredentials(TwitterCredentialsBearer credentials) {
-    localVarApiClient.setTwitterCredentials(credentials);
-  }
-
-  public void setTwitterCredentials(TwitterCredentialsOAuth2 credentials) {
-    localVarApiClient.setTwitterCredentials(credentials);
   }
 
   private void init() {

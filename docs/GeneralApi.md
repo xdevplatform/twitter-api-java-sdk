@@ -35,12 +35,12 @@ import java.time.OffsetDateTime;
 
 public class Example {
   public static void main(String[] args) {
-    TwitterApi apiInstance = new TwitterApi();
     // Set the credentials based on the API's "security" tag values.
     // Check the API definition in https://api.twitter.com/2/openapi.json
     // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
 
     // Uncomment and set the credentials configuration
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     // Set the params values
     try {

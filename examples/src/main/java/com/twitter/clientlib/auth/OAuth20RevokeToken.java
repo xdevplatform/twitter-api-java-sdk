@@ -52,8 +52,7 @@ public class OAuth20RevokeToken {
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
         System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     TwitterOAuth20Service service = new TwitterOAuth20Service(
         credentials.getTwitterOauth2ClientId(),

@@ -41,8 +41,8 @@ public class NonDefaultClient {
     NonDefaultClient example = new NonDefaultClient();
     // Create an ApiClient and use it instead of the default one in TwitterApi
     ApiClient apiClient = new ApiClient();
+    apiClient.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     TwitterApi apiInstance = new TwitterApi(apiClient);
-    apiInstance.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     example.callApi(apiInstance);
   }
 

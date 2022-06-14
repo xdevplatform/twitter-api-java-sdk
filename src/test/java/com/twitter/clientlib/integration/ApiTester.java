@@ -67,16 +67,14 @@ abstract public class ApiTester {
   protected final List<String> usersIdsNotFound = Arrays.asList(userNotExists);
 
   protected void initApiInstance() {
-          apiInstance = new TwitterApi();
-          apiInstance.setTwitterCredentials(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
-                  System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
-                  System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
-                  System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
+          apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+                System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
+                System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
+                System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
   }
 
   protected void initApiInstanceBearer() {
-    apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
+    apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
   }
 
   protected void checkApiExceptionProblem(

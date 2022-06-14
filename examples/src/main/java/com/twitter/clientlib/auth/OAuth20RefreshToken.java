@@ -49,13 +49,11 @@ public class OAuth20RefreshToken {
 
   public static void main(String[] args) {
     OAuth20RefreshToken example = new OAuth20RefreshToken();
-    TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+
+    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
-        System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+        System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
     apiInstance.addCallback(new MaintainToken());
 
     try {
