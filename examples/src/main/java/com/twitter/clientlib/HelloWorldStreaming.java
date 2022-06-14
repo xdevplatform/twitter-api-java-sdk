@@ -23,17 +23,11 @@ Do not edit the class manually.
 package com.twitter.clientlib;
 
 
-import java.util.HashSet;
-import java.util.Set;
-import java.io.InputStream;
-
-import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TweetsStreamListenersExecutor;
-import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.query.StreamQueryParameters;
 import com.twitter.clientlib.query.model.TweetField;
+import com.twitter.clientlib.stream.TweetsStreamListener;
+import com.twitter.clientlib.stream.TwitterStream;
 
 
 public class HelloWorldStreaming {
@@ -46,58 +40,17 @@ public class HelloWorldStreaming {
      * to use the right credential object.
      */
     TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterStream twitterStream = new TwitterStream();
+    twitterStream.setTwitterCredentials(credentials);
+    twitterStream.addListener(new Responder());
+    twitterStream.sampleStream(new StreamQueryParameters.Builder()
+            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+            .build());
 
-    try {
-      InputStream streamResult = apiInstance.tweets().sampleStream(
-              new StreamQueryParameters.Builder()
-                      .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
-                      .build());
-      // sampleStream with TweetsStreamListenersExecutor
-      Responder responder = new Responder();
-      TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);
-      tsle.addListener(responder);
-      tsle.executeListeners();
-
-//      // Shutdown TweetsStreamListenersExecutor
-//      try {
-//        Thread.sleep(20000);
-//        tsle.shutdown();
-//      } catch (InterruptedException e) {
-//        e.printStackTrace();
-//      }
-
-//      // An example of how to use the streaming directly using the InputStream result (Without TweetsStreamListenersExecutor)
-//      try{
-//         JSON json = new JSON();
-//         Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
-//         BufferedReader reader = new BufferedReader(new InputStreamReader(streamResult));
-//         String line = reader.readLine();
-//         while (line != null) {
-//           if(line.isEmpty()) {
-//             System.err.println("==> " + line.isEmpty());
-//             line = reader.readLine();
-//             continue;
-//            }
-//           Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
-//           System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
-//           line = reader.readLine();
-//         }
-//      }catch (Exception e) {
-//        e.printStackTrace();
-//        System.out.println(e);
-//      }
-    } catch (ApiException e) {
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
   }
 }
 
-class Responder implements com.twitter.clientlib.TweetsStreamListener {
+class Responder implements TweetsStreamListener {
   @Override
   public void actionOnTweetsStream(StreamingTweet streamingTweet) {
     if(streamingTweet == null) {

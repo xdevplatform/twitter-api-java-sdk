@@ -20,7 +20,7 @@ Do not edit the class manually.
 */
 
 
-package com.twitter.clientlib;
+package com.twitter.clientlib.stream;
 
 import com.twitter.clientlib.model.StreamingTweet;
 

@@ -20,36 +20,39 @@ Do not edit the class manually.
 */
 
 
-package com.twitter.clientlib;
+package com.twitter.clientlib.stream;
 
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.stream.IntStream;
 
-import com.google.gson.reflect.TypeToken;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twitter.clientlib.model.StreamingTweet;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
 
-public class TweetsStreamListenersExecutor {
-  private final ITweetsQueue tweetsQueue;
-  private final List<TweetsStreamListener> listeners = new ArrayList<>();
-  private final InputStream stream;
+public class TweetsStreamExecutor {
+  private volatile BlockingQueue<String> rawTweets;
+  private volatile BlockingQueue<StreamingTweet> tweets;
   private volatile boolean isRunning = true;
 
-  public TweetsStreamListenersExecutor(InputStream stream) {
-    this.tweetsQueue = new LinkedListTweetsQueue();
-    this.stream = stream;
-  }
+  private ExecutorService executorService;
+  private final List<TweetsStreamListener> listeners = new ArrayList<>();
+  private final InputStream stream;
 
-  public TweetsStreamListenersExecutor(ITweetsQueue tweetsQueue, InputStream stream) {
-    this.tweetsQueue = tweetsQueue;
+  public TweetsStreamExecutor(InputStream stream) {
+    this.rawTweets = new LinkedBlockingDeque<>();
+    this.tweets = new LinkedBlockingDeque<>();
     this.stream = stream;
   }
 
@@ -57,23 +60,30 @@ public class TweetsStreamListenersExecutor {
     listeners.add(toAdd);
   }
 
-  public void executeListeners() {
+  public void removeListener(TweetsStreamListener toRemove) {
+    listeners.remove(toRemove);
+  }
+
+  public void start() {
     if (stream == null) {
       System.out.println("Error: stream is null.");
       return;
-    } else if (this.tweetsQueue == null) {
-      System.out.println("Error: tweetsQueue is null.");
-      return;
     }
 
-    TweetsQueuer tweetsQueuer = new TweetsQueuer();
+    RawTweetsQueuer rawTweetsQueuer = new RawTweetsQueuer();
     TweetsListenersExecutor tweetsListenersExecutor = new TweetsListenersExecutor();
+    rawTweetsQueuer.start();
+    int threads = 5; //TODO parametrize this
+    executorService = Executors.newFixedThreadPool(threads);
+    for (int i = 0; i < threads; i++) {
+      executorService.submit(new ParseTweetsTask());
+    }
     tweetsListenersExecutor.start();
-    tweetsQueuer.start();
   }
 
   public synchronized void shutdown() {
     isRunning = false;
+    executorService.shutdown();
     System.out.println("TweetsStreamListenersExecutor is shutting down.");
   }
 
@@ -87,7 +97,7 @@ public class TweetsStreamListenersExecutor {
       StreamingTweet streamingTweet;
       try {
         while (isRunning) {
-          streamingTweet = tweetsQueue.poll();
+          streamingTweet = tweets.poll();
           if (streamingTweet == null) {
             Thread.sleep(100);
             continue;
@@ -102,15 +112,39 @@ public class TweetsStreamListenersExecutor {
     }
   }
 
-  private class TweetsQueuer extends Thread {
+  private class ParseTweetsTask implements Runnable {
+    private final ObjectMapper objectMapper;
+    private ParseTweetsTask() {
+      this.objectMapper = new ObjectMapper();
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    @Override
+    public void run() {
+      while (isRunning) {
+        try {
+          String rawTweet = rawTweets.take();
+          StreamingTweet tweet = objectMapper.readValue(rawTweet, StreamingTweet.class);
+          tweets.put(tweet);
+        } catch (InterruptedException e) {
+          System.out.println("Fail 1");
+        } catch (JsonMappingException e) {
+          System.out.println("Fail 2");
+        } catch (JsonProcessingException e) {
+          System.out.println("Fail 3");
+        }
+      }
+    }
+  }
+
+  private class RawTweetsQueuer extends Thread {
+
     @Override
     public void run() {
       queueTweets();
     }
 
     public void queueTweets() {
-      JSON json = new JSON();
-      Type localVarReturnType = new TypeToken<SingleTweetLookupResponse>() {}.getType();
 
       String line = null;
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
@@ -121,7 +155,7 @@ public class TweetsStreamListenersExecutor {
             continue;
           }
           try {
-            tweetsQueue.add(StreamingTweet.fromJson(line));
+            rawTweets.put(line);
           } catch (Exception interExcep) {
             interExcep.printStackTrace();
           }
@@ -134,21 +168,3 @@ public class TweetsStreamListenersExecutor {
   }
 }
 
-interface ITweetsQueue {
-  StreamingTweet poll();
-  void add(StreamingTweet streamingTweet);
-}
-
-class LinkedListTweetsQueue implements ITweetsQueue {
-  private final Queue<StreamingTweet> tweetsQueue = new LinkedList<>();
-
-  @Override
-  public StreamingTweet poll() {
-    return tweetsQueue.poll();
-  }
-
-  @Override
-  public void add(StreamingTweet streamingTweet) {
-    tweetsQueue.add(streamingTweet);
-  }
-}
