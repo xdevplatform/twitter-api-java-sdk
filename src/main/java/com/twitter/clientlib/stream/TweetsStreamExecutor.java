@@ -32,13 +32,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.stream.IntStream;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.twitter.clientlib.JSON;
 import com.twitter.clientlib.model.StreamingTweet;
 
 public class TweetsStreamExecutor {
@@ -46,7 +47,15 @@ public class TweetsStreamExecutor {
   private volatile BlockingQueue<StreamingTweet> tweets;
   private volatile boolean isRunning = true;
 
-  private ExecutorService executorService;
+  private long startTime;
+  private int tweetsCount = 0;
+  private final int tweetsLimit = 80000;
+  private final int threads = 1; //TODO parametrize this
+
+  private ExecutorService rawTweetsQueuerService;
+  private ExecutorService deserializationService;
+  private ExecutorService listenersService;
+
   private final List<TweetsStreamListener> listeners = new ArrayList<>();
   private final InputStream stream;
 
@@ -69,51 +78,83 @@ public class TweetsStreamExecutor {
       System.out.println("Error: stream is null.");
       return;
     }
+    startTime = System.currentTimeMillis();
 
-    RawTweetsQueuer rawTweetsQueuer = new RawTweetsQueuer();
-    TweetsListenersExecutor tweetsListenersExecutor = new TweetsListenersExecutor();
-    rawTweetsQueuer.start();
-    int threads = 5; //TODO parametrize this
-    executorService = Executors.newFixedThreadPool(threads);
+    rawTweetsQueuerService = Executors.newSingleThreadExecutor();
+    rawTweetsQueuerService.submit(new RawTweetsQueuer());
+
+    deserializationService = Executors.newFixedThreadPool(threads);
     for (int i = 0; i < threads; i++) {
-      executorService.submit(new ParseTweetsTask());
+      deserializationService.submit(new ParseTweetsTask());
     }
-    tweetsListenersExecutor.start();
+
+    listenersService = Executors.newSingleThreadExecutor();
+    listenersService.submit(new TweetsListenersTask());
   }
 
   public synchronized void shutdown() {
     isRunning = false;
-    executorService.shutdown();
+    rawTweetsQueuerService.shutdown();
+    deserializationService.shutdown();
+    listenersService.shutdown();
+    try {
+      if (!rawTweetsQueuerService.awaitTermination(3, TimeUnit.SECONDS)) {
+        rawTweetsQueuerService.shutdownNow();
+        if (!rawTweetsQueuerService.awaitTermination(3, TimeUnit.SECONDS))
+          System.err.println("Pool did not terminate");
+      }
+      if (!deserializationService.awaitTermination(3, TimeUnit.SECONDS)) {
+        deserializationService.shutdownNow();
+        if (!deserializationService.awaitTermination(3, TimeUnit.SECONDS))
+          System.err.println("Pool did not terminate");
+      }
+      if (!listenersService.awaitTermination(3, TimeUnit.SECONDS)) {
+        listenersService.shutdownNow();
+        if (!listenersService.awaitTermination(3, TimeUnit.SECONDS))
+          System.err.println("Pool did not terminate");
+      }
+    } catch (InterruptedException ie) {
+      rawTweetsQueuerService.shutdown();
+      deserializationService.shutdown();
+      listenersService.shutdown();
+      Thread.currentThread().interrupt();
+    }
     System.out.println("TweetsStreamListenersExecutor is shutting down.");
   }
 
-  private class TweetsListenersExecutor extends Thread {
+  private class RawTweetsQueuer implements Runnable {
+
     @Override
     public void run() {
-      processTweets();
+      queueTweets();
     }
 
-    private void processTweets() {
-      StreamingTweet streamingTweet;
-      try {
+    public void queueTweets() {
+
+      String line = null;
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
         while (isRunning) {
-          streamingTweet = tweets.poll();
-          if (streamingTweet == null) {
-            Thread.sleep(100);
+          line = reader.readLine();
+          if(line == null || line.isEmpty()) {
+            Thread.sleep(10);
             continue;
           }
-          for (TweetsStreamListener listener : listeners) {
-            listener.actionOnTweetsStream(streamingTweet);
+          try {
+            rawTweets.put(line);
+          } catch (Exception interExcep) {
+            interExcep.printStackTrace();
           }
         }
       } catch (Exception e) {
         e.printStackTrace();
+        shutdown();
       }
     }
   }
 
   private class ParseTweetsTask implements Runnable {
     private final ObjectMapper objectMapper;
+
     private ParseTweetsTask() {
       this.objectMapper = new ObjectMapper();
       objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -137,32 +178,35 @@ public class TweetsStreamExecutor {
     }
   }
 
-  private class RawTweetsQueuer extends Thread {
-
+  private class TweetsListenersTask implements Runnable {
     @Override
     public void run() {
-      queueTweets();
+      processTweets();
     }
 
-    public void queueTweets() {
-
-      String line = null;
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
+    private void processTweets() {
+      StreamingTweet streamingTweet;
+      try {
         while (isRunning) {
-          line = reader.readLine();
-          if(line == null || line.isEmpty()) {
-            Thread.sleep(100);
+          streamingTweet = tweets.poll();
+          if (streamingTweet == null) {
+            Thread.sleep(10);
             continue;
           }
-          try {
-            rawTweets.put(line);
-          } catch (Exception interExcep) {
-            interExcep.printStackTrace();
+          for (TweetsStreamListener listener : listeners) {
+            listener.actionOnTweetsStream(streamingTweet);
+          }
+          tweetsCount++;
+          if(tweetsCount == tweetsLimit) {
+            long stopTime = System.currentTimeMillis();
+            long durationInMillis = stopTime - startTime;
+            double seconds = durationInMillis / 1000.0;
+            System.out.println("Total duration in seconds: " + seconds);
+            shutdown();
           }
         }
       } catch (Exception e) {
         e.printStackTrace();
-        shutdown();
       }
     }
   }

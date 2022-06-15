@@ -25,7 +25,11 @@ package com.twitter.clientlib;
 
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.query.StreamQueryParameters;
+import com.twitter.clientlib.query.model.MediaField;
+import com.twitter.clientlib.query.model.PlaceField;
+import com.twitter.clientlib.query.model.PollField;
 import com.twitter.clientlib.query.model.TweetField;
+import com.twitter.clientlib.query.model.UserField;
 import com.twitter.clientlib.stream.TweetsStreamListener;
 import com.twitter.clientlib.stream.TwitterStream;
 
@@ -39,20 +43,28 @@ public class HelloWorldStreaming {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer("AAAAAAAAAAAAAAAAAAAAAJotdgEAAAAAmXZex2w6l1D6TcwC8KfripI3ADY%3DkKTjcNPxea1aAL8yYXJTdbAX1NkgEJii7SpXetxuP9GXXhSnOa");
     TwitterStream twitterStream = new TwitterStream();
     twitterStream.setTwitterCredentials(credentials);
     twitterStream.addListener(new Responder());
+//    twitterStream.sampleStream(new StreamQueryParameters.Builder()
+//            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+//            .build());
+
     twitterStream.sampleStream(new StreamQueryParameters.Builder()
-            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
-            .build());
+                    .withTweetFields(TweetField.all().toArray(new TweetField[0]))
+                    .withMediaFields(MediaField.all().toArray(new MediaField[0]))
+                    .withUserFields(UserField.all().toArray(new UserField[0]))
+                    .withPollFields(PollField.all().toArray(new PollField[0]))
+                    .withPlaceFields(PlaceField.all().toArray(new PlaceField[0]))
+                    .build());
 
   }
 }
 
 class Responder implements TweetsStreamListener {
   @Override
-  public void actionOnTweetsStream(StreamingTweet streamingTweet) {
+  public synchronized void actionOnTweetsStream(StreamingTweet streamingTweet) {
     if(streamingTweet == null) {
       System.err.println("Error: actionOnTweetsStream - streamingTweet is null ");
       return;

@@ -45,7 +45,7 @@ public class TwitterStream {
     }
 
     private void initBasePath() {
-        String basePath = System.getenv("TWITTER_API_BASE_PATH");
+        String basePath = "http://localhost:8080";
         apiClient.setBasePath(basePath != null ? basePath : "https://api.twitter.com");
     }
 
