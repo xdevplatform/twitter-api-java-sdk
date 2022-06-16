@@ -48,8 +48,6 @@ import com.twitter.clientlib.model.Get2TweetsIdResponse;
 public class OAuth20RefreshToken {
 
   public static void main(String[] args) {
-    OAuth20RefreshToken example = new OAuth20RefreshToken();
-
     TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
@@ -63,10 +61,10 @@ public class OAuth20RefreshToken {
       e.printStackTrace();
       return;
     }
-    example.callApi(apiInstance);
+    callApi(apiInstance);
   }
 
-  public void callApi(TwitterApi apiInstance) {
+  public static void callApi(TwitterApi apiInstance) {
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
     tweetFields.add("id");
