@@ -51,13 +51,12 @@ import com.twitter.clientlib.model.Get2TweetsIdResponse;
 public class OAuth20GetAccessToken {
 
   public static void main(String[] args) {
-    OAuth20GetAccessToken example = new OAuth20GetAccessToken();
     TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
         System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
 
-    OAuth2AccessToken accessToken = example.getAccessToken(credentials);
+    OAuth2AccessToken accessToken = getAccessToken(credentials);
     if (accessToken == null) {
       return;
     }
@@ -65,10 +64,10 @@ public class OAuth20GetAccessToken {
     // Setting the access & refresh tokens into TwitterCredentialsOAuth2
     credentials.setTwitterOauth2AccessToken(accessToken.getAccessToken());
     credentials.setTwitterOauth2RefreshToken(accessToken.getRefreshToken());
-    example.callApi(credentials);
+    callApi(credentials);
   }
 
-  public OAuth2AccessToken getAccessToken(TwitterCredentialsOAuth2 credentials) {
+  public static OAuth2AccessToken getAccessToken(TwitterCredentialsOAuth2 credentials) {
     TwitterOAuth20Service service = new TwitterOAuth20Service(
         credentials.getTwitterOauth2ClientId(),
         credentials.getTwitterOAuth2ClientSecret(),
@@ -102,7 +101,7 @@ public class OAuth20GetAccessToken {
     return accessToken;
   }
 
-  public void callApi(TwitterCredentialsOAuth2 credentials) {
+  public static void callApi(TwitterCredentialsOAuth2 credentials) {
     TwitterApi apiInstance = new TwitterApi(credentials);
 
     Set<String> tweetFields = new HashSet<>();

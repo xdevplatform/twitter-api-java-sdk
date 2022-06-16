@@ -47,7 +47,6 @@ import com.twitter.clientlib.model.Get2TweetsIdResponse;
 public class OAuth20RevokeToken {
 
   public static void main(String[] args) {
-    OAuth20RevokeToken example = new OAuth20RevokeToken();
     TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
@@ -61,7 +60,7 @@ public class OAuth20RevokeToken {
         "offline.access tweet.read users.read like.write space.read list.read tweet.write like.read");
 
     // Assuming that the access token is valid this call should be successful
-    example.callApi(apiInstance);
+    callApi(apiInstance);
     // Revoke the token
     try {
       service.revokeToken(credentials.getTwitterOauth2AccessToken(), TokenTypeHint.ACCESS_TOKEN);
@@ -71,10 +70,10 @@ public class OAuth20RevokeToken {
       return;
     }
     // This call should fail
-    example.callApi(apiInstance);
+    callApi(apiInstance);
   }
 
-  public void callApi(TwitterApi apiInstance) {
+  public static void callApi(TwitterApi apiInstance) {
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
     tweetFields.add("id");
