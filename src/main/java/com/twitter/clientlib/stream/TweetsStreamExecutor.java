@@ -39,7 +39,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.twitter.clientlib.JSON;
 import com.twitter.clientlib.model.StreamingTweet;
 
 public class TweetsStreamExecutor {
@@ -49,15 +48,15 @@ public class TweetsStreamExecutor {
 
   private long startTime;
   private int tweetsCount = 0;
-  private final int tweetsLimit = 80000;
-  private final int threads = 1; //TODO parametrize this
+  private final int tweetsLimit = 250000;
+  private final int deserializationThreads = 1; //TODO parametrize this
 
   private ExecutorService rawTweetsQueuerService;
   private ExecutorService deserializationService;
   private ExecutorService listenersService;
 
   private final List<TweetsStreamListener> listeners = new ArrayList<>();
-  private final InputStream stream;
+  private InputStream stream;
 
   public TweetsStreamExecutor(InputStream stream) {
     this.rawTweets = new LinkedBlockingDeque<>();
@@ -83,9 +82,9 @@ public class TweetsStreamExecutor {
     rawTweetsQueuerService = Executors.newSingleThreadExecutor();
     rawTweetsQueuerService.submit(new RawTweetsQueuer());
 
-    deserializationService = Executors.newFixedThreadPool(threads);
-    for (int i = 0; i < threads; i++) {
-      deserializationService.submit(new ParseTweetsTask());
+    deserializationService = Executors.newFixedThreadPool(deserializationThreads);
+    for (int i = 0; i < deserializationThreads; i++) {
+      deserializationService.submit(new DeserializeTweetsTask());
     }
 
     listenersService = Executors.newSingleThreadExecutor();
@@ -136,7 +135,6 @@ public class TweetsStreamExecutor {
         while (isRunning) {
           line = reader.readLine();
           if(line == null || line.isEmpty()) {
-            Thread.sleep(10);
             continue;
           }
           try {
@@ -152,10 +150,10 @@ public class TweetsStreamExecutor {
     }
   }
 
-  private class ParseTweetsTask implements Runnable {
+  private class DeserializeTweetsTask implements Runnable {
     private final ObjectMapper objectMapper;
 
-    private ParseTweetsTask() {
+    private DeserializeTweetsTask() {
       this.objectMapper = new ObjectMapper();
       objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -186,28 +184,27 @@ public class TweetsStreamExecutor {
 
     private void processTweets() {
       StreamingTweet streamingTweet;
-      try {
+
         while (isRunning) {
-          streamingTweet = tweets.poll();
-          if (streamingTweet == null) {
-            Thread.sleep(10);
-            continue;
+          try {
+            streamingTweet = tweets.take();
+            for (TweetsStreamListener listener : listeners) {
+              listener.actionOnTweetsStream(streamingTweet);
+            }
+            tweetsCount++;
+            if(tweetsCount == tweetsLimit) {
+              long stopTime = System.currentTimeMillis();
+              long durationInMillis = stopTime - startTime;
+              double seconds = durationInMillis / 1000.0;
+              System.out.println("Total duration in seconds: " + seconds);
+              shutdown();
+            }
+          } catch (InterruptedException e) {
+            System.out.println("processTweets: Fail 1");
           }
-          for (TweetsStreamListener listener : listeners) {
-            listener.actionOnTweetsStream(streamingTweet);
-          }
-          tweetsCount++;
-          if(tweetsCount == tweetsLimit) {
-            long stopTime = System.currentTimeMillis();
-            long durationInMillis = stopTime - startTime;
-            double seconds = durationInMillis / 1000.0;
-            System.out.println("Total duration in seconds: " + seconds);
-            shutdown();
-          }
+
         }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+
     }
   }
 }
