@@ -106,8 +106,18 @@ public class StreamQueryParameters {
             return this;
         }
 
+        public Builder withTweetFields(List<TweetField> tweetFields) {
+            this.tweetFields.addAll(tweetFields);
+            return this;
+        }
+
         public Builder withMediaFields(MediaField... mediaFields) {
             this.mediaFields.addAll(Arrays.asList(mediaFields));
+            return this;
+        }
+
+        public Builder withMediaFields(List<MediaField> mediaFields) {
+            this.mediaFields.addAll(mediaFields);
             return this;
         }
 
@@ -116,13 +126,28 @@ public class StreamQueryParameters {
             return this;
         }
 
+        public Builder withPollFields(List<PollField> pollFields) {
+            this.pollFields.addAll(pollFields);
+            return this;
+        }
+
         public Builder withUserFields(UserField... userFields) {
             this.userFields.addAll(Arrays.asList(userFields));
             return this;
         }
 
+        public Builder withUserFields(List<UserField> userFields) {
+            this.userFields.addAll(userFields);
+            return this;
+        }
+
         public Builder withPlaceFields(PlaceField... placeFields) {
             this.placeFields.addAll(Arrays.asList(placeFields));
+            return this;
+        }
+
+        public Builder withPlaceFields(List<PlaceField> placeFields) {
+            this.placeFields.addAll(placeFields);
             return this;
         }
 

@@ -43,20 +43,21 @@ public class HelloWorldStreaming {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer("AAAAAAAAAAAAAAAAAAAAAJotdgEAAAAAmXZex2w6l1D6TcwC8KfripI3ADY%3DkKTjcNPxea1aAL8yYXJTdbAX1NkgEJii7SpXetxuP9GXXhSnOa");
+    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
     TwitterStream twitterStream = new TwitterStream();
     twitterStream.setTwitterCredentials(credentials);
     twitterStream.addListener(new Responder());
+
 //    twitterStream.sampleStream(new StreamQueryParameters.Builder()
 //            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
 //            .build());
 
     twitterStream.sampleStream(new StreamQueryParameters.Builder()
-                    .withTweetFields(TweetField.all().toArray(new TweetField[0]))
-                    .withMediaFields(MediaField.all().toArray(new MediaField[0]))
-                    .withUserFields(UserField.all().toArray(new UserField[0]))
-                    .withPollFields(PollField.all().toArray(new PollField[0]))
-                    .withPlaceFields(PlaceField.all().toArray(new PlaceField[0]))
+                    .withTweetFields(TweetField.all())
+                    .withMediaFields(MediaField.all())
+                    .withUserFields(UserField.all())
+                    .withPollFields(PollField.all())
+                    .withPlaceFields(PlaceField.all())
                     .build());
 
   }

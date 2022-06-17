@@ -23,9 +23,6 @@ Do not edit the class manually.
 package com.twitter.clientlib.stream;
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -50,8 +47,6 @@ public class TweetsStreamExecutor {
   private long startTime;
   private int tweetsCount = 0;
   private final int tweetsLimit = 250000;
-  private final int deserializationThreads = 1; //TODO parametrize this
-
   private ExecutorService rawTweetsQueuerService;
   private ExecutorService deserializationService;
   private ExecutorService listenersService;
@@ -83,10 +78,8 @@ public class TweetsStreamExecutor {
     rawTweetsQueuerService = Executors.newSingleThreadExecutor();
     rawTweetsQueuerService.submit(new RawTweetsQueuer());
 
-    deserializationService = Executors.newFixedThreadPool(deserializationThreads);
-    for (int i = 0; i < deserializationThreads; i++) {
-      deserializationService.submit(new DeserializeTweetsTask());
-    }
+    deserializationService = Executors.newSingleThreadExecutor();
+    deserializationService.submit(new DeserializeTweetsTask());
 
     listenersService = Executors.newSingleThreadExecutor();
     listenersService.submit(new TweetsListenersTask());
@@ -94,32 +87,33 @@ public class TweetsStreamExecutor {
 
   public synchronized void shutdown() {
     isRunning = false;
-    rawTweetsQueuerService.shutdown();
-    deserializationService.shutdown();
-    listenersService.shutdown();
+    shutDownServices();
     try {
-      if (!rawTweetsQueuerService.awaitTermination(3, TimeUnit.SECONDS)) {
-        rawTweetsQueuerService.shutdownNow();
-        if (!rawTweetsQueuerService.awaitTermination(3, TimeUnit.SECONDS))
-          System.err.println("Pool did not terminate");
-      }
-      if (!deserializationService.awaitTermination(3, TimeUnit.SECONDS)) {
-        deserializationService.shutdownNow();
-        if (!deserializationService.awaitTermination(3, TimeUnit.SECONDS))
-          System.err.println("Pool did not terminate");
-      }
-      if (!listenersService.awaitTermination(3, TimeUnit.SECONDS)) {
-        listenersService.shutdownNow();
-        if (!listenersService.awaitTermination(3, TimeUnit.SECONDS))
-          System.err.println("Pool did not terminate");
-      }
+      terminateServices();
     } catch (InterruptedException ie) {
-      rawTweetsQueuerService.shutdown();
-      deserializationService.shutdown();
-      listenersService.shutdown();
+      shutDownServices();
       Thread.currentThread().interrupt();
     }
     System.out.println("TweetsStreamListenersExecutor is shutting down.");
+  }
+
+  private void shutDownServices() {
+    rawTweetsQueuerService.shutdown();
+    deserializationService.shutdown();
+    listenersService.shutdown();
+  }
+
+  private void terminateServices() throws InterruptedException {
+    terminateService(rawTweetsQueuerService);
+    terminateService(deserializationService);
+    terminateService(listenersService);
+  }
+  private void terminateService(ExecutorService executorService) throws InterruptedException {
+    if (!executorService.awaitTermination(3, TimeUnit.SECONDS)) {
+      executorService.shutdownNow();
+      if (!executorService.awaitTermination(3, TimeUnit.SECONDS))
+        System.err.println("Pool did not terminate");
+    }
   }
 
   private class RawTweetsQueuer implements Runnable {
@@ -130,7 +124,6 @@ public class TweetsStreamExecutor {
     }
 
     public void queueTweets() {
-
       String line = null;
       try {
         while (isRunning) {
