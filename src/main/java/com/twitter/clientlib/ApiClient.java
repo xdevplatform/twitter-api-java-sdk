@@ -29,6 +29,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 import okio.Buffer;
 import okio.BufferedSink;
+import okio.BufferedSource;
 import okio.Okio;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest.TokenRequestBuilder;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
@@ -1099,11 +1100,10 @@ public class ApiClient {
      * <p>Execute stream.</p>
      *
      * @param call a {@link okhttp3.Call} object
-     * @param returnType a {@link java.lang.reflect.Type} object
      * @return a {@link java.io.InputStream} object
      * @throws com.twitter.clientlib.ApiException if any.
      */
-    public InputStream executeStream(Call call, Type returnType) throws ApiException {
+    public BufferedSource executeStream(Call call) throws ApiException {
         try {
              Response response = call.execute();
              if (!response.isSuccessful()) {
@@ -1112,7 +1112,7 @@ public class ApiClient {
              if (response.body() == null) {
                  return null;
              }
-             return response.body().byteStream();
+             return response.body().source();
         } catch (IOException e) {
             throw new ApiException(e);
         }

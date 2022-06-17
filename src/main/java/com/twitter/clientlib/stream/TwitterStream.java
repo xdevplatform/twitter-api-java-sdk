@@ -5,6 +5,7 @@ import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TweetsApi;
 import com.twitter.clientlib.query.StreamQueryParameters;
+import okio.BufferedSource;
 
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -32,7 +33,7 @@ public class TwitterStream {
 
     public void sampleStream(StreamQueryParameters streamParameters) {
         try {
-            InputStream streamResult = tweets.sampleStream(streamParameters);
+            BufferedSource streamResult = tweets.sampleStream(streamParameters);
             TweetsStreamExecutor executor = new TweetsStreamExecutor(streamResult);
             listeners.forEach(executor::addListener);
             executor.start();

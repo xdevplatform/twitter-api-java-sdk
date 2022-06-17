@@ -78,6 +78,7 @@ import java.util.Set;
 import java.io.InputStream;
 import javax.ws.rs.core.GenericType;
 
+import okio.BufferedSource;
 import org.apache.commons.lang3.StringUtils;
 
 public class TweetsApi extends ApiCommon {
@@ -1692,17 +1693,16 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStream(StreamQueryParameters streamParameters) throws ApiException {
-        InputStream localVarResp = sampleStreamWithHttpInfo(streamParameters);
-        return localVarResp;
+    public BufferedSource sampleStream(StreamQueryParameters streamParameters) throws ApiException {
+        return sampleStreamWithHttpInfo(streamParameters);
     }
 
     /**
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream sampleStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
-        InputStream localVarResp;
+    public BufferedSource sampleStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
+        BufferedSource localVarResp;
         try{
           localVarResp = sampleStream(streamParameters);
         }
@@ -1730,11 +1730,10 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream sampleStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
+    public BufferedSource sampleStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
         okhttp3.Call localVarCall = sampleStreamValidateBeforeCall(streamParameters, null);
         try {
-            Type localVarReturnType = new TypeToken<StreamingTweet>(){}.getType();
-            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+            return localVarApiClient.executeStream(localVarCall);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
             throw e;
@@ -1857,17 +1856,16 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStream(StreamQueryParameters streamParameters) throws ApiException {
-        InputStream localVarResp = searchStreamWithHttpInfo(streamParameters);
-        return localVarResp;
+    public BufferedSource searchStream(StreamQueryParameters streamParameters) throws ApiException {
+        return searchStreamWithHttpInfo(streamParameters);
     }
 
     /**
      * Calls the API using a retry mechanism to handle rate limits errors.
      *
      */
-    public InputStream searchStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
-        InputStream localVarResp;
+    public BufferedSource searchStream(Integer retries, StreamQueryParameters streamParameters) throws ApiException {
+        BufferedSource localVarResp;
         try{
           localVarResp = searchStream(streamParameters);
         }
@@ -1895,11 +1893,10 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public InputStream searchStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
+    public BufferedSource searchStreamWithHttpInfo(StreamQueryParameters streamParameters) throws ApiException {
         okhttp3.Call localVarCall = searchStreamValidateBeforeCall(streamParameters, null);
         try {
-            Type localVarReturnType = new TypeToken<FilteredStreamingTweet>(){}.getType();
-            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+            return localVarApiClient.executeStream(localVarCall);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
             throw e;

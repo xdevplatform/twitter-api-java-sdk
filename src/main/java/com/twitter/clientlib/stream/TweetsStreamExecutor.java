@@ -40,6 +40,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twitter.clientlib.model.StreamingTweet;
+import okio.BufferedSource;
 
 public class TweetsStreamExecutor {
   private volatile BlockingQueue<String> rawTweets;
@@ -56,9 +57,9 @@ public class TweetsStreamExecutor {
   private ExecutorService listenersService;
 
   private final List<TweetsStreamListener> listeners = new ArrayList<>();
-  private InputStream stream;
+  private BufferedSource stream;
 
-  public TweetsStreamExecutor(InputStream stream) {
+  public TweetsStreamExecutor(BufferedSource stream) {
     this.rawTweets = new LinkedBlockingDeque<>();
     this.tweets = new LinkedBlockingDeque<>();
     this.stream = stream;
@@ -131,9 +132,9 @@ public class TweetsStreamExecutor {
     public void queueTweets() {
 
       String line = null;
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
+      try {
         while (isRunning) {
-          line = reader.readLine();
+          line = stream.readUtf8Line();
           if(line == null || line.isEmpty()) {
             continue;
           }
