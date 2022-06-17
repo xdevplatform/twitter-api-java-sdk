@@ -23,6 +23,7 @@ Do not edit the class manually.
 package com.twitter.clientlib.stream;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -36,10 +37,14 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.twitter.clientlib.exceptions.EmptyStreamTimeoutException;
 import com.twitter.clientlib.model.StreamingTweet;
 import okio.BufferedSource;
 
 public class TweetsStreamExecutor {
+
+  private static final long EMPTY_STREAM_TIMEOUT = 20000;
+  private static final int POLL_WAIT = 5;
   private volatile BlockingQueue<String> rawTweets;
   private volatile BlockingQueue<StreamingTweet> tweets;
   private volatile boolean isRunning = true;
@@ -90,9 +95,12 @@ public class TweetsStreamExecutor {
     shutDownServices();
     try {
       terminateServices();
+      stream.close();
     } catch (InterruptedException ie) {
       shutDownServices();
       Thread.currentThread().interrupt();
+    } catch (IOException e) {
+
     }
     System.out.println("TweetsStreamListenersExecutor is shutting down.");
   }
@@ -109,9 +117,9 @@ public class TweetsStreamExecutor {
     terminateService(listenersService);
   }
   private void terminateService(ExecutorService executorService) throws InterruptedException {
-    if (!executorService.awaitTermination(3, TimeUnit.SECONDS)) {
+    if (!executorService.awaitTermination(1500, TimeUnit.MILLISECONDS)) {
       executorService.shutdownNow();
-      if (!executorService.awaitTermination(3, TimeUnit.SECONDS))
+      if (!executorService.awaitTermination(1500, TimeUnit.MILLISECONDS))
         System.err.println("Pool did not terminate");
     }
   }
@@ -126,19 +134,32 @@ public class TweetsStreamExecutor {
     public void queueTweets() {
       String line = null;
       try {
+        boolean emptyResponse = false;
+        long firstEmptyResponseMillis = 0;
+        long lastEmptyReponseMillis;
         while (isRunning) {
           line = stream.readUtf8Line();
           if(line == null || line.isEmpty()) {
+            if(!emptyResponse) {
+              firstEmptyResponseMillis = System.currentTimeMillis();
+              emptyResponse = true;
+            } else {
+              lastEmptyReponseMillis = System.currentTimeMillis();
+              if(lastEmptyReponseMillis - firstEmptyResponseMillis > EMPTY_STREAM_TIMEOUT) {
+                throw new EmptyStreamTimeoutException(String.format("Stream was empty for %d seconds consecutively", EMPTY_STREAM_TIMEOUT));
+              } 
+            }
             continue;
           }
+          emptyResponse = false;
           try {
             rawTweets.put(line);
-          } catch (Exception interExcep) {
-            interExcep.printStackTrace();
+          } catch (Exception ignore) {
+
           }
         }
       } catch (Exception e) {
-        e.printStackTrace();
+        System.out.println("Something went wrong. Closing stream... " + e.getMessage());
         shutdown();
       }
     }
@@ -156,15 +177,14 @@ public class TweetsStreamExecutor {
     public void run() {
       while (isRunning) {
         try {
-          String rawTweet = rawTweets.take();
+          String rawTweet = rawTweets.poll(POLL_WAIT, TimeUnit.MILLISECONDS);
+          if (rawTweet == null) continue;
           StreamingTweet tweet = objectMapper.readValue(rawTweet, StreamingTweet.class);
           tweets.put(tweet);
         } catch (InterruptedException e) {
-          System.out.println("Fail 1");
-        } catch (JsonMappingException e) {
-          System.out.println("Fail 2");
+
         } catch (JsonProcessingException e) {
-          System.out.println("Fail 3");
+          System.out.println("debug log here");
         }
       }
     }
@@ -181,9 +201,10 @@ public class TweetsStreamExecutor {
 
         while (isRunning) {
           try {
-            streamingTweet = tweets.take();
+            streamingTweet = tweets.poll(POLL_WAIT, TimeUnit.MILLISECONDS);
+            if(streamingTweet == null) continue;
             for (TweetsStreamListener listener : listeners) {
-              listener.actionOnTweetsStream(streamingTweet);
+              listener.onTweetArrival(streamingTweet);
             }
             tweetsCount++;
             if(tweetsCount == tweetsLimit) {
@@ -194,7 +215,7 @@ public class TweetsStreamExecutor {
               shutdown();
             }
           } catch (InterruptedException e) {
-            System.out.println("processTweets: Fail 1");
+
           }
 
         }

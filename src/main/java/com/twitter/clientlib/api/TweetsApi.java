@@ -23,25 +23,16 @@ Do not edit the class manually.
 package com.twitter.clientlib.api;
 
 import com.twitter.clientlib.ApiCallback;
-import com.twitter.clientlib.ApiClient;
-import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.ApiResponse;
-import com.twitter.clientlib.Configuration;
 import com.twitter.clientlib.Pair;
-import com.twitter.clientlib.ProgressRequestBody;
-import com.twitter.clientlib.ProgressResponseBody;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
 import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
 import com.twitter.clientlib.model.CreateTweetRequest;
-import com.twitter.clientlib.model.Error;
 import com.twitter.clientlib.model.FilteredStreamingTweet;
 import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
 import com.twitter.clientlib.model.GetRulesResponse;
@@ -52,7 +43,7 @@ import com.twitter.clientlib.model.ListsIdTweetsResponse;
 import com.twitter.clientlib.model.MultiTweetLookupResponse;
 import com.twitter.clientlib.model.MultiUserLookupResponse;
 import java.time.OffsetDateTime;
-import com.twitter.clientlib.model.Problem;
+
 import com.twitter.clientlib.model.QuoteTweetLookupResponse;
 import com.twitter.clientlib.model.SingleTweetLookupResponse;
 import com.twitter.clientlib.model.StreamingTweet;
@@ -75,11 +66,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.io.InputStream;
-import javax.ws.rs.core.GenericType;
 
 import okio.BufferedSource;
-import org.apache.commons.lang3.StringUtils;
 
 public class TweetsApi extends ApiCommon {
 

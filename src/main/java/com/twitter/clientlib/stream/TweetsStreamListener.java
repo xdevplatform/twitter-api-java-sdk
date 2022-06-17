@@ -25,5 +25,5 @@ package com.twitter.clientlib.stream;
 import com.twitter.clientlib.model.StreamingTweet;
 
 public interface TweetsStreamListener {
-  void actionOnTweetsStream(StreamingTweet streamingTweet);
+  void onTweetArrival(StreamingTweet streamingTweet);
 }

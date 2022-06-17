@@ -4,10 +4,10 @@ import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TweetsApi;
+import com.twitter.clientlib.exceptions.AuthenticationException;
 import com.twitter.clientlib.query.StreamQueryParameters;
 import okio.BufferedSource;
 
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,15 +38,14 @@ public class TwitterStream {
             listeners.forEach(executor::addListener);
             executor.start();
         } catch (ApiException e) {
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
+            if(e.getCode() == 401) {
+                throw new AuthenticationException("Not authenticated. Please check the credentials", e);
+            }
         }
     }
 
     private void initBasePath() {
-        String basePath = "http://localhost:8080";
+        String basePath = System.getenv("TWITTER_API_BASE_PATH");
         apiClient.setBasePath(basePath != null ? basePath : "https://api.twitter.com");
     }
 
