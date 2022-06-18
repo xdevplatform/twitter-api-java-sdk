@@ -64,40 +64,17 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Photo extends Media {
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private URL url;
-
   public static final String SERIALIZED_NAME_ALT_TEXT = "alt_text";
   @SerializedName(SERIALIZED_NAME_ALT_TEXT)
   private String altText;
 
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private URL url;
+
   public Photo() { 
     this.type = this.getClass().getSimpleName();
   }
-
-  public Photo url(URL url) {
-    
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public URL getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(URL url) {
-    this.url = url;
-  }
-
 
   public Photo altText(String altText) {
     
@@ -122,6 +99,29 @@ public class Photo extends Media {
   }
 
 
+  public Photo url(URL url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public URL getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(URL url) {
+    this.url = url;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -132,14 +132,14 @@ public class Photo extends Media {
       return false;
     }
     Photo photo = (Photo) o;
-    return Objects.equals(this.url, photo.url) &&
-        Objects.equals(this.altText, photo.altText) &&
+    return Objects.equals(this.altText, photo.altText) &&
+        Objects.equals(this.url, photo.url) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, altText, super.hashCode());
+    return Objects.hash(altText, url, super.hashCode());
   }
 
   @Override
@@ -147,8 +147,8 @@ public class Photo extends Media {
     StringBuilder sb = new StringBuilder();
     sb.append("class Photo {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,12 +171,12 @@ public class Photo extends Media {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("media_key");
     openapiFields.add("height");
+    openapiFields.add("media_key");
+    openapiFields.add("type");
     openapiFields.add("width");
-    openapiFields.add("url");
     openapiFields.add("alt_text");
+    openapiFields.add("url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

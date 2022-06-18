@@ -6,8 +6,8 @@ A generic problem with no additional information beyond that provided by the HTT
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
 
 
 

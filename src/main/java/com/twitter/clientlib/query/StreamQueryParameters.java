@@ -22,6 +22,7 @@ import com.twitter.clientlib.query.model.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -124,7 +125,7 @@ public class StreamQueryParameters {
             return this;
         }
 
-        public Builder withTweetFields(List<TweetField> tweetFields) {
+        public Builder withTweetFields(Collection<TweetField> tweetFields) {
             this.tweetFields.addAll(tweetFields);
             return this;
         }
@@ -134,7 +135,7 @@ public class StreamQueryParameters {
             return this;
         }
 
-        public Builder withMediaFields(List<MediaField> mediaFields) {
+        public Builder withMediaFields(Collection<MediaField> mediaFields) {
             this.mediaFields.addAll(mediaFields);
             return this;
         }
@@ -144,7 +145,7 @@ public class StreamQueryParameters {
             return this;
         }
 
-        public Builder withPollFields(List<PollField> pollFields) {
+        public Builder withPollFields(Collection<PollField> pollFields) {
             this.pollFields.addAll(pollFields);
             return this;
         }
@@ -154,7 +155,7 @@ public class StreamQueryParameters {
             return this;
         }
 
-        public Builder withUserFields(List<UserField> userFields) {
+        public Builder withUserFields(Collection<UserField> userFields) {
             this.userFields.addAll(userFields);
             return this;
         }
@@ -164,8 +165,18 @@ public class StreamQueryParameters {
             return this;
         }
 
-        public Builder withPlaceFields(List<PlaceField> placeFields) {
+        public Builder withPlaceFields(Collection<PlaceField> placeFields) {
             this.placeFields.addAll(placeFields);
+            return this;
+        }
+
+        public Builder withExpansions(Expansion... expansions) {
+            this.expansions.addAll(Arrays.asList(expansions));
+            return this;
+        }
+
+        public Builder withExpansions(Collection<Expansion> expansions) {
+            this.expansions.addAll(expansions);
             return this;
         }
 

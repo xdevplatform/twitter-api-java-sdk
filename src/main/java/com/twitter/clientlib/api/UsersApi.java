@@ -38,21 +38,29 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.twitter.clientlib.model.BlockUserMutationResponse;
+import com.twitter.clientlib.model.BlockUserRequest;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.GenericMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.ListLookupMultipleUsersLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.Get2ListsIdFollowersResponse;
+import com.twitter.clientlib.model.Get2ListsIdMembersResponse;
+import com.twitter.clientlib.model.Get2TweetsIdLikingUsersResponse;
+import com.twitter.clientlib.model.Get2TweetsIdRetweetedByResponse;
+import com.twitter.clientlib.model.Get2UsersByResponse;
+import com.twitter.clientlib.model.Get2UsersByUsernameUsernameResponse;
+import com.twitter.clientlib.model.Get2UsersIdBlockingResponse;
+import com.twitter.clientlib.model.Get2UsersIdFollowersResponse;
+import com.twitter.clientlib.model.Get2UsersIdFollowingResponse;
+import com.twitter.clientlib.model.Get2UsersIdMutingResponse;
+import com.twitter.clientlib.model.Get2UsersIdResponse;
+import com.twitter.clientlib.model.Get2UsersMeResponse;
+import com.twitter.clientlib.model.Get2UsersResponse;
+import com.twitter.clientlib.model.MuteUserMutationResponse;
+import com.twitter.clientlib.model.MuteUserRequest;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleUserLookupResponse;
-import com.twitter.clientlib.model.UsersBlockingMutationResponse;
+import com.twitter.clientlib.model.UsersFollowingCreateRequest;
 import com.twitter.clientlib.model.UsersFollowingCreateResponse;
 import com.twitter.clientlib.model.UsersFollowingDeleteResponse;
-import com.twitter.clientlib.model.UsersFollowingLookupResponse;
-import com.twitter.clientlib.model.UsersIdBlockRequest;
-import com.twitter.clientlib.model.UsersIdFollowRequest;
-import com.twitter.clientlib.model.UsersIdMuteRequest;
-import com.twitter.clientlib.model.UsersMutingMutationResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -67,22 +75,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class UsersApi extends ApiCommon {
 
-    /**
-     * Build call for findMyUser
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findMyUserCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findMyUserCall(Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -94,16 +87,16 @@ public class UsersApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -127,71 +120,19 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findMyUserValidateBeforeCall(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findMyUserValidateBeforeCall(Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = findMyUserCall(expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = findMyUserCall(userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * User lookup me
-     * This endpoint returns information about the requesting user.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return SingleUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public SingleUserLookupResponse findMyUser(Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<SingleUserLookupResponse> localVarResp = findMyUserWithHttpInfo(expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public SingleUserLookupResponse findMyUser(Integer retries, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        SingleUserLookupResponse localVarResp;
-        try{
-          localVarResp = findMyUser(expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return findMyUser(retries - 1, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * User lookup me
-     * This endpoint returns information about the requesting user.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;SingleUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SingleUserLookupResponse> findMyUserWithHttpInfo(Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = findMyUserValidateBeforeCall(expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2UsersMeResponse> findMyUserWithHttpInfo(Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = findMyUserValidateBeforeCall(userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersMeResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -199,46 +140,147 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * User lookup me (asynchronously)
-     * This endpoint returns information about the requesting user.
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findMyUserAsync(Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<SingleUserLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call findMyUserAsync(Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersMeResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findMyUserValidateBeforeCall(expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findMyUserValidateBeforeCall(userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersMeResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIfindMyUserRequest {
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIfindMyUserRequest() {
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIfindMyUserRequest
+         */
+        public APIfindMyUserRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIfindMyUserRequest
+         */
+        public APIfindMyUserRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIfindMyUserRequest
+         */
+        public APIfindMyUserRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for findMyUser
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findMyUserCall(userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute findMyUser request
+         * @return Get2UsersMeResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersMeResponse execute() throws ApiException {
+            ApiResponse<Get2UsersMeResponse> localVarResp = findMyUserWithHttpInfo(userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersMeResponse  execute(Integer retries) throws ApiException {
+          Get2UsersMeResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute findMyUser request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersMeResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersMeResponse> executeWithHttpInfo() throws ApiException {
+              return findMyUserWithHttpInfo(userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute findMyUser request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersMeResponse> _callback) throws ApiException {
+            return findMyUserAsync(userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for findUserById
-     * @param id Required. A User ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * User lookup me
+     * This endpoint returns information about the requesting User.
+     * @return APIfindMyUserRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findUserByIdCall(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIfindMyUserRequest findMyUser() {
+        return new APIfindMyUserRequest();
+    }
+    private okhttp3.Call findUserByIdCall(String id, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -251,16 +293,16 @@ public class UsersApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -284,7 +326,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findUserByIdValidateBeforeCall(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findUserByIdValidateBeforeCall(String id, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -292,70 +334,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findUserByIdCall(id, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = findUserByIdCall(id, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * User lookup by ID
-     * This endpoint returns information about a user. Specify user by ID.
-     * @param id Required. A User ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return SingleUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public SingleUserLookupResponse findUserById(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<SingleUserLookupResponse> localVarResp = findUserByIdWithHttpInfo(id, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public SingleUserLookupResponse findUserById(Integer retries, String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        SingleUserLookupResponse localVarResp;
-        try{
-          localVarResp = findUserById(id, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return findUserById(retries - 1, id, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * User lookup by ID
-     * This endpoint returns information about a user. Specify user by ID.
-     * @param id Required. A User ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;SingleUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SingleUserLookupResponse> findUserByIdWithHttpInfo(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(id, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2UsersIdResponse> findUserByIdWithHttpInfo(String id, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(id, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -363,47 +351,150 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * User lookup by ID (asynchronously)
-     * This endpoint returns information about a user. Specify user by ID.
-     * @param id Required. A User ID. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findUserByIdAsync(String id, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<SingleUserLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call findUserByIdAsync(String id, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersIdResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(id, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findUserByIdValidateBeforeCall(id, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIfindUserByIdRequest {
+        private final String id;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIfindUserByIdRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIfindUserByIdRequest
+         */
+        public APIfindUserByIdRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIfindUserByIdRequest
+         */
+        public APIfindUserByIdRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIfindUserByIdRequest
+         */
+        public APIfindUserByIdRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for findUserById
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findUserByIdCall(id, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute findUserById request
+         * @return Get2UsersIdResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdResponse> localVarResp = findUserByIdWithHttpInfo(id, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute findUserById request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdResponse> executeWithHttpInfo() throws ApiException {
+              return findUserByIdWithHttpInfo(id, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute findUserById request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdResponse> _callback) throws ApiException {
+            return findUserByIdAsync(id, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for findUserByUsername
-     * @param username Required. A username. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * User lookup by ID
+     * This endpoint returns information about a User. Specify User by ID.
+     * @param id The ID of the User to lookup. (required)
+     * @return APIfindUserByIdRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findUserByUsernameCall(String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIfindUserByIdRequest findUserById(String id) {
+        return new APIfindUserByIdRequest(id);
+    }
+    private okhttp3.Call findUserByUsernameCall(String username, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -416,16 +507,16 @@ public class UsersApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -449,7 +540,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findUserByUsernameValidateBeforeCall(String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findUserByUsernameValidateBeforeCall(String username, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
@@ -457,70 +548,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findUserByUsernameCall(username, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = findUserByUsernameCall(username, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * User lookup by username
-     * This endpoint returns information about a user. Specify user by username.
-     * @param username Required. A username. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return SingleUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public SingleUserLookupResponse findUserByUsername(String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<SingleUserLookupResponse> localVarResp = findUserByUsernameWithHttpInfo(username, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public SingleUserLookupResponse findUserByUsername(Integer retries, String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        SingleUserLookupResponse localVarResp;
-        try{
-          localVarResp = findUserByUsername(username, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return findUserByUsername(retries - 1, username, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * User lookup by username
-     * This endpoint returns information about a user. Specify user by username.
-     * @param username Required. A username. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;SingleUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SingleUserLookupResponse> findUserByUsernameWithHttpInfo(String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = findUserByUsernameValidateBeforeCall(username, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2UsersByUsernameUsernameResponse> findUserByUsernameWithHttpInfo(String username, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = findUserByUsernameValidateBeforeCall(username, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersByUsernameUsernameResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -528,47 +565,150 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * User lookup by username (asynchronously)
-     * This endpoint returns information about a user. Specify user by username.
-     * @param username Required. A username. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findUserByUsernameAsync(String username, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<SingleUserLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call findUserByUsernameAsync(String username, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersByUsernameUsernameResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findUserByUsernameValidateBeforeCall(username, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<SingleUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findUserByUsernameValidateBeforeCall(username, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersByUsernameUsernameResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIfindUserByUsernameRequest {
+        private final String username;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIfindUserByUsernameRequest(String username) {
+            this.username = username;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIfindUserByUsernameRequest
+         */
+        public APIfindUserByUsernameRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIfindUserByUsernameRequest
+         */
+        public APIfindUserByUsernameRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIfindUserByUsernameRequest
+         */
+        public APIfindUserByUsernameRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for findUserByUsername
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findUserByUsernameCall(username, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute findUserByUsername request
+         * @return Get2UsersByUsernameUsernameResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersByUsernameUsernameResponse execute() throws ApiException {
+            ApiResponse<Get2UsersByUsernameUsernameResponse> localVarResp = findUserByUsernameWithHttpInfo(username, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersByUsernameUsernameResponse  execute(Integer retries) throws ApiException {
+          Get2UsersByUsernameUsernameResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute findUserByUsername request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersByUsernameUsernameResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersByUsernameUsernameResponse> executeWithHttpInfo() throws ApiException {
+              return findUserByUsernameWithHttpInfo(username, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute findUserByUsername request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersByUsernameUsernameResponse> _callback) throws ApiException {
+            return findUserByUsernameAsync(username, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for findUsersById
-     * @param ids Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * User lookup by username
+     * This endpoint returns information about a User. Specify User by username.
+     * @param username A username. (required)
+     * @return APIfindUserByUsernameRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findUsersByIdCall(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIfindUserByUsernameRequest findUserByUsername(String username) {
+        return new APIfindUserByUsernameRequest(username);
+    }
+    private okhttp3.Call findUsersByIdCall(List<String> ids, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -584,16 +724,16 @@ public class UsersApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "ids", ids));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -617,7 +757,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findUsersByIdValidateBeforeCall(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findUsersByIdValidateBeforeCall(List<String> ids, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'ids' is set
         if (ids == null) {
@@ -625,70 +765,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findUsersByIdCall(ids, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = findUsersByIdCall(ids, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * User lookup by IDs
-     * This endpoint returns information about users. Specify users by their ID.
-     * @param ids Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return MultiUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public MultiUserLookupResponse findUsersById(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<MultiUserLookupResponse> localVarResp = findUsersByIdWithHttpInfo(ids, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public MultiUserLookupResponse findUsersById(Integer retries, List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        MultiUserLookupResponse localVarResp;
-        try{
-          localVarResp = findUsersById(ids, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return findUsersById(retries - 1, ids, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * User lookup by IDs
-     * This endpoint returns information about users. Specify users by their ID.
-     * @param ids Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;MultiUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<MultiUserLookupResponse> findUsersByIdWithHttpInfo(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = findUsersByIdValidateBeforeCall(ids, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2UsersResponse> findUsersByIdWithHttpInfo(List<String> ids, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = findUsersByIdValidateBeforeCall(ids, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -696,47 +782,150 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * User lookup by IDs (asynchronously)
-     * This endpoint returns information about users. Specify users by their ID.
-     * @param ids Required. A list of User IDs, comma-separated. You can specify up to 100 IDs. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findUsersByIdAsync(List<String> ids, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<MultiUserLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call findUsersByIdAsync(List<String> ids, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findUsersByIdValidateBeforeCall(ids, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findUsersByIdValidateBeforeCall(ids, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIfindUsersByIdRequest {
+        private final List<String> ids;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIfindUsersByIdRequest(List<String> ids) {
+            this.ids = ids;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIfindUsersByIdRequest
+         */
+        public APIfindUsersByIdRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIfindUsersByIdRequest
+         */
+        public APIfindUsersByIdRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIfindUsersByIdRequest
+         */
+        public APIfindUsersByIdRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for findUsersById
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findUsersByIdCall(ids, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute findUsersById request
+         * @return Get2UsersResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersResponse execute() throws ApiException {
+            ApiResponse<Get2UsersResponse> localVarResp = findUsersByIdWithHttpInfo(ids, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersResponse  execute(Integer retries) throws ApiException {
+          Get2UsersResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute findUsersById request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersResponse> executeWithHttpInfo() throws ApiException {
+              return findUsersByIdWithHttpInfo(ids, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute findUsersById request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersResponse> _callback) throws ApiException {
+            return findUsersByIdAsync(ids, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for findUsersByUsername
-     * @param usernames Required . A list of usernames, comma-separated. You can specify up to 100 usernames. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * User lookup by IDs
+     * This endpoint returns information about Users. Specify Users by their ID.
+     * @param ids A list of User IDs, comma-separated. You can specify up to 100 IDs. (required)
+     * @return APIfindUsersByIdRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findUsersByUsernameCall(List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIfindUsersByIdRequest findUsersById(List<String> ids) {
+        return new APIfindUsersByIdRequest(ids);
+    }
+    private okhttp3.Call findUsersByUsernameCall(List<String> usernames, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -752,16 +941,16 @@ public class UsersApi extends ApiCommon {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "usernames", usernames));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -785,7 +974,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findUsersByUsernameValidateBeforeCall(List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findUsersByUsernameValidateBeforeCall(List<String> usernames, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'usernames' is set
         if (usernames == null) {
@@ -793,70 +982,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = findUsersByUsernameCall(usernames, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = findUsersByUsernameCall(usernames, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * User lookup by usernames
-     * This endpoint returns information about users. Specify users by their username.
-     * @param usernames Required . A list of usernames, comma-separated. You can specify up to 100 usernames. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return MultiUserLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public MultiUserLookupResponse findUsersByUsername(List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<MultiUserLookupResponse> localVarResp = findUsersByUsernameWithHttpInfo(usernames, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public MultiUserLookupResponse findUsersByUsername(Integer retries, List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        MultiUserLookupResponse localVarResp;
-        try{
-          localVarResp = findUsersByUsername(usernames, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return findUsersByUsername(retries - 1, usernames, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * User lookup by usernames
-     * This endpoint returns information about users. Specify users by their username.
-     * @param usernames Required . A list of usernames, comma-separated. You can specify up to 100 usernames. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;MultiUserLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<MultiUserLookupResponse> findUsersByUsernameWithHttpInfo(List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = findUsersByUsernameValidateBeforeCall(usernames, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2UsersByResponse> findUsersByUsernameWithHttpInfo(List<String> usernames, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = findUsersByUsernameValidateBeforeCall(usernames, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersByResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -864,49 +999,150 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * User lookup by usernames (asynchronously)
-     * This endpoint returns information about users. Specify users by their username.
-     * @param usernames Required . A list of usernames, comma-separated. You can specify up to 100 usernames. (required)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findUsersByUsernameAsync(List<String> usernames, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<MultiUserLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call findUsersByUsernameAsync(List<String> usernames, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersByResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findUsersByUsernameValidateBeforeCall(usernames, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<MultiUserLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = findUsersByUsernameValidateBeforeCall(usernames, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersByResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIfindUsersByUsernameRequest {
+        private final List<String> usernames;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIfindUsersByUsernameRequest(List<String> usernames) {
+            this.usernames = usernames;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIfindUsersByUsernameRequest
+         */
+        public APIfindUsersByUsernameRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIfindUsersByUsernameRequest
+         */
+        public APIfindUsersByUsernameRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIfindUsersByUsernameRequest
+         */
+        public APIfindUsersByUsernameRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for findUsersByUsername
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findUsersByUsernameCall(usernames, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute findUsersByUsername request
+         * @return Get2UsersByResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersByResponse execute() throws ApiException {
+            ApiResponse<Get2UsersByResponse> localVarResp = findUsersByUsernameWithHttpInfo(usernames, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersByResponse  execute(Integer retries) throws ApiException {
+          Get2UsersByResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute findUsersByUsername request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersByResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersByResponse> executeWithHttpInfo() throws ApiException {
+              return findUsersByUsernameWithHttpInfo(usernames, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute findUsersByUsername request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersByResponse> _callback) throws ApiException {
+            return findUsersByUsernameAsync(usernames, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listGetFollowers
-     * @param id The ID of the List for which to return followers (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * User lookup by usernames
+     * This endpoint returns information about Users. Specify Users by their username.
+     * @param usernames A list of usernames, comma-separated. (required)
+     * @return APIfindUsersByUsernameRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listGetFollowersCall(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIfindUsersByUsernameRequest findUsersByUsername(List<String> usernames) {
+        return new APIfindUsersByUsernameRequest(usernames);
+    }
+    private okhttp3.Call listGetFollowersCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -927,16 +1163,16 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -960,7 +1196,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listGetFollowersValidateBeforeCall(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listGetFollowersValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -968,74 +1204,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = listGetFollowersCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = listGetFollowersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that follow a List by the provided List ID
-     * Returns a list of users that follow a List by the provided List ID
-     * @param id The ID of the List for which to return followers (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ListLookupMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListLookupMultipleUsersLookupResponse listGetFollowers(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<ListLookupMultipleUsersLookupResponse> localVarResp = listGetFollowersWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListLookupMultipleUsersLookupResponse listGetFollowers(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        ListLookupMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = listGetFollowers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listGetFollowers(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that follow a List by the provided List ID
-     * Returns a list of users that follow a List by the provided List ID
-     * @param id The ID of the List for which to return followers (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;ListLookupMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListLookupMultipleUsersLookupResponse> listGetFollowersWithHttpInfo(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = listGetFollowersValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2ListsIdFollowersResponse> listGetFollowersWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = listGetFollowersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<ListLookupMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2ListsIdFollowersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1043,51 +1221,172 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that follow a List by the provided List ID (asynchronously)
-     * Returns a list of users that follow a List by the provided List ID
-     * @param id The ID of the List for which to return followers (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listGetFollowersAsync(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<ListLookupMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call listGetFollowersAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2ListsIdFollowersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listGetFollowersValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<ListLookupMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = listGetFollowersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2ListsIdFollowersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistGetFollowersRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIlistGetFollowersRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIlistGetFollowersRequest
+         */
+        public APIlistGetFollowersRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIlistGetFollowersRequest
+         */
+        public APIlistGetFollowersRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIlistGetFollowersRequest
+         */
+        public APIlistGetFollowersRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIlistGetFollowersRequest
+         */
+        public APIlistGetFollowersRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIlistGetFollowersRequest
+         */
+        public APIlistGetFollowersRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for listGetFollowers
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listGetFollowersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute listGetFollowers request
+         * @return Get2ListsIdFollowersResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2ListsIdFollowersResponse execute() throws ApiException {
+            ApiResponse<Get2ListsIdFollowersResponse> localVarResp = listGetFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2ListsIdFollowersResponse  execute(Integer retries) throws ApiException {
+          Get2ListsIdFollowersResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listGetFollowers request with HTTP info returned
+         * @return ApiResponse&lt;Get2ListsIdFollowersResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2ListsIdFollowersResponse> executeWithHttpInfo() throws ApiException {
+              return listGetFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute listGetFollowers request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2ListsIdFollowersResponse> _callback) throws ApiException {
+            return listGetFollowersAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listGetMembers
-     * @param id The ID of the List for which to return members (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that follow a List by the provided List ID
+     * Returns a list of Users that follow a List by the provided List ID
+     * @param id The ID of the List. (required)
+     * @return APIlistGetFollowersRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listGetMembersCall(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    public APIlistGetFollowersRequest listGetFollowers(String id) {
+        return new APIlistGetFollowersRequest(id);
+    }
+    private okhttp3.Call listGetMembersCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1108,16 +1407,16 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
         if (expansions != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
-        }
-
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
         }
 
         final String[] localVarAccepts = {
@@ -1141,7 +1440,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listGetMembersValidateBeforeCall(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listGetMembersValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1149,74 +1448,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = listGetMembersCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, _callback);
+        okhttp3.Call localVarCall = listGetMembersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that are members of a List by the provided List ID
-     * Returns a list of users that are members of a List by the provided List ID
-     * @param id The ID of the List for which to return members (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ListLookupMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ListLookupMultipleUsersLookupResponse listGetMembers(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-      ApiResponse<ListLookupMultipleUsersLookupResponse> localVarResp = listGetMembersWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public ListLookupMultipleUsersLookupResponse listGetMembers(Integer retries, String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        ListLookupMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = listGetMembers(id, maxResults, paginationToken, expansions, tweetFields, userFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listGetMembers(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that are members of a List by the provided List ID
-     * Returns a list of users that are members of a List by the provided List ID
-     * @param id The ID of the List for which to return members (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @return ApiResponse&lt;ListLookupMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ListLookupMultipleUsersLookupResponse> listGetMembersWithHttpInfo(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields) throws ApiException {
-        okhttp3.Call localVarCall = listGetMembersValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, null);
+    private ApiResponse<Get2ListsIdMembersResponse> listGetMembersWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = listGetMembersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<ListLookupMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2ListsIdMembersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1224,48 +1465,172 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that are members of a List by the provided List ID (asynchronously)
-     * Returns a list of users that are members of a List by the provided List ID
-     * @param id The ID of the List for which to return members (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call listGetMembersAsync(String id, Integer maxResults, Long paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, final ApiCallback<ListLookupMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call listGetMembersAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2ListsIdMembersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listGetMembersValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, _callback);
-        Type localVarReturnType = new TypeToken<ListLookupMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = listGetMembersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2ListsIdMembersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIlistGetMembersRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIlistGetMembersRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIlistGetMembersRequest
+         */
+        public APIlistGetMembersRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIlistGetMembersRequest
+         */
+        public APIlistGetMembersRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIlistGetMembersRequest
+         */
+        public APIlistGetMembersRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIlistGetMembersRequest
+         */
+        public APIlistGetMembersRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIlistGetMembersRequest
+         */
+        public APIlistGetMembersRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for listGetMembers
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listGetMembersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute listGetMembers request
+         * @return Get2ListsIdMembersResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2ListsIdMembersResponse execute() throws ApiException {
+            ApiResponse<Get2ListsIdMembersResponse> localVarResp = listGetMembersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2ListsIdMembersResponse  execute(Integer retries) throws ApiException {
+          Get2ListsIdMembersResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listGetMembers request with HTTP info returned
+         * @return ApiResponse&lt;Get2ListsIdMembersResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2ListsIdMembersResponse> executeWithHttpInfo() throws ApiException {
+              return listGetMembersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute listGetMembers request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2ListsIdMembersResponse> _callback) throws ApiException {
+            return listGetMembersAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for tweetsIdLikingUsers
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that are members of a List by the provided List ID.
+     * Returns a list of Users that are members of a List by the provided List ID.
+     * @param id The ID of the List. (required)
+     * @return APIlistGetMembersRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsIdLikingUsersCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APIlistGetMembersRequest listGetMembers(String id) {
+        return new APIlistGetMembersRequest(id);
+    }
+    private okhttp3.Call tweetsIdLikingUsersCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1286,6 +1651,18 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -1307,7 +1684,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetsIdLikingUsersValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetsIdLikingUsersValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1315,68 +1692,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetsIdLikingUsersCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = tweetsIdLikingUsersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that have liked the provided Tweet ID
-     * Returns a list of users that have liked the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return GenericMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericMultipleUsersLookupResponse tweetsIdLikingUsers(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GenericMultipleUsersLookupResponse> localVarResp = tweetsIdLikingUsersWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericMultipleUsersLookupResponse tweetsIdLikingUsers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        GenericMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = tweetsIdLikingUsers(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return tweetsIdLikingUsers(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that have liked the provided Tweet ID
-     * Returns a list of users that have liked the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return ApiResponse&lt;GenericMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericMultipleUsersLookupResponse> tweetsIdLikingUsersWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = tweetsIdLikingUsersValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2TweetsIdLikingUsersResponse> tweetsIdLikingUsersWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetsIdLikingUsersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsIdLikingUsersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1384,45 +1709,172 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that have liked the provided Tweet ID (asynchronously)
-     * Returns a list of users that have liked the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call tweetsIdLikingUsersAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<GenericMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call tweetsIdLikingUsersAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2TweetsIdLikingUsersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetsIdLikingUsersValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetsIdLikingUsersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsIdLikingUsersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APItweetsIdLikingUsersRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APItweetsIdLikingUsersRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APItweetsIdLikingUsersRequest
+         */
+        public APItweetsIdLikingUsersRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+         * @return APItweetsIdLikingUsersRequest
+         */
+        public APItweetsIdLikingUsersRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APItweetsIdLikingUsersRequest
+         */
+        public APItweetsIdLikingUsersRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APItweetsIdLikingUsersRequest
+         */
+        public APItweetsIdLikingUsersRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APItweetsIdLikingUsersRequest
+         */
+        public APItweetsIdLikingUsersRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for tweetsIdLikingUsers
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return tweetsIdLikingUsersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute tweetsIdLikingUsers request
+         * @return Get2TweetsIdLikingUsersResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2TweetsIdLikingUsersResponse execute() throws ApiException {
+            ApiResponse<Get2TweetsIdLikingUsersResponse> localVarResp = tweetsIdLikingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2TweetsIdLikingUsersResponse  execute(Integer retries) throws ApiException {
+          Get2TweetsIdLikingUsersResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute tweetsIdLikingUsers request with HTTP info returned
+         * @return ApiResponse&lt;Get2TweetsIdLikingUsersResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2TweetsIdLikingUsersResponse> executeWithHttpInfo() throws ApiException {
+              return tweetsIdLikingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute tweetsIdLikingUsers request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2TweetsIdLikingUsersResponse> _callback) throws ApiException {
+            return tweetsIdLikingUsersAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for tweetsIdRetweetingUsers
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that have liked the provided Tweet ID
+     * Returns a list of Users that have liked the provided Tweet ID
+     * @param id A single Tweet ID. (required)
+     * @return APItweetsIdLikingUsersRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tweetsIdRetweetingUsersCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APItweetsIdLikingUsersRequest tweetsIdLikingUsers(String id) {
+        return new APItweetsIdLikingUsersRequest(id);
+    }
+    private okhttp3.Call tweetsIdRetweetingUsersCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1443,6 +1895,18 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -1464,7 +1928,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tweetsIdRetweetingUsersValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tweetsIdRetweetingUsersValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1472,68 +1936,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = tweetsIdRetweetingUsersCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = tweetsIdRetweetingUsersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that have retweeted the provided Tweet ID
-     * Returns a list of users that have retweeted the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return GenericMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GenericMultipleUsersLookupResponse> localVarResp = tweetsIdRetweetingUsersWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericMultipleUsersLookupResponse tweetsIdRetweetingUsers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        GenericMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = tweetsIdRetweetingUsers(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return tweetsIdRetweetingUsers(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that have retweeted the provided Tweet ID
-     * Returns a list of users that have retweeted the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return ApiResponse&lt;GenericMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericMultipleUsersLookupResponse> tweetsIdRetweetingUsersWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = tweetsIdRetweetingUsersValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2TweetsIdRetweetedByResponse> tweetsIdRetweetingUsersWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = tweetsIdRetweetingUsersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2TweetsIdRetweetedByResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1541,45 +1953,173 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that have retweeted the provided Tweet ID (asynchronously)
-     * Returns a list of users that have retweeted the provided Tweet ID
-     * @param id The ID of the Tweet for which to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call tweetsIdRetweetingUsersAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<GenericMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call tweetsIdRetweetingUsersAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2TweetsIdRetweetedByResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = tweetsIdRetweetingUsersValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = tweetsIdRetweetingUsersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsIdRetweetedByResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APItweetsIdRetweetingUsersRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APItweetsIdRetweetingUsersRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APItweetsIdRetweetingUsersRequest
+         */
+        public APItweetsIdRetweetingUsersRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+         * @return APItweetsIdRetweetingUsersRequest
+         */
+        public APItweetsIdRetweetingUsersRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APItweetsIdRetweetingUsersRequest
+         */
+        public APItweetsIdRetweetingUsersRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APItweetsIdRetweetingUsersRequest
+         */
+        public APItweetsIdRetweetingUsersRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APItweetsIdRetweetingUsersRequest
+         */
+        public APItweetsIdRetweetingUsersRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for tweetsIdRetweetingUsers
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return tweetsIdRetweetingUsersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute tweetsIdRetweetingUsers request
+         * @return Get2TweetsIdRetweetedByResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2TweetsIdRetweetedByResponse execute() throws ApiException {
+            ApiResponse<Get2TweetsIdRetweetedByResponse> localVarResp = tweetsIdRetweetingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2TweetsIdRetweetedByResponse  execute(Integer retries) throws ApiException {
+          Get2TweetsIdRetweetedByResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute tweetsIdRetweetingUsers request with HTTP info returned
+         * @return ApiResponse&lt;Get2TweetsIdRetweetedByResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2TweetsIdRetweetedByResponse> executeWithHttpInfo() throws ApiException {
+              return tweetsIdRetweetingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute tweetsIdRetweetingUsers request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2TweetsIdRetweetedByResponse> _callback) throws ApiException {
+            return tweetsIdRetweetingUsersAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdBlock
-     * @param usersIdBlockRequest  (optional)
-     * @param id The ID of the user that is requesting to block the target user (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that have retweeted the provided Tweet ID
+     * Returns a list of Users that have retweeted the provided Tweet ID
+     * @param id A single Tweet ID. (required)
+     * @return APItweetsIdRetweetingUsersRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdBlockCall(UsersIdBlockRequest usersIdBlockRequest, String id, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = usersIdBlockRequest;
+    public APItweetsIdRetweetingUsersRequest tweetsIdRetweetingUsers(String id) {
+        return new APItweetsIdRetweetingUsersRequest(id);
+    }
+    private okhttp3.Call usersIdBlockCall(BlockUserRequest blockUserRequest, String id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = blockUserRequest;
 
         // create path and map variables
         String localVarPath = "/2/users/{id}/blocking"
@@ -1612,7 +2152,12 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdBlockValidateBeforeCall(UsersIdBlockRequest usersIdBlockRequest, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdBlockValidateBeforeCall(BlockUserRequest blockUserRequest, String id, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'blockUserRequest' is set
+        if (blockUserRequest == null) {
+            throw new ApiException("Missing the required parameter 'blockUserRequest' when calling usersIdBlock(Async)");
+        }
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1620,66 +2165,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdBlockCall(usersIdBlockRequest, id, _callback);
+        okhttp3.Call localVarCall = usersIdBlockCall(blockUserRequest, id, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Block User by User ID
-     * Causes the user (in the path) to block the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdBlockRequest  (optional)
-     * @param id The ID of the user that is requesting to block the target user (required)
-     * @return UsersBlockingMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersBlockingMutationResponse usersIdBlock(UsersIdBlockRequest usersIdBlockRequest, String id) throws ApiException {
-      ApiResponse<UsersBlockingMutationResponse> localVarResp = usersIdBlockWithHttpInfo(usersIdBlockRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersBlockingMutationResponse usersIdBlock(Integer retries, UsersIdBlockRequest usersIdBlockRequest, String id) throws ApiException {
-        UsersBlockingMutationResponse localVarResp;
-        try{
-          localVarResp = usersIdBlock(usersIdBlockRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdBlock(retries - 1, usersIdBlockRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Block User by User ID
-     * Causes the user (in the path) to block the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdBlockRequest  (optional)
-     * @param id The ID of the user that is requesting to block the target user (required)
-     * @return ApiResponse&lt;UsersBlockingMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersBlockingMutationResponse> usersIdBlockWithHttpInfo(UsersIdBlockRequest usersIdBlockRequest, String id) throws ApiException {
-        okhttp3.Call localVarCall = usersIdBlockValidateBeforeCall(usersIdBlockRequest, id, null);
+    private ApiResponse<BlockUserMutationResponse> usersIdBlockWithHttpInfo(BlockUserRequest blockUserRequest, String id) throws ApiException {
+        okhttp3.Call localVarCall = usersIdBlockValidateBeforeCall(blockUserRequest, id, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersBlockingMutationResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<BlockUserMutationResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1687,44 +2182,120 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Block User by User ID (asynchronously)
-     * Causes the user (in the path) to block the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdBlockRequest  (optional)
-     * @param id The ID of the user that is requesting to block the target user (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdBlockAsync(UsersIdBlockRequest usersIdBlockRequest, String id, final ApiCallback<UsersBlockingMutationResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdBlockAsync(BlockUserRequest blockUserRequest, String id, final ApiCallback<BlockUserMutationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdBlockValidateBeforeCall(usersIdBlockRequest, id, _callback);
-        Type localVarReturnType = new TypeToken<UsersBlockingMutationResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdBlockValidateBeforeCall(blockUserRequest, id, _callback);
+        Type localVarReturnType = new TypeToken<BlockUserMutationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdBlockRequest {
+        private final BlockUserRequest blockUserRequest;
+        private final String id;
+
+        private APIusersIdBlockRequest(BlockUserRequest blockUserRequest, String id) {
+            this.blockUserRequest = blockUserRequest;
+            this.id = id;
+        }
+
+        /**
+         * Build call for usersIdBlock
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdBlockCall(blockUserRequest, id, _callback);
+        }
+
+        /**
+         * Execute usersIdBlock request
+         * @return BlockUserMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public BlockUserMutationResponse execute() throws ApiException {
+            ApiResponse<BlockUserMutationResponse> localVarResp = usersIdBlockWithHttpInfo(blockUserRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public BlockUserMutationResponse  execute(Integer retries) throws ApiException {
+          BlockUserMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdBlock request with HTTP info returned
+         * @return ApiResponse&lt;BlockUserMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<BlockUserMutationResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdBlockWithHttpInfo(blockUserRequest, id);
+            }
+        /**
+         * Execute usersIdBlock request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BlockUserMutationResponse> _callback) throws ApiException {
+            return usersIdBlockAsync(blockUserRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdBlocking
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Block User by User ID
+     * Causes the User (in the path) to block the target User. The User (in the path) must match the User context authorizing the request
+     * @param blockUserRequest  (required)
+     * @param id The ID of the authenticated source User that is requesting to block the target User. (required)
+     * @return APIusersIdBlockRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdBlockingCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APIusersIdBlockRequest usersIdBlock(BlockUserRequest blockUserRequest, String id) {
+        return new APIusersIdBlockRequest(blockUserRequest, id);
+    }
+    private okhttp3.Call usersIdBlockingCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1743,6 +2314,18 @@ public class UsersApi extends ApiCommon {
 
         if (paginationToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
         final String[] localVarAccepts = {
@@ -1766,7 +2349,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdBlockingValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdBlockingValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1774,68 +2357,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdBlockingCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = usersIdBlockingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that are blocked by provided user ID
-     * Returns a list of users that are blocked by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return GenericMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericMultipleUsersLookupResponse usersIdBlocking(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GenericMultipleUsersLookupResponse> localVarResp = usersIdBlockingWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericMultipleUsersLookupResponse usersIdBlocking(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        GenericMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = usersIdBlocking(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdBlocking(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that are blocked by provided user ID
-     * Returns a list of users that are blocked by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return ApiResponse&lt;GenericMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericMultipleUsersLookupResponse> usersIdBlockingWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = usersIdBlockingValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2UsersIdBlockingResponse> usersIdBlockingWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdBlockingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdBlockingResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -1843,45 +2374,173 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that are blocked by provided user ID (asynchronously)
-     * Returns a list of users that are blocked by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdBlockingAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<GenericMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdBlockingAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersIdBlockingResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdBlockingValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdBlockingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdBlockingResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdBlockingRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIusersIdBlockingRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional)
+         * @return APIusersIdBlockingRequest
+         */
+        public APIusersIdBlockingRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIusersIdBlockingRequest
+         */
+        public APIusersIdBlockingRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIusersIdBlockingRequest
+         */
+        public APIusersIdBlockingRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIusersIdBlockingRequest
+         */
+        public APIusersIdBlockingRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIusersIdBlockingRequest
+         */
+        public APIusersIdBlockingRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdBlocking
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdBlockingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute usersIdBlocking request
+         * @return Get2UsersIdBlockingResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdBlockingResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdBlockingResponse> localVarResp = usersIdBlockingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdBlockingResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdBlockingResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdBlocking request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdBlockingResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdBlockingResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdBlockingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute usersIdBlocking request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdBlockingResponse> _callback) throws ApiException {
+            return usersIdBlockingAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdFollow
-     * @param usersIdFollowRequest  (optional)
-     * @param id The ID of the user that is requesting to follow the target user (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that are blocked by provided User ID
+     * Returns a list of Users that are blocked by the provided User ID
+     * @param id The ID of the authenticated source User for whom to return results. (required)
+     * @return APIusersIdBlockingRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdFollowCall(UsersIdFollowRequest usersIdFollowRequest, String id, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = usersIdFollowRequest;
+    public APIusersIdBlockingRequest usersIdBlocking(String id) {
+        return new APIusersIdBlockingRequest(id);
+    }
+    private okhttp3.Call usersIdFollowCall(UsersFollowingCreateRequest usersFollowingCreateRequest, String id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = usersFollowingCreateRequest;
 
         // create path and map variables
         String localVarPath = "/2/users/{id}/following"
@@ -1914,7 +2573,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdFollowValidateBeforeCall(UsersIdFollowRequest usersIdFollowRequest, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowValidateBeforeCall(UsersFollowingCreateRequest usersFollowingCreateRequest, String id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1922,64 +2581,14 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdFollowCall(usersIdFollowRequest, id, _callback);
+        okhttp3.Call localVarCall = usersIdFollowCall(usersFollowingCreateRequest, id, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Follow User
-     * Causes the user(in the path) to follow, or “request to follow” for protected users, the target user. The user(in the path) must match the user context authorizing the request
-     * @param usersIdFollowRequest  (optional)
-     * @param id The ID of the user that is requesting to follow the target user (required)
-     * @return UsersFollowingCreateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersFollowingCreateResponse usersIdFollow(UsersIdFollowRequest usersIdFollowRequest, String id) throws ApiException {
-      ApiResponse<UsersFollowingCreateResponse> localVarResp = usersIdFollowWithHttpInfo(usersIdFollowRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersFollowingCreateResponse usersIdFollow(Integer retries, UsersIdFollowRequest usersIdFollowRequest, String id) throws ApiException {
-        UsersFollowingCreateResponse localVarResp;
-        try{
-          localVarResp = usersIdFollow(usersIdFollowRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdFollow(retries - 1, usersIdFollowRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Follow User
-     * Causes the user(in the path) to follow, or “request to follow” for protected users, the target user. The user(in the path) must match the user context authorizing the request
-     * @param usersIdFollowRequest  (optional)
-     * @param id The ID of the user that is requesting to follow the target user (required)
-     * @return ApiResponse&lt;UsersFollowingCreateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersFollowingCreateResponse> usersIdFollowWithHttpInfo(UsersIdFollowRequest usersIdFollowRequest, String id) throws ApiException {
-        okhttp3.Call localVarCall = usersIdFollowValidateBeforeCall(usersIdFollowRequest, id, null);
+    private ApiResponse<UsersFollowingCreateResponse> usersIdFollowWithHttpInfo(UsersFollowingCreateRequest usersFollowingCreateRequest, String id) throws ApiException {
+        okhttp3.Call localVarCall = usersIdFollowValidateBeforeCall(usersFollowingCreateRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<UsersFollowingCreateResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1989,44 +2598,128 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Follow User (asynchronously)
-     * Causes the user(in the path) to follow, or “request to follow” for protected users, the target user. The user(in the path) must match the user context authorizing the request
-     * @param usersIdFollowRequest  (optional)
-     * @param id The ID of the user that is requesting to follow the target user (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdFollowAsync(UsersIdFollowRequest usersIdFollowRequest, String id, final ApiCallback<UsersFollowingCreateResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowAsync(UsersFollowingCreateRequest usersFollowingCreateRequest, String id, final ApiCallback<UsersFollowingCreateResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdFollowValidateBeforeCall(usersIdFollowRequest, id, _callback);
+        okhttp3.Call localVarCall = usersIdFollowValidateBeforeCall(usersFollowingCreateRequest, id, _callback);
         Type localVarReturnType = new TypeToken<UsersFollowingCreateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdFollowRequest {
+        private final String id;
+        private UsersFollowingCreateRequest usersFollowingCreateRequest;
+
+        private APIusersIdFollowRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set usersFollowingCreateRequest
+         * @param usersFollowingCreateRequest  (optional)
+         * @return APIusersIdFollowRequest
+         */
+        public APIusersIdFollowRequest usersFollowingCreateRequest(UsersFollowingCreateRequest usersFollowingCreateRequest) {
+            this.usersFollowingCreateRequest = usersFollowingCreateRequest;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdFollow
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdFollowCall(usersFollowingCreateRequest, id, _callback);
+        }
+
+        /**
+         * Execute usersIdFollow request
+         * @return UsersFollowingCreateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public UsersFollowingCreateResponse execute() throws ApiException {
+            ApiResponse<UsersFollowingCreateResponse> localVarResp = usersIdFollowWithHttpInfo(usersFollowingCreateRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public UsersFollowingCreateResponse  execute(Integer retries) throws ApiException {
+          UsersFollowingCreateResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdFollow request with HTTP info returned
+         * @return ApiResponse&lt;UsersFollowingCreateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<UsersFollowingCreateResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdFollowWithHttpInfo(usersFollowingCreateRequest, id);
+            }
+        /**
+         * Execute usersIdFollow request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<UsersFollowingCreateResponse> _callback) throws ApiException {
+            return usersIdFollowAsync(usersFollowingCreateRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdFollowers
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Follow User
+     * Causes the User(in the path) to follow, or “request to follow” for protected Users, the target User. The User(in the path) must match the User context authorizing the request
+     * @param id The ID of the authenticated source User that is requesting to follow the target User. (required)
+     * @return APIusersIdFollowRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdFollowersCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APIusersIdFollowRequest usersIdFollow(String id) {
+        return new APIusersIdFollowRequest(id);
+    }
+    private okhttp3.Call usersIdFollowersCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2047,6 +2740,18 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -2068,7 +2773,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdFollowersValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowersValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2076,68 +2781,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdFollowersCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = usersIdFollowersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that follow the provided user ID
-     * Returns a list of users that follow the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return GenericMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericMultipleUsersLookupResponse usersIdFollowers(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GenericMultipleUsersLookupResponse> localVarResp = usersIdFollowersWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericMultipleUsersLookupResponse usersIdFollowers(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        GenericMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = usersIdFollowers(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdFollowers(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that follow the provided user ID
-     * Returns a list of users that follow the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return ApiResponse&lt;GenericMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericMultipleUsersLookupResponse> usersIdFollowersWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = usersIdFollowersValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2UsersIdFollowersResponse> usersIdFollowersWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdFollowersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdFollowersResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2145,45 +2798,172 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that follow the provided user ID (asynchronously)
-     * Returns a list of users that follow the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdFollowersAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<GenericMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowersAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersIdFollowersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdFollowersValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdFollowersValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdFollowersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdFollowersRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIusersIdFollowersRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional)
+         * @return APIusersIdFollowersRequest
+         */
+        public APIusersIdFollowersRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIusersIdFollowersRequest
+         */
+        public APIusersIdFollowersRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIusersIdFollowersRequest
+         */
+        public APIusersIdFollowersRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIusersIdFollowersRequest
+         */
+        public APIusersIdFollowersRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIusersIdFollowersRequest
+         */
+        public APIusersIdFollowersRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdFollowers
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdFollowersCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute usersIdFollowers request
+         * @return Get2UsersIdFollowersResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdFollowersResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdFollowersResponse> localVarResp = usersIdFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdFollowersResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdFollowersResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdFollowers request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdFollowersResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdFollowersResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute usersIdFollowers request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdFollowersResponse> _callback) throws ApiException {
+            return usersIdFollowersAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdFollowing
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that follow a List by the provided User ID
+     * Returns a list of Users that follow the provided User ID
+     * @param id The ID of the User to lookup. (required)
+     * @return APIusersIdFollowersRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdFollowingCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APIusersIdFollowersRequest usersIdFollowers(String id) {
+        return new APIusersIdFollowersRequest(id);
+    }
+    private okhttp3.Call usersIdFollowingCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2204,6 +2984,18 @@ public class UsersApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -2225,7 +3017,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdFollowingValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowingValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2233,68 +3025,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdFollowingCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = usersIdFollowingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Following by User ID
-     * Returns a list of users that are being followed by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return UsersFollowingLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersFollowingLookupResponse usersIdFollowing(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<UsersFollowingLookupResponse> localVarResp = usersIdFollowingWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersFollowingLookupResponse usersIdFollowing(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        UsersFollowingLookupResponse localVarResp;
-        try{
-          localVarResp = usersIdFollowing(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdFollowing(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Following by User ID
-     * Returns a list of users that are being followed by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @return ApiResponse&lt;UsersFollowingLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersFollowingLookupResponse> usersIdFollowingWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = usersIdFollowingValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2UsersIdFollowingResponse> usersIdFollowingWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdFollowingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersFollowingLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdFollowingResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2302,45 +3042,173 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Following by User ID (asynchronously)
-     * Returns a list of users that are being followed by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This value is populated by passing the &#39;next_token&#39; or &#39;previous_token&#39; returned in a request to paginate through results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdFollowingAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<UsersFollowingLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdFollowingAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersIdFollowingResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdFollowingValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<UsersFollowingLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdFollowingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdFollowingResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdFollowingRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIusersIdFollowingRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional)
+         * @return APIusersIdFollowingRequest
+         */
+        public APIusersIdFollowingRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get a specified &#39;page&#39; of results. (optional)
+         * @return APIusersIdFollowingRequest
+         */
+        public APIusersIdFollowingRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIusersIdFollowingRequest
+         */
+        public APIusersIdFollowingRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIusersIdFollowingRequest
+         */
+        public APIusersIdFollowingRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIusersIdFollowingRequest
+         */
+        public APIusersIdFollowingRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdFollowing
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdFollowingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute usersIdFollowing request
+         * @return Get2UsersIdFollowingResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdFollowingResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdFollowingResponse> localVarResp = usersIdFollowingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdFollowingResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdFollowingResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdFollowing request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdFollowingResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdFollowingResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdFollowingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute usersIdFollowing request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdFollowingResponse> _callback) throws ApiException {
+            return usersIdFollowingAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdMute
-     * @param usersIdMuteRequest  (optional)
-     * @param id The ID of the user that is requesting to mute the target user (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Following by User ID
+     * Returns a list of Users that are being followed by the provided User ID
+     * @param id The ID of the User to lookup. (required)
+     * @return APIusersIdFollowingRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdMuteCall(UsersIdMuteRequest usersIdMuteRequest, String id, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = usersIdMuteRequest;
+    public APIusersIdFollowingRequest usersIdFollowing(String id) {
+        return new APIusersIdFollowingRequest(id);
+    }
+    private okhttp3.Call usersIdMuteCall(MuteUserRequest muteUserRequest, String id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = muteUserRequest;
 
         // create path and map variables
         String localVarPath = "/2/users/{id}/muting"
@@ -2373,7 +3241,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdMuteValidateBeforeCall(UsersIdMuteRequest usersIdMuteRequest, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdMuteValidateBeforeCall(MuteUserRequest muteUserRequest, String id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2381,66 +3249,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdMuteCall(usersIdMuteRequest, id, _callback);
+        okhttp3.Call localVarCall = usersIdMuteCall(muteUserRequest, id, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Mute User by User ID
-     * Causes the user (in the path) to mute the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdMuteRequest  (optional)
-     * @param id The ID of the user that is requesting to mute the target user (required)
-     * @return UsersMutingMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersMutingMutationResponse usersIdMute(UsersIdMuteRequest usersIdMuteRequest, String id) throws ApiException {
-      ApiResponse<UsersMutingMutationResponse> localVarResp = usersIdMuteWithHttpInfo(usersIdMuteRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersMutingMutationResponse usersIdMute(Integer retries, UsersIdMuteRequest usersIdMuteRequest, String id) throws ApiException {
-        UsersMutingMutationResponse localVarResp;
-        try{
-          localVarResp = usersIdMute(usersIdMuteRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdMute(retries - 1, usersIdMuteRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Mute User by User ID
-     * Causes the user (in the path) to mute the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdMuteRequest  (optional)
-     * @param id The ID of the user that is requesting to mute the target user (required)
-     * @return ApiResponse&lt;UsersMutingMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersMutingMutationResponse> usersIdMuteWithHttpInfo(UsersIdMuteRequest usersIdMuteRequest, String id) throws ApiException {
-        okhttp3.Call localVarCall = usersIdMuteValidateBeforeCall(usersIdMuteRequest, id, null);
+    private ApiResponse<MuteUserMutationResponse> usersIdMuteWithHttpInfo(MuteUserRequest muteUserRequest, String id) throws ApiException {
+        okhttp3.Call localVarCall = usersIdMuteValidateBeforeCall(muteUserRequest, id, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersMutingMutationResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<MuteUserMutationResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2448,44 +3266,128 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Mute User by User ID (asynchronously)
-     * Causes the user (in the path) to mute the target user. The user (in the path) must match the user context authorizing the request
-     * @param usersIdMuteRequest  (optional)
-     * @param id The ID of the user that is requesting to mute the target user (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdMuteAsync(UsersIdMuteRequest usersIdMuteRequest, String id, final ApiCallback<UsersMutingMutationResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdMuteAsync(MuteUserRequest muteUserRequest, String id, final ApiCallback<MuteUserMutationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdMuteValidateBeforeCall(usersIdMuteRequest, id, _callback);
-        Type localVarReturnType = new TypeToken<UsersMutingMutationResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdMuteValidateBeforeCall(muteUserRequest, id, _callback);
+        Type localVarReturnType = new TypeToken<MuteUserMutationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdMuteRequest {
+        private final String id;
+        private MuteUserRequest muteUserRequest;
+
+        private APIusersIdMuteRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set muteUserRequest
+         * @param muteUserRequest  (optional)
+         * @return APIusersIdMuteRequest
+         */
+        public APIusersIdMuteRequest muteUserRequest(MuteUserRequest muteUserRequest) {
+            this.muteUserRequest = muteUserRequest;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdMute
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdMuteCall(muteUserRequest, id, _callback);
+        }
+
+        /**
+         * Execute usersIdMute request
+         * @return MuteUserMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public MuteUserMutationResponse execute() throws ApiException {
+            ApiResponse<MuteUserMutationResponse> localVarResp = usersIdMuteWithHttpInfo(muteUserRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public MuteUserMutationResponse  execute(Integer retries) throws ApiException {
+          MuteUserMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdMute request with HTTP info returned
+         * @return ApiResponse&lt;MuteUserMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<MuteUserMutationResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdMuteWithHttpInfo(muteUserRequest, id);
+            }
+        /**
+         * Execute usersIdMute request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<MuteUserMutationResponse> _callback) throws ApiException {
+            return usersIdMuteAsync(muteUserRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdMuting
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Mute User by User ID.
+     * Causes the User (in the path) to mute the target User. The User (in the path) must match the User context authorizing the request.
+     * @param id The ID of the authenticated source User that is requesting to mute the target User. (required)
+     * @return APIusersIdMuteRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdMutingCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    public APIusersIdMuteRequest usersIdMute(String id) {
+        return new APIusersIdMuteRequest(id);
+    }
+    private okhttp3.Call usersIdMutingCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2504,6 +3406,18 @@ public class UsersApi extends ApiCommon {
 
         if (paginationToken != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
         final String[] localVarAccepts = {
@@ -2527,7 +3441,7 @@ public class UsersApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call usersIdMutingValidateBeforeCall(String id, Integer maxResults, String paginationToken, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call usersIdMutingValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2535,68 +3449,16 @@ public class UsersApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = usersIdMutingCall(id, maxResults, paginationToken, _callback);
+        okhttp3.Call localVarCall = usersIdMutingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Returns user objects that are muted by the provided user ID
-     * Returns a list of users that are muted by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return GenericMultipleUsersLookupResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericMultipleUsersLookupResponse usersIdMuting(String id, Integer maxResults, String paginationToken) throws ApiException {
-      ApiResponse<GenericMultipleUsersLookupResponse> localVarResp = usersIdMutingWithHttpInfo(id, maxResults, paginationToken);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericMultipleUsersLookupResponse usersIdMuting(Integer retries, String id, Integer maxResults, String paginationToken) throws ApiException {
-        GenericMultipleUsersLookupResponse localVarResp;
-        try{
-          localVarResp = usersIdMuting(id, maxResults, paginationToken);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdMuting(retries - 1, id, maxResults, paginationToken);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Returns user objects that are muted by the provided user ID
-     * Returns a list of users that are muted by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @return ApiResponse&lt;GenericMultipleUsersLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericMultipleUsersLookupResponse> usersIdMutingWithHttpInfo(String id, Integer maxResults, String paginationToken) throws ApiException {
-        okhttp3.Call localVarCall = usersIdMutingValidateBeforeCall(id, maxResults, paginationToken, null);
+    private ApiResponse<Get2UsersIdMutingResponse> usersIdMutingWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields) throws ApiException {
+        okhttp3.Call localVarCall = usersIdMutingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdMutingResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2604,44 +3466,172 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Returns user objects that are muted by the provided user ID (asynchronously)
-     * Returns a list of users that are muted by the provided user ID
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional, default to 100)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdMutingAsync(String id, Integer maxResults, String paginationToken, final ApiCallback<GenericMultipleUsersLookupResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdMutingAsync(String id, Integer maxResults, String paginationToken, Set<String> userFields, Set<String> expansions, Set<String> tweetFields, final ApiCallback<Get2UsersIdMutingResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = usersIdMutingValidateBeforeCall(id, maxResults, paginationToken, _callback);
-        Type localVarReturnType = new TypeToken<GenericMultipleUsersLookupResponse>(){}.getType();
+        okhttp3.Call localVarCall = usersIdMutingValidateBeforeCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdMutingResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdMutingRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> userFields;
+        private Set<String> expansions;
+        private Set<String> tweetFields;
+
+        private APIusersIdMutingRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional, default to 100)
+         * @return APIusersIdMutingRequest
+         */
+        public APIusersIdMutingRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+         * @return APIusersIdMutingRequest
+         */
+        public APIusersIdMutingRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIusersIdMutingRequest
+         */
+        public APIusersIdMutingRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIusersIdMutingRequest
+         */
+        public APIusersIdMutingRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIusersIdMutingRequest
+         */
+        public APIusersIdMutingRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Build call for usersIdMuting
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdMutingCall(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+
+        /**
+         * Execute usersIdMuting request
+         * @return Get2UsersIdMutingResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdMutingResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdMutingResponse> localVarResp = usersIdMutingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdMutingResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdMutingResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdMuting request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdMutingResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdMutingResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdMutingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
+            }
+        /**
+         * Execute usersIdMuting request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdMutingResponse> _callback) throws ApiException {
+            return usersIdMutingAsync(id, maxResults, paginationToken, userFields, expansions, tweetFields, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdUnblock
-     * @param sourceUserId The ID of the user that is requesting to unblock the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unblock (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns User objects that are muted by the provided User ID
+     * Returns a list of Users that are muted by the provided User ID
+     * @param id The ID of the authenticated source User for whom to return results. (required)
+     * @return APIusersIdMutingRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdUnblockCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
+    public APIusersIdMutingRequest usersIdMuting(String id) {
+        return new APIusersIdMutingRequest(id);
+    }
+    private okhttp3.Call usersIdUnblockCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2694,61 +3684,11 @@ public class UsersApi extends ApiCommon {
 
     }
 
-    /**
-     * Unblock User by User ID
-     * Causes the source user to unblock the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unblock the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unblock (required)
-     * @return UsersBlockingMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersBlockingMutationResponse usersIdUnblock(String sourceUserId, String targetUserId) throws ApiException {
-      ApiResponse<UsersBlockingMutationResponse> localVarResp = usersIdUnblockWithHttpInfo(sourceUserId, targetUserId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersBlockingMutationResponse usersIdUnblock(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
-        UsersBlockingMutationResponse localVarResp;
-        try{
-          localVarResp = usersIdUnblock(sourceUserId, targetUserId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdUnblock(retries - 1, sourceUserId, targetUserId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Unblock User by User ID
-     * Causes the source user to unblock the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unblock the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unblock (required)
-     * @return ApiResponse&lt;UsersBlockingMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersBlockingMutationResponse> usersIdUnblockWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
+    private ApiResponse<BlockUserMutationResponse> usersIdUnblockWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
         okhttp3.Call localVarCall = usersIdUnblockValidateBeforeCall(sourceUserId, targetUserId, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersBlockingMutationResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<BlockUserMutationResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -2756,43 +3696,120 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Unblock User by User ID (asynchronously)
-     * Causes the source user to unblock the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unblock the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unblock (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdUnblockAsync(String sourceUserId, String targetUserId, final ApiCallback<UsersBlockingMutationResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdUnblockAsync(String sourceUserId, String targetUserId, final ApiCallback<BlockUserMutationResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = usersIdUnblockValidateBeforeCall(sourceUserId, targetUserId, _callback);
-        Type localVarReturnType = new TypeToken<UsersBlockingMutationResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BlockUserMutationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdUnblockRequest {
+        private final String sourceUserId;
+        private final String targetUserId;
+
+        private APIusersIdUnblockRequest(String sourceUserId, String targetUserId) {
+            this.sourceUserId = sourceUserId;
+            this.targetUserId = targetUserId;
+        }
+
+        /**
+         * Build call for usersIdUnblock
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdUnblockCall(sourceUserId, targetUserId, _callback);
+        }
+
+        /**
+         * Execute usersIdUnblock request
+         * @return BlockUserMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public BlockUserMutationResponse execute() throws ApiException {
+            ApiResponse<BlockUserMutationResponse> localVarResp = usersIdUnblockWithHttpInfo(sourceUserId, targetUserId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public BlockUserMutationResponse  execute(Integer retries) throws ApiException {
+          BlockUserMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdUnblock request with HTTP info returned
+         * @return ApiResponse&lt;BlockUserMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<BlockUserMutationResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdUnblockWithHttpInfo(sourceUserId, targetUserId);
+            }
+        /**
+         * Execute usersIdUnblock request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BlockUserMutationResponse> _callback) throws ApiException {
+            return usersIdUnblockAsync(sourceUserId, targetUserId, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdUnfollow
-     * @param sourceUserId The ID of the user that is requesting to unfollow the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unfollow (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Unblock User by User ID
+     * Causes the source User to unblock the target User. The source User must match the User context authorizing the request
+     * @param sourceUserId The ID of the authenticated source User that is requesting to unblock the target User. (required)
+     * @param targetUserId The ID of the User that the source User is requesting to unblock. (required)
+     * @return APIusersIdUnblockRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdUnfollowCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
+    public APIusersIdUnblockRequest usersIdUnblock(String sourceUserId, String targetUserId) {
+        return new APIusersIdUnblockRequest(sourceUserId, targetUserId);
+    }
+    private okhttp3.Call usersIdUnfollowCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2845,58 +3862,8 @@ public class UsersApi extends ApiCommon {
 
     }
 
-    /**
-     * Unfollow User
-     * Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unfollow the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unfollow (required)
-     * @return UsersFollowingDeleteResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersFollowingDeleteResponse usersIdUnfollow(String sourceUserId, String targetUserId) throws ApiException {
-      ApiResponse<UsersFollowingDeleteResponse> localVarResp = usersIdUnfollowWithHttpInfo(sourceUserId, targetUserId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersFollowingDeleteResponse usersIdUnfollow(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
-        UsersFollowingDeleteResponse localVarResp;
-        try{
-          localVarResp = usersIdUnfollow(sourceUserId, targetUserId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdUnfollow(retries - 1, sourceUserId, targetUserId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Unfollow User
-     * Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unfollow the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unfollow (required)
-     * @return ApiResponse&lt;UsersFollowingDeleteResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersFollowingDeleteResponse> usersIdUnfollowWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
+    private ApiResponse<UsersFollowingDeleteResponse> usersIdUnfollowWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
         okhttp3.Call localVarCall = usersIdUnfollowValidateBeforeCall(sourceUserId, targetUserId, null);
         try {
             Type localVarReturnType = new TypeToken<UsersFollowingDeleteResponse>(){}.getType();
@@ -2907,43 +3874,120 @@ public class UsersApi extends ApiCommon {
         }
     }
 
-    /**
-     * Unfollow User (asynchronously)
-     * Causes the source user to unfollow the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unfollow the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unfollow (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdUnfollowAsync(String sourceUserId, String targetUserId, final ApiCallback<UsersFollowingDeleteResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdUnfollowAsync(String sourceUserId, String targetUserId, final ApiCallback<UsersFollowingDeleteResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = usersIdUnfollowValidateBeforeCall(sourceUserId, targetUserId, _callback);
         Type localVarReturnType = new TypeToken<UsersFollowingDeleteResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIusersIdUnfollowRequest {
+        private final String sourceUserId;
+        private final String targetUserId;
+
+        private APIusersIdUnfollowRequest(String sourceUserId, String targetUserId) {
+            this.sourceUserId = sourceUserId;
+            this.targetUserId = targetUserId;
+        }
+
+        /**
+         * Build call for usersIdUnfollow
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdUnfollowCall(sourceUserId, targetUserId, _callback);
+        }
+
+        /**
+         * Execute usersIdUnfollow request
+         * @return UsersFollowingDeleteResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public UsersFollowingDeleteResponse execute() throws ApiException {
+            ApiResponse<UsersFollowingDeleteResponse> localVarResp = usersIdUnfollowWithHttpInfo(sourceUserId, targetUserId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public UsersFollowingDeleteResponse  execute(Integer retries) throws ApiException {
+          UsersFollowingDeleteResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdUnfollow request with HTTP info returned
+         * @return ApiResponse&lt;UsersFollowingDeleteResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<UsersFollowingDeleteResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdUnfollowWithHttpInfo(sourceUserId, targetUserId);
+            }
+        /**
+         * Execute usersIdUnfollow request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<UsersFollowingDeleteResponse> _callback) throws ApiException {
+            return usersIdUnfollowAsync(sourceUserId, targetUserId, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdUnmute
-     * @param sourceUserId The ID of the user that is requesting to unmute the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unmute (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Unfollow User
+     * Causes the source User to unfollow the target User. The source User must match the User context authorizing the request
+     * @param sourceUserId The ID of the authenticated source User that is requesting to unfollow the target User. (required)
+     * @param targetUserId The ID of the User that the source User is requesting to unfollow. (required)
+     * @return APIusersIdUnfollowRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdUnmuteCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
+    public APIusersIdUnfollowRequest usersIdUnfollow(String sourceUserId, String targetUserId) {
+        return new APIusersIdUnfollowRequest(sourceUserId, targetUserId);
+    }
+    private okhttp3.Call usersIdUnmuteCall(String sourceUserId, String targetUserId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2996,61 +4040,11 @@ public class UsersApi extends ApiCommon {
 
     }
 
-    /**
-     * Unmute User by User ID
-     * Causes the source user to unmute the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unmute the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unmute (required)
-     * @return UsersMutingMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public UsersMutingMutationResponse usersIdUnmute(String sourceUserId, String targetUserId) throws ApiException {
-      ApiResponse<UsersMutingMutationResponse> localVarResp = usersIdUnmuteWithHttpInfo(sourceUserId, targetUserId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public UsersMutingMutationResponse usersIdUnmute(Integer retries, String sourceUserId, String targetUserId) throws ApiException {
-        UsersMutingMutationResponse localVarResp;
-        try{
-          localVarResp = usersIdUnmute(sourceUserId, targetUserId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdUnmute(retries - 1, sourceUserId, targetUserId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Unmute User by User ID
-     * Causes the source user to unmute the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unmute the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unmute (required)
-     * @return ApiResponse&lt;UsersMutingMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<UsersMutingMutationResponse> usersIdUnmuteWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
+    private ApiResponse<MuteUserMutationResponse> usersIdUnmuteWithHttpInfo(String sourceUserId, String targetUserId) throws ApiException {
         okhttp3.Call localVarCall = usersIdUnmuteValidateBeforeCall(sourceUserId, targetUserId, null);
         try {
-            Type localVarReturnType = new TypeToken<UsersMutingMutationResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<MuteUserMutationResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -3058,26 +4052,117 @@ public class UsersApi extends ApiCommon {
         }
     }
 
+    private okhttp3.Call usersIdUnmuteAsync(String sourceUserId, String targetUserId, final ApiCallback<MuteUserMutationResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersIdUnmuteValidateBeforeCall(sourceUserId, targetUserId, _callback);
+        Type localVarReturnType = new TypeToken<MuteUserMutationResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIusersIdUnmuteRequest {
+        private final String sourceUserId;
+        private final String targetUserId;
+
+        private APIusersIdUnmuteRequest(String sourceUserId, String targetUserId) {
+            this.sourceUserId = sourceUserId;
+            this.targetUserId = targetUserId;
+        }
+
+        /**
+         * Build call for usersIdUnmute
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdUnmuteCall(sourceUserId, targetUserId, _callback);
+        }
+
+        /**
+         * Execute usersIdUnmute request
+         * @return MuteUserMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public MuteUserMutationResponse execute() throws ApiException {
+            ApiResponse<MuteUserMutationResponse> localVarResp = usersIdUnmuteWithHttpInfo(sourceUserId, targetUserId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public MuteUserMutationResponse  execute(Integer retries) throws ApiException {
+          MuteUserMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdUnmute request with HTTP info returned
+         * @return ApiResponse&lt;MuteUserMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<MuteUserMutationResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdUnmuteWithHttpInfo(sourceUserId, targetUserId);
+            }
+        /**
+         * Execute usersIdUnmute request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<MuteUserMutationResponse> _callback) throws ApiException {
+            return usersIdUnmuteAsync(sourceUserId, targetUserId, _callback);
+        }
+    }
+
     /**
-     * Unmute User by User ID (asynchronously)
-     * Causes the source user to unmute the target user. The source user must match the user context authorizing the request
-     * @param sourceUserId The ID of the user that is requesting to unmute the target user (required)
-     * @param targetUserId The ID of the user that the source user is requesting to unmute (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * Unmute User by User ID
+     * Causes the source User to unmute the target User. The source User must match the User context authorizing the request
+     * @param sourceUserId The ID of the authenticated source User that is requesting to unmute the target User. (required)
+     * @param targetUserId The ID of the User that the source User is requesting to unmute. (required)
+     * @return APIusersIdUnmuteRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdUnmuteAsync(String sourceUserId, String targetUserId, final ApiCallback<UsersMutingMutationResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = usersIdUnmuteValidateBeforeCall(sourceUserId, targetUserId, _callback);
-        Type localVarReturnType = new TypeToken<UsersMutingMutationResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public APIusersIdUnmuteRequest usersIdUnmute(String sourceUserId, String targetUserId) {
+        return new APIusersIdUnmuteRequest(sourceUserId, targetUserId);
     }
 }

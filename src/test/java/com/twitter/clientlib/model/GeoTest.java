@@ -52,14 +52,6 @@ public class GeoTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
      * Test the property 'bbox'
      */
     @Test
@@ -81,6 +73,14 @@ public class GeoTest {
     @Test
     public void propertiesTest() {
         // TODO: test properties
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
     }
 
 }

@@ -60,48 +60,24 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MentionEntity {
-  public static final String SERIALIZED_NAME_START = "start";
-  @SerializedName(SERIALIZED_NAME_START)
-  private Integer start;
-
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
   private Integer end;
 
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
-  private String username;
+  public static final String SERIALIZED_NAME_START = "start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private Integer start;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
+
   public MentionEntity() { 
   }
-
-  public MentionEntity start(Integer start) {
-    
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity starts.  The index is inclusive.
-   * minimum: 0
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
-
-  public Integer getStart() {
-    return start;
-  }
-
-
-  public void setStart(Integer start) {
-    this.start = start;
-  }
-
 
   public MentionEntity end(Integer end) {
     
@@ -127,26 +103,27 @@ public class MentionEntity {
   }
 
 
-  public MentionEntity username(String username) {
+  public MentionEntity start(Integer start) {
     
-    this.username = username;
+    this.start = start;
     return this;
   }
 
    /**
-   * The Twitter handle (screen name) of this user.
-   * @return username
+   * Index (zero-based) at which position this entity starts.  The index is inclusive.
+   * minimum: 0
+   * @return start
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Twitter handle (screen name) of this user.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
 
-  public String getUsername() {
-    return username;
+  public Integer getStart() {
+    return start;
   }
 
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setStart(Integer start) {
+    this.start = start;
   }
 
 
@@ -160,8 +137,8 @@ public class MentionEntity {
    * Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2244994945", value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2244994945", required = true, value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
 
   public String getId() {
     return id;
@@ -170,6 +147,29 @@ public class MentionEntity {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public MentionEntity username(String username) {
+    
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * The Twitter handle (screen name) of this user.
+   * @return username
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The Twitter handle (screen name) of this user.")
+
+  public String getUsername() {
+    return username;
+  }
+
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 
 
@@ -183,25 +183,25 @@ public class MentionEntity {
       return false;
     }
     MentionEntity mentionEntity = (MentionEntity) o;
-    return Objects.equals(this.start, mentionEntity.start) &&
-        Objects.equals(this.end, mentionEntity.end) &&
-        Objects.equals(this.username, mentionEntity.username) &&
-        Objects.equals(this.id, mentionEntity.id);
+    return Objects.equals(this.end, mentionEntity.end) &&
+        Objects.equals(this.start, mentionEntity.start) &&
+        Objects.equals(this.id, mentionEntity.id) &&
+        Objects.equals(this.username, mentionEntity.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end, username, id);
+    return Objects.hash(end, start, id, username);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MentionEntity {\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -224,15 +224,17 @@ public class MentionEntity {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("start");
     openapiFields.add("end");
-    openapiFields.add("username");
+    openapiFields.add("start");
     openapiFields.add("id");
+    openapiFields.add("username");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("start");
     openapiRequiredFields.add("end");
+    openapiRequiredFields.add("start");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("username");
   }
 
  /**
@@ -257,11 +259,11 @@ public class MentionEntity {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
-      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
       }
   }
 

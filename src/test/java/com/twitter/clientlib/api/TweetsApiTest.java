@@ -22,32 +22,36 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
 import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
-import com.twitter.clientlib.model.CreateTweetRequest;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.FilteredStreamingTweet;
-import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
-import com.twitter.clientlib.model.GetRulesResponse;
-import com.twitter.clientlib.model.Granularity;
-import com.twitter.clientlib.model.HideReplyByIdRequest;
-import com.twitter.clientlib.model.HideReplyByIdResponse;
-import com.twitter.clientlib.model.ListsIdTweetsResponse;
-import com.twitter.clientlib.model.MultiTweetLookupResponse;
-import com.twitter.clientlib.model.MultiUserLookupResponse;
+import com.twitter.clientlib.model.FilteredStreamingTweetResponse;
+import com.twitter.clientlib.model.Get2ListsIdTweetsResponse;
+import com.twitter.clientlib.model.Get2SpacesIdBuyersResponse;
+import com.twitter.clientlib.model.Get2SpacesIdTweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsCountsAllResponse;
+import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
+import com.twitter.clientlib.model.Get2TweetsIdQuoteTweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
+import com.twitter.clientlib.model.Get2TweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsSearchAllResponse;
+import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
+import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
+import com.twitter.clientlib.model.Get2UsersIdMentionsResponse;
+import com.twitter.clientlib.model.Get2UsersIdTimelinesReverseChronologicalResponse;
+import com.twitter.clientlib.model.Get2UsersIdTweetsResponse;
 import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.QuoteTweetLookupResponse;
+import com.twitter.clientlib.model.RulesLookupResponse;
 import java.util.Set;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
-import com.twitter.clientlib.model.StreamingTweet;
-import com.twitter.clientlib.model.TweetCountsResponse;
+import com.twitter.clientlib.model.StreamingTweetResponse;
+import com.twitter.clientlib.model.TweetCreateRequest;
 import com.twitter.clientlib.model.TweetCreateResponse;
 import com.twitter.clientlib.model.TweetDeleteResponse;
-import com.twitter.clientlib.model.TweetSearchResponse;
-import com.twitter.clientlib.model.UsersIdLikedTweetsResponse;
+import com.twitter.clientlib.model.TweetHideRequest;
+import com.twitter.clientlib.model.TweetHideResponse;
 import com.twitter.clientlib.model.UsersLikesCreateRequest;
 import com.twitter.clientlib.model.UsersLikesCreateResponse;
 import com.twitter.clientlib.model.UsersLikesDeleteResponse;
@@ -71,13 +75,13 @@ import java.io.InputStream;
 @Disabled
 public class TweetsApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**
      * Add/Delete rules
      *
-     * Add or delete rules from a user&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
+     * Add or delete rules from a User&#39;s active rule set. Users can provide unique, optionally tagged rules to add. Users can delete their entire rule set or a subset specified by rule ids or values.
      *
      * @throws ApiException if the Api call fails
      */
@@ -85,7 +89,9 @@ public class TweetsApiTest {
     public void addOrDeleteRulesTest() throws ApiException {
         AddOrDeleteRulesRequest addOrDeleteRulesRequest = null;
         Boolean dryRun = null;
-                AddOrDeleteRulesResponse response = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest, dryRun);
+                AddOrDeleteRulesResponse response = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest)
+                .dryRun(dryRun)
+                .execute();
         // TODO: test validations
     }
 
@@ -93,14 +99,15 @@ public class TweetsApiTest {
     /**
      * Creation of a Tweet
      *
-     * Causes the user to create a tweet under the authorized account.
+     * Causes the User to create a Tweet under the authorized account.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void createTweetTest() throws ApiException {
-        CreateTweetRequest createTweetRequest = null;
-                TweetCreateResponse response = apiInstance.tweets().createTweet(createTweetRequest);
+        TweetCreateRequest tweetCreateRequest = null;
+                TweetCreateResponse response = apiInstance.tweets().createTweet(tweetCreateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -115,7 +122,8 @@ public class TweetsApiTest {
     @Test
     public void deleteTweetByIdTest() throws ApiException {
         String id = null;
-                TweetDeleteResponse response = apiInstance.tweets().deleteTweetById(id);
+                TweetDeleteResponse response = apiInstance.tweets().deleteTweetById(id)
+                .execute();
         // TODO: test validations
     }
 
@@ -130,13 +138,20 @@ public class TweetsApiTest {
     @Test
     public void findTweetByIdTest() throws ApiException {
         String id = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                SingleTweetLookupResponse response = apiInstance.tweets().findTweetById(id, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2TweetsIdResponse response = apiInstance.tweets().findTweetById(id)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -151,21 +166,28 @@ public class TweetsApiTest {
     @Test
     public void findTweetsByIdTest() throws ApiException {
         List<String> ids = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                MultiTweetLookupResponse response = apiInstance.tweets().findTweetsById(ids, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2TweetsResponse response = apiInstance.tweets().findTweetsById(ids)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Retrieve tweets that quote a tweet.
+     * Retrieve Tweets that quote a Tweet.
      *
-     * Returns a variety of information about each tweet that quotes the Tweet specified by the requested ID.
+     * Returns a variety of information about each Tweet that quotes the Tweet specified by the requested ID.
      *
      * @throws ApiException if the Api call fails
      */
@@ -173,14 +195,25 @@ public class TweetsApiTest {
     public void findTweetsThatQuoteATweetTest() throws ApiException {
         String id = null;
         Integer maxResults = null;
+        String paginationToken = null;
         Set<String> exclude = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                QuoteTweetLookupResponse response = apiInstance.tweets().findTweetsThatQuoteATweet(id, maxResults, exclude, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2TweetsIdQuoteTweetsResponse response = apiInstance.tweets().findTweetsThatQuoteATweet(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .exclude(exclude)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -188,7 +221,7 @@ public class TweetsApiTest {
     /**
      * Rules lookup
      *
-     * Returns rules from a user&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
+     * Returns rules from a User&#39;s active rule set. Users can fetch all of their rules or a subset, specified by the provided rule ids.
      *
      * @throws ApiException if the Api call fails
      */
@@ -197,7 +230,11 @@ public class TweetsApiTest {
         List<String> ids = null;
         Integer maxResults = null;
         String paginationToken = null;
-                GetRulesResponse response = apiInstance.tweets().getRules(ids, maxResults, paginationToken);
+                RulesLookupResponse response = apiInstance.tweets().getRules()
+                .ids(ids)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .execute();
         // TODO: test validations
     }
 
@@ -211,17 +248,19 @@ public class TweetsApiTest {
      */
     @Test
     public void hideReplyByIdTest() throws ApiException {
-        HideReplyByIdRequest hideReplyByIdRequest = null;
-        String id = null;
-                HideReplyByIdResponse response = apiInstance.tweets().hideReplyById(hideReplyByIdRequest, id);
+        TweetHideRequest tweetHideRequest = null;
+        String tweetId = null;
+                TweetHideResponse response = apiInstance.tweets().hideReplyById(tweetId)
+                .tweetHideRequest(tweetHideRequest)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * List Tweets timeline by List ID
+     * List Tweets timeline by List ID.
      *
-     * Returns a list of Tweets associated with the provided List ID
+     * Returns a list of Tweets associated with the provided List ID.
      *
      * @throws ApiException if the Api call fails
      */
@@ -230,13 +269,22 @@ public class TweetsApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                ListsIdTweetsResponse response = apiInstance.tweets().listsIdTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2ListsIdTweetsResponse response = apiInstance.tweets().listsIdTweets(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -250,7 +298,7 @@ public class TweetsApiTest {
      */
     @Test
     public void sampleStreamTest() throws ApiException {
-        BufferedSource response = apiInstance.tweets().sampleStream(new StreamQueryParameters.Builder().build());
+        BufferedSource response = apiInstance.tweets().sampleStream().execute();
         // TODO: test validations
     }
 
@@ -264,40 +312,63 @@ public class TweetsApiTest {
      */
     @Test
     public void searchStreamTest() throws ApiException {
-        BufferedSource response = apiInstance.tweets().searchStream(new StreamQueryParameters.Builder().build());
+        BufferedSource response = apiInstance.tweets().searchStream().execute();
         // TODO: test validations
     }
 
 
     /**
-     * Retrieve the list of users who purchased a ticket to the given space
+     * Retrieve the list of Users who purchased a ticket to the given space
      *
-     * Retrieves the list of users who purchased a ticket to the given space
+     * Retrieves the list of Users who purchased a ticket to the given space
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceBuyersTest() throws ApiException {
         String id = null;
+        String paginationToken = null;
+        Integer maxResults = null;
         Set<String> userFields = null;
-                MultiUserLookupResponse response = apiInstance.spaces().spaceBuyers(id, userFields);
+        Set<String> expansions = null;
+        Set<String> tweetFields = null;
+                Get2SpacesIdBuyersResponse response = apiInstance.spaces().spaceBuyers(id)
+                .paginationToken(paginationToken)
+                .maxResults(maxResults)
+                .userFields(userFields)
+                .expansions(expansions)
+                .tweetFields(tweetFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Retrieve tweets from a Space
+     * Retrieve Tweets from a Space.
      *
-     * Retrieves tweets shared in the specified space
+     * Retrieves Tweets shared in the specified Space.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void spaceTweetsTest() throws ApiException {
-        Integer maxResults = null;
         String id = null;
+        Integer maxResults = null;
         Set<String> tweetFields = null;
-                MultiTweetLookupResponse response = apiInstance.spaces().spaceTweets(maxResults, id, tweetFields);
+        Set<String> expansions = null;
+        Set<String> mediaFields = null;
+        Set<String> pollFields = null;
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2SpacesIdTweetsResponse response = apiInstance.spaces().spaceTweets(id)
+                .maxResults(maxResults)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -318,8 +389,18 @@ public class TweetsApiTest {
         String untilId = null;
         String nextToken = null;
         String paginationToken = null;
-        Granularity granularity = null;
-                TweetCountsResponse response = apiInstance.tweets().tweetCountsFullArchiveSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+        String granularity = null;
+        Set<String> searchCountFields = null;
+                Get2TweetsCountsAllResponse response = apiInstance.tweets().tweetCountsFullArchiveSearch(query)
+                .startTime(startTime)
+                .endTime(endTime)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .nextToken(nextToken)
+                .paginationToken(paginationToken)
+                .granularity(granularity)
+                .searchCountFields(searchCountFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -340,8 +421,18 @@ public class TweetsApiTest {
         String untilId = null;
         String nextToken = null;
         String paginationToken = null;
-        Granularity granularity = null;
-                TweetCountsResponse response = apiInstance.tweets().tweetCountsRecentSearch(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity);
+        String granularity = null;
+        Set<String> searchCountFields = null;
+                Get2TweetsCountsRecentResponse response = apiInstance.tweets().tweetCountsRecentSearch(query)
+                .startTime(startTime)
+                .endTime(endTime)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .nextToken(nextToken)
+                .paginationToken(paginationToken)
+                .granularity(granularity)
+                .searchCountFields(searchCountFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -361,16 +452,31 @@ public class TweetsApiTest {
         String sinceId = null;
         String untilId = null;
         Integer maxResults = null;
-        String sortOrder = null;
         String nextToken = null;
         String paginationToken = null;
-        Set<String> expansions = null;
+        String sortOrder = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                TweetSearchResponse response = apiInstance.tweets().tweetsFullarchiveSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2TweetsSearchAllResponse response = apiInstance.tweets().tweetsFullarchiveSearch(query)
+                .startTime(startTime)
+                .endTime(endTime)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .maxResults(maxResults)
+                .nextToken(nextToken)
+                .paginationToken(paginationToken)
+                .sortOrder(sortOrder)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -390,24 +496,39 @@ public class TweetsApiTest {
         String sinceId = null;
         String untilId = null;
         Integer maxResults = null;
-        String sortOrder = null;
         String nextToken = null;
         String paginationToken = null;
-        Set<String> expansions = null;
+        String sortOrder = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                TweetSearchResponse response = apiInstance.tweets().tweetsRecentSearch(query, startTime, endTime, sinceId, untilId, maxResults, sortOrder, nextToken, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2TweetsSearchRecentResponse response = apiInstance.tweets().tweetsRecentSearch(query)
+                .startTime(startTime)
+                .endTime(endTime)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .maxResults(maxResults)
+                .nextToken(nextToken)
+                .paginationToken(paginationToken)
+                .sortOrder(sortOrder)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Causes the user (in the path) to like the specified tweet
+     * Causes the User (in the path) to like the specified Tweet
      *
-     * Causes the user (in the path) to like the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to like the specified Tweet. The User in the path must match the User context authorizing the request.
      *
      * @throws ApiException if the Api call fails
      */
@@ -415,7 +536,9 @@ public class TweetsApiTest {
     public void usersIdLikeTest() throws ApiException {
         UsersLikesCreateRequest usersLikesCreateRequest = null;
         String id = null;
-                UsersLikesCreateResponse response = apiInstance.tweets().usersIdLike(usersLikesCreateRequest, id);
+                UsersLikesCreateResponse response = apiInstance.tweets().usersIdLike(id)
+                .usersLikesCreateRequest(usersLikesCreateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -432,13 +555,22 @@ public class TweetsApiTest {
         String id = null;
         Integer maxResults = null;
         String paginationToken = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                UsersIdLikedTweetsResponse response = apiInstance.tweets().usersIdLikedTweets(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2UsersIdLikedTweetsResponse response = apiInstance.tweets().usersIdLikedTweets(id)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -459,21 +591,34 @@ public class TweetsApiTest {
         String paginationToken = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdMentions(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2UsersIdMentionsResponse response = apiInstance.tweets().usersIdMentions(id)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .startTime(startTime)
+                .endTime(endTime)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Causes the user (in the path) to retweet the specified tweet
+     * Causes the User (in the path) to retweet the specified Tweet.
      *
-     * Causes the user (in the path) to retweet the specified tweet. The user in the path must match the user context authorizing the request.
+     * Causes the User (in the path) to retweet the specified Tweet. The User in the path must match the User context authorizing the request.
      *
      * @throws ApiException if the Api call fails
      */
@@ -481,7 +626,9 @@ public class TweetsApiTest {
     public void usersIdRetweetsTest() throws ApiException {
         UsersRetweetsCreateRequest usersRetweetsCreateRequest = null;
         String id = null;
-                UsersRetweetsCreateResponse response = apiInstance.tweets().usersIdRetweets(usersRetweetsCreateRequest, id);
+                UsersRetweetsCreateResponse response = apiInstance.tweets().usersIdRetweets(id)
+                .usersRetweetsCreateRequest(usersRetweetsCreateRequest)
+                .execute();
         // TODO: test validations
     }
 
@@ -499,17 +646,31 @@ public class TweetsApiTest {
         String sinceId = null;
         String untilId = null;
         Integer maxResults = null;
-        Set<String> exclude = null;
         String paginationToken = null;
+        Set<String> exclude = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdTimeline(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2UsersIdTimelinesReverseChronologicalResponse response = apiInstance.tweets().usersIdTimeline(id)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .exclude(exclude)
+                .startTime(startTime)
+                .endTime(endTime)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
@@ -527,25 +688,39 @@ public class TweetsApiTest {
         String sinceId = null;
         String untilId = null;
         Integer maxResults = null;
-        Set<String> exclude = null;
         String paginationToken = null;
+        Set<String> exclude = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
-        Set<String> expansions = null;
         Set<String> tweetFields = null;
-        Set<String> userFields = null;
+        Set<String> expansions = null;
         Set<String> mediaFields = null;
-        Set<String> placeFields = null;
         Set<String> pollFields = null;
-                GenericTweetsTimelineResponse response = apiInstance.tweets().usersIdTweets(id, sinceId, untilId, maxResults, exclude, paginationToken, startTime, endTime, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                Get2UsersIdTweetsResponse response = apiInstance.tweets().usersIdTweets(id)
+                .sinceId(sinceId)
+                .untilId(untilId)
+                .maxResults(maxResults)
+                .paginationToken(paginationToken)
+                .exclude(exclude)
+                .startTime(startTime)
+                .endTime(endTime)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Causes the user (in the path) to unlike the specified tweet
+     * Causes the User (in the path) to unlike the specified Tweet
      *
-     * Causes the user (in the path) to unlike the specified tweet. The user must match the user context authorizing the request
+     * Causes the User (in the path) to unlike the specified Tweet. The User must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
@@ -553,15 +728,16 @@ public class TweetsApiTest {
     public void usersIdUnlikeTest() throws ApiException {
         String id = null;
         String tweetId = null;
-                UsersLikesDeleteResponse response = apiInstance.tweets().usersIdUnlike(id, tweetId);
+                UsersLikesDeleteResponse response = apiInstance.tweets().usersIdUnlike(id, tweetId)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Causes the user (in the path) to unretweet the specified tweet
+     * Causes the User (in the path) to unretweet the specified Tweet
      *
-     * Causes the user (in the path) to unretweet the specified tweet. The user must match the user context authorizing the request
+     * Causes the User (in the path) to unretweet the specified Tweet. The User must match the User context authorizing the request
      *
      * @throws ApiException if the Api call fails
      */
@@ -569,7 +745,8 @@ public class TweetsApiTest {
     public void usersIdUnretweetsTest() throws ApiException {
         String id = null;
         String sourceTweetId = null;
-                UsersRetweetsDeleteResponse response = apiInstance.tweets().usersIdUnretweets(id, sourceTweetId);
+                UsersRetweetsDeleteResponse response = apiInstance.tweets().usersIdUnretweets(id, sourceTweetId)
+                .execute();
         // TODO: test validations
     }
 

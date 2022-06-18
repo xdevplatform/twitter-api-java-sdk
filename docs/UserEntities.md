@@ -2,14 +2,14 @@
 
 # UserEntities
 
-A list of metadata found in the user's profile description.
+A list of metadata found in the User's profile description.
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**url** | [**UserEntitiesUrl**](UserEntitiesUrl.md) |  |  [optional]
-**description** | [**FullTextEntities**](FullTextEntities.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**description** | [**FullTextEntities**](FullTextEntities.md) |  |  [optional] |
+|**url** | [**UserEntitiesUrl**](UserEntitiesUrl.md) |  |  [optional] |
 
 
 

@@ -65,19 +65,19 @@ public class UserPublicMetricsTest {
     }
 
     /**
-     * Test the property 'tweetCount'
-     */
-    @Test
-    public void tweetCountTest() {
-        // TODO: test tweetCount
-    }
-
-    /**
      * Test the property 'listedCount'
      */
     @Test
     public void listedCountTest() {
         // TODO: test listedCount
+    }
+
+    /**
+     * Test the property 'tweetCount'
+     */
+    @Test
+    public void tweetCountTest() {
+        // TODO: test tweetCount
     }
 
 }

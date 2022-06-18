@@ -20,14 +20,13 @@ package com.twitter.clientlib.stream;
 
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.integration.ApiTester;
-import com.twitter.clientlib.model.StreamingTweet;
+import com.twitter.clientlib.model.StreamingTweetResponse;
 import com.twitter.clientlib.query.StreamQueryParameters;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +40,7 @@ class TwitterStreamTest extends ApiTester {
     private static TwitterStream twitterStream;
 
     private  TweetsStreamListener courier;
-    private List<StreamingTweet> tweets;
+    private List<StreamingTweetResponse> tweets;
 
     @BeforeAll
     public static void beforeAll() {
@@ -80,7 +79,7 @@ class TwitterStreamTest extends ApiTester {
 
     @Test
     public void sampleStreamAddSecondListener() throws InterruptedException {
-        List<StreamingTweet> tweetsDuplicate = new LinkedList<>();
+        List<StreamingTweetResponse> tweetsDuplicate = new LinkedList<>();
         TweetsStreamListener courierDuplicate = new TweetCourier(tweetsDuplicate);
         twitterStream.addListener(courierDuplicate);
         twitterStream.sampleStream(new StreamQueryParameters.Builder().build());
@@ -92,7 +91,7 @@ class TwitterStreamTest extends ApiTester {
 
     @Test
     public void sampleStreamAddSecondListenerAndRemove() throws InterruptedException {
-        List<StreamingTweet> tweetsDuplicate = new LinkedList<>();
+        List<StreamingTweetResponse> tweetsDuplicate = new LinkedList<>();
         TweetsStreamListener courierDuplicate = new TweetCourier(tweetsDuplicate);
         twitterStream.addListener(courierDuplicate);
         twitterStream.removeListener(courierDuplicate);
@@ -104,13 +103,13 @@ class TwitterStreamTest extends ApiTester {
 
     private class TweetCourier implements TweetsStreamListener {
 
-        private List<StreamingTweet> tweetsList;
+        private List<StreamingTweetResponse> tweetsList;
 
-        private TweetCourier(List<StreamingTweet> tweetsList) {
+        private TweetCourier(List<StreamingTweetResponse> tweetsList) {
             this.tweetsList = tweetsList;
         }
         @Override
-        public void onTweetArrival(StreamingTweet tweet) {
+        public void onTweetArrival(StreamingTweetResponse tweet) {
             tweetsList.add(tweet);
         }
     }

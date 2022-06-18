@@ -59,39 +59,16 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PhotoAllOf {
-  public static final String SERIALIZED_NAME_URL = "url";
-  @SerializedName(SERIALIZED_NAME_URL)
-  private URL url;
-
   public static final String SERIALIZED_NAME_ALT_TEXT = "alt_text";
   @SerializedName(SERIALIZED_NAME_ALT_TEXT)
   private String altText;
 
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private URL url;
+
   public PhotoAllOf() { 
   }
-
-  public PhotoAllOf url(URL url) {
-    
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public URL getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(URL url) {
-    this.url = url;
-  }
-
 
   public PhotoAllOf altText(String altText) {
     
@@ -116,6 +93,29 @@ public class PhotoAllOf {
   }
 
 
+  public PhotoAllOf url(URL url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public URL getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(URL url) {
+    this.url = url;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -126,21 +126,21 @@ public class PhotoAllOf {
       return false;
     }
     PhotoAllOf photoAllOf = (PhotoAllOf) o;
-    return Objects.equals(this.url, photoAllOf.url) &&
-        Objects.equals(this.altText, photoAllOf.altText);
+    return Objects.equals(this.altText, photoAllOf.altText) &&
+        Objects.equals(this.url, photoAllOf.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, altText);
+    return Objects.hash(altText, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PhotoAllOf {\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -163,8 +163,8 @@ public class PhotoAllOf {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("url");
     openapiFields.add("alt_text");
+    openapiFields.add("url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -185,11 +185,11 @@ public class PhotoAllOf {
      //   }
      // }
 
-      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
-      }
       if (jsonObj.get("alt_text") != null && !jsonObj.get("alt_text").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `alt_text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alt_text").toString()));
+      }
+      if (jsonObj.get("url") != null && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
       }
   }
 

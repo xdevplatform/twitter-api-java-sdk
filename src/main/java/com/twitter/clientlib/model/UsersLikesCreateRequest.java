@@ -72,11 +72,11 @@ public class UsersLikesCreateRequest {
   }
 
    /**
-   * Get tweetId
+   * Unique identifier of this Tweet. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.
    * @return tweetId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "1346889436626259968", required = true, value = "Unique identifier of this Tweet. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
 
   public String getTweetId() {
     return tweetId;

@@ -49,11 +49,11 @@ public class FieldUnauthorizedProblemAllOfTest {
     }
 
     /**
-     * Test the property 'section'
+     * Test the property 'field'
      */
     @Test
-    public void sectionTest() {
-        // TODO: test section
+    public void fieldTest() {
+        // TODO: test field
     }
 
     /**
@@ -65,11 +65,11 @@ public class FieldUnauthorizedProblemAllOfTest {
     }
 
     /**
-     * Test the property 'field'
+     * Test the property 'section'
      */
     @Test
-    public void fieldTest() {
-        // TODO: test field
+    public void sectionTest() {
+        // TODO: test section
     }
 
 }

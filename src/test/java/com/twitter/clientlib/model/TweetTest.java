@@ -63,27 +63,11 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'attachments'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'createdAt'
-     */
-    @Test
-    public void createdAtTest() {
-        // TODO: test createdAt
-    }
-
-    /**
-     * Test the property 'text'
-     */
-    @Test
-    public void textTest() {
-        // TODO: test text
+    public void attachmentsTest() {
+        // TODO: test attachments
     }
 
     /**
@@ -95,11 +79,11 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'inReplyToUserId'
+     * Test the property 'contextAnnotations'
      */
     @Test
-    public void inReplyToUserIdTest() {
-        // TODO: test inReplyToUserId
+    public void contextAnnotationsTest() {
+        // TODO: test contextAnnotations
     }
 
     /**
@@ -111,51 +95,11 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'replySettings'
+     * Test the property 'createdAt'
      */
     @Test
-    public void replySettingsTest() {
-        // TODO: test replySettings
-    }
-
-    /**
-     * Test the property 'referencedTweets'
-     */
-    @Test
-    public void referencedTweetsTest() {
-        // TODO: test referencedTweets
-    }
-
-    /**
-     * Test the property 'attachments'
-     */
-    @Test
-    public void attachmentsTest() {
-        // TODO: test attachments
-    }
-
-    /**
-     * Test the property 'contextAnnotations'
-     */
-    @Test
-    public void contextAnnotationsTest() {
-        // TODO: test contextAnnotations
-    }
-
-    /**
-     * Test the property 'withheld'
-     */
-    @Test
-    public void withheldTest() {
-        // TODO: test withheld
-    }
-
-    /**
-     * Test the property 'geo'
-     */
-    @Test
-    public void geoTest() {
-        // TODO: test geo
+    public void createdAtTest() {
+        // TODO: test createdAt
     }
 
     /**
@@ -167,19 +111,27 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'publicMetrics'
+     * Test the property 'geo'
      */
     @Test
-    public void publicMetricsTest() {
-        // TODO: test publicMetrics
+    public void geoTest() {
+        // TODO: test geo
     }
 
     /**
-     * Test the property 'possiblySensitive'
+     * Test the property 'id'
      */
     @Test
-    public void possiblySensitiveTest() {
-        // TODO: test possiblySensitive
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'inReplyToUserId'
+     */
+    @Test
+    public void inReplyToUserIdTest() {
+        // TODO: test inReplyToUserId
     }
 
     /**
@@ -191,19 +143,27 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'source'
-     */
-    @Test
-    public void sourceTest() {
-        // TODO: test source
-    }
-
-    /**
      * Test the property 'nonPublicMetrics'
      */
     @Test
     public void nonPublicMetricsTest() {
         // TODO: test nonPublicMetrics
+    }
+
+    /**
+     * Test the property 'organicMetrics'
+     */
+    @Test
+    public void organicMetricsTest() {
+        // TODO: test organicMetrics
+    }
+
+    /**
+     * Test the property 'possiblySensitive'
+     */
+    @Test
+    public void possiblySensitiveTest() {
+        // TODO: test possiblySensitive
     }
 
     /**
@@ -215,11 +175,51 @@ public class TweetTest {
     }
 
     /**
-     * Test the property 'organicMetrics'
+     * Test the property 'publicMetrics'
      */
     @Test
-    public void organicMetricsTest() {
-        // TODO: test organicMetrics
+    public void publicMetricsTest() {
+        // TODO: test publicMetrics
+    }
+
+    /**
+     * Test the property 'referencedTweets'
+     */
+    @Test
+    public void referencedTweetsTest() {
+        // TODO: test referencedTweets
+    }
+
+    /**
+     * Test the property 'replySettings'
+     */
+    @Test
+    public void replySettingsTest() {
+        // TODO: test replySettings
+    }
+
+    /**
+     * Test the property 'source'
+     */
+    @Test
+    public void sourceTest() {
+        // TODO: test source
+    }
+
+    /**
+     * Test the property 'text'
+     */
+    @Test
+    public void textTest() {
+        // TODO: test text
+    }
+
+    /**
+     * Test the property 'withheld'
+     */
+    @Test
+    public void withheldTest() {
+        // TODO: test withheld
     }
 
 }

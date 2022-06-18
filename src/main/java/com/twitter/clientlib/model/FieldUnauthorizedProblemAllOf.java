@@ -58,6 +58,67 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FieldUnauthorizedProblemAllOf {
+  public static final String SERIALIZED_NAME_FIELD = "field";
+  @SerializedName(SERIALIZED_NAME_FIELD)
+  private String field;
+
+  /**
+   * Gets or Sets resourceType
+   */
+  @JsonAdapter(ResourceTypeEnum.Adapter.class)
+  public enum ResourceTypeEnum {
+    USER("user"),
+    
+    TWEET("tweet"),
+    
+    MEDIA("media"),
+    
+    LIST("list"),
+    
+    SPACE("space");
+
+    private String value;
+
+    ResourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ResourceTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  private ResourceTypeEnum resourceType;
+
   /**
    * Gets or Sets section
    */
@@ -109,90 +170,29 @@ public class FieldUnauthorizedProblemAllOf {
   @SerializedName(SERIALIZED_NAME_SECTION)
   private SectionEnum section;
 
-  /**
-   * Gets or Sets resourceType
-   */
-  @JsonAdapter(ResourceTypeEnum.Adapter.class)
-  public enum ResourceTypeEnum {
-    TWEET("tweet"),
-    
-    USER("user"),
-    
-    MEDIA("media"),
-    
-    LIST("list"),
-    
-    SPACE("space");
-
-    private String value;
-
-    ResourceTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ResourceTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ResourceTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ResourceTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ResourceTypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resource_type";
-  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
-  private ResourceTypeEnum resourceType;
-
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
-  private String field;
-
   public FieldUnauthorizedProblemAllOf() { 
   }
 
-  public FieldUnauthorizedProblemAllOf section(SectionEnum section) {
+  public FieldUnauthorizedProblemAllOf field(String field) {
     
-    this.section = section;
+    this.field = field;
     return this;
   }
 
    /**
-   * Get section
-   * @return section
+   * Get field
+   * @return field
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public SectionEnum getSection() {
-    return section;
+  public String getField() {
+    return field;
   }
 
 
-  public void setSection(SectionEnum section) {
-    this.section = section;
+  public void setField(String field) {
+    this.field = field;
   }
 
 
@@ -219,26 +219,26 @@ public class FieldUnauthorizedProblemAllOf {
   }
 
 
-  public FieldUnauthorizedProblemAllOf field(String field) {
+  public FieldUnauthorizedProblemAllOf section(SectionEnum section) {
     
-    this.field = field;
+    this.section = section;
     return this;
   }
 
    /**
-   * Get field
-   * @return field
+   * Get section
+   * @return section
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public String getField() {
-    return field;
+  public SectionEnum getSection() {
+    return section;
   }
 
 
-  public void setField(String field) {
-    this.field = field;
+  public void setSection(SectionEnum section) {
+    this.section = section;
   }
 
 
@@ -252,23 +252,23 @@ public class FieldUnauthorizedProblemAllOf {
       return false;
     }
     FieldUnauthorizedProblemAllOf fieldUnauthorizedProblemAllOf = (FieldUnauthorizedProblemAllOf) o;
-    return Objects.equals(this.section, fieldUnauthorizedProblemAllOf.section) &&
+    return Objects.equals(this.field, fieldUnauthorizedProblemAllOf.field) &&
         Objects.equals(this.resourceType, fieldUnauthorizedProblemAllOf.resourceType) &&
-        Objects.equals(this.field, fieldUnauthorizedProblemAllOf.field);
+        Objects.equals(this.section, fieldUnauthorizedProblemAllOf.section);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(section, resourceType, field);
+    return Objects.hash(field, resourceType, section);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldUnauthorizedProblemAllOf {\n");
-    sb.append("    section: ").append(toIndentedString(section)).append("\n");
-    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
+    sb.append("    section: ").append(toIndentedString(section)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,15 +291,15 @@ public class FieldUnauthorizedProblemAllOf {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("section");
-    openapiFields.add("resource_type");
     openapiFields.add("field");
+    openapiFields.add("resource_type");
+    openapiFields.add("section");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("section");
-    openapiRequiredFields.add("resource_type");
     openapiRequiredFields.add("field");
+    openapiRequiredFields.add("resource_type");
+    openapiRequiredFields.add("section");
   }
 
  /**
@@ -324,14 +324,14 @@ public class FieldUnauthorizedProblemAllOf {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("section") != null && !jsonObj.get("section").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `section` to be a primitive type in the JSON string but got `%s`", jsonObj.get("section").toString()));
+      if (jsonObj.get("field") != null && !jsonObj.get("field").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
       }
       if (jsonObj.get("resource_type") != null && !jsonObj.get("resource_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `resource_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("resource_type").toString()));
       }
-      if (jsonObj.get("field") != null && !jsonObj.get("field").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
+      if (jsonObj.get("section") != null && !jsonObj.get("section").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `section` to be a primitive type in the JSON string but got `%s`", jsonObj.get("section").toString()));
       }
   }
 

@@ -62,6 +62,10 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "A [GeoJson Point](https://tools.ietf.org/html/rfc7946#section-3.1.2) geometry object.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Point {
+  public static final String SERIALIZED_NAME_COORDINATES = "coordinates";
+  @SerializedName(SERIALIZED_NAME_COORDINATES)
+  private List<BigDecimal> coordinates = new ArrayList<>();
+
   /**
    * Gets or Sets type
    */
@@ -111,35 +115,8 @@ public class Point {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_COORDINATES = "coordinates";
-  @SerializedName(SERIALIZED_NAME_COORDINATES)
-  private List<BigDecimal> coordinates = new ArrayList<>();
-
   public Point() { 
   }
-
-  public Point type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Point", required = true, value = "")
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
 
   public Point coordinates(List<BigDecimal> coordinates) {
     
@@ -169,6 +146,29 @@ public class Point {
   }
 
 
+  public Point type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "Point", required = true, value = "")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -179,21 +179,21 @@ public class Point {
       return false;
     }
     Point point = (Point) o;
-    return Objects.equals(this.type, point.type) &&
-        Objects.equals(this.coordinates, point.coordinates);
+    return Objects.equals(this.coordinates, point.coordinates) &&
+        Objects.equals(this.type, point.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, coordinates);
+    return Objects.hash(coordinates, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Point {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    coordinates: ").append(toIndentedString(coordinates)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -216,13 +216,13 @@ public class Point {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
     openapiFields.add("coordinates");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("coordinates");
+    openapiRequiredFields.add("type");
   }
 
  /**
@@ -247,12 +247,12 @@ public class Point {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
       // ensure the json data is an array
       if (jsonObj.get("coordinates") != null && !jsonObj.get("coordinates").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `coordinates` to be an array in the JSON string but got `%s`", jsonObj.get("coordinates").toString()));
+      }
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
   }
 

@@ -67,9 +67,9 @@ public class DisallowedResourceProblemAllOf {
    */
   @JsonAdapter(ResourceTypeEnum.Adapter.class)
   public enum ResourceTypeEnum {
-    TWEET("tweet"),
-    
     USER("user"),
+    
+    TWEET("tweet"),
     
     MEDIA("media"),
     

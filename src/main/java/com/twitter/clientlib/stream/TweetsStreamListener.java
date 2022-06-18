@@ -19,8 +19,8 @@ limitations under the License.
 
 package com.twitter.clientlib.stream;
 
-import com.twitter.clientlib.model.StreamingTweet;
+import com.twitter.clientlib.model.StreamingTweetResponse;
 
 public interface TweetsStreamListener {
-  void onTweetArrival(StreamingTweet streamingTweet);
+  void onTweetArrival(StreamingTweetResponse streamingTweet);
 }

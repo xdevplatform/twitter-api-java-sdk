@@ -59,39 +59,16 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Represent the portion of text recognized as a User mention, and its start and end position within the text.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MentionFields {
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
-  private String username;
-
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
+
   public MentionFields() { 
   }
-
-  public MentionFields username(String username) {
-    
-    this.username = username;
-    return this;
-  }
-
-   /**
-   * The Twitter handle (screen name) of this user.
-   * @return username
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Twitter handle (screen name) of this user.")
-
-  public String getUsername() {
-    return username;
-  }
-
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
 
   public MentionFields id(String id) {
     
@@ -103,8 +80,8 @@ public class MentionFields {
    * Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2244994945", value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2244994945", required = true, value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
 
   public String getId() {
     return id;
@@ -113,6 +90,29 @@ public class MentionFields {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public MentionFields username(String username) {
+    
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * The Twitter handle (screen name) of this user.
+   * @return username
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The Twitter handle (screen name) of this user.")
+
+  public String getUsername() {
+    return username;
+  }
+
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 
 
@@ -126,21 +126,21 @@ public class MentionFields {
       return false;
     }
     MentionFields mentionFields = (MentionFields) o;
-    return Objects.equals(this.username, mentionFields.username) &&
-        Objects.equals(this.id, mentionFields.id);
+    return Objects.equals(this.id, mentionFields.id) &&
+        Objects.equals(this.username, mentionFields.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, id);
+    return Objects.hash(id, username);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MentionFields {\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -163,11 +163,13 @@ public class MentionFields {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("username");
     openapiFields.add("id");
+    openapiFields.add("username");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("username");
   }
 
  /**
@@ -185,11 +187,18 @@ public class MentionFields {
      //   }
      // }
 
-      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : MentionFields.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
       }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("username") != null && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
       }
   }
 

@@ -39,9 +39,7 @@ public class HelloWorld {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
@@ -50,7 +48,9 @@ public class HelloWorld {
 
     try {
      // findTweetById
-     SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null , null, null, null);
+     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+      .tweetFields(tweetFields)
+      .execute();
      if(result.getErrors() != null && result.getErrors().size() > 0) {
        System.out.println("Error:");
 

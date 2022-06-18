@@ -22,15 +22,15 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.model.ComplianceJobStatus;
-import com.twitter.clientlib.model.ComplianceJobType;
-import com.twitter.clientlib.model.CreateBatchComplianceJobRequest;
+import com.twitter.clientlib.model.CreateComplianceJobRequest;
+import com.twitter.clientlib.model.CreateComplianceJobResponse;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.MultiComplianceJobResponse;
+import com.twitter.clientlib.model.Get2ComplianceJobsIdResponse;
+import com.twitter.clientlib.model.Get2ComplianceJobsResponse;
 import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.SingleComplianceJobResponse;
+import java.util.Set;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ import java.io.InputStream;
 @Disabled
 public class ComplianceApiTest {
 
-    private final TwitterApi apiInstance = new TwitterApi();
+    private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     // TODO set credentials
     
     /**
@@ -58,39 +58,47 @@ public class ComplianceApiTest {
      */
     @Test
     public void createBatchComplianceJobTest() throws ApiException {
-        CreateBatchComplianceJobRequest createBatchComplianceJobRequest = null;
-                SingleComplianceJobResponse response = apiInstance.compliance().createBatchComplianceJob(createBatchComplianceJobRequest);
+        CreateComplianceJobRequest createComplianceJobRequest = null;
+                CreateComplianceJobResponse response = apiInstance.compliance().createBatchComplianceJob(createComplianceJobRequest)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * Get compliance job
+     * Get Compliance Job
      *
-     * Returns a single compliance job by ID
+     * Returns a single Compliance Job by ID
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void getBatchComplianceJobTest() throws ApiException {
         String id = null;
-                SingleComplianceJobResponse response = apiInstance.compliance().getBatchComplianceJob(id);
+        Set<String> complianceJobFields = null;
+                Get2ComplianceJobsIdResponse response = apiInstance.compliance().getBatchComplianceJob(id)
+                .complianceJobFields(complianceJobFields)
+                .execute();
         // TODO: test validations
     }
 
 
     /**
-     * List compliance jobs
+     * List Compliance Jobs
      *
-     * Returns recent compliance jobs for a given job type and optional job status
+     * Returns recent Compliance Jobs for a given job type and optional job status
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void listBatchComplianceJobsTest() throws ApiException {
-        ComplianceJobType type = null;
-        ComplianceJobStatus status = null;
-                MultiComplianceJobResponse response = apiInstance.compliance().listBatchComplianceJobs(type, status);
+        String type = null;
+        String status = null;
+        Set<String> complianceJobFields = null;
+                Get2ComplianceJobsResponse response = apiInstance.compliance().listBatchComplianceJobs(type)
+                .status(status)
+                .complianceJobFields(complianceJobFields)
+                .execute();
         // TODO: test validations
     }
 

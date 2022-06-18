@@ -32,7 +32,7 @@ import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.auth.TwitterOAuth20Service;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
 
 /**
 * This is an example of revoking an OAuth2 access token.
@@ -47,13 +47,11 @@ import com.twitter.clientlib.model.SingleTweetLookupResponse;
 public class OAuth20RevokeToken {
 
   public static void main(String[] args) {
-    OAuth20RevokeToken example = new OAuth20RevokeToken();
     TwitterCredentialsOAuth2 credentials = new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
         System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
         System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
         System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN"));
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     TwitterOAuth20Service service = new TwitterOAuth20Service(
         credentials.getTwitterOauth2ClientId(),
@@ -62,7 +60,7 @@ public class OAuth20RevokeToken {
         "offline.access tweet.read users.read like.write space.read list.read tweet.write like.read");
 
     // Assuming that the access token is valid this call should be successful
-    example.callApi(apiInstance);
+    callApi(apiInstance);
     // Revoke the token
     try {
       service.revokeToken(credentials.getTwitterOauth2AccessToken(), TokenTypeHint.ACCESS_TOKEN);
@@ -72,10 +70,10 @@ public class OAuth20RevokeToken {
       return;
     }
     // This call should fail
-    example.callApi(apiInstance);
+    callApi(apiInstance);
   }
 
-  public void callApi(TwitterApi apiInstance) {
+  public static void callApi(TwitterApi apiInstance) {
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
     tweetFields.add("id");
@@ -83,8 +81,9 @@ public class OAuth20RevokeToken {
 
     try {
       // findTweetById
-      SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null,
-          null, null, null);
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+        .tweetFields(tweetFields)
+        .execute();
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");
         result.getErrors().forEach(e -> {

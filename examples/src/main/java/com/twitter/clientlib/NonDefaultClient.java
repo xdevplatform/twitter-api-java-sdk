@@ -30,7 +30,7 @@ import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
 
 /**
  * Initializing the TwitterApi using a non default ApiClient.
@@ -41,8 +41,8 @@ public class NonDefaultClient {
     NonDefaultClient example = new NonDefaultClient();
     // Create an ApiClient and use it instead of the default one in TwitterApi
     ApiClient apiClient = new ApiClient();
+    apiClient.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     TwitterApi apiInstance = new TwitterApi(apiClient);
-    apiInstance.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     example.callApi(apiInstance);
   }
 
@@ -54,8 +54,9 @@ public class NonDefaultClient {
 
     try {
       // findTweetById
-      SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null,
-          null, null, null);
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+        .tweetFields(tweetFields)
+        .execute();
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");
         result.getErrors().forEach(e -> {

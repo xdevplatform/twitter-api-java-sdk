@@ -80,7 +80,7 @@ public class TwitterStream {
 
     public void sampleStream(StreamQueryParameters streamParameters) {
         try {
-            BufferedSource streamResult = tweets.sampleStream(retries == 0 ? 1 : retries, streamParameters);
+            BufferedSource streamResult = tweets.sampleStream().parameters(streamParameters).execute(retries == 0 ? 1 : retries);
             executor = new TweetsStreamExecutor(streamResult);
             listeners.forEach(executor::addListener);
             executor.start();

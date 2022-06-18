@@ -30,6 +30,7 @@ import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Place;
 import com.twitter.clientlib.model.Poll;
+import com.twitter.clientlib.model.Topic;
 import com.twitter.clientlib.model.Tweet;
 import com.twitter.clientlib.model.User;
 import io.swagger.annotations.ApiModel;
@@ -56,19 +57,11 @@ public class ExpansionsTest {
     }
 
     /**
-     * Test the property 'users'
+     * Test the property 'media'
      */
     @Test
-    public void usersTest() {
-        // TODO: test users
-    }
-
-    /**
-     * Test the property 'tweets'
-     */
-    @Test
-    public void tweetsTest() {
-        // TODO: test tweets
+    public void mediaTest() {
+        // TODO: test media
     }
 
     /**
@@ -80,19 +73,35 @@ public class ExpansionsTest {
     }
 
     /**
-     * Test the property 'media'
-     */
-    @Test
-    public void mediaTest() {
-        // TODO: test media
-    }
-
-    /**
      * Test the property 'polls'
      */
     @Test
     public void pollsTest() {
         // TODO: test polls
+    }
+
+    /**
+     * Test the property 'topics'
+     */
+    @Test
+    public void topicsTest() {
+        // TODO: test topics
+    }
+
+    /**
+     * Test the property 'tweets'
+     */
+    @Test
+    public void tweetsTest() {
+        // TODO: test tweets
+    }
+
+    /**
+     * Test the property 'users'
+     */
+    @Test
+    public void usersTest() {
+        // TODO: test users
     }
 
 }

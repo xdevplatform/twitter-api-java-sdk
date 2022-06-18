@@ -70,22 +70,6 @@ public class ClientForbiddenProblemTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
      * Test the property 'detail'
      */
     @Test
@@ -99,6 +83,22 @@ public class ClientForbiddenProblemTest {
     @Test
     public void statusTest() {
         // TODO: test status
+    }
+
+    /**
+     * Test the property 'title'
+     */
+    @Test
+    public void titleTest() {
+        // TODO: test title
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**

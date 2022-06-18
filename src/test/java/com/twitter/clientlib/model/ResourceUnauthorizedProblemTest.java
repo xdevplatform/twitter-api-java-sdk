@@ -69,22 +69,6 @@ public class ResourceUnauthorizedProblemTest {
     }
 
     /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'title'
-     */
-    @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
      * Test the property 'detail'
      */
     @Test
@@ -101,11 +85,19 @@ public class ResourceUnauthorizedProblemTest {
     }
 
     /**
-     * Test the property 'value'
+     * Test the property 'title'
      */
     @Test
-    public void valueTest() {
-        // TODO: test value
+    public void titleTest() {
+        // TODO: test title
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**
@@ -114,14 +106,6 @@ public class ResourceUnauthorizedProblemTest {
     @Test
     public void parameterTest() {
         // TODO: test parameter
-    }
-
-    /**
-     * Test the property 'section'
-     */
-    @Test
-    public void sectionTest() {
-        // TODO: test section
     }
 
     /**
@@ -138,6 +122,22 @@ public class ResourceUnauthorizedProblemTest {
     @Test
     public void resourceTypeTest() {
         // TODO: test resourceType
+    }
+
+    /**
+     * Test the property 'section'
+     */
+    @Test
+    public void sectionTest() {
+        // TODO: test section
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }

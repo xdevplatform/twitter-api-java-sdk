@@ -32,7 +32,7 @@ import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.auth.TwitterOAuth20AppOnlyService;
 import com.twitter.clientlib.model.ResourceUnauthorizedProblem;
-import com.twitter.clientlib.model.SingleTweetLookupResponse;
+import com.twitter.clientlib.model.Get2TweetsIdResponse;
 
 /**
 * This is an example of getting an OAuth2 bearer boken (app-only) and using it to call an API.
@@ -48,19 +48,17 @@ import com.twitter.clientlib.model.SingleTweetLookupResponse;
 public class OAuth20AppOnlyGetAccessToken {
 
   public static void main(String[] args) {
-    OAuth20AppOnlyGetAccessToken example = new OAuth20AppOnlyGetAccessToken();
-
-    OAuth2AccessToken accessToken = example.getAccessToken();
+    OAuth2AccessToken accessToken = getAccessToken();
     if (accessToken == null) {
       return;
     }
 
     // Setting the bearer token into TwitterCredentials
     TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(accessToken.getAccessToken());
-    example.callApi(credentials);
+    callApi(credentials);
   }
 
-  public OAuth2AccessToken getAccessToken() {
+  public static OAuth2AccessToken getAccessToken() {
     TwitterOAuth20AppOnlyService service = new TwitterOAuth20AppOnlyService(
         System.getenv("TWITTER_CONSUMER_KEY"),
         System.getenv("TWITTER_CONSUMER_SECRET"));
@@ -78,9 +76,8 @@ public class OAuth20AppOnlyGetAccessToken {
     return accessToken;
   }
 
-  public void callApi(TwitterCredentialsBearer credentials) {
-    TwitterApi apiInstance = new TwitterApi();
-    apiInstance.setTwitterCredentials(credentials);
+  public static void callApi(TwitterCredentialsBearer credentials) {
+    TwitterApi apiInstance = new TwitterApi(credentials);
 
     Set<String> tweetFields = new HashSet<>();
     tweetFields.add("author_id");
@@ -89,8 +86,9 @@ public class OAuth20AppOnlyGetAccessToken {
 
     try {
       // findTweetById
-      SingleTweetLookupResponse result = apiInstance.tweets().findTweetById("20", null, tweetFields, null,
-          null, null, null);
+      Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+        .tweetFields(tweetFields)
+        .execute();
       if (result.getErrors() != null && result.getErrors().size() > 0) {
         System.out.println("Error:");
         result.getErrors().forEach(e -> {

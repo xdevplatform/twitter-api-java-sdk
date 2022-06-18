@@ -32,13 +32,13 @@ import com.google.gson.stream.JsonWriter;
 import com.twitter.clientlib.model.AnimatedGif;
 import com.twitter.clientlib.model.Media;
 import com.twitter.clientlib.model.Photo;
+import com.twitter.clientlib.model.Variant;
 import com.twitter.clientlib.model.Video;
 import com.twitter.clientlib.model.VideoAllOf;
 import com.twitter.clientlib.model.VideoAllOfNonPublicMetrics;
 import com.twitter.clientlib.model.VideoAllOfOrganicMetrics;
 import com.twitter.clientlib.model.VideoAllOfPromotedMetrics;
 import com.twitter.clientlib.model.VideoAllOfPublicMetrics;
-import com.twitter.clientlib.model.VideoAllOfVariants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -71,21 +71,9 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Video extends Media {
-  public static final String SERIALIZED_NAME_PREVIEW_IMAGE_URL = "preview_image_url";
-  @SerializedName(SERIALIZED_NAME_PREVIEW_IMAGE_URL)
-  private URL previewImageUrl;
-
   public static final String SERIALIZED_NAME_DURATION_MS = "duration_ms";
   @SerializedName(SERIALIZED_NAME_DURATION_MS)
   private Integer durationMs;
-
-  public static final String SERIALIZED_NAME_VARIANTS = "variants";
-  @SerializedName(SERIALIZED_NAME_VARIANTS)
-  private List<VideoAllOfVariants> variants = null;
-
-  public static final String SERIALIZED_NAME_PUBLIC_METRICS = "public_metrics";
-  @SerializedName(SERIALIZED_NAME_PUBLIC_METRICS)
-  private VideoAllOfPublicMetrics publicMetrics;
 
   public static final String SERIALIZED_NAME_NON_PUBLIC_METRICS = "non_public_metrics";
   @SerializedName(SERIALIZED_NAME_NON_PUBLIC_METRICS)
@@ -95,36 +83,25 @@ public class Video extends Media {
   @SerializedName(SERIALIZED_NAME_ORGANIC_METRICS)
   private VideoAllOfOrganicMetrics organicMetrics;
 
+  public static final String SERIALIZED_NAME_PREVIEW_IMAGE_URL = "preview_image_url";
+  @SerializedName(SERIALIZED_NAME_PREVIEW_IMAGE_URL)
+  private URL previewImageUrl;
+
   public static final String SERIALIZED_NAME_PROMOTED_METRICS = "promoted_metrics";
   @SerializedName(SERIALIZED_NAME_PROMOTED_METRICS)
   private VideoAllOfPromotedMetrics promotedMetrics;
 
+  public static final String SERIALIZED_NAME_PUBLIC_METRICS = "public_metrics";
+  @SerializedName(SERIALIZED_NAME_PUBLIC_METRICS)
+  private VideoAllOfPublicMetrics publicMetrics;
+
+  public static final String SERIALIZED_NAME_VARIANTS = "variants";
+  @SerializedName(SERIALIZED_NAME_VARIANTS)
+  private List<Variant> variants = null;
+
   public Video() { 
     this.type = this.getClass().getSimpleName();
   }
-
-  public Video previewImageUrl(URL previewImageUrl) {
-    
-    this.previewImageUrl = previewImageUrl;
-    return this;
-  }
-
-   /**
-   * Get previewImageUrl
-   * @return previewImageUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public URL getPreviewImageUrl() {
-    return previewImageUrl;
-  }
-
-
-  public void setPreviewImageUrl(URL previewImageUrl) {
-    this.previewImageUrl = previewImageUrl;
-  }
-
 
   public Video durationMs(Integer durationMs) {
     
@@ -146,60 +123,6 @@ public class Video extends Media {
 
   public void setDurationMs(Integer durationMs) {
     this.durationMs = durationMs;
-  }
-
-
-  public Video variants(List<VideoAllOfVariants> variants) {
-    
-    this.variants = variants;
-    return this;
-  }
-
-  public Video addVariantsItem(VideoAllOfVariants variantsItem) {
-    if (this.variants == null) {
-      this.variants = new ArrayList<>();
-    }
-    this.variants.add(variantsItem);
-    return this;
-  }
-
-   /**
-   * An array of all available variants of the media
-   * @return variants
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of all available variants of the media")
-
-  public List<VideoAllOfVariants> getVariants() {
-    return variants;
-  }
-
-
-  public void setVariants(List<VideoAllOfVariants> variants) {
-    this.variants = variants;
-  }
-
-
-  public Video publicMetrics(VideoAllOfPublicMetrics publicMetrics) {
-    
-    this.publicMetrics = publicMetrics;
-    return this;
-  }
-
-   /**
-   * Get publicMetrics
-   * @return publicMetrics
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public VideoAllOfPublicMetrics getPublicMetrics() {
-    return publicMetrics;
-  }
-
-
-  public void setPublicMetrics(VideoAllOfPublicMetrics publicMetrics) {
-    this.publicMetrics = publicMetrics;
   }
 
 
@@ -249,6 +172,29 @@ public class Video extends Media {
   }
 
 
+  public Video previewImageUrl(URL previewImageUrl) {
+    
+    this.previewImageUrl = previewImageUrl;
+    return this;
+  }
+
+   /**
+   * Get previewImageUrl
+   * @return previewImageUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public URL getPreviewImageUrl() {
+    return previewImageUrl;
+  }
+
+
+  public void setPreviewImageUrl(URL previewImageUrl) {
+    this.previewImageUrl = previewImageUrl;
+  }
+
+
   public Video promotedMetrics(VideoAllOfPromotedMetrics promotedMetrics) {
     
     this.promotedMetrics = promotedMetrics;
@@ -272,6 +218,60 @@ public class Video extends Media {
   }
 
 
+  public Video publicMetrics(VideoAllOfPublicMetrics publicMetrics) {
+    
+    this.publicMetrics = publicMetrics;
+    return this;
+  }
+
+   /**
+   * Get publicMetrics
+   * @return publicMetrics
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public VideoAllOfPublicMetrics getPublicMetrics() {
+    return publicMetrics;
+  }
+
+
+  public void setPublicMetrics(VideoAllOfPublicMetrics publicMetrics) {
+    this.publicMetrics = publicMetrics;
+  }
+
+
+  public Video variants(List<Variant> variants) {
+    
+    this.variants = variants;
+    return this;
+  }
+
+  public Video addVariantsItem(Variant variantsItem) {
+    if (this.variants == null) {
+      this.variants = new ArrayList<>();
+    }
+    this.variants.add(variantsItem);
+    return this;
+  }
+
+   /**
+   * An array of all available variants of the media.
+   * @return variants
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of all available variants of the media.")
+
+  public List<Variant> getVariants() {
+    return variants;
+  }
+
+
+  public void setVariants(List<Variant> variants) {
+    this.variants = variants;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -282,19 +282,19 @@ public class Video extends Media {
       return false;
     }
     Video video = (Video) o;
-    return Objects.equals(this.previewImageUrl, video.previewImageUrl) &&
-        Objects.equals(this.durationMs, video.durationMs) &&
-        Objects.equals(this.variants, video.variants) &&
-        Objects.equals(this.publicMetrics, video.publicMetrics) &&
+    return Objects.equals(this.durationMs, video.durationMs) &&
         Objects.equals(this.nonPublicMetrics, video.nonPublicMetrics) &&
         Objects.equals(this.organicMetrics, video.organicMetrics) &&
+        Objects.equals(this.previewImageUrl, video.previewImageUrl) &&
         Objects.equals(this.promotedMetrics, video.promotedMetrics) &&
+        Objects.equals(this.publicMetrics, video.publicMetrics) &&
+        Objects.equals(this.variants, video.variants) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(previewImageUrl, durationMs, variants, publicMetrics, nonPublicMetrics, organicMetrics, promotedMetrics, super.hashCode());
+    return Objects.hash(durationMs, nonPublicMetrics, organicMetrics, previewImageUrl, promotedMetrics, publicMetrics, variants, super.hashCode());
   }
 
   @Override
@@ -302,13 +302,13 @@ public class Video extends Media {
     StringBuilder sb = new StringBuilder();
     sb.append("class Video {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    previewImageUrl: ").append(toIndentedString(previewImageUrl)).append("\n");
     sb.append("    durationMs: ").append(toIndentedString(durationMs)).append("\n");
-    sb.append("    variants: ").append(toIndentedString(variants)).append("\n");
-    sb.append("    publicMetrics: ").append(toIndentedString(publicMetrics)).append("\n");
     sb.append("    nonPublicMetrics: ").append(toIndentedString(nonPublicMetrics)).append("\n");
     sb.append("    organicMetrics: ").append(toIndentedString(organicMetrics)).append("\n");
+    sb.append("    previewImageUrl: ").append(toIndentedString(previewImageUrl)).append("\n");
     sb.append("    promotedMetrics: ").append(toIndentedString(promotedMetrics)).append("\n");
+    sb.append("    publicMetrics: ").append(toIndentedString(publicMetrics)).append("\n");
+    sb.append("    variants: ").append(toIndentedString(variants)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -331,17 +331,17 @@ public class Video extends Media {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("media_key");
     openapiFields.add("height");
+    openapiFields.add("media_key");
+    openapiFields.add("type");
     openapiFields.add("width");
-    openapiFields.add("preview_image_url");
     openapiFields.add("duration_ms");
-    openapiFields.add("variants");
-    openapiFields.add("public_metrics");
     openapiFields.add("non_public_metrics");
     openapiFields.add("organic_metrics");
+    openapiFields.add("preview_image_url");
     openapiFields.add("promoted_metrics");
+    openapiFields.add("public_metrics");
+    openapiFields.add("variants");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

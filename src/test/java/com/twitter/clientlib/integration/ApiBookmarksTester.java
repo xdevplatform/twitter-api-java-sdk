@@ -45,10 +45,12 @@ public class ApiBookmarksTester extends ApiTester {
 
   @Test
   public void getUsersIdBookmarksTest() throws ApiException {
-    GenericTweetsTimelineResponse result = apiInstance.bookmarks().getUsersIdBookmarks(userId,
-        maxResults, null,
-        expansions, tweetFields, userFields,
-        null, null, null);
+    Get2UsersIdBookmarksResponse result = apiInstance.bookmarks().getUsersIdBookmarks(userId)
+        .maxResults(maxResults)
+        .tweetFields(tweetFields)
+        .expansions(expansions)
+        .userFields(userFields)
+        .execute();
     checkErrors(false, result.getErrors());
     checkTweetData(result.getData().get(0));
     checkTweetIncludes(result.getIncludes());
@@ -59,9 +61,12 @@ public class ApiBookmarksTester extends ApiTester {
   @Test
   public void getUsersIdBookmarksErrorTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.bookmarks().getUsersIdBookmarks(userNotExists, maxResults, null,
-          expansions, tweetFields, userFields,
-          null, null, null);
+      apiInstance.bookmarks().getUsersIdBookmarks(userNotExists)
+          .maxResults(maxResults)
+          .tweetFields(tweetFields)
+          .expansions(expansions)
+          .userFields(userFields)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -70,15 +75,18 @@ public class ApiBookmarksTester extends ApiTester {
 
   @Test
   public void createDeleteBookmarkTest() throws ApiException {
-    AddBookmarkRequest req = new AddBookmarkRequest();
+    BookmarkAddRequest req = new BookmarkAddRequest();
     req.setTweetId(tweetIdPopular);
-    BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(req, userId);
+    BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(req,
+            userId)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getBookmarked());
 
     BookmarkMutationResponse deleteResponse = apiInstance.bookmarks().usersIdBookmarksDelete(userId,
-        tweetIdPopular);
+            tweetIdPopular)
+        .execute();
     checkErrors(false, deleteResponse.getErrors());
     assertNotNull(deleteResponse.getData());
     assertFalse(deleteResponse.getData().getBookmarked());
@@ -86,16 +94,18 @@ public class ApiBookmarksTester extends ApiTester {
 
   @Test
   public void createTwiceBookmarkTest() throws ApiException {
-    AddBookmarkRequest req = new AddBookmarkRequest();
+    BookmarkAddRequest req = new BookmarkAddRequest();
     req.setTweetId(tweetIdPopular);
     apiInstance.bookmarks().postUsersIdBookmarks(req, userId);
-    BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(req, userId);
+    BookmarkMutationResponse result = apiInstance.bookmarks().postUsersIdBookmarks(req, userId)
+        .execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getBookmarked());
 
     BookmarkMutationResponse deleteResponse = apiInstance.bookmarks().usersIdBookmarksDelete(userId,
-        tweetIdPopular);
+            tweetIdPopular)
+        .execute();
     checkErrors(false, deleteResponse.getErrors());
     assertNotNull(deleteResponse.getData());
     assertFalse(deleteResponse.getData().getBookmarked());
@@ -104,7 +114,8 @@ public class ApiBookmarksTester extends ApiTester {
   @Test
   public void usersIdBookmarksDeleteTweetNotFoundTest() throws ApiException {
     BookmarkMutationResponse result = apiInstance.bookmarks().usersIdBookmarksDelete(userId,
-        tweetIdNotFound);
+            tweetIdNotFound)
+        .execute();
     assertNotNull(result.getData());
     assertFalse(result.getData().getBookmarked());
     checkErrors(false, result.getErrors());
@@ -113,7 +124,8 @@ public class ApiBookmarksTester extends ApiTester {
   @Test
   public void usersIdBookmarksDeleteUserNotFoundTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.bookmarks().usersIdBookmarksDelete(userNotExists, tweetId);
+      apiInstance.bookmarks().usersIdBookmarksDelete(userNotExists, tweetId)
+          .execute();
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -122,11 +134,11 @@ public class ApiBookmarksTester extends ApiTester {
 
   @Test
   public void createDeleteTweetErrorTest() throws ApiException {
-    AddBookmarkRequest req = new AddBookmarkRequest();
+    BookmarkAddRequest req = new BookmarkAddRequest();
     req.setTweetId(tweetIdNotFound);
 
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.bookmarks().postUsersIdBookmarks(req, userId);
+      apiInstance.bookmarks().postUsersIdBookmarks(req, userId).execute();
     });
     checkGenericProblem(exception.getErrorObject().getProblem(),
         "You are not permitted to bookmark this Tweet.", "Forbidden",

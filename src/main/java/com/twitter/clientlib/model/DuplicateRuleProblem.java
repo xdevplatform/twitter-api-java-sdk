@@ -79,40 +79,17 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "The rule you have submitted is a duplicate.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DuplicateRuleProblem extends Problem {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
-
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
   public DuplicateRuleProblem() { 
     this.type = this.getClass().getSimpleName();
   }
-
-  public DuplicateRuleProblem value(String value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Get value
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
 
   public DuplicateRuleProblem id(String id) {
     
@@ -137,6 +114,29 @@ public class DuplicateRuleProblem extends Problem {
   }
 
 
+  public DuplicateRuleProblem value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -147,14 +147,14 @@ public class DuplicateRuleProblem extends Problem {
       return false;
     }
     DuplicateRuleProblem duplicateRuleProblem = (DuplicateRuleProblem) o;
-    return Objects.equals(this.value, duplicateRuleProblem.value) &&
-        Objects.equals(this.id, duplicateRuleProblem.id) &&
+    return Objects.equals(this.id, duplicateRuleProblem.id) &&
+        Objects.equals(this.value, duplicateRuleProblem.value) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, id, super.hashCode());
+    return Objects.hash(id, value, super.hashCode());
   }
 
   @Override
@@ -162,8 +162,8 @@ public class DuplicateRuleProblem extends Problem {
     StringBuilder sb = new StringBuilder();
     sb.append("class DuplicateRuleProblem {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -186,17 +186,17 @@ public class DuplicateRuleProblem extends Problem {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("title");
     openapiFields.add("detail");
     openapiFields.add("status");
-    openapiFields.add("value");
+    openapiFields.add("title");
+    openapiFields.add("type");
     openapiFields.add("id");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("title");
+    openapiRequiredFields.add("type");
   }
 
  /**

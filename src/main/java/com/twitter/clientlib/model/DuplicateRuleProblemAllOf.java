@@ -58,39 +58,16 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DuplicateRuleProblemAllOf {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
-
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
   public DuplicateRuleProblemAllOf() { 
   }
-
-  public DuplicateRuleProblemAllOf value(String value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Get value
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
 
   public DuplicateRuleProblemAllOf id(String id) {
     
@@ -115,6 +92,29 @@ public class DuplicateRuleProblemAllOf {
   }
 
 
+  public DuplicateRuleProblemAllOf value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -125,21 +125,21 @@ public class DuplicateRuleProblemAllOf {
       return false;
     }
     DuplicateRuleProblemAllOf duplicateRuleProblemAllOf = (DuplicateRuleProblemAllOf) o;
-    return Objects.equals(this.value, duplicateRuleProblemAllOf.value) &&
-        Objects.equals(this.id, duplicateRuleProblemAllOf.id);
+    return Objects.equals(this.id, duplicateRuleProblemAllOf.id) &&
+        Objects.equals(this.value, duplicateRuleProblemAllOf.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, id);
+    return Objects.hash(id, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DuplicateRuleProblemAllOf {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -162,8 +162,8 @@ public class DuplicateRuleProblemAllOf {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
     openapiFields.add("id");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -184,11 +184,11 @@ public class DuplicateRuleProblemAllOf {
      //   }
      // }
 
-      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
-      }
       if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("value") != null && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

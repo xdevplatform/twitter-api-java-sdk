@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**url** | **URL** |  |  [optional]
-**altText** | **String** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**altText** | **String** |  |  [optional] |
+|**url** | **URL** |  |  [optional] |
 
 
 

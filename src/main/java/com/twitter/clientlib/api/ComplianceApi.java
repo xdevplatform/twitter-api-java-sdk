@@ -38,13 +38,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.twitter.clientlib.model.ComplianceJobStatus;
-import com.twitter.clientlib.model.ComplianceJobType;
-import com.twitter.clientlib.model.CreateBatchComplianceJobRequest;
+import com.twitter.clientlib.model.CreateComplianceJobRequest;
+import com.twitter.clientlib.model.CreateComplianceJobResponse;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.MultiComplianceJobResponse;
+import com.twitter.clientlib.model.Get2ComplianceJobsIdResponse;
+import com.twitter.clientlib.model.Get2ComplianceJobsResponse;
 import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.SingleComplianceJobResponse;
+import java.util.Set;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -59,21 +59,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ComplianceApi extends ApiCommon {
 
-    /**
-     * Build call for createBatchComplianceJob
-     * @param createBatchComplianceJobRequest  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createBatchComplianceJobCall(CreateBatchComplianceJobRequest createBatchComplianceJobRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = createBatchComplianceJobRequest;
+    private okhttp3.Call createBatchComplianceJobCall(CreateComplianceJobRequest createComplianceJobRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = createComplianceJobRequest;
 
         // create path and map variables
         String localVarPath = "/2/compliance/jobs";
@@ -105,72 +92,24 @@ public class ComplianceApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createBatchComplianceJobValidateBeforeCall(CreateBatchComplianceJobRequest createBatchComplianceJobRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createBatchComplianceJobValidateBeforeCall(CreateComplianceJobRequest createComplianceJobRequest, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'createBatchComplianceJobRequest' is set
-        if (createBatchComplianceJobRequest == null) {
-            throw new ApiException("Missing the required parameter 'createBatchComplianceJobRequest' when calling createBatchComplianceJob(Async)");
+        // verify the required parameter 'createComplianceJobRequest' is set
+        if (createComplianceJobRequest == null) {
+            throw new ApiException("Missing the required parameter 'createComplianceJobRequest' when calling createBatchComplianceJob(Async)");
         }
         
 
-        okhttp3.Call localVarCall = createBatchComplianceJobCall(createBatchComplianceJobRequest, _callback);
+        okhttp3.Call localVarCall = createBatchComplianceJobCall(createComplianceJobRequest, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Create compliance job
-     * Creates a compliance for the given job type
-     * @param createBatchComplianceJobRequest  (required)
-     * @return SingleComplianceJobResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public SingleComplianceJobResponse createBatchComplianceJob(CreateBatchComplianceJobRequest createBatchComplianceJobRequest) throws ApiException {
-      ApiResponse<SingleComplianceJobResponse> localVarResp = createBatchComplianceJobWithHttpInfo(createBatchComplianceJobRequest);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public SingleComplianceJobResponse createBatchComplianceJob(Integer retries, CreateBatchComplianceJobRequest createBatchComplianceJobRequest) throws ApiException {
-        SingleComplianceJobResponse localVarResp;
-        try{
-          localVarResp = createBatchComplianceJob(createBatchComplianceJobRequest);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return createBatchComplianceJob(retries - 1, createBatchComplianceJobRequest);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Create compliance job
-     * Creates a compliance for the given job type
-     * @param createBatchComplianceJobRequest  (required)
-     * @return ApiResponse&lt;SingleComplianceJobResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SingleComplianceJobResponse> createBatchComplianceJobWithHttpInfo(CreateBatchComplianceJobRequest createBatchComplianceJobRequest) throws ApiException {
-        okhttp3.Call localVarCall = createBatchComplianceJobValidateBeforeCall(createBatchComplianceJobRequest, null);
+    private ApiResponse<CreateComplianceJobResponse> createBatchComplianceJobWithHttpInfo(CreateComplianceJobRequest createComplianceJobRequest) throws ApiException {
+        okhttp3.Call localVarCall = createBatchComplianceJobValidateBeforeCall(createComplianceJobRequest, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleComplianceJobResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<CreateComplianceJobResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -178,41 +117,117 @@ public class ComplianceApi extends ApiCommon {
         }
     }
 
-    /**
-     * Create compliance job (asynchronously)
-     * Creates a compliance for the given job type
-     * @param createBatchComplianceJobRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createBatchComplianceJobAsync(CreateBatchComplianceJobRequest createBatchComplianceJobRequest, final ApiCallback<SingleComplianceJobResponse> _callback) throws ApiException {
+    private okhttp3.Call createBatchComplianceJobAsync(CreateComplianceJobRequest createComplianceJobRequest, final ApiCallback<CreateComplianceJobResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createBatchComplianceJobValidateBeforeCall(createBatchComplianceJobRequest, _callback);
-        Type localVarReturnType = new TypeToken<SingleComplianceJobResponse>(){}.getType();
+        okhttp3.Call localVarCall = createBatchComplianceJobValidateBeforeCall(createComplianceJobRequest, _callback);
+        Type localVarReturnType = new TypeToken<CreateComplianceJobResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIcreateBatchComplianceJobRequest {
+        private final CreateComplianceJobRequest createComplianceJobRequest;
+
+        private APIcreateBatchComplianceJobRequest(CreateComplianceJobRequest createComplianceJobRequest) {
+            this.createComplianceJobRequest = createComplianceJobRequest;
+        }
+
+        /**
+         * Build call for createBatchComplianceJob
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return createBatchComplianceJobCall(createComplianceJobRequest, _callback);
+        }
+
+        /**
+         * Execute createBatchComplianceJob request
+         * @return CreateComplianceJobResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public CreateComplianceJobResponse execute() throws ApiException {
+            ApiResponse<CreateComplianceJobResponse> localVarResp = createBatchComplianceJobWithHttpInfo(createComplianceJobRequest);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public CreateComplianceJobResponse  execute(Integer retries) throws ApiException {
+          CreateComplianceJobResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute createBatchComplianceJob request with HTTP info returned
+         * @return ApiResponse&lt;CreateComplianceJobResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<CreateComplianceJobResponse> executeWithHttpInfo() throws ApiException {
+              return createBatchComplianceJobWithHttpInfo(createComplianceJobRequest);
+            }
+        /**
+         * Execute createBatchComplianceJob request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<CreateComplianceJobResponse> _callback) throws ApiException {
+            return createBatchComplianceJobAsync(createComplianceJobRequest, _callback);
+        }
+    }
+
     /**
-     * Build call for getBatchComplianceJob
-     * @param id ID of the compliance job to retrieve. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Create compliance job
+     * Creates a compliance for the given job type
+     * @param createComplianceJobRequest  (required)
+     * @return APIcreateBatchComplianceJobRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getBatchComplianceJobCall(String id, final ApiCallback _callback) throws ApiException {
+    public APIcreateBatchComplianceJobRequest createBatchComplianceJob(CreateComplianceJobRequest createComplianceJobRequest) {
+        return new APIcreateBatchComplianceJobRequest(createComplianceJobRequest);
+    }
+    private okhttp3.Call getBatchComplianceJobCall(String id, Set<String> complianceJobFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -224,6 +239,10 @@ public class ComplianceApi extends ApiCommon {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (complianceJobFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "compliance_job.fields", complianceJobFields));
+        }
 
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
@@ -246,7 +265,7 @@ public class ComplianceApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getBatchComplianceJobValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getBatchComplianceJobValidateBeforeCall(String id, Set<String> complianceJobFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -254,64 +273,16 @@ public class ComplianceApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = getBatchComplianceJobCall(id, _callback);
+        okhttp3.Call localVarCall = getBatchComplianceJobCall(id, complianceJobFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Get compliance job
-     * Returns a single compliance job by ID
-     * @param id ID of the compliance job to retrieve. (required)
-     * @return SingleComplianceJobResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public SingleComplianceJobResponse getBatchComplianceJob(String id) throws ApiException {
-      ApiResponse<SingleComplianceJobResponse> localVarResp = getBatchComplianceJobWithHttpInfo(id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public SingleComplianceJobResponse getBatchComplianceJob(Integer retries, String id) throws ApiException {
-        SingleComplianceJobResponse localVarResp;
-        try{
-          localVarResp = getBatchComplianceJob(id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return getBatchComplianceJob(retries - 1, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Get compliance job
-     * Returns a single compliance job by ID
-     * @param id ID of the compliance job to retrieve. (required)
-     * @return ApiResponse&lt;SingleComplianceJobResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SingleComplianceJobResponse> getBatchComplianceJobWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, null);
+    private ApiResponse<Get2ComplianceJobsIdResponse> getBatchComplianceJobWithHttpInfo(String id, Set<String> complianceJobFields) throws ApiException {
+        okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, complianceJobFields, null);
         try {
-            Type localVarReturnType = new TypeToken<SingleComplianceJobResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2ComplianceJobsIdResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -319,42 +290,128 @@ public class ComplianceApi extends ApiCommon {
         }
     }
 
-    /**
-     * Get compliance job (asynchronously)
-     * Returns a single compliance job by ID
-     * @param id ID of the compliance job to retrieve. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getBatchComplianceJobAsync(String id, final ApiCallback<SingleComplianceJobResponse> _callback) throws ApiException {
+    private okhttp3.Call getBatchComplianceJobAsync(String id, Set<String> complianceJobFields, final ApiCallback<Get2ComplianceJobsIdResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<SingleComplianceJobResponse>(){}.getType();
+        okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, complianceJobFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2ComplianceJobsIdResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIgetBatchComplianceJobRequest {
+        private final String id;
+        private Set<String> complianceJobFields;
+
+        private APIgetBatchComplianceJobRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set complianceJobFields
+         * @param complianceJobFields A comma separated list of ComplianceJob fields to display. (optional)
+         * @return APIgetBatchComplianceJobRequest
+         */
+        public APIgetBatchComplianceJobRequest complianceJobFields(Set<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        /**
+         * Build call for getBatchComplianceJob
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getBatchComplianceJobCall(id, complianceJobFields, _callback);
+        }
+
+        /**
+         * Execute getBatchComplianceJob request
+         * @return Get2ComplianceJobsIdResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2ComplianceJobsIdResponse execute() throws ApiException {
+            ApiResponse<Get2ComplianceJobsIdResponse> localVarResp = getBatchComplianceJobWithHttpInfo(id, complianceJobFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2ComplianceJobsIdResponse  execute(Integer retries) throws ApiException {
+          Get2ComplianceJobsIdResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getBatchComplianceJob request with HTTP info returned
+         * @return ApiResponse&lt;Get2ComplianceJobsIdResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2ComplianceJobsIdResponse> executeWithHttpInfo() throws ApiException {
+              return getBatchComplianceJobWithHttpInfo(id, complianceJobFields);
+            }
+        /**
+         * Execute getBatchComplianceJob request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2ComplianceJobsIdResponse> _callback) throws ApiException {
+            return getBatchComplianceJobAsync(id, complianceJobFields, _callback);
+        }
+    }
+
     /**
-     * Build call for listBatchComplianceJobs
-     * @param type Type of compliance job to list. (required)
-     * @param status Status of compliance job to list. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Get Compliance Job
+     * Returns a single Compliance Job by ID
+     * @param id The ID of the Compliance Job to retrieve. (required)
+     * @return APIgetBatchComplianceJobRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List compliance jobs response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listBatchComplianceJobsCall(ComplianceJobType type, ComplianceJobStatus status, final ApiCallback _callback) throws ApiException {
+    public APIgetBatchComplianceJobRequest getBatchComplianceJob(String id) {
+        return new APIgetBatchComplianceJobRequest(id);
+    }
+    private okhttp3.Call listBatchComplianceJobsCall(String type, String status, Set<String> complianceJobFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -374,6 +431,10 @@ public class ComplianceApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
+        if (complianceJobFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "compliance_job.fields", complianceJobFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "application/problem+json"
         };
@@ -395,7 +456,7 @@ public class ComplianceApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listBatchComplianceJobsValidateBeforeCall(ComplianceJobType type, ComplianceJobStatus status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listBatchComplianceJobsValidateBeforeCall(String type, String status, Set<String> complianceJobFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'type' is set
         if (type == null) {
@@ -403,66 +464,16 @@ public class ComplianceApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = listBatchComplianceJobsCall(type, status, _callback);
+        okhttp3.Call localVarCall = listBatchComplianceJobsCall(type, status, complianceJobFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * List compliance jobs
-     * Returns recent compliance jobs for a given job type and optional job status
-     * @param type Type of compliance job to list. (required)
-     * @param status Status of compliance job to list. (optional)
-     * @return MultiComplianceJobResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List compliance jobs response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public MultiComplianceJobResponse listBatchComplianceJobs(ComplianceJobType type, ComplianceJobStatus status) throws ApiException {
-      ApiResponse<MultiComplianceJobResponse> localVarResp = listBatchComplianceJobsWithHttpInfo(type, status);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public MultiComplianceJobResponse listBatchComplianceJobs(Integer retries, ComplianceJobType type, ComplianceJobStatus status) throws ApiException {
-        MultiComplianceJobResponse localVarResp;
-        try{
-          localVarResp = listBatchComplianceJobs(type, status);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return listBatchComplianceJobs(retries - 1, type, status);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * List compliance jobs
-     * Returns recent compliance jobs for a given job type and optional job status
-     * @param type Type of compliance job to list. (required)
-     * @param status Status of compliance job to list. (optional)
-     * @return ApiResponse&lt;MultiComplianceJobResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List compliance jobs response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<MultiComplianceJobResponse> listBatchComplianceJobsWithHttpInfo(ComplianceJobType type, ComplianceJobStatus status) throws ApiException {
-        okhttp3.Call localVarCall = listBatchComplianceJobsValidateBeforeCall(type, status, null);
+    private ApiResponse<Get2ComplianceJobsResponse> listBatchComplianceJobsWithHttpInfo(String type, String status, Set<String> complianceJobFields) throws ApiException {
+        okhttp3.Call localVarCall = listBatchComplianceJobsValidateBeforeCall(type, status, complianceJobFields, null);
         try {
-            Type localVarReturnType = new TypeToken<MultiComplianceJobResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2ComplianceJobsResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -470,26 +481,136 @@ public class ComplianceApi extends ApiCommon {
         }
     }
 
+    private okhttp3.Call listBatchComplianceJobsAsync(String type, String status, Set<String> complianceJobFields, final ApiCallback<Get2ComplianceJobsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listBatchComplianceJobsValidateBeforeCall(type, status, complianceJobFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2ComplianceJobsResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIlistBatchComplianceJobsRequest {
+        private final String type;
+        private String status;
+        private Set<String> complianceJobFields;
+
+        private APIlistBatchComplianceJobsRequest(String type) {
+            this.type = type;
+        }
+
+        /**
+         * Set status
+         * @param status Status of Compliance Job to list. (optional)
+         * @return APIlistBatchComplianceJobsRequest
+         */
+        public APIlistBatchComplianceJobsRequest status(String status) {
+            this.status = status;
+            return this;
+        }
+
+        /**
+         * Set complianceJobFields
+         * @param complianceJobFields A comma separated list of ComplianceJob fields to display. (optional)
+         * @return APIlistBatchComplianceJobsRequest
+         */
+        public APIlistBatchComplianceJobsRequest complianceJobFields(Set<String> complianceJobFields) {
+            this.complianceJobFields = complianceJobFields;
+            return this;
+        }
+
+        /**
+         * Build call for listBatchComplianceJobs
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listBatchComplianceJobsCall(type, status, complianceJobFields, _callback);
+        }
+
+        /**
+         * Execute listBatchComplianceJobs request
+         * @return Get2ComplianceJobsResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2ComplianceJobsResponse execute() throws ApiException {
+            ApiResponse<Get2ComplianceJobsResponse> localVarResp = listBatchComplianceJobsWithHttpInfo(type, status, complianceJobFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2ComplianceJobsResponse  execute(Integer retries) throws ApiException {
+          Get2ComplianceJobsResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute listBatchComplianceJobs request with HTTP info returned
+         * @return ApiResponse&lt;Get2ComplianceJobsResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2ComplianceJobsResponse> executeWithHttpInfo() throws ApiException {
+              return listBatchComplianceJobsWithHttpInfo(type, status, complianceJobFields);
+            }
+        /**
+         * Execute listBatchComplianceJobs request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2ComplianceJobsResponse> _callback) throws ApiException {
+            return listBatchComplianceJobsAsync(type, status, complianceJobFields, _callback);
+        }
+    }
+
     /**
-     * List compliance jobs (asynchronously)
-     * Returns recent compliance jobs for a given job type and optional job status
-     * @param type Type of compliance job to list. (required)
-     * @param status Status of compliance job to list. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * List Compliance Jobs
+     * Returns recent Compliance Jobs for a given job type and optional job status
+     * @param type Type of Compliance Job to list. (required)
+     * @return APIlistBatchComplianceJobsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List compliance jobs response </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listBatchComplianceJobsAsync(ComplianceJobType type, ComplianceJobStatus status, final ApiCallback<MultiComplianceJobResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = listBatchComplianceJobsValidateBeforeCall(type, status, _callback);
-        Type localVarReturnType = new TypeToken<MultiComplianceJobResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public APIlistBatchComplianceJobsRequest listBatchComplianceJobs(String type) {
+        return new APIlistBatchComplianceJobsRequest(type);
     }
 }

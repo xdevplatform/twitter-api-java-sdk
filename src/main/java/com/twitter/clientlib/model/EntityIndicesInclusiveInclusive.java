@@ -59,40 +59,16 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Represent a boundary range (start and end index) for a recognized entity (for example a hashtag or a mention). `start` must be smaller than `end`.  The start index is inclusive, the end index is inclusive.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EntityIndicesInclusiveInclusive {
-  public static final String SERIALIZED_NAME_START = "start";
-  @SerializedName(SERIALIZED_NAME_START)
-  private Integer start;
-
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
   private Integer end;
 
+  public static final String SERIALIZED_NAME_START = "start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private Integer start;
+
   public EntityIndicesInclusiveInclusive() { 
   }
-
-  public EntityIndicesInclusiveInclusive start(Integer start) {
-    
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Index (zero-based) at which position this entity starts.  The index is inclusive.
-   * minimum: 0
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
-
-  public Integer getStart() {
-    return start;
-  }
-
-
-  public void setStart(Integer start) {
-    this.start = start;
-  }
-
 
   public EntityIndicesInclusiveInclusive end(Integer end) {
     
@@ -118,6 +94,30 @@ public class EntityIndicesInclusiveInclusive {
   }
 
 
+  public EntityIndicesInclusiveInclusive start(Integer start) {
+    
+    this.start = start;
+    return this;
+  }
+
+   /**
+   * Index (zero-based) at which position this entity starts.  The index is inclusive.
+   * minimum: 0
+   * @return start
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "50", required = true, value = "Index (zero-based) at which position this entity starts.  The index is inclusive.")
+
+  public Integer getStart() {
+    return start;
+  }
+
+
+  public void setStart(Integer start) {
+    this.start = start;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -128,21 +128,21 @@ public class EntityIndicesInclusiveInclusive {
       return false;
     }
     EntityIndicesInclusiveInclusive entityIndicesInclusiveInclusive = (EntityIndicesInclusiveInclusive) o;
-    return Objects.equals(this.start, entityIndicesInclusiveInclusive.start) &&
-        Objects.equals(this.end, entityIndicesInclusiveInclusive.end);
+    return Objects.equals(this.end, entityIndicesInclusiveInclusive.end) &&
+        Objects.equals(this.start, entityIndicesInclusiveInclusive.start);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end);
+    return Objects.hash(end, start);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EntityIndicesInclusiveInclusive {\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,13 +165,13 @@ public class EntityIndicesInclusiveInclusive {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("start");
     openapiFields.add("end");
+    openapiFields.add("start");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("start");
     openapiRequiredFields.add("end");
+    openapiRequiredFields.add("start");
   }
 
  /**

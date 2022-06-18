@@ -53,7 +53,7 @@ public class HelloWorldStreaming {
 
 class Responder implements TweetsStreamListener {
   @Override
-  public synchronized void onTweetArrival(StreamingTweet streamingTweet) {
+  public void onTweetArrival(StreamingTweetResponse streamingTweet) {
     if(streamingTweet == null) {
       System.err.println("Error: actionOnTweetsStream - streamingTweet is null ");
       return;

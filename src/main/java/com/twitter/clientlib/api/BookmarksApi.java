@@ -38,10 +38,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.twitter.clientlib.model.AddBookmarkRequest;
+import com.twitter.clientlib.model.BookmarkAddRequest;
 import com.twitter.clientlib.model.BookmarkMutationResponse;
 import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.GenericTweetsTimelineResponse;
+import com.twitter.clientlib.model.Get2UsersIdBookmarksResponse;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
 
@@ -58,28 +58,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BookmarksApi extends ApiCommon {
 
-    /**
-     * Build call for getUsersIdBookmarks
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getUsersIdBookmarksCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getUsersIdBookmarksCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -100,28 +79,28 @@ public class BookmarksApi extends ApiCommon {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
 
-        if (expansions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
-        }
-
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
 
-        if (userFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
         }
 
         if (mediaFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
         }
 
-        if (placeFields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
-        }
-
         if (pollFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
 
         final String[] localVarAccepts = {
@@ -145,7 +124,7 @@ public class BookmarksApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUsersIdBookmarksValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getUsersIdBookmarksValidateBeforeCall(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -153,80 +132,16 @@ public class BookmarksApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = getUsersIdBookmarksCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
+        okhttp3.Call localVarCall = getUsersIdBookmarksCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Bookmarks by User
-     * Returns Tweet objects that have been bookmarked by the requesting user
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return GenericTweetsTimelineResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public GenericTweetsTimelineResponse getUsersIdBookmarks(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-      ApiResponse<GenericTweetsTimelineResponse> localVarResp = getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public GenericTweetsTimelineResponse getUsersIdBookmarks(Integer retries, String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        GenericTweetsTimelineResponse localVarResp;
-        try{
-          localVarResp = getUsersIdBookmarks(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return getUsersIdBookmarks(retries - 1, id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Bookmarks by User
-     * Returns Tweet objects that have been bookmarked by the requesting user
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @return ApiResponse&lt;GenericTweetsTimelineResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GenericTweetsTimelineResponse> getUsersIdBookmarksWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields) throws ApiException {
-        okhttp3.Call localVarCall = getUsersIdBookmarksValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, null);
+    private ApiResponse<Get2UsersIdBookmarksResponse> getUsersIdBookmarksWithHttpInfo(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = getUsersIdBookmarksValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
-            Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+            Type localVarReturnType = new TypeToken<Get2UsersIdBookmarksResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
         } catch (ApiException e) {
             e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
@@ -234,51 +149,206 @@ public class BookmarksApi extends ApiCommon {
         }
     }
 
-    /**
-     * Bookmarks by User (asynchronously)
-     * Returns Tweet objects that have been bookmarked by the requesting user
-     * @param id The ID of the user for whom to return results (required)
-     * @param maxResults The maximum number of results (optional)
-     * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
-     * @param expansions A comma separated list of fields to expand. (optional)
-     * @param tweetFields A comma separated list of Tweet fields to display. (optional)
-     * @param userFields A comma separated list of User fields to display. (optional)
-     * @param mediaFields A comma separated list of Media fields to display. (optional)
-     * @param placeFields A comma separated list of Place fields to display. (optional)
-     * @param pollFields A comma separated list of Poll fields to display. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getUsersIdBookmarksAsync(String id, Integer maxResults, String paginationToken, Set<String> expansions, Set<String> tweetFields, Set<String> userFields, Set<String> mediaFields, Set<String> placeFields, Set<String> pollFields, final ApiCallback<GenericTweetsTimelineResponse> _callback) throws ApiException {
+    private okhttp3.Call getUsersIdBookmarksAsync(String id, Integer maxResults, String paginationToken, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2UsersIdBookmarksResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUsersIdBookmarksValidateBeforeCall(id, maxResults, paginationToken, expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, _callback);
-        Type localVarReturnType = new TypeToken<GenericTweetsTimelineResponse>(){}.getType();
+        okhttp3.Call localVarCall = getUsersIdBookmarksValidateBeforeCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2UsersIdBookmarksResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIgetUsersIdBookmarksRequest {
+        private final String id;
+        private Integer maxResults;
+        private String paginationToken;
+        private Set<String> tweetFields;
+        private Set<String> expansions;
+        private Set<String> mediaFields;
+        private Set<String> pollFields;
+        private Set<String> userFields;
+        private Set<String> placeFields;
+
+        private APIgetUsersIdBookmarksRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set maxResults
+         * @param maxResults The maximum number of results. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest maxResults(Integer maxResults) {
+            this.maxResults = maxResults;
+            return this;
+        }
+
+        /**
+         * Set paginationToken
+         * @param paginationToken This parameter is used to get the next &#39;page&#39; of results. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest paginationToken(String paginationToken) {
+            this.paginationToken = paginationToken;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set mediaFields
+         * @param mediaFields A comma separated list of Media fields to display. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest mediaFields(Set<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        /**
+         * Set pollFields
+         * @param pollFields A comma separated list of Poll fields to display. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest pollFields(Set<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set placeFields
+         * @param placeFields A comma separated list of Place fields to display. (optional)
+         * @return APIgetUsersIdBookmarksRequest
+         */
+        public APIgetUsersIdBookmarksRequest placeFields(Set<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        /**
+         * Build call for getUsersIdBookmarks
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getUsersIdBookmarksCall(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+
+        /**
+         * Execute getUsersIdBookmarks request
+         * @return Get2UsersIdBookmarksResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public Get2UsersIdBookmarksResponse execute() throws ApiException {
+            ApiResponse<Get2UsersIdBookmarksResponse> localVarResp = getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public Get2UsersIdBookmarksResponse  execute(Integer retries) throws ApiException {
+          Get2UsersIdBookmarksResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getUsersIdBookmarks request with HTTP info returned
+         * @return ApiResponse&lt;Get2UsersIdBookmarksResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<Get2UsersIdBookmarksResponse> executeWithHttpInfo() throws ApiException {
+              return getUsersIdBookmarksWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+            }
+        /**
+         * Execute getUsersIdBookmarks request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2UsersIdBookmarksResponse> _callback) throws ApiException {
+            return getUsersIdBookmarksAsync(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+    }
+
     /**
-     * Build call for postUsersIdBookmarks
-     * @param addBookmarkRequest  (required)
-     * @param id The ID of the user for whom to add bookmarks (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Bookmarks by User
+     * Returns Tweet objects that have been bookmarked by the requesting User
+     * @param id The ID of the authenticated source User for whom to return results. (required)
+     * @return APIgetUsersIdBookmarksRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postUsersIdBookmarksCall(AddBookmarkRequest addBookmarkRequest, String id, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = addBookmarkRequest;
+    public APIgetUsersIdBookmarksRequest getUsersIdBookmarks(String id) {
+        return new APIgetUsersIdBookmarksRequest(id);
+    }
+    private okhttp3.Call postUsersIdBookmarksCall(BookmarkAddRequest bookmarkAddRequest, String id, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = bookmarkAddRequest;
 
         // create path and map variables
         String localVarPath = "/2/users/{id}/bookmarks"
@@ -311,11 +381,11 @@ public class BookmarksApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postUsersIdBookmarksValidateBeforeCall(AddBookmarkRequest addBookmarkRequest, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call postUsersIdBookmarksValidateBeforeCall(BookmarkAddRequest bookmarkAddRequest, String id, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'addBookmarkRequest' is set
-        if (addBookmarkRequest == null) {
-            throw new ApiException("Missing the required parameter 'addBookmarkRequest' when calling postUsersIdBookmarks(Async)");
+        // verify the required parameter 'bookmarkAddRequest' is set
+        if (bookmarkAddRequest == null) {
+            throw new ApiException("Missing the required parameter 'bookmarkAddRequest' when calling postUsersIdBookmarks(Async)");
         }
         
         // verify the required parameter 'id' is set
@@ -324,64 +394,14 @@ public class BookmarksApi extends ApiCommon {
         }
         
 
-        okhttp3.Call localVarCall = postUsersIdBookmarksCall(addBookmarkRequest, id, _callback);
+        okhttp3.Call localVarCall = postUsersIdBookmarksCall(bookmarkAddRequest, id, _callback);
         return localVarCall;
 
     }
 
-    /**
-     * Add Tweet to Bookmarks
-     * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
-     * @param addBookmarkRequest  (required)
-     * @param id The ID of the user for whom to add bookmarks (required)
-     * @return BookmarkMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public BookmarkMutationResponse postUsersIdBookmarks(AddBookmarkRequest addBookmarkRequest, String id) throws ApiException {
-      ApiResponse<BookmarkMutationResponse> localVarResp = postUsersIdBookmarksWithHttpInfo(addBookmarkRequest, id);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public BookmarkMutationResponse postUsersIdBookmarks(Integer retries, AddBookmarkRequest addBookmarkRequest, String id) throws ApiException {
-        BookmarkMutationResponse localVarResp;
-        try{
-          localVarResp = postUsersIdBookmarks(addBookmarkRequest, id);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return postUsersIdBookmarks(retries - 1, addBookmarkRequest, id);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Add Tweet to Bookmarks
-     * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
-     * @param addBookmarkRequest  (required)
-     * @param id The ID of the user for whom to add bookmarks (required)
-     * @return ApiResponse&lt;BookmarkMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<BookmarkMutationResponse> postUsersIdBookmarksWithHttpInfo(AddBookmarkRequest addBookmarkRequest, String id) throws ApiException {
-        okhttp3.Call localVarCall = postUsersIdBookmarksValidateBeforeCall(addBookmarkRequest, id, null);
+    private ApiResponse<BookmarkMutationResponse> postUsersIdBookmarksWithHttpInfo(BookmarkAddRequest bookmarkAddRequest, String id) throws ApiException {
+        okhttp3.Call localVarCall = postUsersIdBookmarksValidateBeforeCall(bookmarkAddRequest, id, null);
         try {
             Type localVarReturnType = new TypeToken<BookmarkMutationResponse>(){}.getType();
             return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -391,43 +411,120 @@ public class BookmarksApi extends ApiCommon {
         }
     }
 
-    /**
-     * Add Tweet to Bookmarks (asynchronously)
-     * Adds a Tweet (ID in the body) to the requesting user&#39;s (in the path) bookmarks
-     * @param addBookmarkRequest  (required)
-     * @param id The ID of the user for whom to add bookmarks (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call postUsersIdBookmarksAsync(AddBookmarkRequest addBookmarkRequest, String id, final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
+    private okhttp3.Call postUsersIdBookmarksAsync(BookmarkAddRequest bookmarkAddRequest, String id, final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postUsersIdBookmarksValidateBeforeCall(addBookmarkRequest, id, _callback);
+        okhttp3.Call localVarCall = postUsersIdBookmarksValidateBeforeCall(bookmarkAddRequest, id, _callback);
         Type localVarReturnType = new TypeToken<BookmarkMutationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class APIpostUsersIdBookmarksRequest {
+        private final BookmarkAddRequest bookmarkAddRequest;
+        private final String id;
+
+        private APIpostUsersIdBookmarksRequest(BookmarkAddRequest bookmarkAddRequest, String id) {
+            this.bookmarkAddRequest = bookmarkAddRequest;
+            this.id = id;
+        }
+
+        /**
+         * Build call for postUsersIdBookmarks
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return postUsersIdBookmarksCall(bookmarkAddRequest, id, _callback);
+        }
+
+        /**
+         * Execute postUsersIdBookmarks request
+         * @return BookmarkMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public BookmarkMutationResponse execute() throws ApiException {
+            ApiResponse<BookmarkMutationResponse> localVarResp = postUsersIdBookmarksWithHttpInfo(bookmarkAddRequest, id);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public BookmarkMutationResponse  execute(Integer retries) throws ApiException {
+          BookmarkMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute postUsersIdBookmarks request with HTTP info returned
+         * @return ApiResponse&lt;BookmarkMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<BookmarkMutationResponse> executeWithHttpInfo() throws ApiException {
+              return postUsersIdBookmarksWithHttpInfo(bookmarkAddRequest, id);
+            }
+        /**
+         * Execute postUsersIdBookmarks request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
+            return postUsersIdBookmarksAsync(bookmarkAddRequest, id, _callback);
+        }
+    }
+
     /**
-     * Build call for usersIdBookmarksDelete
-     * @param id The ID of the user whose bookmark is to be removed. (required)
-     * @param tweetId The ID of the tweet that the user is removing from bookmarks (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Add Tweet to Bookmarks
+     * Adds a Tweet (ID in the body) to the requesting User&#39;s (in the path) bookmarks
+     * @param bookmarkAddRequest  (required)
+     * @param id The ID of the authenticated source User for whom to add bookmarks. (required)
+     * @return APIpostUsersIdBookmarksRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersIdBookmarksDeleteCall(String id, String tweetId, final ApiCallback _callback) throws ApiException {
+    public APIpostUsersIdBookmarksRequest postUsersIdBookmarks(BookmarkAddRequest bookmarkAddRequest, String id) {
+        return new APIpostUsersIdBookmarksRequest(bookmarkAddRequest, id);
+    }
+    private okhttp3.Call usersIdBookmarksDeleteCall(String id, String tweetId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -480,58 +577,8 @@ public class BookmarksApi extends ApiCommon {
 
     }
 
-    /**
-     * Remove a bookmarked Tweet
-     * Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
-     * @param id The ID of the user whose bookmark is to be removed. (required)
-     * @param tweetId The ID of the tweet that the user is removing from bookmarks (required)
-     * @return BookmarkMutationResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public BookmarkMutationResponse usersIdBookmarksDelete(String id, String tweetId) throws ApiException {
-      ApiResponse<BookmarkMutationResponse> localVarResp = usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
-      return localVarResp != null ? localVarResp.getData() : null;
-    }
 
-   /**
-    * Calls the API using a retry mechanism to handle rate limits errors.
-    *
-    */
-    public BookmarkMutationResponse usersIdBookmarksDelete(Integer retries, String id, String tweetId) throws ApiException {
-        BookmarkMutationResponse localVarResp;
-        try{
-          localVarResp = usersIdBookmarksDelete(id, tweetId);
-        } catch (ApiException e) {
-          if(handleRateLimit(e, retries)) {
-            return usersIdBookmarksDelete(retries - 1, id, tweetId);
-          } else {
-            throw e;
-          }
-        }
-        return localVarResp;
-    }
-
-    /**
-     * Remove a bookmarked Tweet
-     * Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
-     * @param id The ID of the user whose bookmark is to be removed. (required)
-     * @param tweetId The ID of the tweet that the user is removing from bookmarks (required)
-     * @return ApiResponse&lt;BookmarkMutationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<BookmarkMutationResponse> usersIdBookmarksDeleteWithHttpInfo(String id, String tweetId) throws ApiException {
+    private ApiResponse<BookmarkMutationResponse> usersIdBookmarksDeleteWithHttpInfo(String id, String tweetId) throws ApiException {
         okhttp3.Call localVarCall = usersIdBookmarksDeleteValidateBeforeCall(id, tweetId, null);
         try {
             Type localVarReturnType = new TypeToken<BookmarkMutationResponse>(){}.getType();
@@ -542,26 +589,117 @@ public class BookmarksApi extends ApiCommon {
         }
     }
 
-    /**
-     * Remove a bookmarked Tweet (asynchronously)
-     * Removes a Tweet from the requesting user&#39;s bookmarked Tweets.
-     * @param id The ID of the user whose bookmark is to be removed. (required)
-     * @param tweetId The ID of the tweet that the user is removing from bookmarks (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The request was successful </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call usersIdBookmarksDeleteAsync(String id, String tweetId, final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
+    private okhttp3.Call usersIdBookmarksDeleteAsync(String id, String tweetId, final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = usersIdBookmarksDeleteValidateBeforeCall(id, tweetId, _callback);
         Type localVarReturnType = new TypeToken<BookmarkMutationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+    public class APIusersIdBookmarksDeleteRequest {
+        private final String id;
+        private final String tweetId;
+
+        private APIusersIdBookmarksDeleteRequest(String id, String tweetId) {
+            this.id = id;
+            this.tweetId = tweetId;
+        }
+
+        /**
+         * Build call for usersIdBookmarksDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return usersIdBookmarksDeleteCall(id, tweetId, _callback);
+        }
+
+        /**
+         * Execute usersIdBookmarksDelete request
+         * @return BookmarkMutationResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public BookmarkMutationResponse execute() throws ApiException {
+            ApiResponse<BookmarkMutationResponse> localVarResp = usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
+            return localVarResp.getData();
+        }
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public BookmarkMutationResponse  execute(Integer retries) throws ApiException {
+          BookmarkMutationResponse localVarResp;
+            try{
+          localVarResp = execute();
+          } catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute usersIdBookmarksDelete request with HTTP info returned
+         * @return ApiResponse&lt;BookmarkMutationResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public ApiResponse<BookmarkMutationResponse> executeWithHttpInfo() throws ApiException {
+              return usersIdBookmarksDeleteWithHttpInfo(id, tweetId);
+            }
+        /**
+         * Execute usersIdBookmarksDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BookmarkMutationResponse> _callback) throws ApiException {
+            return usersIdBookmarksDeleteAsync(id, tweetId, _callback);
+        }
+    }
+
+    /**
+     * Remove a bookmarked Tweet
+     * Removes a Tweet from the requesting User&#39;s bookmarked Tweets.
+     * @param id The ID of the authenticated source User whose bookmark is to be removed. (required)
+     * @param tweetId The ID of the Tweet that the source User is removing from bookmarks. (required)
+     * @return APIusersIdBookmarksDeleteRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIusersIdBookmarksDeleteRequest usersIdBookmarksDelete(String id, String tweetId) {
+        return new APIusersIdBookmarksDeleteRequest(id, tweetId);
     }
 }

@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twitter.clientlib.exceptions.EmptyStreamTimeoutException;
-import com.twitter.clientlib.model.StreamingTweet;
+import com.twitter.clientlib.model.StreamingTweetResponse;
 import okio.BufferedSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ public class TweetsStreamExecutor {
   private static final long EMPTY_STREAM_TIMEOUT = 20000;
   private static final int POLL_WAIT = 5;
   private volatile BlockingQueue<String> rawTweets;
-  private volatile BlockingQueue<StreamingTweet> tweets;
+  private volatile BlockingQueue<StreamingTweetResponse> tweets;
   private volatile boolean isRunning = true;
 
   private long startTime;
@@ -183,7 +183,7 @@ public class TweetsStreamExecutor {
         try {
           String rawTweet = rawTweets.poll(POLL_WAIT, TimeUnit.MILLISECONDS);
           if (rawTweet == null) continue;
-          StreamingTweet tweet = objectMapper.readValue(rawTweet, StreamingTweet.class);
+          StreamingTweetResponse tweet = objectMapper.readValue(rawTweet, StreamingTweetResponse.class);
           tweets.put(tweet);
         } catch (InterruptedException ignore) {
 
@@ -203,7 +203,7 @@ public class TweetsStreamExecutor {
     }
 
     private void processTweets() {
-      StreamingTweet streamingTweet;
+      StreamingTweetResponse streamingTweet;
 
         while (isRunning) {
           try {

@@ -59,14 +59,6 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Engagement metrics for the Tweet at the time of the request.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetPublicMetrics {
-  public static final String SERIALIZED_NAME_RETWEET_COUNT = "retweet_count";
-  @SerializedName(SERIALIZED_NAME_RETWEET_COUNT)
-  private Integer retweetCount;
-
-  public static final String SERIALIZED_NAME_REPLY_COUNT = "reply_count";
-  @SerializedName(SERIALIZED_NAME_REPLY_COUNT)
-  private Integer replyCount;
-
   public static final String SERIALIZED_NAME_LIKE_COUNT = "like_count";
   @SerializedName(SERIALIZED_NAME_LIKE_COUNT)
   private Integer likeCount;
@@ -75,54 +67,16 @@ public class TweetPublicMetrics {
   @SerializedName(SERIALIZED_NAME_QUOTE_COUNT)
   private Integer quoteCount;
 
+  public static final String SERIALIZED_NAME_REPLY_COUNT = "reply_count";
+  @SerializedName(SERIALIZED_NAME_REPLY_COUNT)
+  private Integer replyCount;
+
+  public static final String SERIALIZED_NAME_RETWEET_COUNT = "retweet_count";
+  @SerializedName(SERIALIZED_NAME_RETWEET_COUNT)
+  private Integer retweetCount;
+
   public TweetPublicMetrics() { 
   }
-
-  public TweetPublicMetrics retweetCount(Integer retweetCount) {
-    
-    this.retweetCount = retweetCount;
-    return this;
-  }
-
-   /**
-   * Number of times this Tweet has been Retweeted.
-   * @return retweetCount
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been Retweeted.")
-
-  public Integer getRetweetCount() {
-    return retweetCount;
-  }
-
-
-  public void setRetweetCount(Integer retweetCount) {
-    this.retweetCount = retweetCount;
-  }
-
-
-  public TweetPublicMetrics replyCount(Integer replyCount) {
-    
-    this.replyCount = replyCount;
-    return this;
-  }
-
-   /**
-   * Number of times this Tweet has been replied to.
-   * @return replyCount
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Number of times this Tweet has been replied to.")
-
-  public Integer getReplyCount() {
-    return replyCount;
-  }
-
-
-  public void setReplyCount(Integer replyCount) {
-    this.replyCount = replyCount;
-  }
-
 
   public TweetPublicMetrics likeCount(Integer likeCount) {
     
@@ -170,6 +124,52 @@ public class TweetPublicMetrics {
   }
 
 
+  public TweetPublicMetrics replyCount(Integer replyCount) {
+    
+    this.replyCount = replyCount;
+    return this;
+  }
+
+   /**
+   * Number of times this Tweet has been replied to.
+   * @return replyCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been replied to.")
+
+  public Integer getReplyCount() {
+    return replyCount;
+  }
+
+
+  public void setReplyCount(Integer replyCount) {
+    this.replyCount = replyCount;
+  }
+
+
+  public TweetPublicMetrics retweetCount(Integer retweetCount) {
+    
+    this.retweetCount = retweetCount;
+    return this;
+  }
+
+   /**
+   * Number of times this Tweet has been Retweeted.
+   * @return retweetCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been Retweeted.")
+
+  public Integer getRetweetCount() {
+    return retweetCount;
+  }
+
+
+  public void setRetweetCount(Integer retweetCount) {
+    this.retweetCount = retweetCount;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -180,25 +180,25 @@ public class TweetPublicMetrics {
       return false;
     }
     TweetPublicMetrics tweetPublicMetrics = (TweetPublicMetrics) o;
-    return Objects.equals(this.retweetCount, tweetPublicMetrics.retweetCount) &&
+    return Objects.equals(this.likeCount, tweetPublicMetrics.likeCount) &&
+        Objects.equals(this.quoteCount, tweetPublicMetrics.quoteCount) &&
         Objects.equals(this.replyCount, tweetPublicMetrics.replyCount) &&
-        Objects.equals(this.likeCount, tweetPublicMetrics.likeCount) &&
-        Objects.equals(this.quoteCount, tweetPublicMetrics.quoteCount);
+        Objects.equals(this.retweetCount, tweetPublicMetrics.retweetCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(retweetCount, replyCount, likeCount, quoteCount);
+    return Objects.hash(likeCount, quoteCount, replyCount, retweetCount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TweetPublicMetrics {\n");
-    sb.append("    retweetCount: ").append(toIndentedString(retweetCount)).append("\n");
-    sb.append("    replyCount: ").append(toIndentedString(replyCount)).append("\n");
     sb.append("    likeCount: ").append(toIndentedString(likeCount)).append("\n");
     sb.append("    quoteCount: ").append(toIndentedString(quoteCount)).append("\n");
+    sb.append("    replyCount: ").append(toIndentedString(replyCount)).append("\n");
+    sb.append("    retweetCount: ").append(toIndentedString(retweetCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,16 +221,16 @@ public class TweetPublicMetrics {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("retweet_count");
-    openapiFields.add("reply_count");
     openapiFields.add("like_count");
     openapiFields.add("quote_count");
+    openapiFields.add("reply_count");
+    openapiFields.add("retweet_count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("retweet_count");
-    openapiRequiredFields.add("reply_count");
     openapiRequiredFields.add("like_count");
+    openapiRequiredFields.add("reply_count");
+    openapiRequiredFields.add("retweet_count");
   }
 
  /**

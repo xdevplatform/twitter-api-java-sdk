@@ -49,19 +49,19 @@ public class RuleNoIdTest {
     }
 
     /**
-     * Test the property 'value'
-     */
-    @Test
-    public void valueTest() {
-        // TODO: test value
-    }
-
-    /**
      * Test the property 'tag'
      */
     @Test
     public void tagTest() {
         // TODO: test tag
+    }
+
+    /**
+     * Test the property 'value'
+     */
+    @Test
+    public void valueTest() {
+        // TODO: test value
     }
 
 }
