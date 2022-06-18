@@ -16,32 +16,15 @@ limitations under the License.
 
 */
 
-package com.twitter.clientlib.query.model;
+package com.twitter.clientlib.exceptions;
 
-import java.util.Arrays;
-import java.util.List;
+public class TooManyRequestsException extends RuntimeException{
 
-public enum PlaceField {
-    CONTAINED_WITHIN("contained_within"),
-    COUNTRY("country"),
-    COUNTRY_CODE("country_code"),
-    FULL_NAME("full_name"),
-    GEO("geo"),
-    ID("id"),
-    NAME("name"),
-    PLACE_TYPE("place_type");
-
-    private final String name;
-
-    PlaceField(String name) {
-        this.name = name;
+    public TooManyRequestsException(String message) {
+        super(message);
     }
 
-    public static List<PlaceField> all() {
-        return Arrays.asList(PlaceField.values());
-    }
-
-    public String getName() {
-        return name;
+    public TooManyRequestsException(String message, Throwable cause) {
+        super(message, cause);
     }
 }
