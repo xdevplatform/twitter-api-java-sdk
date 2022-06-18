@@ -120,66 +120,131 @@ public class StreamQueryParameters {
             this.placeFields = new ArrayList<>();
         }
 
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return Builder
+         */
         public Builder withTweetFields(TweetField... tweetFields) {
             this.tweetFields.addAll(Arrays.asList(tweetFields));
             return this;
         }
 
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return Builder
+         */
         public Builder withTweetFields(Collection<TweetField> tweetFields) {
             this.tweetFields.addAll(tweetFields);
             return this;
         }
 
+        /**
+         * Set mediaFields
+         * @param mediaFields A comma separated list of Media fields to display. (optional)
+         * @return Builder
+         */
         public Builder withMediaFields(MediaField... mediaFields) {
             this.mediaFields.addAll(Arrays.asList(mediaFields));
             return this;
         }
 
+        /**
+         * Set mediaFields
+         * @param mediaFields A comma separated list of Media fields to display. (optional)
+         * @return Builder
+         */
         public Builder withMediaFields(Collection<MediaField> mediaFields) {
             this.mediaFields.addAll(mediaFields);
             return this;
         }
 
+        /**
+         * Set pollFields
+         * @param pollFields A comma separated list of Poll fields to display. (optional)
+         * @return Builder
+         */
         public Builder withPollFields(PollField... pollFields) {
             this.pollFields.addAll(Arrays.asList(pollFields));
             return this;
         }
 
+        /**
+         * Set pollFields
+         * @param pollFields A comma separated list of Poll fields to display. (optional)
+         * @return Builder
+         */
         public Builder withPollFields(Collection<PollField> pollFields) {
             this.pollFields.addAll(pollFields);
             return this;
         }
 
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return Builder
+         */
         public Builder withUserFields(UserField... userFields) {
             this.userFields.addAll(Arrays.asList(userFields));
             return this;
         }
 
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return Builder
+         */
         public Builder withUserFields(Collection<UserField> userFields) {
             this.userFields.addAll(userFields);
             return this;
         }
 
+        /**
+         * Set placeFields
+         * @param placeFields A comma separated list of Place fields to display. (optional)
+         * @return Builder
+         */
         public Builder withPlaceFields(PlaceField... placeFields) {
             this.placeFields.addAll(Arrays.asList(placeFields));
             return this;
         }
 
+        /**
+         * Set placeFields
+         * @param placeFields A comma separated list of Place fields to display. (optional)
+         * @return Builder
+         */
         public Builder withPlaceFields(Collection<PlaceField> placeFields) {
             this.placeFields.addAll(placeFields);
             return this;
         }
 
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return Builder
+         */
         public Builder withExpansions(Expansion... expansions) {
             this.expansions.addAll(Arrays.asList(expansions));
             return this;
         }
 
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return Builder
+         */
         public Builder withExpansions(Collection<Expansion> expansions) {
             this.expansions.addAll(expansions);
             return this;
         }
 
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return Builder
+         */
         public Builder withBackfillMinutes(Integer backFillMinutes) {
             this.backFillMinutes = backFillMinutes;
             return this;

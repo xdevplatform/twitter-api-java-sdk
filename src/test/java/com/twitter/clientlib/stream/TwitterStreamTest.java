@@ -44,8 +44,7 @@ class TwitterStreamTest extends ApiTester {
 
     @BeforeAll
     public static void beforeAll() {
-        twitterStream = new TwitterStream();
-        twitterStream.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
+        twitterStream = new TwitterStream(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
         twitterStream.setRetries(4);
     }
 
@@ -64,7 +63,7 @@ class TwitterStreamTest extends ApiTester {
 
     @Test
     public void shutdown() throws InterruptedException {
-        twitterStream.sampleStream(new StreamQueryParameters.Builder().build());
+        twitterStream.startSampleStream(new StreamQueryParameters.Builder().build());
         TimeUnit.SECONDS.sleep(5);
         assertTrue(tweets.size() > 1);
         twitterStream.shutdown();
@@ -72,7 +71,7 @@ class TwitterStreamTest extends ApiTester {
 
     @Test
     public void sampleStream() throws InterruptedException {
-        twitterStream.sampleStream(new StreamQueryParameters.Builder().build());
+        twitterStream.startSampleStream(new StreamQueryParameters.Builder().build());
         TimeUnit.SECONDS.sleep(5);
         assertTrue(tweets.size() > 1);
     }
@@ -82,7 +81,7 @@ class TwitterStreamTest extends ApiTester {
         List<StreamingTweetResponse> tweetsDuplicate = new LinkedList<>();
         TweetsStreamListener courierDuplicate = new TweetCourier(tweetsDuplicate);
         twitterStream.addListener(courierDuplicate);
-        twitterStream.sampleStream(new StreamQueryParameters.Builder().build());
+        twitterStream.startSampleStream(new StreamQueryParameters.Builder().build());
         TimeUnit.SECONDS.sleep(5);
         assertTrue(tweets.size() > 1);
         assertTrue(tweetsDuplicate.size() > 1);
@@ -95,7 +94,7 @@ class TwitterStreamTest extends ApiTester {
         TweetsStreamListener courierDuplicate = new TweetCourier(tweetsDuplicate);
         twitterStream.addListener(courierDuplicate);
         twitterStream.removeListener(courierDuplicate);
-        twitterStream.sampleStream(new StreamQueryParameters.Builder().build());
+        twitterStream.startSampleStream(new StreamQueryParameters.Builder().build());
         TimeUnit.SECONDS.sleep(5);
         assertTrue(tweets.size() > 1);
         assertEquals(0, tweetsDuplicate.size());

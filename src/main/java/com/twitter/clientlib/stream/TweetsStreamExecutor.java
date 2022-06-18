@@ -45,17 +45,13 @@ public class TweetsStreamExecutor {
 
   private static final long EMPTY_STREAM_TIMEOUT = 20000;
   private static final int POLL_WAIT = 5;
+
   private volatile BlockingQueue<String> rawTweets;
   private volatile BlockingQueue<StreamingTweetResponse> tweets;
   private volatile boolean isRunning = true;
-
-  private long startTime;
-  private int tweetsCount = 0;
-  private final int tweetsLimit = 250000;
   private ExecutorService rawTweetsQueuerService;
   private ExecutorService deserializationService;
   private ExecutorService listenersService;
-
   private final List<TweetsStreamListener> listeners = new ArrayList<>();
   private BufferedSource stream;
 
@@ -78,7 +74,6 @@ public class TweetsStreamExecutor {
       logger.error("Stream is null. Exiting...");
       return;
     }
-    startTime = System.currentTimeMillis();
 
     rawTweetsQueuerService = Executors.newSingleThreadExecutor();
     rawTweetsQueuerService.submit(new RawTweetsQueuer());
@@ -211,14 +206,6 @@ public class TweetsStreamExecutor {
             if(streamingTweet == null) continue;
             for (TweetsStreamListener listener : listeners) {
               listener.onTweetArrival(streamingTweet);
-            }
-            tweetsCount++;
-            if(tweetsCount == tweetsLimit) {
-              long stopTime = System.currentTimeMillis();
-              long durationInMillis = stopTime - startTime;
-              double seconds = durationInMillis / 1000.0;
-              logger.info("Total duration in seconds: {}", seconds);
-              shutdown();
             }
           } catch (InterruptedException e) {
 

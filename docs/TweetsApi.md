@@ -895,15 +895,29 @@ public class Example {
 
 <a name="sampleStream"></a>
 # **sampleStream**
-> StreamingTweetResponse sampleStream().backfillMinutes(backfillMinutes).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+```java
+BufferedSource sampleStream()
+                .parameters(new StreamQueryParameters.Builder()
+                            .withBackfillMinutes(backfillMinutes)
+                            .withTweetFields(tweetFields)
+                            .withExpansions(expansions)
+                            .withMediaFields(mediaFields)
+                            .withPollFields(pollFields)
+                            .withUserFields(userFields)
+                            .withPlaceFields(placeFields)
+                            .build())
+                .execute();
+``` 
 
 Sample stream
 
 Streams a deterministic 1% of public Tweets.
 
 ### Example
+
 ```java
 // Import classes:
+
 import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.Configuration;
@@ -914,10 +928,15 @@ import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.TweetsApi;
+
 import java.io.InputStream;
+
 import com.google.common.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
+import com.twitter.clientlib.query.StreamQueryParameters;
+import com.twitter.clientlib.query.model.TweetField;
+import okio.BufferedSource;
+
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Set;
@@ -926,76 +945,59 @@ import java.util.HashSet;
 import java.time.OffsetDateTime;
 
 public class Example {
-  public static void main(String[] args) {
-    // Set the credentials based on the API's "security" tag values.
-    // Check the API definition in https://api.twitter.com/2/openapi.json
-    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+    public static void main(String[] args) {
+        // Set the credentials based on the API's "security" tag values.
+        // Check the API definition in https://api.twitter.com/2/openapi.json
+        // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
 
-    // Uncomment and set the credentials configuration
-      
-    // Configure HTTP bearer authorization:
-    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+        // Uncomment and set the credentials configuration
+
+        // Configure HTTP bearer authorization:
+        // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
         TwitterApi apiInstance = new TwitterApi(credentials);
 
-    // Set the params values
-    Integer backfillMinutes = 56; // Integer | The number of minutes of backfill requested.
-    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
-    Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
-    Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
-    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
-    try {
-            InputStream result = apiInstance.tweets().sampleStream()
-             .backfillMinutes(backfillMinutes)
-             .tweetFields(tweetFields)
-             .expansions(expansions)
-             .mediaFields(mediaFields)
-             .pollFields(pollFields)
-             .userFields(userFields)
-             .placeFields(placeFields)
-                .execute();
-            try{
-               JSON json = new JSON();
-               Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
-               BufferedReader reader = new BufferedReader(new InputStreamReader(result));
-               String line = reader.readLine();
-               while (line != null) {
-                 if(line.isEmpty()) {
-                   System.out.println("==> Empty line");
-                   line = reader.readLine();
-                   continue;
-                 }
-                 Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
-                 System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
-                 line = reader.readLine();
-               }
-            }catch (Exception e) {
-              e.printStackTrace();
-              System.out.println(e);
+        try {
+            BufferedSource result = apiInstance.tweets().sampleStream()
+                    .parameters(new StreamQueryParameters.Builder()
+                            .withBackfillMinutes(56)
+                            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+                            .build())
+                    .execute();
+            try {
+                JSON json = new JSON();
+                Type localVarReturnType = new TypeToken<StreamingTweetResponse>() {
+                }.getType();
+                String line = result.readUtf8Line();
+                while (line != null) {
+                    if (line.isEmpty()) {
+                        System.out.println("==> Empty line");
+                        line = result.readUtf8Line();
+                        continue;
+                    }
+                    Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+                    System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
+                    line = result.readUtf8Line();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e);
             }
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TweetsApi#sampleStream");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TweetsApi#sampleStream");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **backfillMinutes** | **Integer**| The number of minutes of backfill requested. | [optional] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: attachments.media_keys, attachments.poll_ids, author_id, entities.mentions.username, geo.place_id, in_reply_to_user_id, referenced_tweets.id, referenced_tweets.id.author_id] |
-| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: alt_text, duration_ms, height, media_key, non_public_metrics, organic_metrics, preview_image_url, promoted_metrics, public_metrics, type, url, variants, width] |
-| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: duration_minutes, end_datetime, id, options, voting_status] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
-| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: contained_within, country, country_code, full_name, geo, id, name, place_type] |
+| Name  | Type                                                            | Description | Notes |
+|-------|-----------------------------------------------------------------|------------|-------|
+| **parameters** | [**StreamQueryParameters**](StreamQueryParameters.md)  |            |       |
 
 ### Return type
 
@@ -1018,15 +1020,29 @@ public class Example {
 
 <a name="searchStream"></a>
 # **searchStream**
-> FilteredStreamingTweetResponse searchStream().backfillMinutes(backfillMinutes).tweetFields(tweetFields).expansions(expansions).mediaFields(mediaFields).pollFields(pollFields).userFields(userFields).placeFields(placeFields).execute();
+```java
 
+FilteredStreamingTweetResponse searchStream()
+        .parameters(new StreamQueryParameters.Builder()
+                        .withBackfillMinutes(backfillMinutes)
+                        .withTweetFields(tweetFields)
+                        .withExpansions(expansions)
+                        .withMediaFields(mediaFields)
+                        .withPollFields(pollFields)
+                        .withUserFields(userFields)
+                        .withPlaceFields(placeFields)
+                        .build())
+        .execute();
+```
 Filtered stream
 
 Streams Tweets matching the stream&#39;s active rule set.
 
 ### Example
+
 ```java
 // Import classes:
+
 import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.Configuration;
@@ -1037,10 +1053,14 @@ import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 
 import com.twitter.clientlib.api.TweetsApi;
+
 import java.io.InputStream;
+
 import com.google.common.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import com.twitter.clientlib.query.StreamQueryParameters;
+import com.twitter.clientlib.query.model.TweetField;
+import okio.BufferedSource;
+
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Set;
@@ -1049,62 +1069,51 @@ import java.util.HashSet;
 import java.time.OffsetDateTime;
 
 public class Example {
-  public static void main(String[] args) {
-    // Set the credentials based on the API's "security" tag values.
-    // Check the API definition in https://api.twitter.com/2/openapi.json
-    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+    public static void main(String[] args) {
+        // Set the credentials based on the API's "security" tag values.
+        // Check the API definition in https://api.twitter.com/2/openapi.json
+        // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
 
-    // Uncomment and set the credentials configuration
-      
-    // Configure HTTP bearer authorization:
-    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+        // Uncomment and set the credentials configuration
+
+        // Configure HTTP bearer authorization:
+        // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
         TwitterApi apiInstance = new TwitterApi(credentials);
 
-    // Set the params values
-    Integer backfillMinutes = 56; // Integer | The number of minutes of backfill requested.
-    Set<String> tweetFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Tweet fields to display.
-    Set<String> expansions = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of fields to expand.
-    Set<String> mediaFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Media fields to display.
-    Set<String> pollFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Poll fields to display.
-    Set<String> userFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of User fields to display.
-    Set<String> placeFields = new HashSet<>(Arrays.asList()); // Set<String> | A comma separated list of Place fields to display.
-    try {
-            InputStream result = apiInstance.tweets().searchStream()
-             .backfillMinutes(backfillMinutes)
-             .tweetFields(tweetFields)
-             .expansions(expansions)
-             .mediaFields(mediaFields)
-             .pollFields(pollFields)
-             .userFields(userFields)
-             .placeFields(placeFields)
-                .execute();
-            try{
-               JSON json = new JSON();
-               Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
-               BufferedReader reader = new BufferedReader(new InputStreamReader(result));
-               String line = reader.readLine();
-               while (line != null) {
-                 if(line.isEmpty()) {
-                   System.out.println("==> Empty line");
-                   line = reader.readLine();
-                   continue;
-                 }
-                 Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
-                 System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
-                 line = reader.readLine();
-               }
-            }catch (Exception e) {
-              e.printStackTrace();
-              System.out.println(e);
+        try {
+            BufferedSource result = apiInstance.tweets().searchStream()
+                    .parameters(new StreamQueryParameters.Builder()
+                            .withBackfillMinutes(56)
+                            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+                            .build())
+                    .execute();
+            try {
+                JSON json = new JSON();
+                Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>() {
+                }.getType();
+                String line = result.readUtf8Line();
+                while (line != null) {
+                    if (line.isEmpty()) {
+                        System.out.println("==> Empty line");
+                        line = result.readUtf8Line();
+                        continue;
+                    }
+                    Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+                    System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
+                    line = result.readUtf8Line();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e);
             }
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TweetsApi#searchStream");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TweetsApi#searchStream");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
@@ -1112,13 +1121,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **backfillMinutes** | **Integer**| The number of minutes of backfill requested. | [optional] |
-| **tweetFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Tweet fields to display. | [optional] [enum: attachments, author_id, context_annotations, conversation_id, created_at, entities, geo, id, in_reply_to_user_id, lang, non_public_metrics, organic_metrics, possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets, reply_settings, source, text, withheld] |
-| **expansions** | [**Set&lt;String&gt;**](String.md)| A comma separated list of fields to expand. | [optional] [enum: attachments.media_keys, attachments.poll_ids, author_id, entities.mentions.username, geo.place_id, in_reply_to_user_id, referenced_tweets.id, referenced_tweets.id.author_id] |
-| **mediaFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Media fields to display. | [optional] [enum: alt_text, duration_ms, height, media_key, non_public_metrics, organic_metrics, preview_image_url, promoted_metrics, public_metrics, type, url, variants, width] |
-| **pollFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Poll fields to display. | [optional] [enum: duration_minutes, end_datetime, id, options, voting_status] |
-| **userFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of User fields to display. | [optional] [enum: created_at, description, entities, id, location, name, pinned_tweet_id, profile_image_url, protected, public_metrics, url, username, verified, withheld] |
-| **placeFields** | [**Set&lt;String&gt;**](String.md)| A comma separated list of Place fields to display. | [optional] [enum: contained_within, country, country_code, full_name, geo, id, name, place_type] |
+| **parameters** | [**StreamQueryParameters**](StreamQueryParameters.md)  |            |       |
 
 ### Return type
 

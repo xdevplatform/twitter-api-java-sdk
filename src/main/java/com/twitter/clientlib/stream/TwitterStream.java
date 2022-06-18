@@ -48,8 +48,9 @@ public class TwitterStream {
 
     private int retries;
 
-    public TwitterStream() {
+    public TwitterStream(TwitterCredentialsBearer credentials) {
         init();
+        apiClient.setTwitterCredentials(credentials);
     }
 
     public TwitterStream(int retries) {
@@ -62,25 +63,38 @@ public class TwitterStream {
         tweets.setClient(apiClient);
     }
 
-    public void setTwitterCredentials(TwitterCredentialsBearer credentials) {
-        apiClient.setTwitterCredentials(credentials);
-    }
-
+    /**
+     * Set retries
+     * @param retries the retries for reconnections on 429 status code errors
+     */
     public void setRetries(int retries) {
         this.retries = retries;
     }
 
+    /**
+     * Add listener
+     * @param listener {@link TweetsStreamListener} for 'listening' the tweets returned from the stream
+     */
     public void addListener(TweetsStreamListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Remove listener
+     * @param listener {@link TweetsStreamListener} to be removed
+     */
     public void removeListener(TweetsStreamListener listener) {
         listeners.remove(listener);
     }
 
-    public void sampleStream(StreamQueryParameters streamParameters) {
+    /**
+     * Start streaming for sampleSearch
+     * @param streamParameters {@link StreamQueryParameters} the parameters for the request
+     * @return the results are returns through the listeners {@link #addListener(TweetsStreamListener)}
+     */
+    public void startSampleStream(StreamQueryParameters streamParameters) {
         try {
-            BufferedSource streamResult = tweets.sampleStream().parameters(streamParameters).execute(retries == 0 ? 1 : retries);
+            BufferedSource streamResult = tweets.sampleStream().parameters(streamParameters).execute(retries <= 0 ? 1 : retries);
             executor = new TweetsStreamExecutor(streamResult);
             listeners.forEach(executor::addListener);
             executor.start();
@@ -99,6 +113,9 @@ public class TwitterStream {
         }
     }
 
+    /**
+     * Closes the threads and performs any other required clean up
+     */
     public void shutdown() {
         executor.shutdown();
     }

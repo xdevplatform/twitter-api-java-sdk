@@ -6,7 +6,7 @@ You can find examples of using the SDK under the [examples/](examples/) director
 
 **Note: Only Twitter API V2 is supported**
 
-- API version: 2.45
+- API version: 2.46
 
 Twitter API v2 available endpoints
 
@@ -228,8 +228,8 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 
 ```java
   int retries = 4;
-  streamResult = apiInstance.tweets()apiInstance.tweets().sampleStream()
-                      .tweetFields(tweetFields)
+  streamResult = apiInstance.tweets().sampleStream()
+                      .parameters(new StreamQueryParameters.Builder.withTweetFields(tweetFields).build())
                       .execute(retries);
 
 ```
@@ -529,6 +529,13 @@ Class | Method | HTTP request | Description
  - [VideoAllOfOrganicMetrics](docs/VideoAllOfOrganicMetrics.md)
  - [VideoAllOfPromotedMetrics](docs/VideoAllOfPromotedMetrics.md)
  - [VideoAllOfPublicMetrics](docs/VideoAllOfPublicMetrics.md)
+
+## Documentation for Stream Functionality
+
+
+Class | Method                                                 | HTTP request | Description
+------------ |--------------------------------------------------------| ------------- | -------------
+*TwitterStream* | [**sampleStream**](docs/TwitterStream.md#sampleStream) | **GET** /2/tweets/sample/stream | Processing stream with multiple threads accepts listeners with the produced tweets 
 
 
 

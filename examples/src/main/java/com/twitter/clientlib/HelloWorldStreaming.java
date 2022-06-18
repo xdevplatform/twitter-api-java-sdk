@@ -39,12 +39,10 @@ public class HelloWorldStreaming {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
-    TwitterStream twitterStream = new TwitterStream();
-    twitterStream.setTwitterCredentials(credentials);
+    TwitterStream twitterStream = new TwitterStream(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
     twitterStream.addListener(new Responder());
 
-    twitterStream.sampleStream(new StreamQueryParameters.Builder()
+    twitterStream.startSampleStream(new StreamQueryParameters.Builder()
             .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
             .build());
 
