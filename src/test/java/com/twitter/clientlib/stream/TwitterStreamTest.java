@@ -47,6 +47,7 @@ class TwitterStreamTest extends ApiTester {
     public static void beforeAll() {
         twitterStream = new TwitterStream();
         twitterStream.setTwitterCredentials(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
+        twitterStream.setRetries(4);
     }
 
     @BeforeEach

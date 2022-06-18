@@ -46,13 +46,28 @@ public class TwitterStream {
 
     private TweetsStreamExecutor executor;
 
+    private int retries;
+
     public TwitterStream() {
+        init();
+    }
+
+    public TwitterStream(int retries) {
+        this.retries = retries;
+        init();
+    }
+
+    private void init() {
         initBasePath();
         tweets.setClient(apiClient);
     }
 
     public void setTwitterCredentials(TwitterCredentialsBearer credentials) {
         apiClient.setTwitterCredentials(credentials);
+    }
+
+    public void setRetries(int retries) {
+        this.retries = retries;
     }
 
     public void addListener(TweetsStreamListener listener) {
@@ -65,7 +80,7 @@ public class TwitterStream {
 
     public void sampleStream(StreamQueryParameters streamParameters) {
         try {
-            BufferedSource streamResult = tweets.sampleStream(streamParameters);
+            BufferedSource streamResult = tweets.sampleStream(retries == 0 ? 1 : retries, streamParameters);
             executor = new TweetsStreamExecutor(streamResult);
             listeners.forEach(executor::addListener);
             executor.start();
@@ -78,7 +93,7 @@ public class TwitterStream {
                 /* for this error twitter indicates that to implement a reconnection mechanism
                 *  see: https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/integrate/handling-disconnections
                 */
-                throw new TooManyRequestsException("Too many requests. Service responded with 429 status code");
+                throw new TooManyRequestsException("Too many requests. Service responded with 429 status code. Consider setting 'retries' or increasing its value");
             }
             throw new StreamException("An exception occurred during stream execution ",e);
         }
