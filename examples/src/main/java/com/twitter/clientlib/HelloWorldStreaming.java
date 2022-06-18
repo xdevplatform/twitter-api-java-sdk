@@ -25,11 +25,7 @@ package com.twitter.clientlib;
 
 import com.twitter.clientlib.model.*;
 import com.twitter.clientlib.query.StreamQueryParameters;
-import com.twitter.clientlib.query.model.MediaField;
-import com.twitter.clientlib.query.model.PlaceField;
-import com.twitter.clientlib.query.model.PollField;
 import com.twitter.clientlib.query.model.TweetField;
-import com.twitter.clientlib.query.model.UserField;
 import com.twitter.clientlib.stream.TweetsStreamListener;
 import com.twitter.clientlib.stream.TwitterStream;
 
@@ -48,17 +44,9 @@ public class HelloWorldStreaming {
     twitterStream.setTwitterCredentials(credentials);
     twitterStream.addListener(new Responder());
 
-//    twitterStream.sampleStream(new StreamQueryParameters.Builder()
-//            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
-//            .build());
-
     twitterStream.sampleStream(new StreamQueryParameters.Builder()
-                    .withTweetFields(TweetField.all())
-                    .withMediaFields(MediaField.all())
-                    .withUserFields(UserField.all())
-                    .withPollFields(PollField.all())
-                    .withPlaceFields(PlaceField.all())
-                    .build());
+            .withTweetFields(TweetField.AUTHOR_ID, TweetField.ID, TweetField.CREATED_AT)
+            .build());
 
   }
 }

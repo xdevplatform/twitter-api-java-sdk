@@ -34,14 +34,17 @@ import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twitter.clientlib.exceptions.EmptyStreamTimeoutException;
 import com.twitter.clientlib.model.StreamingTweet;
 import okio.BufferedSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TweetsStreamExecutor {
+
+  private static final Logger logger = LoggerFactory.getLogger(TweetsStreamExecutor.class);
 
   private static final long EMPTY_STREAM_TIMEOUT = 20000;
   private static final int POLL_WAIT = 5;
@@ -75,7 +78,7 @@ public class TweetsStreamExecutor {
 
   public void start() {
     if (stream == null) {
-      System.out.println("Error: stream is null.");
+      logger.error("Stream is null. Exiting...");
       return;
     }
     startTime = System.currentTimeMillis();
@@ -91,6 +94,7 @@ public class TweetsStreamExecutor {
   }
 
   public synchronized void shutdown() {
+    logger.info("TweetsStreamListenersExecutor is shutting down.");
     isRunning = false;
     shutDownServices();
     try {
@@ -102,7 +106,6 @@ public class TweetsStreamExecutor {
     } catch (IOException e) {
 
     }
-    System.out.println("TweetsStreamListenersExecutor is shutting down.");
   }
 
   private void shutDownServices() {
@@ -120,11 +123,13 @@ public class TweetsStreamExecutor {
     if (!executorService.awaitTermination(1500, TimeUnit.MILLISECONDS)) {
       executorService.shutdownNow();
       if (!executorService.awaitTermination(1500, TimeUnit.MILLISECONDS))
-        System.err.println("Pool did not terminate");
+        logger.error("Thread pool did not terminate");
     }
   }
 
   private class RawTweetsQueuer implements Runnable {
+
+    private final Logger logger = LoggerFactory.getLogger(RawTweetsQueuer.class);
 
     @Override
     public void run() {
@@ -159,13 +164,15 @@ public class TweetsStreamExecutor {
           }
         }
       } catch (Exception e) {
-        System.out.println("Something went wrong. Closing stream... " + e.getMessage());
+        logger.error("Something went wrong. Closing stream... {}", e.getMessage());
         shutdown();
       }
     }
   }
 
   private class DeserializeTweetsTask implements Runnable {
+
+    private final Logger logger = LoggerFactory.getLogger(DeserializeTweetsTask.class);
     private final ObjectMapper objectMapper;
 
     private DeserializeTweetsTask() {
@@ -181,16 +188,18 @@ public class TweetsStreamExecutor {
           if (rawTweet == null) continue;
           StreamingTweet tweet = objectMapper.readValue(rawTweet, StreamingTweet.class);
           tweets.put(tweet);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignore) {
 
         } catch (JsonProcessingException e) {
-          System.out.println("debug log here");
+          logger.debug("Json could not be parsed");
         }
       }
     }
   }
 
   private class TweetsListenersTask implements Runnable {
+
+    private final Logger logger = LoggerFactory.getLogger(TweetsListenersTask.class);
     @Override
     public void run() {
       processTweets();
@@ -211,7 +220,7 @@ public class TweetsStreamExecutor {
               long stopTime = System.currentTimeMillis();
               long durationInMillis = stopTime - startTime;
               double seconds = durationInMillis / 1000.0;
-              System.out.println("Total duration in seconds: " + seconds);
+              logger.info("Total duration in seconds: {}", seconds);
               shutdown();
             }
           } catch (InterruptedException e) {

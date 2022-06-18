@@ -54,6 +54,8 @@ import com.twitter.clientlib.model.UsersLikesDeleteResponse;
 import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
 import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
 import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
+import com.twitter.clientlib.query.StreamQueryParameters;
+import okio.BufferedSource;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -248,14 +250,7 @@ public class TweetsApiTest {
      */
     @Test
     public void sampleStreamTest() throws ApiException {
-        Set<String> expansions = null;
-        Set<String> tweetFields = null;
-        Set<String> userFields = null;
-        Set<String> mediaFields = null;
-        Set<String> placeFields = null;
-        Set<String> pollFields = null;
-        Integer backfillMinutes = null;
-                InputStream response = apiInstance.tweets().sampleStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+        BufferedSource response = apiInstance.tweets().sampleStream(new StreamQueryParameters.Builder().build());
         // TODO: test validations
     }
 
@@ -269,14 +264,7 @@ public class TweetsApiTest {
      */
     @Test
     public void searchStreamTest() throws ApiException {
-        Set<String> expansions = null;
-        Set<String> tweetFields = null;
-        Set<String> userFields = null;
-        Set<String> mediaFields = null;
-        Set<String> placeFields = null;
-        Set<String> pollFields = null;
-        Integer backfillMinutes = null;
-                InputStream response = apiInstance.tweets().searchStream(expansions, tweetFields, userFields, mediaFields, placeFields, pollFields, backfillMinutes);
+        BufferedSource response = apiInstance.tweets().searchStream(new StreamQueryParameters.Builder().build());
         // TODO: test validations
     }
 
