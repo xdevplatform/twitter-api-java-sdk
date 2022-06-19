@@ -21,6 +21,9 @@ package com.twitter.clientlib.stream;
 
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -43,7 +46,7 @@ public class TweetsStreamExecutor {
 
   private static final Logger logger = LoggerFactory.getLogger(TweetsStreamExecutor.class);
 
-  private static final long EMPTY_STREAM_TIMEOUT = 20000;
+  private static final long EMPTY_STREAM_TIMEOUT = 20;
   private static final int POLL_WAIT = 5;
 
   private volatile BlockingQueue<String> rawTweets;
@@ -132,17 +135,15 @@ public class TweetsStreamExecutor {
       String line = null;
       try {
         boolean emptyResponse = false;
-        long firstEmptyResponseMillis = 0;
-        long lastEmptyReponseMillis;
+        LocalDateTime firstEmpty = LocalDateTime.now();
         while (isRunning) {
           line = stream.readUtf8Line();
           if(line == null || line.isEmpty()) {
             if(!emptyResponse) {
-              firstEmptyResponseMillis = System.currentTimeMillis();
+              firstEmpty = LocalDateTime.now();
               emptyResponse = true;
             } else {
-              lastEmptyReponseMillis = System.currentTimeMillis();
-              if(lastEmptyReponseMillis - firstEmptyResponseMillis > EMPTY_STREAM_TIMEOUT) {
+              if(LocalDateTime.now().minus(EMPTY_STREAM_TIMEOUT, ChronoUnit.SECONDS).isAfter(firstEmpty)) {
                 throw new EmptyStreamTimeoutException(String.format("Stream was empty for %d seconds consecutively", EMPTY_STREAM_TIMEOUT));
               } 
             }
