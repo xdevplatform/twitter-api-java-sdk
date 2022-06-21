@@ -23,7 +23,6 @@ package com.twitter.clientlib.stream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -33,8 +32,6 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twitter.clientlib.exceptions.EmptyStreamTimeoutException;
 import com.twitter.clientlib.model.StreamingTweetResponse;
@@ -77,7 +74,6 @@ public class TweetsStreamExecutor {
       logger.error("Stream is null. Exiting...");
       return;
     }
-
     rawTweetsQueuerService = Executors.newSingleThreadExecutor();
     rawTweetsQueuerService.submit(new RawTweetsQueuer());
 
@@ -166,12 +162,6 @@ public class TweetsStreamExecutor {
   private class DeserializeTweetsTask implements Runnable {
 
     private final Logger logger = LoggerFactory.getLogger(DeserializeTweetsTask.class);
-    private final ObjectMapper objectMapper;
-
-    private DeserializeTweetsTask() {
-      this.objectMapper = new ObjectMapper();
-      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    }
 
     @Override
     public void run() {
@@ -179,12 +169,14 @@ public class TweetsStreamExecutor {
         try {
           String rawTweet = rawTweets.poll(POLL_WAIT, TimeUnit.MILLISECONDS);
           if (rawTweet == null) continue;
-          StreamingTweetResponse tweet = objectMapper.readValue(rawTweet, StreamingTweetResponse.class);
+          StreamingTweetResponse tweet = StreamingTweetResponse.fromJson(rawTweet);
           tweets.put(tweet);
         } catch (InterruptedException ignore) {
 
         } catch (JsonProcessingException e) {
           logger.debug("Json could not be parsed");
+        } catch (Exception e) {
+          logger.debug("Exception in deserialization thread: ", e);
         }
       }
     }
