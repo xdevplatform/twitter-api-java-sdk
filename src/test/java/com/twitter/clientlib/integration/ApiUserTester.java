@@ -45,6 +45,8 @@ public class ApiUserTester extends ApiTester {
 
   private final String popularUsername = "TheRock";
   private final String usernameNotFound = "cprttfdgq";
+  private final String listId = "84839422";
+  private final String listIdNotFound = "11111112";
   private final List<String> usernames = Arrays.asList(popularUsername);
   private final List<String> usernamesNotFounds = Arrays.asList(usernameNotFound);
 
@@ -458,5 +460,28 @@ public class ApiUserTester extends ApiTester {
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `source_user_id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
         "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
+  @Test
+  public void listGetFollowersTest() throws ApiException {
+    Get2ListsIdFollowersResponse result = apiInstance.users().listGetFollowers(listId)
+        .userFields(userFields)
+        .tweetFields(tweetFields)
+        .execute();
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    checkUserData(result.getData().get(0));
+    assertNull(result.getIncludes());
+  }
+
+  @Test
+  public void listGetFollowersErrorTest() throws ApiException {
+    Get2ListsIdFollowersResponse result = apiInstance.users().listGetFollowers(listIdNotFound)
+        .userFields(userFields)
+        .tweetFields(tweetFields)
+        .execute();
+    checkErrors(true, result.getErrors());
+    assertNull(result.getData());
+    checkResourceNotFoundProblem(result.getErrors().get(0), listIdNotFound, "Not Found Error", "id");
   }
 }

@@ -34,16 +34,7 @@ import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.api.TwitterApi;
-import com.twitter.clientlib.model.DuplicateRuleProblem;
-import com.twitter.clientlib.model.Expansions;
-import com.twitter.clientlib.model.GenericProblem;
-import com.twitter.clientlib.model.InvalidRequestProblem;
-import com.twitter.clientlib.model.ModelList;
-import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.ResourceNotFoundProblem;
-import com.twitter.clientlib.model.Space;
-import com.twitter.clientlib.model.Tweet;
-import com.twitter.clientlib.model.User;
+import com.twitter.clientlib.model.*;
 
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -136,6 +127,20 @@ abstract public class ApiTester {
     Assertions.assertNotNull(list.getDescription());
     Assertions.assertNotNull(list.getOwnerId());
     Assertions.assertNotNull(list.getFollowerCount());
+  }
+
+  protected void checkComplianceJobData(ComplianceJob complianceJob) {
+    Assertions.assertNotNull(complianceJob);
+    Assertions.assertNotNull(complianceJob.getType());
+    Assertions.assertNotNull(complianceJob.getId());
+    Assertions.assertNotNull(complianceJob.getCreatedAt());
+  }
+
+  protected void checkModelListData(ModelList modelList) {
+    Assertions.assertNotNull(modelList);
+    Assertions.assertNotNull(modelList.getName());
+    Assertions.assertNotNull(modelList.getId());
+    Assertions.assertNotNull(modelList.getCreatedAt());
   }
 
   protected void checkResourceNotFoundProblem(
