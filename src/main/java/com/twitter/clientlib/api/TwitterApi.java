@@ -34,13 +34,13 @@ import com.twitter.clientlib.TwitterCredentialsOAuth2;
 
 
 public class TwitterApi {
-  private final BookmarksApi bookmarks = new BookmarksApi();
-  private final ComplianceApi compliance = new ComplianceApi();
-  private final GeneralApi general = new GeneralApi();
-  private final ListsApi lists = new ListsApi();
-  private final SpacesApi spaces = new SpacesApi();
-  private final TweetsApi tweets = new TweetsApi();
-  private final UsersApi users = new UsersApi();
+          private final BookmarksApi bookmarks = new BookmarksApi();
+          private final ComplianceApi compliance = new ComplianceApi();
+          private final GeneralApi general = new GeneralApi();
+          private final ListsApi lists = new ListsApi();
+          private final SpacesApi spaces = new SpacesApi();
+          private final TweetsApi tweets = new TweetsApi();
+          private final UsersApi users = new UsersApi();
   private ApiClient localVarApiClient = new ApiClient();
 
   public TwitterApi(TwitterCredentialsBearer credentials) {
@@ -75,13 +75,13 @@ public class TwitterApi {
   }
 
   private void initApis() {
-    bookmarks.setClient(localVarApiClient);
-    compliance.setClient(localVarApiClient);
-    general.setClient(localVarApiClient);
-    lists.setClient(localVarApiClient);
-    spaces.setClient(localVarApiClient);
-    tweets.setClient(localVarApiClient);
-    users.setClient(localVarApiClient);
+          bookmarks.setClient(localVarApiClient);
+          compliance.setClient(localVarApiClient);
+          general.setClient(localVarApiClient);
+          lists.setClient(localVarApiClient);
+          spaces.setClient(localVarApiClient);
+          tweets.setClient(localVarApiClient);
+          users.setClient(localVarApiClient);
   }
 
   public BookmarksApi bookmarks() {

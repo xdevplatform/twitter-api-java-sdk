@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.BookmarkAddRequest;
@@ -167,6 +168,13 @@ public class BookmarksApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
 
         private APIgetUsersIdBookmarksRequest(String id) {
             this.id = id;
@@ -198,7 +206,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest tweetFields(Set<String> tweetFields) {
-            this.tweetFields = tweetFields;
+            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.tweetFields = this.tweetFieldsAll;
+            } else {
+                this.tweetFields = tweetFields;
+            }
             return this;
         }
 
@@ -208,7 +220,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -218,7 +234,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest mediaFields(Set<String> mediaFields) {
-            this.mediaFields = mediaFields;
+            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.mediaFields = this.mediaFieldsAll;
+            } else {
+                this.mediaFields = mediaFields;
+            }
             return this;
         }
 
@@ -228,7 +248,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest pollFields(Set<String> pollFields) {
-            this.pollFields = pollFields;
+            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.pollFields = this.pollFieldsAll;
+            } else {
+                this.pollFields = pollFields;
+            }
             return this;
         }
 
@@ -238,7 +262,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
@@ -248,7 +276,11 @@ public class BookmarksApi extends ApiCommon {
          * @return APIgetUsersIdBookmarksRequest
          */
         public APIgetUsersIdBookmarksRequest placeFields(Set<String> placeFields) {
-            this.placeFields = placeFields;
+            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.placeFields = this.placeFieldsAll;
+            } else {
+                this.placeFields = placeFields;
+            }
             return this;
         }
 
@@ -422,6 +454,7 @@ public class BookmarksApi extends ApiCommon {
     public class APIpostUsersIdBookmarksRequest {
         private final BookmarkAddRequest bookmarkAddRequest;
         private final String id;
+        
 
         private APIpostUsersIdBookmarksRequest(BookmarkAddRequest bookmarkAddRequest, String id) {
             this.bookmarkAddRequest = bookmarkAddRequest;
@@ -600,6 +633,7 @@ public class BookmarksApi extends ApiCommon {
     public class APIusersIdBookmarksDeleteRequest {
         private final String id;
         private final String tweetId;
+        
 
         private APIusersIdBookmarksDeleteRequest(String id, String tweetId) {
             this.id = id;
