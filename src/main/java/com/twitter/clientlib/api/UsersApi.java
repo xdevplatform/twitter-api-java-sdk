@@ -36,7 +36,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.BlockUserMutationResponse;
@@ -153,10 +152,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIfindMyUserRequest() {
         }
@@ -167,11 +162,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindMyUserRequest
          */
         public APIfindMyUserRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -181,11 +172,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindMyUserRequest
          */
         public APIfindMyUserRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -195,11 +182,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindMyUserRequest
          */
         public APIfindMyUserRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -381,10 +364,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIfindUserByIdRequest(String id) {
             this.id = id;
@@ -396,11 +375,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByIdRequest
          */
         public APIfindUserByIdRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -410,11 +385,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByIdRequest
          */
         public APIfindUserByIdRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -424,11 +395,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByIdRequest
          */
         public APIfindUserByIdRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -611,10 +578,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIfindUserByUsernameRequest(String username) {
             this.username = username;
@@ -626,11 +589,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByUsernameRequest
          */
         public APIfindUserByUsernameRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -640,11 +599,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByUsernameRequest
          */
         public APIfindUserByUsernameRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -654,11 +609,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUserByUsernameRequest
          */
         public APIfindUserByUsernameRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -844,10 +795,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIfindUsersByIdRequest(List<String> ids) {
             this.ids = ids;
@@ -859,11 +806,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByIdRequest
          */
         public APIfindUsersByIdRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -873,11 +816,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByIdRequest
          */
         public APIfindUsersByIdRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -887,11 +826,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByIdRequest
          */
         public APIfindUsersByIdRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1077,10 +1012,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIfindUsersByUsernameRequest(List<String> usernames) {
             this.usernames = usernames;
@@ -1092,11 +1023,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByUsernameRequest
          */
         public APIfindUsersByUsernameRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1106,11 +1033,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByUsernameRequest
          */
         public APIfindUsersByUsernameRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1120,11 +1043,7 @@ public class UsersApi extends ApiCommon {
          * @return APIfindUsersByUsernameRequest
          */
         public APIfindUsersByUsernameRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1317,10 +1236,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIlistGetFollowersRequest(String id) {
             this.id = id;
@@ -1352,11 +1267,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetFollowersRequest
          */
         public APIlistGetFollowersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1366,11 +1277,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetFollowersRequest
          */
         public APIlistGetFollowersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1380,11 +1287,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetFollowersRequest
          */
         public APIlistGetFollowersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1577,10 +1480,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIlistGetMembersRequest(String id) {
             this.id = id;
@@ -1612,11 +1511,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetMembersRequest
          */
         public APIlistGetMembersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1626,11 +1521,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetMembersRequest
          */
         public APIlistGetMembersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1640,11 +1531,7 @@ public class UsersApi extends ApiCommon {
          * @return APIlistGetMembersRequest
          */
         public APIlistGetMembersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1837,10 +1724,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APItweetsIdLikingUsersRequest(String id) {
             this.id = id;
@@ -1872,11 +1755,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdLikingUsersRequest
          */
         public APItweetsIdLikingUsersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1886,11 +1765,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdLikingUsersRequest
          */
         public APItweetsIdLikingUsersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1900,11 +1775,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdLikingUsersRequest
          */
         public APItweetsIdLikingUsersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2097,10 +1968,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APItweetsIdRetweetingUsersRequest(String id) {
             this.id = id;
@@ -2132,11 +1999,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdRetweetingUsersRequest
          */
         public APItweetsIdRetweetingUsersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2146,11 +2009,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdRetweetingUsersRequest
          */
         public APItweetsIdRetweetingUsersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2160,11 +2019,7 @@ public class UsersApi extends ApiCommon {
          * @return APItweetsIdRetweetingUsersRequest
          */
         public APItweetsIdRetweetingUsersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2338,7 +2193,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdBlockRequest {
         private final BlockUserRequest blockUserRequest;
         private final String id;
-        
 
         private APIusersIdBlockRequest(BlockUserRequest blockUserRequest, String id) {
             this.blockUserRequest = blockUserRequest;
@@ -2535,10 +2389,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIusersIdBlockingRequest(String id) {
             this.id = id;
@@ -2570,11 +2420,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdBlockingRequest
          */
         public APIusersIdBlockingRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2584,11 +2430,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdBlockingRequest
          */
         public APIusersIdBlockingRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2598,11 +2440,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdBlockingRequest
          */
         public APIusersIdBlockingRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2771,7 +2609,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdFollowRequest {
         private final String id;
         private UsersFollowingCreateRequest usersFollowingCreateRequest;
-        
 
         private APIusersIdFollowRequest(String id) {
             this.id = id;
@@ -2976,10 +2813,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIusersIdFollowersRequest(String id) {
             this.id = id;
@@ -3011,11 +2844,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowersRequest
          */
         public APIusersIdFollowersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -3025,11 +2854,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowersRequest
          */
         public APIusersIdFollowersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -3039,11 +2864,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowersRequest
          */
         public APIusersIdFollowersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -3236,10 +3057,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIusersIdFollowingRequest(String id) {
             this.id = id;
@@ -3271,11 +3088,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowingRequest
          */
         public APIusersIdFollowingRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -3285,11 +3098,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowingRequest
          */
         public APIusersIdFollowingRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -3299,11 +3108,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdFollowingRequest
          */
         public APIusersIdFollowingRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -3472,7 +3277,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdMuteRequest {
         private final String id;
         private MuteUserRequest muteUserRequest;
-        
 
         private APIusersIdMuteRequest(String id) {
             this.id = id;
@@ -3677,10 +3481,6 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIusersIdMutingRequest(String id) {
             this.id = id;
@@ -3712,11 +3512,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdMutingRequest
          */
         public APIusersIdMutingRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -3726,11 +3522,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdMutingRequest
          */
         public APIusersIdMutingRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -3740,11 +3532,7 @@ public class UsersApi extends ApiCommon {
          * @return APIusersIdMutingRequest
          */
         public APIusersIdMutingRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -3919,7 +3707,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnblockRequest {
         private final String sourceUserId;
         private final String targetUserId;
-        
 
         private APIusersIdUnblockRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;
@@ -4098,7 +3885,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnfollowRequest {
         private final String sourceUserId;
         private final String targetUserId;
-        
 
         private APIusersIdUnfollowRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;
@@ -4277,7 +4063,6 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnmuteRequest {
         private final String sourceUserId;
         private final String targetUserId;
-        
 
         private APIusersIdUnmuteRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;

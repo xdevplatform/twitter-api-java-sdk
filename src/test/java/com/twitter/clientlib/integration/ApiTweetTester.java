@@ -24,7 +24,6 @@ package com.twitter.clientlib.integration;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.HashSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -78,45 +77,6 @@ public class ApiTweetTester extends ApiTester {
     assertNull(result.getData());
     checkResourceNotFoundProblem(result.getErrors().get(0), tweetIdNotFound, "Not Found Error",
         "id");
-  }
-
-  @Test
-  public void findTweetByIdAllTest() throws ApiException {
-    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
-        .tweetFields(tweetFields)
-        .expansions(allFields)
-        .userFields(allFields)
-        .execute();
-    checkErrors(false, result.getErrors());
-    checkTweetData(result.getData());
-    checkTweetIncludes(result.getIncludes());
-    checkUserData(result.getIncludes().getUsers().get(0));
-  }
-
-  @Test
-  public void findTweetByIdAllIgnoreCaseTest() throws ApiException {
-    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
-        .tweetFields(tweetFields)
-        .expansions(new HashSet<>(Arrays.asList("All")))
-        .userFields(new HashSet<>(Arrays.asList("aLL")))
-        .execute();
-    checkErrors(false, result.getErrors());
-    checkTweetData(result.getData());
-    checkTweetIncludes(result.getIncludes());
-    checkUserData(result.getIncludes().getUsers().get(0));
-  }
-
-  @Test
-  public void findTweetByIdAllErrorTest() throws ApiException {
-    ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.tweets().findTweetById(tweetId)
-          .tweetFields(tweetFields)
-          .expansions(allFieldsError)
-          .userFields(allFields)
-          .execute();
-    });
-    checkApiExceptionProblem(exception, InvalidRequestProblem.class, "The `expansions` query parameter value [ALL] is not one of",
-        "Invalid Request", "One or more parameters to your request was invalid.");
   }
 
   @Test

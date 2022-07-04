@@ -56,8 +56,6 @@ abstract public class ApiTester {
   protected final String userNotExists = "9999999999999";
   protected final List<String> usersIds = Arrays.asList(popularUserId);
   protected final List<String> usersIdsNotFound = Arrays.asList(userNotExists);
-  protected final Set<String> allFields = new HashSet<>(Arrays.asList("ALL"));
-  protected final Set<String> allFieldsError =  new HashSet<>(Arrays.asList("ALL", "id", "created_at"));
 
   protected void initApiInstance() {
           apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),

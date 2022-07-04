@@ -36,7 +36,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
@@ -160,7 +159,6 @@ public class TweetsApi extends ApiCommon {
     public class APIaddOrDeleteRulesRequest {
         private final AddOrDeleteRulesRequest addOrDeleteRulesRequest;
         private Boolean dryRun;
-        
 
         private APIaddOrDeleteRulesRequest(AddOrDeleteRulesRequest addOrDeleteRulesRequest) {
             this.addOrDeleteRulesRequest = addOrDeleteRulesRequest;
@@ -339,7 +337,6 @@ public class TweetsApi extends ApiCommon {
 
     public class APIcreateTweetRequest {
         private final TweetCreateRequest tweetCreateRequest;
-        
 
         private APIcreateTweetRequest(TweetCreateRequest tweetCreateRequest) {
             this.tweetCreateRequest = tweetCreateRequest;
@@ -509,7 +506,6 @@ public class TweetsApi extends ApiCommon {
 
     public class APIdeleteTweetByIdRequest {
         private final String id;
-        
 
         private APIdeleteTweetByIdRequest(String id) {
             this.id = id;
@@ -709,13 +705,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIfindTweetByIdRequest(String id) {
             this.id = id;
@@ -727,11 +716,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -741,11 +726,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -755,11 +736,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -769,11 +746,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -783,11 +756,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -797,11 +766,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetByIdRequest
          */
         public APIfindTweetByIdRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -1002,13 +967,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIfindTweetsByIdRequest(List<String> ids) {
             this.ids = ids;
@@ -1020,11 +978,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1034,11 +988,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1048,11 +998,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -1062,11 +1008,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -1076,11 +1018,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1090,11 +1028,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsByIdRequest
          */
         public APIfindTweetsByIdRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -1307,14 +1241,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIfindTweetsThatQuoteATweetRequest(String id) {
             this.id = id;
@@ -1346,11 +1272,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest exclude(Set<String> exclude) {
-            if(exclude != null && exclude.size() == 1 && exclude.iterator().next().equalsIgnoreCase("ALL")) {
-                this.exclude = this.excludeAll;
-            } else {
-                this.exclude = exclude;
-            }
+            this.exclude = exclude;
             return this;
         }
 
@@ -1360,11 +1282,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1374,11 +1292,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1388,11 +1302,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -1402,11 +1312,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -1416,11 +1322,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1430,11 +1332,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIfindTweetsThatQuoteATweetRequest
          */
         public APIfindTweetsThatQuoteATweetRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -1610,7 +1508,6 @@ public class TweetsApi extends ApiCommon {
         private List<String> ids;
         private Integer maxResults;
         private String paginationToken;
-        
 
         private APIgetRulesRequest() {
         }
@@ -1621,7 +1518,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIgetRulesRequest
          */
         public APIgetRulesRequest ids(List<String> ids) {
-            
+            this.ids = ids;
             return this;
         }
 
@@ -1809,7 +1706,6 @@ public class TweetsApi extends ApiCommon {
     public class APIhideReplyByIdRequest {
         private final String tweetId;
         private TweetHideRequest tweetHideRequest;
-        
 
         private APIhideReplyByIdRequest(String tweetId) {
             this.tweetId = tweetId;
@@ -2029,13 +1925,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIlistsIdTweetsRequest(String id) {
             this.id = id;
@@ -2067,11 +1956,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2081,11 +1966,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2095,11 +1976,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -2109,11 +1986,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -2123,11 +1996,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2137,11 +2006,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIlistsIdTweetsRequest
          */
         public APIlistsIdTweetsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -2337,13 +2202,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIsampleStreamRequest() {
         }
@@ -2364,11 +2222,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2378,11 +2232,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2392,11 +2242,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -2406,11 +2252,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -2420,11 +2262,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2434,11 +2272,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsampleStreamRequest
          */
         public APIsampleStreamRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -2634,13 +2468,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIsearchStreamRequest() {
         }
@@ -2661,11 +2488,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -2675,11 +2498,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2689,11 +2508,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -2703,11 +2518,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -2717,11 +2528,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2731,11 +2538,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIsearchStreamRequest
          */
         public APIsearchStreamRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -2928,10 +2731,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIspaceBuyersRequest(String id) {
             this.id = id;
@@ -2963,11 +2762,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -2977,11 +2772,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -2991,11 +2782,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -3198,13 +2985,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIspaceTweetsRequest(String id) {
             this.id = id;
@@ -3226,11 +3006,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -3240,11 +3016,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -3254,11 +3026,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -3268,11 +3036,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -3282,11 +3046,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -3296,11 +3056,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -3511,8 +3267,6 @@ public class TweetsApi extends ApiCommon {
         private String paginationToken;
         private String granularity;
         private Set<String> searchCountFields;
-        private final Set<String> searchCountFieldsAll = new HashSet<>(Arrays.asList("end", "start", "tweet_count"));
-        
 
         private APItweetCountsFullArchiveSearchRequest(String query) {
             this.query = query;
@@ -3584,7 +3338,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetCountsFullArchiveSearchRequest
          */
         public APItweetCountsFullArchiveSearchRequest granularity(String granularity) {
-            
+            this.granularity = granularity;
             return this;
         }
 
@@ -3594,11 +3348,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetCountsFullArchiveSearchRequest
          */
         public APItweetCountsFullArchiveSearchRequest searchCountFields(Set<String> searchCountFields) {
-            if(searchCountFields != null && searchCountFields.size() == 1 && searchCountFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.searchCountFields = this.searchCountFieldsAll;
-            } else {
-                this.searchCountFields = searchCountFields;
-            }
+            this.searchCountFields = searchCountFields;
             return this;
         }
 
@@ -3809,8 +3559,6 @@ public class TweetsApi extends ApiCommon {
         private String paginationToken;
         private String granularity;
         private Set<String> searchCountFields;
-        private final Set<String> searchCountFieldsAll = new HashSet<>(Arrays.asList("end", "start", "tweet_count"));
-        
 
         private APItweetCountsRecentSearchRequest(String query) {
             this.query = query;
@@ -3882,7 +3630,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetCountsRecentSearchRequest
          */
         public APItweetCountsRecentSearchRequest granularity(String granularity) {
-            
+            this.granularity = granularity;
             return this;
         }
 
@@ -3892,11 +3640,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetCountsRecentSearchRequest
          */
         public APItweetCountsRecentSearchRequest searchCountFields(Set<String> searchCountFields) {
-            if(searchCountFields != null && searchCountFields.size() == 1 && searchCountFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.searchCountFields = this.searchCountFieldsAll;
-            } else {
-                this.searchCountFields = searchCountFields;
-            }
+            this.searchCountFields = searchCountFields;
             return this;
         }
 
@@ -4137,13 +3881,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APItweetsFullarchiveSearchRequest(String query) {
             this.query = query;
@@ -4225,7 +3962,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest sortOrder(String sortOrder) {
-            
+            this.sortOrder = sortOrder;
             return this;
         }
 
@@ -4235,11 +3972,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -4249,11 +3982,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -4263,11 +3992,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -4277,11 +4002,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -4291,11 +4012,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -4305,11 +4022,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsFullarchiveSearchRequest
          */
         public APItweetsFullarchiveSearchRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -4550,13 +4263,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APItweetsRecentSearchRequest(String query) {
             this.query = query;
@@ -4638,7 +4344,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest sortOrder(String sortOrder) {
-            
+            this.sortOrder = sortOrder;
             return this;
         }
 
@@ -4648,11 +4354,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -4662,11 +4364,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -4676,11 +4374,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -4690,11 +4384,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -4704,11 +4394,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -4718,11 +4404,7 @@ public class TweetsApi extends ApiCommon {
          * @return APItweetsRecentSearchRequest
          */
         public APItweetsRecentSearchRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -4891,7 +4573,6 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdLikeRequest {
         private final String id;
         private UsersLikesCreateRequest usersLikesCreateRequest;
-        
 
         private APIusersIdLikeRequest(String id) {
             this.id = id;
@@ -5111,13 +4792,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIusersIdLikedTweetsRequest(String id) {
             this.id = id;
@@ -5149,11 +4823,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -5163,11 +4833,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -5177,11 +4843,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -5191,11 +4853,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -5205,11 +4863,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -5219,11 +4873,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdLikedTweetsRequest
          */
         public APIusersIdLikedTweetsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -5451,13 +5101,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIusersIdMentionsRequest(String id) {
             this.id = id;
@@ -5529,11 +5172,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -5543,11 +5182,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -5557,11 +5192,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -5571,11 +5202,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -5585,11 +5212,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -5599,11 +5222,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdMentionsRequest
          */
         public APIusersIdMentionsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -5772,7 +5391,6 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdRetweetsRequest {
         private final String id;
         private UsersRetweetsCreateRequest usersRetweetsCreateRequest;
-        
 
         private APIusersIdRetweetsRequest(String id) {
             this.id = id;
@@ -6017,14 +5635,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIusersIdTimelineRequest(String id) {
             this.id = id;
@@ -6076,11 +5686,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest exclude(Set<String> exclude) {
-            if(exclude != null && exclude.size() == 1 && exclude.iterator().next().equalsIgnoreCase("ALL")) {
-                this.exclude = this.excludeAll;
-            } else {
-                this.exclude = exclude;
-            }
+            this.exclude = exclude;
             return this;
         }
 
@@ -6110,11 +5716,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -6124,11 +5726,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -6138,11 +5736,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -6152,11 +5746,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -6166,11 +5756,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -6180,11 +5766,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTimelineRequest
          */
         public APIusersIdTimelineRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -6417,14 +5999,6 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIusersIdTweetsRequest(String id) {
             this.id = id;
@@ -6476,11 +6050,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest exclude(Set<String> exclude) {
-            if(exclude != null && exclude.size() == 1 && exclude.iterator().next().equalsIgnoreCase("ALL")) {
-                this.exclude = this.excludeAll;
-            } else {
-                this.exclude = exclude;
-            }
+            this.exclude = exclude;
             return this;
         }
 
@@ -6510,11 +6080,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -6524,11 +6090,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -6538,11 +6100,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -6552,11 +6110,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -6566,11 +6120,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -6580,11 +6130,7 @@ public class TweetsApi extends ApiCommon {
          * @return APIusersIdTweetsRequest
          */
         public APIusersIdTweetsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
@@ -6759,7 +6305,6 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdUnlikeRequest {
         private final String id;
         private final String tweetId;
-        
 
         private APIusersIdUnlikeRequest(String id, String tweetId) {
             this.id = id;
@@ -6938,7 +6483,6 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdUnretweetsRequest {
         private final String id;
         private final String sourceTweetId;
-        
 
         private APIusersIdUnretweetsRequest(String id, String sourceTweetId) {
             this.id = id;

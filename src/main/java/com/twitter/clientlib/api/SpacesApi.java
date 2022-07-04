@@ -36,7 +36,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.Error;
@@ -151,11 +150,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
-        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
-        
 
         private APIfindSpaceByIdRequest(String id) {
             this.id = id;
@@ -167,11 +161,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpaceByIdRequest
          */
         public APIfindSpaceByIdRequest spaceFields(Set<String> spaceFields) {
-            if(spaceFields != null && spaceFields.size() == 1 && spaceFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.spaceFields = this.spaceFieldsAll;
-            } else {
-                this.spaceFields = spaceFields;
-            }
+            this.spaceFields = spaceFields;
             return this;
         }
 
@@ -181,11 +171,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpaceByIdRequest
          */
         public APIfindSpaceByIdRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -195,11 +181,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpaceByIdRequest
          */
         public APIfindSpaceByIdRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -209,11 +191,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpaceByIdRequest
          */
         public APIfindSpaceByIdRequest topicFields(Set<String> topicFields) {
-            if(topicFields != null && topicFields.size() == 1 && topicFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.topicFields = this.topicFieldsAll;
-            } else {
-                this.topicFields = topicFields;
-            }
+            this.topicFields = topicFields;
             return this;
         }
 
@@ -404,11 +382,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
-        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
-        
 
         private APIfindSpacesByCreatorIdsRequest(List<String> userIds) {
             this.userIds = userIds;
@@ -420,11 +393,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByCreatorIdsRequest
          */
         public APIfindSpacesByCreatorIdsRequest spaceFields(Set<String> spaceFields) {
-            if(spaceFields != null && spaceFields.size() == 1 && spaceFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.spaceFields = this.spaceFieldsAll;
-            } else {
-                this.spaceFields = spaceFields;
-            }
+            this.spaceFields = spaceFields;
             return this;
         }
 
@@ -434,11 +403,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByCreatorIdsRequest
          */
         public APIfindSpacesByCreatorIdsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -448,11 +413,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByCreatorIdsRequest
          */
         public APIfindSpacesByCreatorIdsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -462,11 +423,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByCreatorIdsRequest
          */
         public APIfindSpacesByCreatorIdsRequest topicFields(Set<String> topicFields) {
-            if(topicFields != null && topicFields.size() == 1 && topicFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.topicFields = this.topicFieldsAll;
-            } else {
-                this.topicFields = topicFields;
-            }
+            this.topicFields = topicFields;
             return this;
         }
 
@@ -657,11 +614,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
-        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
-        
 
         private APIfindSpacesByIdsRequest(List<String> ids) {
             this.ids = ids;
@@ -673,11 +625,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByIdsRequest
          */
         public APIfindSpacesByIdsRequest spaceFields(Set<String> spaceFields) {
-            if(spaceFields != null && spaceFields.size() == 1 && spaceFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.spaceFields = this.spaceFieldsAll;
-            } else {
-                this.spaceFields = spaceFields;
-            }
+            this.spaceFields = spaceFields;
             return this;
         }
 
@@ -687,11 +635,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByIdsRequest
          */
         public APIfindSpacesByIdsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -701,11 +645,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByIdsRequest
          */
         public APIfindSpacesByIdsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -715,11 +655,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIfindSpacesByIdsRequest
          */
         public APIfindSpacesByIdsRequest topicFields(Set<String> topicFields) {
-            if(topicFields != null && topicFields.size() == 1 && topicFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.topicFields = this.topicFieldsAll;
-            } else {
-                this.topicFields = topicFields;
-            }
+            this.topicFields = topicFields;
             return this;
         }
 
@@ -920,11 +856,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
-        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
-        
 
         private APIsearchSpacesRequest(String query) {
             this.query = query;
@@ -936,7 +867,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIsearchSpacesRequest
          */
         public APIsearchSpacesRequest state(String state) {
-            
+            this.state = state;
             return this;
         }
 
@@ -956,11 +887,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIsearchSpacesRequest
          */
         public APIsearchSpacesRequest spaceFields(Set<String> spaceFields) {
-            if(spaceFields != null && spaceFields.size() == 1 && spaceFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.spaceFields = this.spaceFieldsAll;
-            } else {
-                this.spaceFields = spaceFields;
-            }
+            this.spaceFields = spaceFields;
             return this;
         }
 
@@ -970,11 +897,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIsearchSpacesRequest
          */
         public APIsearchSpacesRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -984,11 +907,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIsearchSpacesRequest
          */
         public APIsearchSpacesRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -998,11 +917,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIsearchSpacesRequest
          */
         public APIsearchSpacesRequest topicFields(Set<String> topicFields) {
-            if(topicFields != null && topicFields.size() == 1 && topicFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.topicFields = this.topicFieldsAll;
-            } else {
-                this.topicFields = topicFields;
-            }
+            this.topicFields = topicFields;
             return this;
         }
 
@@ -1195,10 +1110,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        
 
         private APIspaceBuyersRequest(String id) {
             this.id = id;
@@ -1230,11 +1141,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1244,11 +1151,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1258,11 +1161,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceBuyersRequest
          */
         public APIspaceBuyersRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1465,13 +1364,6 @@ public class SpacesApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
-        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
-        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
-        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
-        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
-        
 
         private APIspaceTweetsRequest(String id) {
             this.id = id;
@@ -1493,11 +1385,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest tweetFields(Set<String> tweetFields) {
-            if(tweetFields != null && tweetFields.size() == 1 && tweetFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.tweetFields = this.tweetFieldsAll;
-            } else {
-                this.tweetFields = tweetFields;
-            }
+            this.tweetFields = tweetFields;
             return this;
         }
 
@@ -1507,11 +1395,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest expansions(Set<String> expansions) {
-            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
-                this.expansions = this.expansionsAll;
-            } else {
-                this.expansions = expansions;
-            }
+            this.expansions = expansions;
             return this;
         }
 
@@ -1521,11 +1405,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest mediaFields(Set<String> mediaFields) {
-            if(mediaFields != null && mediaFields.size() == 1 && mediaFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.mediaFields = this.mediaFieldsAll;
-            } else {
-                this.mediaFields = mediaFields;
-            }
+            this.mediaFields = mediaFields;
             return this;
         }
 
@@ -1535,11 +1415,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest pollFields(Set<String> pollFields) {
-            if(pollFields != null && pollFields.size() == 1 && pollFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.pollFields = this.pollFieldsAll;
-            } else {
-                this.pollFields = pollFields;
-            }
+            this.pollFields = pollFields;
             return this;
         }
 
@@ -1549,11 +1425,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest userFields(Set<String> userFields) {
-            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.userFields = this.userFieldsAll;
-            } else {
-                this.userFields = userFields;
-            }
+            this.userFields = userFields;
             return this;
         }
 
@@ -1563,11 +1435,7 @@ public class SpacesApi extends ApiCommon {
          * @return APIspaceTweetsRequest
          */
         public APIspaceTweetsRequest placeFields(Set<String> placeFields) {
-            if(placeFields != null && placeFields.size() == 1 && placeFields.iterator().next().equalsIgnoreCase("ALL")) {
-                this.placeFields = this.placeFieldsAll;
-            } else {
-                this.placeFields = placeFields;
-            }
+            this.placeFields = placeFields;
             return this;
         }
 
