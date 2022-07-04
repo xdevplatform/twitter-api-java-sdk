@@ -402,6 +402,31 @@ public class ApiTweetTester extends ApiTester {
         "Invalid Request", "One or more parameters to your request was invalid.");
   }
 
+  @Test
+  public void usersIdTimelineTest() throws ApiException {
+    Get2UsersIdTimelinesReverseChronologicalResponse result = apiInstance.tweets().usersIdTimeline(userId)
+        .userFields(userFields)
+        .tweetFields(tweetFields)
+        .execute();
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    checkTweetData(result.getData().get(0));
+    assertNull(result.getIncludes());
+  }
+
+  @Test
+  public void usersIdTimelineErrorTest() throws ApiException {
+    ApiException exception = assertThrows(ApiException.class, () -> {
+      apiInstance.tweets().usersIdTimeline(userNotExists)
+          .userFields(userFields)
+          .tweetFields(tweetFields)
+          .execute();
+    });
+    checkApiExceptionProblem(exception, InvalidRequestProblem.class,
+        "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user [" + userId + "]",
+        "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
   /* Does not work for now
     Streaming
 */

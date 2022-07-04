@@ -80,8 +80,8 @@ public class MentionFields {
    * Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.
    * @return id
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2244994945", required = true, value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2244994945", value = "Unique identifier of this User. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
 
   public String getId() {
     return id;
@@ -168,7 +168,6 @@ public class MentionFields {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
     openapiRequiredFields.add("username");
   }
 

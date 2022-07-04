@@ -141,7 +141,7 @@ public class ApiBookmarksTester extends ApiTester {
       apiInstance.bookmarks().postUsersIdBookmarks(req, userId).execute();
     });
     checkGenericProblem(exception.getErrorObject().getProblem(),
-        "You are not permitted to bookmark this Tweet.", "Forbidden",
-        403);
+        "You cannot bookmark a Tweet that does not exist.", "Bad Request",
+        400);
   }
 }

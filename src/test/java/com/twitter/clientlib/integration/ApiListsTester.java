@@ -36,6 +36,7 @@ import com.twitter.clientlib.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -577,12 +578,14 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserPinTest() throws ApiException {
+    listUserFollowTest();
     ListPinnedRequest request = new ListPinnedRequest();
     request.setListId(listId);
     ListPinnedResponse result = apiInstance.lists().listUserPin(request, userId).execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getPinned());
+    listUserUnfollowTest();
   }
 
   @Test
@@ -633,5 +636,59 @@ public class ApiListsTester extends ApiTester {
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
         "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
+  @Test
+  public void listUserPinnedListsTest() throws ApiException {
+    Get2UsersIdPinnedListsResponse result = apiInstance.lists().listUserPinnedLists(userId)
+        .userFields(userFields)
+        .listFields(listFields)
+        .execute();
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    checkModelListData(result.getData().get(0));
+    assertNull(result.getIncludes());
+  }
+
+  @Test
+  public void listUserPinnedListsErrorTest() throws ApiException {
+    ApiException exception = assertThrows(ApiException.class, () -> {
+      apiInstance.lists().listUserPinnedLists(userNotExists)
+          .userFields(userFields)
+          .listFields(listFields)
+          .execute();
+    });
+    checkApiExceptionProblem(exception, InvalidRequestProblem.class,
+        "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
+        "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
+  @Test
+  public void listUserUnfollowTest() throws ApiException {
+    ListFollowedResponse result = apiInstance.lists().listUserUnfollow(userId, listId)
+        .execute();
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    assertNotEquals(Boolean.TRUE, result.getData().getFollowing());
+  }
+
+  @Test
+  public void listUserUnfollowUserNotFoundTest() throws ApiException {
+    ApiException exception = assertThrows(ApiException.class, () -> {
+      apiInstance.lists().listUserUnfollow(userNotExists, listId)
+          .execute();
+    });
+    checkApiExceptionProblem(exception, InvalidRequestProblem.class,
+        "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
+        "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
+  @Test
+  public void listUserUnfollowListNotFoundTest() throws ApiException {
+    ListFollowedResponse result = apiInstance.lists().listUserUnfollow(userId, listIdNotFound)
+        .execute();
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    assertFalse(result.getData().getFollowing());
   }
 }

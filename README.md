@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
 </dependency>
 ```
 
@@ -75,7 +75,7 @@ mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been publishe
 }
 
 dependencies {
-implementation "com.twitter:twitter-api-java-sdk:2.0.0"
+implementation "com.twitter:twitter-api-java-sdk:2.0.1"
 }
 ```
 
@@ -89,7 +89,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/twitter-api-java-sdk-2.0.0.jar`
+* `target/twitter-api-java-sdk-2.0.1.jar`
 * `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -120,7 +120,8 @@ You can use the following objects in order to set the credentials:
 
 ```java
 
-TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(
+      System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
       System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
       System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
       System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
@@ -152,7 +153,8 @@ public class TwitterApiExample {
      * Check the 'security' tag of the required APIs in https://api.twitter.com/2/openapi.json in order
      * to use the right credential object.
      */
-    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
+    TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(
+          System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
           System.getenv("TWITTER_OAUTH2_CLIENT_SECRET"),
           System.getenv("TWITTER_OAUTH2_ACCESS_TOKEN"),
           System.getenv("TWITTER_OAUTH2_REFRESH_TOKEN")));
