@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.CreateComplianceJobRequest;
@@ -127,6 +128,7 @@ public class ComplianceApi extends ApiCommon {
 
     public class APIcreateBatchComplianceJobRequest {
         private final CreateComplianceJobRequest createComplianceJobRequest;
+        
 
         private APIcreateBatchComplianceJobRequest(CreateComplianceJobRequest createComplianceJobRequest) {
             this.createComplianceJobRequest = createComplianceJobRequest;
@@ -301,6 +303,8 @@ public class ComplianceApi extends ApiCommon {
     public class APIgetBatchComplianceJobRequest {
         private final String id;
         private Set<String> complianceJobFields;
+        private final Set<String> complianceJobFieldsAll = new HashSet<>(Arrays.asList("created_at", "download_expires_at", "download_url", "id", "name", "resumable", "status", "type", "upload_expires_at", "upload_url"));
+        
 
         private APIgetBatchComplianceJobRequest(String id) {
             this.id = id;
@@ -312,7 +316,11 @@ public class ComplianceApi extends ApiCommon {
          * @return APIgetBatchComplianceJobRequest
          */
         public APIgetBatchComplianceJobRequest complianceJobFields(Set<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
+            if(complianceJobFields != null && complianceJobFields.size() == 1 && complianceJobFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.complianceJobFields = this.complianceJobFieldsAll;
+            } else {
+                this.complianceJobFields = complianceJobFields;
+            }
             return this;
         }
 
@@ -493,6 +501,8 @@ public class ComplianceApi extends ApiCommon {
         private final String type;
         private String status;
         private Set<String> complianceJobFields;
+        private final Set<String> complianceJobFieldsAll = new HashSet<>(Arrays.asList("created_at", "download_expires_at", "download_url", "id", "name", "resumable", "status", "type", "upload_expires_at", "upload_url"));
+        
 
         private APIlistBatchComplianceJobsRequest(String type) {
             this.type = type;
@@ -504,7 +514,7 @@ public class ComplianceApi extends ApiCommon {
          * @return APIlistBatchComplianceJobsRequest
          */
         public APIlistBatchComplianceJobsRequest status(String status) {
-            this.status = status;
+            
             return this;
         }
 
@@ -514,7 +524,11 @@ public class ComplianceApi extends ApiCommon {
          * @return APIlistBatchComplianceJobsRequest
          */
         public APIlistBatchComplianceJobsRequest complianceJobFields(Set<String> complianceJobFields) {
-            this.complianceJobFields = complianceJobFields;
+            if(complianceJobFields != null && complianceJobFields.size() == 1 && complianceJobFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.complianceJobFields = this.complianceJobFieldsAll;
+            } else {
+                this.complianceJobFields = complianceJobFields;
+            }
             return this;
         }
 

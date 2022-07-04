@@ -26,6 +26,7 @@ Twitter API v2 available endpoints
 - [Authentication](#authentication)
   - [Auto Refresh Token](#auto-refresh-token)
 - [Rate limits retry mechanism](#rate-limits-retry-mechanism)
+- [Get all fields](#get-all-fields)
 - [Documentation for API Endpoints](#documentation-for-api-endpoints)
 - [Documentation for Models](#documentation-for-models)
 
@@ -237,6 +238,33 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 ```
   
 Read more about Filtered stream and [rate limits](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/handling-disconnections)
+
+
+## Get all fields
+
+
+The Twitter API v2 endpoints are equipped with a set of parameters called [fields](https://developer.twitter.com/en/docs/twitter-api/fields), which allows you to select just the data that you want from each of the objects in your endpoint response.
+
+If you wish to choose all the fields for a parameter, set only the value "All" instead of setting all the wanted fields names.
+Using "All" with other values is not a valid request.
+The value "All" is not a case-sensitive.
+
+```java
+    Set<String> tweetFields = new HashSet<>();
+    tweetFields.add("author_id");
+    tweetFields.add("id");
+    tweetFields.add("created_at");
+
+    Set<String> userFields = new HashSet<>();
+    userFields.add("ALL");
+
+    Set<String> expansions = new HashSet<>();
+    expansions.add("ALL");
+    
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+      .tweetFields(tweetFields).userFields(userFields).expansions(expansions)
+      .execute();
+```
 
 
 ## Documentation for API Endpoints

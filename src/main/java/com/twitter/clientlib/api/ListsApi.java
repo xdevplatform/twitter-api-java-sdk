@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.Error;
@@ -166,6 +167,10 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
 
         private APIgetUserListMembershipsRequest(String id) {
             this.id = id;
@@ -197,7 +202,11 @@ public class ListsApi extends ApiCommon {
          * @return APIgetUserListMembershipsRequest
          */
         public APIgetUserListMembershipsRequest listFields(Set<String> listFields) {
-            this.listFields = listFields;
+            if(listFields != null && listFields.size() == 1 && listFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.listFields = this.listFieldsAll;
+            } else {
+                this.listFields = listFields;
+            }
             return this;
         }
 
@@ -207,7 +216,11 @@ public class ListsApi extends ApiCommon {
          * @return APIgetUserListMembershipsRequest
          */
         public APIgetUserListMembershipsRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -217,7 +230,11 @@ public class ListsApi extends ApiCommon {
          * @return APIgetUserListMembershipsRequest
          */
         public APIgetUserListMembershipsRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
@@ -386,6 +403,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistAddMemberRequest {
         private final String id;
         private ListAddUserRequest listAddUserRequest;
+        
 
         private APIlistAddMemberRequest(String id) {
             this.id = id;
@@ -559,6 +577,7 @@ public class ListsApi extends ApiCommon {
 
     public class APIlistIdCreateRequest {
         private ListCreateRequest listCreateRequest;
+        
 
         private APIlistIdCreateRequest() {
         }
@@ -736,6 +755,7 @@ public class ListsApi extends ApiCommon {
 
     public class APIlistIdDeleteRequest {
         private final String id;
+        
 
         private APIlistIdDeleteRequest(String id) {
             this.id = id;
@@ -920,6 +940,10 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
 
         private APIlistIdGetRequest(String id) {
             this.id = id;
@@ -931,7 +955,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistIdGetRequest
          */
         public APIlistIdGetRequest listFields(Set<String> listFields) {
-            this.listFields = listFields;
+            if(listFields != null && listFields.size() == 1 && listFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.listFields = this.listFieldsAll;
+            } else {
+                this.listFields = listFields;
+            }
             return this;
         }
 
@@ -941,7 +969,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistIdGetRequest
          */
         public APIlistIdGetRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -951,7 +983,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistIdGetRequest
          */
         public APIlistIdGetRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
@@ -1120,6 +1156,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistIdUpdateRequest {
         private final String id;
         private ListUpdateRequest listUpdateRequest;
+        
 
         private APIlistIdUpdateRequest(String id) {
             this.id = id;
@@ -1306,6 +1343,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistRemoveMemberRequest {
         private final String id;
         private final String userId;
+        
 
         private APIlistRemoveMemberRequest(String id, String userId) {
             this.id = id;
@@ -1478,6 +1516,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserFollowRequest {
         private final String id;
         private ListFollowedRequest listFollowedRequest;
+        
 
         private APIlistUserFollowRequest(String id) {
             this.id = id;
@@ -1682,6 +1721,10 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
 
         private APIlistUserOwnedListsRequest(String id) {
             this.id = id;
@@ -1713,7 +1756,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserOwnedListsRequest
          */
         public APIlistUserOwnedListsRequest listFields(Set<String> listFields) {
-            this.listFields = listFields;
+            if(listFields != null && listFields.size() == 1 && listFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.listFields = this.listFieldsAll;
+            } else {
+                this.listFields = listFields;
+            }
             return this;
         }
 
@@ -1723,7 +1770,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserOwnedListsRequest
          */
         public APIlistUserOwnedListsRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -1733,7 +1784,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserOwnedListsRequest
          */
         public APIlistUserOwnedListsRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
@@ -1907,6 +1962,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserPinRequest {
         private final ListPinnedRequest listPinnedRequest;
         private final String id;
+        
 
         private APIlistUserPinRequest(ListPinnedRequest listPinnedRequest, String id) {
             this.listPinnedRequest = listPinnedRequest;
@@ -2093,6 +2149,10 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
 
         private APIlistUserPinnedListsRequest(String id) {
             this.id = id;
@@ -2104,7 +2164,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserPinnedListsRequest
          */
         public APIlistUserPinnedListsRequest listFields(Set<String> listFields) {
-            this.listFields = listFields;
+            if(listFields != null && listFields.size() == 1 && listFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.listFields = this.listFieldsAll;
+            } else {
+                this.listFields = listFields;
+            }
             return this;
         }
 
@@ -2114,7 +2178,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserPinnedListsRequest
          */
         public APIlistUserPinnedListsRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -2124,7 +2192,11 @@ public class ListsApi extends ApiCommon {
          * @return APIlistUserPinnedListsRequest
          */
         public APIlistUserPinnedListsRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
@@ -2299,6 +2371,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserUnfollowRequest {
         private final String id;
         private final String listId;
+        
 
         private APIlistUserUnfollowRequest(String id, String listId) {
             this.id = id;
@@ -2477,6 +2550,7 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserUnpinRequest {
         private final String id;
         private final String listId;
+        
 
         private APIlistUserUnpinRequest(String id, String listId) {
             this.id = id;
@@ -2673,6 +2747,10 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
 
         private APIuserFollowedListsRequest(String id) {
             this.id = id;
@@ -2704,7 +2782,11 @@ public class ListsApi extends ApiCommon {
          * @return APIuserFollowedListsRequest
          */
         public APIuserFollowedListsRequest listFields(Set<String> listFields) {
-            this.listFields = listFields;
+            if(listFields != null && listFields.size() == 1 && listFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.listFields = this.listFieldsAll;
+            } else {
+                this.listFields = listFields;
+            }
             return this;
         }
 
@@ -2714,7 +2796,11 @@ public class ListsApi extends ApiCommon {
          * @return APIuserFollowedListsRequest
          */
         public APIuserFollowedListsRequest expansions(Set<String> expansions) {
-            this.expansions = expansions;
+            if(expansions != null && expansions.size() == 1 && expansions.iterator().next().equalsIgnoreCase("ALL")) {
+                this.expansions = this.expansionsAll;
+            } else {
+                this.expansions = expansions;
+            }
             return this;
         }
 
@@ -2724,7 +2810,11 @@ public class ListsApi extends ApiCommon {
          * @return APIuserFollowedListsRequest
          */
         public APIuserFollowedListsRequest userFields(Set<String> userFields) {
-            this.userFields = userFields;
+            if(userFields != null && userFields.size() == 1 && userFields.iterator().next().equalsIgnoreCase("ALL")) {
+                this.userFields = this.userFieldsAll;
+            } else {
+                this.userFields = userFields;
+            }
             return this;
         }
 
