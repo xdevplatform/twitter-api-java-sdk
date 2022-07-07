@@ -582,6 +582,14 @@ public class User {
       if (jsonObj.get("profile_image_url") != null && !jsonObj.get("profile_image_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `profile_image_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profile_image_url").toString()));
       }
+      
+      // Patch issue #30
+      if (jsonObj.get("profile_image_url") != null) {
+    	  if (jsonObj.get("profile_image_url").getAsString().isBlank()) {
+    		  jsonObj.remove("profile_image_url");
+    	  }
+      }
+      
       // validate the optional field `public_metrics`
       if (jsonObj.getAsJsonObject("public_metrics") != null) {
         UserPublicMetrics.validateJsonObject(jsonObj.getAsJsonObject("public_metrics"));
