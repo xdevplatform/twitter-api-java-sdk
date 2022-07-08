@@ -77,6 +77,16 @@ public class ApiUserTester extends ApiTester {
     checkResourceNotFoundProblem(result.getErrors().get(0), userNotExists, "Not Found Error", "id");
   }
 
+    @Test
+  public void findUserByIdExcludeFieldsTest() throws ApiException {
+    Get2UsersIdResponse result = apiInstance.users().findUserById(userId).excludeFields()
+        .userFields(excludedUserFields)
+        .tweetFields(excludedTweetFields)
+        .execute();
+    checkErrors(false, result.getErrors());
+    checkUserDataExclude(result.getData());
+  }
+
   @Test
   public void findUsersByIdTest() throws ApiException {
     Get2UsersResponse result = apiInstance.users().findUsersById(usersIds)

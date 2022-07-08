@@ -29,6 +29,7 @@ import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiClientCallback;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.Configuration;
+import com.twitter.clientlib.SDKConfig;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.TwitterCredentialsOAuth2;
 
@@ -71,6 +72,7 @@ public class TwitterApi {
   private void init() {
     String basePath = System.getenv("TWITTER_API_BASE_PATH");
     localVarApiClient.setBasePath(basePath != null ? basePath : "https://api.twitter.com");
+    new SDKConfig();
     initApis();
   }
 

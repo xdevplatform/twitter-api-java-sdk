@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.Error;
@@ -150,6 +151,17 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
+        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
+        
+        private boolean isExclude = false;
+
+        public APIfindSpaceByIdRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindSpaceByIdRequest(String id) {
             this.id = id;
@@ -223,6 +235,11 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesIdResponse execute() throws ApiException {
+            spaceFields = getFields("spaceFields", isExclude, spaceFields, spaceFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            topicFields = getFields("topicFields", isExclude, topicFields, topicFieldsAll);
+            
             ApiResponse<Get2SpacesIdResponse> localVarResp = findSpaceByIdWithHttpInfo(id, spaceFields, expansions, userFields, topicFields);
             return localVarResp.getData();
         }
@@ -382,6 +399,17 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
+        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
+        
+        private boolean isExclude = false;
+
+        public APIfindSpacesByCreatorIdsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindSpacesByCreatorIdsRequest(List<String> userIds) {
             this.userIds = userIds;
@@ -455,6 +483,11 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesByCreatorIdsResponse execute() throws ApiException {
+            spaceFields = getFields("spaceFields", isExclude, spaceFields, spaceFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            topicFields = getFields("topicFields", isExclude, topicFields, topicFieldsAll);
+            
             ApiResponse<Get2SpacesByCreatorIdsResponse> localVarResp = findSpacesByCreatorIdsWithHttpInfo(userIds, spaceFields, expansions, userFields, topicFields);
             return localVarResp.getData();
         }
@@ -614,6 +647,17 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
+        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
+        
+        private boolean isExclude = false;
+
+        public APIfindSpacesByIdsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindSpacesByIdsRequest(List<String> ids) {
             this.ids = ids;
@@ -687,6 +731,11 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesResponse execute() throws ApiException {
+            spaceFields = getFields("spaceFields", isExclude, spaceFields, spaceFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            topicFields = getFields("topicFields", isExclude, topicFields, topicFieldsAll);
+            
             ApiResponse<Get2SpacesResponse> localVarResp = findSpacesByIdsWithHttpInfo(ids, spaceFields, expansions, userFields, topicFields);
             return localVarResp.getData();
         }
@@ -856,6 +905,17 @@ public class SpacesApi extends ApiCommon {
         private Set<String> expansions;
         private Set<String> userFields;
         private Set<String> topicFields;
+        private final Set<String> spaceFieldsAll = new HashSet<>(Arrays.asList("created_at", "creator_id", "ended_at", "host_ids", "id", "invited_user_ids", "is_ticketed", "lang", "participant_count", "scheduled_start", "speaker_ids", "started_at", "state", "subscriber_count", "title", "topic_ids", "updated_at"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("creator_id", "host_ids", "invited_user_ids", "speaker_ids", "topic_ids"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> topicFieldsAll = new HashSet<>(Arrays.asList("description", "id", "name"));
+        
+        private boolean isExclude = false;
+
+        public APIsearchSpacesRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIsearchSpacesRequest(String query) {
             this.query = query;
@@ -949,6 +1009,11 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesSearchResponse execute() throws ApiException {
+            spaceFields = getFields("spaceFields", isExclude, spaceFields, spaceFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            topicFields = getFields("topicFields", isExclude, topicFields, topicFieldsAll);
+            
             ApiResponse<Get2SpacesSearchResponse> localVarResp = searchSpacesWithHttpInfo(query, state, maxResults, spaceFields, expansions, userFields, topicFields);
             return localVarResp.getData();
         }
@@ -1110,6 +1175,16 @@ public class SpacesApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIspaceBuyersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIspaceBuyersRequest(String id) {
             this.id = id;
@@ -1193,6 +1268,10 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesIdBuyersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2SpacesIdBuyersResponse> localVarResp = spaceBuyersWithHttpInfo(id, paginationToken, maxResults, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1364,6 +1443,19 @@ public class SpacesApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIspaceTweetsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIspaceTweetsRequest(String id) {
             this.id = id;
@@ -1467,6 +1559,13 @@ public class SpacesApi extends ApiCommon {
          </table>
          */
         public Get2SpacesIdTweetsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2SpacesIdTweetsResponse> localVarResp = spaceTweetsWithHttpInfo(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }

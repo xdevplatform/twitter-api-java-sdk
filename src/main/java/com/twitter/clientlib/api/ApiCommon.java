@@ -22,13 +22,14 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
-
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
+import com.twitter.clientlib.SDKConfig;
 
 public class ApiCommon {
   protected ApiClient localVarApiClient;
@@ -72,6 +73,14 @@ public class ApiCommon {
     List<String> xRateLimitRemaining = e.getResponseHeaders().get("x-rate-limit-remaining");
     return xRateLimitRemaining != null && xRateLimitRemaining.get(0) != null
         && Long.parseLong(xRateLimitRemaining.get(0)) == 0;
+  }
+
+  Set<String> getFields(String fieldName, boolean isExclude, Set<String> fieldValues, Set<String> allFieldsValues) {
+    Set<String> result = fieldValues;
+    if(isExclude && SDKConfig.isFieldWhiteListed(fieldName) && allFieldsValues != null) {
+      result = allFieldsValues.stream().filter(e -> !(fieldValues != null && fieldValues.contains(e))).collect(Collectors.toSet());
+    }
+    return result;
   }
 }
 

@@ -26,6 +26,7 @@ Twitter API v2 available endpoints
 - [Authentication](#authentication)
   - [Auto Refresh Token](#auto-refresh-token)
 - [Rate limits retry mechanism](#rate-limits-retry-mechanism)
+- [Get all fields](#get-all-fields)
 - [Documentation for API Endpoints](#documentation-for-api-endpoints)
 - [Documentation for Models](#documentation-for-models)
 
@@ -237,6 +238,32 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 ```
   
 Read more about Filtered stream and [rate limits](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/handling-disconnections)
+
+
+## Get all fields
+
+
+The Twitter API v2 endpoints are equipped with a set of parameters called [fields](https://developer.twitter.com/en/docs/twitter-api/fields), which allows you to select just the data that you want from each of the objects in your endpoint response.
+
+When you need to get many fields in the response object it can be a bit gruelling to define all the needed fields.
+In order to make it easier, you can use the `excludeFields` approach. Instead of selecting the data that you want to get, you define which fields should be excluded from the response object.
+Using `excludeFields()` will change the behaviour of the execution, in this case all response fields will be returned besides the ones that were sent as input parameters.
+
+
+```java
+    Set<String> tweetFields = new HashSet<>();
+    tweetFields.add("non_public_metrics");
+    tweetFields.add("promoted_metrics");
+    tweetFields.add("organic_metrics");
+
+    // Get all available fields excluding Tweet Fields `non_public_metrics`, `promoted_metrics` & `organic_metrics`
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
+        .tweetFields(tweetFields).excludeFields().execute();
+
+    // Get all the response fields
+    Get2TweetsIdResponse result2 = apiInstance.tweets().findTweetById("20").excludeFields().execute();
+
+```
 
 
 ## Documentation for API Endpoints

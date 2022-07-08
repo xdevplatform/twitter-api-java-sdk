@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.CreateComplianceJobRequest;
@@ -127,6 +128,8 @@ public class ComplianceApi extends ApiCommon {
 
     public class APIcreateBatchComplianceJobRequest {
         private final CreateComplianceJobRequest createComplianceJobRequest;
+        
+        
 
         private APIcreateBatchComplianceJobRequest(CreateComplianceJobRequest createComplianceJobRequest) {
             this.createComplianceJobRequest = createComplianceJobRequest;
@@ -160,6 +163,7 @@ public class ComplianceApi extends ApiCommon {
          </table>
          */
         public CreateComplianceJobResponse execute() throws ApiException {
+            
             ApiResponse<CreateComplianceJobResponse> localVarResp = createBatchComplianceJobWithHttpInfo(createComplianceJobRequest);
             return localVarResp.getData();
         }
@@ -301,6 +305,14 @@ public class ComplianceApi extends ApiCommon {
     public class APIgetBatchComplianceJobRequest {
         private final String id;
         private Set<String> complianceJobFields;
+        private final Set<String> complianceJobFieldsAll = new HashSet<>(Arrays.asList("created_at", "download_expires_at", "download_url", "id", "name", "resumable", "status", "type", "upload_expires_at", "upload_url"));
+        
+        private boolean isExclude = false;
+
+        public APIgetBatchComplianceJobRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIgetBatchComplianceJobRequest(String id) {
             this.id = id;
@@ -344,6 +356,8 @@ public class ComplianceApi extends ApiCommon {
          </table>
          */
         public Get2ComplianceJobsIdResponse execute() throws ApiException {
+            complianceJobFields = getFields("complianceJobFields", isExclude, complianceJobFields, complianceJobFieldsAll);
+            
             ApiResponse<Get2ComplianceJobsIdResponse> localVarResp = getBatchComplianceJobWithHttpInfo(id, complianceJobFields);
             return localVarResp.getData();
         }
@@ -493,6 +507,14 @@ public class ComplianceApi extends ApiCommon {
         private final String type;
         private String status;
         private Set<String> complianceJobFields;
+        private final Set<String> complianceJobFieldsAll = new HashSet<>(Arrays.asList("created_at", "download_expires_at", "download_url", "id", "name", "resumable", "status", "type", "upload_expires_at", "upload_url"));
+        
+        private boolean isExclude = false;
+
+        public APIlistBatchComplianceJobsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistBatchComplianceJobsRequest(String type) {
             this.type = type;
@@ -546,6 +568,8 @@ public class ComplianceApi extends ApiCommon {
          </table>
          */
         public Get2ComplianceJobsResponse execute() throws ApiException {
+            complianceJobFields = getFields("complianceJobFields", isExclude, complianceJobFields, complianceJobFieldsAll);
+            
             ApiResponse<Get2ComplianceJobsResponse> localVarResp = listBatchComplianceJobsWithHttpInfo(type, status, complianceJobFields);
             return localVarResp.getData();
         }

@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.Error;
@@ -166,6 +167,16 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIgetUserListMembershipsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIgetUserListMembershipsRequest(String id) {
             this.id = id;
@@ -249,6 +260,10 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdListMembershipsResponse execute() throws ApiException {
+            listFields = getFields("listFields", isExclude, listFields, listFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            
             ApiResponse<Get2UsersIdListMembershipsResponse> localVarResp = getUserListMembershipsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
             return localVarResp.getData();
         }
@@ -386,6 +401,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistAddMemberRequest {
         private final String id;
         private ListAddUserRequest listAddUserRequest;
+        
+        
 
         private APIlistAddMemberRequest(String id) {
             this.id = id;
@@ -429,6 +446,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListMutateResponse execute() throws ApiException {
+            
             ApiResponse<ListMutateResponse> localVarResp = listAddMemberWithHttpInfo(listAddUserRequest, id);
             return localVarResp.getData();
         }
@@ -559,6 +577,8 @@ public class ListsApi extends ApiCommon {
 
     public class APIlistIdCreateRequest {
         private ListCreateRequest listCreateRequest;
+        
+        
 
         private APIlistIdCreateRequest() {
         }
@@ -601,6 +621,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListCreateResponse execute() throws ApiException {
+            
             ApiResponse<ListCreateResponse> localVarResp = listIdCreateWithHttpInfo(listCreateRequest);
             return localVarResp.getData();
         }
@@ -736,6 +757,8 @@ public class ListsApi extends ApiCommon {
 
     public class APIlistIdDeleteRequest {
         private final String id;
+        
+        
 
         private APIlistIdDeleteRequest(String id) {
             this.id = id;
@@ -769,6 +792,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListDeleteResponse execute() throws ApiException {
+            
             ApiResponse<ListDeleteResponse> localVarResp = listIdDeleteWithHttpInfo(id);
             return localVarResp.getData();
         }
@@ -920,6 +944,16 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIlistIdGetRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistIdGetRequest(String id) {
             this.id = id;
@@ -983,6 +1017,10 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public Get2ListsIdResponse execute() throws ApiException {
+            listFields = getFields("listFields", isExclude, listFields, listFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            
             ApiResponse<Get2ListsIdResponse> localVarResp = listIdGetWithHttpInfo(id, listFields, expansions, userFields);
             return localVarResp.getData();
         }
@@ -1120,6 +1158,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistIdUpdateRequest {
         private final String id;
         private ListUpdateRequest listUpdateRequest;
+        
+        
 
         private APIlistIdUpdateRequest(String id) {
             this.id = id;
@@ -1163,6 +1203,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListUpdateResponse execute() throws ApiException {
+            
             ApiResponse<ListUpdateResponse> localVarResp = listIdUpdateWithHttpInfo(listUpdateRequest, id);
             return localVarResp.getData();
         }
@@ -1306,6 +1347,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistRemoveMemberRequest {
         private final String id;
         private final String userId;
+        
+        
 
         private APIlistRemoveMemberRequest(String id, String userId) {
             this.id = id;
@@ -1340,6 +1383,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListMutateResponse execute() throws ApiException {
+            
             ApiResponse<ListMutateResponse> localVarResp = listRemoveMemberWithHttpInfo(id, userId);
             return localVarResp.getData();
         }
@@ -1478,6 +1522,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserFollowRequest {
         private final String id;
         private ListFollowedRequest listFollowedRequest;
+        
+        
 
         private APIlistUserFollowRequest(String id) {
             this.id = id;
@@ -1521,6 +1567,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListFollowedResponse execute() throws ApiException {
+            
             ApiResponse<ListFollowedResponse> localVarResp = listUserFollowWithHttpInfo(listFollowedRequest, id);
             return localVarResp.getData();
         }
@@ -1682,6 +1729,16 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIlistUserOwnedListsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistUserOwnedListsRequest(String id) {
             this.id = id;
@@ -1765,6 +1822,10 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdOwnedListsResponse execute() throws ApiException {
+            listFields = getFields("listFields", isExclude, listFields, listFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            
             ApiResponse<Get2UsersIdOwnedListsResponse> localVarResp = listUserOwnedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
             return localVarResp.getData();
         }
@@ -1907,6 +1968,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserPinRequest {
         private final ListPinnedRequest listPinnedRequest;
         private final String id;
+        
+        
 
         private APIlistUserPinRequest(ListPinnedRequest listPinnedRequest, String id) {
             this.listPinnedRequest = listPinnedRequest;
@@ -1941,6 +2004,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListPinnedResponse execute() throws ApiException {
+            
             ApiResponse<ListPinnedResponse> localVarResp = listUserPinWithHttpInfo(listPinnedRequest, id);
             return localVarResp.getData();
         }
@@ -2093,6 +2157,16 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIlistUserPinnedListsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistUserPinnedListsRequest(String id) {
             this.id = id;
@@ -2156,6 +2230,10 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdPinnedListsResponse execute() throws ApiException {
+            listFields = getFields("listFields", isExclude, listFields, listFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            
             ApiResponse<Get2UsersIdPinnedListsResponse> localVarResp = listUserPinnedListsWithHttpInfo(id, listFields, expansions, userFields);
             return localVarResp.getData();
         }
@@ -2299,6 +2377,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserUnfollowRequest {
         private final String id;
         private final String listId;
+        
+        
 
         private APIlistUserUnfollowRequest(String id, String listId) {
             this.id = id;
@@ -2333,6 +2413,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListFollowedResponse execute() throws ApiException {
+            
             ApiResponse<ListFollowedResponse> localVarResp = listUserUnfollowWithHttpInfo(id, listId);
             return localVarResp.getData();
         }
@@ -2477,6 +2558,8 @@ public class ListsApi extends ApiCommon {
     public class APIlistUserUnpinRequest {
         private final String id;
         private final String listId;
+        
+        
 
         private APIlistUserUnpinRequest(String id, String listId) {
             this.id = id;
@@ -2511,6 +2594,7 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public ListUnpinResponse execute() throws ApiException {
+            
             ApiResponse<ListUnpinResponse> localVarResp = listUserUnpinWithHttpInfo(id, listId);
             return localVarResp.getData();
         }
@@ -2673,6 +2757,16 @@ public class ListsApi extends ApiCommon {
         private Set<String> listFields;
         private Set<String> expansions;
         private Set<String> userFields;
+        private final Set<String> listFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "follower_count", "id", "member_count", "name", "owner_id", "private"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("owner_id"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIuserFollowedListsRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIuserFollowedListsRequest(String id) {
             this.id = id;
@@ -2756,6 +2850,10 @@ public class ListsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdFollowedListsResponse execute() throws ApiException {
+            listFields = getFields("listFields", isExclude, listFields, listFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            
             ApiResponse<Get2UsersIdFollowedListsResponse> localVarResp = userFollowedListsWithHttpInfo(id, maxResults, paginationToken, listFields, expansions, userFields);
             return localVarResp.getData();
         }

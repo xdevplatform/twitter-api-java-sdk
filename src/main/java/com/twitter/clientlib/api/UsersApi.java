@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.BlockUserMutationResponse;
@@ -152,6 +153,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIfindMyUserRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindMyUserRequest() {
         }
@@ -214,6 +225,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersMeResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersMeResponse> localVarResp = findMyUserWithHttpInfo(userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -364,6 +379,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIfindUserByIdRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindUserByIdRequest(String id) {
             this.id = id;
@@ -427,6 +452,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersIdResponse> localVarResp = findUserByIdWithHttpInfo(id, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -578,6 +607,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIfindUserByUsernameRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindUserByUsernameRequest(String username) {
             this.username = username;
@@ -641,6 +680,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersByUsernameUsernameResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersByUsernameUsernameResponse> localVarResp = findUserByUsernameWithHttpInfo(username, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -795,6 +838,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIfindUsersByIdRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindUsersByIdRequest(List<String> ids) {
             this.ids = ids;
@@ -858,6 +911,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersResponse> localVarResp = findUsersByIdWithHttpInfo(ids, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1012,6 +1069,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIfindUsersByUsernameRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindUsersByUsernameRequest(List<String> usernames) {
             this.usernames = usernames;
@@ -1075,6 +1142,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersByResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersByResponse> localVarResp = findUsersByUsernameWithHttpInfo(usernames, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1236,6 +1307,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIlistGetFollowersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistGetFollowersRequest(String id) {
             this.id = id;
@@ -1319,6 +1400,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2ListsIdFollowersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2ListsIdFollowersResponse> localVarResp = listGetFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1480,6 +1565,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIlistGetMembersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistGetMembersRequest(String id) {
             this.id = id;
@@ -1563,6 +1658,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2ListsIdMembersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2ListsIdMembersResponse> localVarResp = listGetMembersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1724,6 +1823,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APItweetsIdLikingUsersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetsIdLikingUsersRequest(String id) {
             this.id = id;
@@ -1807,6 +1916,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2TweetsIdLikingUsersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2TweetsIdLikingUsersResponse> localVarResp = tweetsIdLikingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -1968,6 +2081,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APItweetsIdRetweetingUsersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetsIdRetweetingUsersRequest(String id) {
             this.id = id;
@@ -2051,6 +2174,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2TweetsIdRetweetedByResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2TweetsIdRetweetedByResponse> localVarResp = tweetsIdRetweetingUsersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -2193,6 +2320,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdBlockRequest {
         private final BlockUserRequest blockUserRequest;
         private final String id;
+        
+        
 
         private APIusersIdBlockRequest(BlockUserRequest blockUserRequest, String id) {
             this.blockUserRequest = blockUserRequest;
@@ -2227,6 +2356,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public BlockUserMutationResponse execute() throws ApiException {
+            
             ApiResponse<BlockUserMutationResponse> localVarResp = usersIdBlockWithHttpInfo(blockUserRequest, id);
             return localVarResp.getData();
         }
@@ -2389,6 +2519,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdBlockingRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdBlockingRequest(String id) {
             this.id = id;
@@ -2472,6 +2612,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdBlockingResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersIdBlockingResponse> localVarResp = usersIdBlockingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -2609,6 +2753,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdFollowRequest {
         private final String id;
         private UsersFollowingCreateRequest usersFollowingCreateRequest;
+        
+        
 
         private APIusersIdFollowRequest(String id) {
             this.id = id;
@@ -2652,6 +2798,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public UsersFollowingCreateResponse execute() throws ApiException {
+            
             ApiResponse<UsersFollowingCreateResponse> localVarResp = usersIdFollowWithHttpInfo(usersFollowingCreateRequest, id);
             return localVarResp.getData();
         }
@@ -2813,6 +2960,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdFollowersRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdFollowersRequest(String id) {
             this.id = id;
@@ -2896,6 +3053,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdFollowersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersIdFollowersResponse> localVarResp = usersIdFollowersWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -3057,6 +3218,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdFollowingRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdFollowingRequest(String id) {
             this.id = id;
@@ -3140,6 +3311,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdFollowingResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersIdFollowingResponse> localVarResp = usersIdFollowingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -3277,6 +3452,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdMuteRequest {
         private final String id;
         private MuteUserRequest muteUserRequest;
+        
+        
 
         private APIusersIdMuteRequest(String id) {
             this.id = id;
@@ -3320,6 +3497,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public MuteUserMutationResponse execute() throws ApiException {
+            
             ApiResponse<MuteUserMutationResponse> localVarResp = usersIdMuteWithHttpInfo(muteUserRequest, id);
             return localVarResp.getData();
         }
@@ -3481,6 +3659,16 @@ public class UsersApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdMutingRequest excludeFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdMutingRequest(String id) {
             this.id = id;
@@ -3564,6 +3752,10 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdMutingResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2UsersIdMutingResponse> localVarResp = usersIdMutingWithHttpInfo(id, maxResults, paginationToken, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -3707,6 +3899,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnblockRequest {
         private final String sourceUserId;
         private final String targetUserId;
+        
+        
 
         private APIusersIdUnblockRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;
@@ -3741,6 +3935,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public BlockUserMutationResponse execute() throws ApiException {
+            
             ApiResponse<BlockUserMutationResponse> localVarResp = usersIdUnblockWithHttpInfo(sourceUserId, targetUserId);
             return localVarResp.getData();
         }
@@ -3885,6 +4080,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnfollowRequest {
         private final String sourceUserId;
         private final String targetUserId;
+        
+        
 
         private APIusersIdUnfollowRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;
@@ -3919,6 +4116,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public UsersFollowingDeleteResponse execute() throws ApiException {
+            
             ApiResponse<UsersFollowingDeleteResponse> localVarResp = usersIdUnfollowWithHttpInfo(sourceUserId, targetUserId);
             return localVarResp.getData();
         }
@@ -4063,6 +4261,8 @@ public class UsersApi extends ApiCommon {
     public class APIusersIdUnmuteRequest {
         private final String sourceUserId;
         private final String targetUserId;
+        
+        
 
         private APIusersIdUnmuteRequest(String sourceUserId, String targetUserId) {
             this.sourceUserId = sourceUserId;
@@ -4097,6 +4297,7 @@ public class UsersApi extends ApiCommon {
          </table>
          */
         public MuteUserMutationResponse execute() throws ApiException {
+            
             ApiResponse<MuteUserMutationResponse> localVarResp = usersIdUnmuteWithHttpInfo(sourceUserId, targetUserId);
             return localVarResp.getData();
         }

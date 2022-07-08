@@ -56,6 +56,10 @@ abstract public class ApiTester {
   protected final String userNotExists = "9999999999999";
   protected final List<String> usersIds = Arrays.asList(popularUserId);
   protected final List<String> usersIdsNotFound = Arrays.asList(userNotExists);
+  protected final Set<String> excludedTweetFields = new HashSet<>(Arrays.asList(
+      "non_public_metrics", "promoted_metrics", "organic_metrics", "created_at"));
+  protected final Set<String> excludedUserFields = new HashSet<>(Arrays.asList(
+      "url", "profile_image_url", "description", "created_at"));
 
   protected void initApiInstance() {
           apiInstance = new TwitterApi(new TwitterCredentialsOAuth2(System.getenv("TWITTER_OAUTH2_CLIENT_ID"),
@@ -98,6 +102,16 @@ abstract public class ApiTester {
     Assertions.assertNotNull(tweet.getCreatedAt());
   }
 
+  protected void checkTweetDataExclude(Tweet tweet) {
+    Assertions.assertNotNull(tweet);
+    Assertions.assertNotNull(tweet.getText());
+    Assertions.assertNotNull(tweet.getAuthorId());
+    Assertions.assertNull(tweet.getCreatedAt());
+    Assertions.assertNull(tweet.getNonPublicMetrics());
+    Assertions.assertNull(tweet.getPromotedMetrics());
+    Assertions.assertNull(tweet.getOrganicMetrics());
+  }
+
   protected void checkTweetIncludes(Expansions expansions) {
     Assertions.assertNotNull(expansions);
     Assertions.assertNotNull(expansions.getUsers());
@@ -110,6 +124,17 @@ abstract public class ApiTester {
     Assertions.assertNotNull(user.getId());
     Assertions.assertNotNull(user.getUsername());
     Assertions.assertNotNull(user.getName());
+  }
+
+  protected void checkUserDataExclude(User user) {
+    Assertions.assertNotNull(user);
+    Assertions.assertNotNull(user.getId());
+    Assertions.assertNotNull(user.getUsername());
+    Assertions.assertNotNull(user.getName());
+    Assertions.assertNull(user.getCreatedAt());
+    Assertions.assertNull(user.getDescription());
+    Assertions.assertNull(user.getUrl());
+    Assertions.assertNull(user.getProfileImageUrl());
   }
 
   protected void checkSpaceData(Space space) {
@@ -177,5 +202,12 @@ abstract public class ApiTester {
     Assertions.assertTrue(duplicateProblem.getTitle().equals("DuplicateRule"));
 //    Assertions.assertEquals(detail, duplicateProblem.getDetail());
     Assertions.assertEquals(value, duplicateProblem.getValue());
+  }
+
+  protected void checkFieldUnauthorizedProblem(Problem problem, String title, String field) {
+    Assertions.assertTrue(problem instanceof FieldUnauthorizedProblem);
+    FieldUnauthorizedProblem fieldUnauthorizedProblem = (FieldUnauthorizedProblem) problem;
+    Assertions.assertTrue(fieldUnauthorizedProblem.getTitle().equals(title));
+    Assertions.assertEquals(field, fieldUnauthorizedProblem.getField());
   }
 }
