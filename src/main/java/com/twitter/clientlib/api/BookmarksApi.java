@@ -177,7 +177,7 @@ public class BookmarksApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIgetUsersIdBookmarksRequest excludeFields() {
+        public APIgetUsersIdBookmarksRequest excludeInputFields() {
           isExclude = true;
           return this;
         }

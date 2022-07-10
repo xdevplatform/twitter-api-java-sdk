@@ -159,7 +159,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindMyUserRequest excludeFields() {
+        public APIfindMyUserRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -385,7 +385,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindUserByIdRequest excludeFields() {
+        public APIfindUserByIdRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -613,7 +613,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindUserByUsernameRequest excludeFields() {
+        public APIfindUserByUsernameRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -844,7 +844,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindUsersByIdRequest excludeFields() {
+        public APIfindUsersByIdRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1075,7 +1075,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindUsersByUsernameRequest excludeFields() {
+        public APIfindUsersByUsernameRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1313,7 +1313,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistGetFollowersRequest excludeFields() {
+        public APIlistGetFollowersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1571,7 +1571,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistGetMembersRequest excludeFields() {
+        public APIlistGetMembersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1829,7 +1829,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetsIdLikingUsersRequest excludeFields() {
+        public APItweetsIdLikingUsersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2087,7 +2087,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetsIdRetweetingUsersRequest excludeFields() {
+        public APItweetsIdRetweetingUsersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2525,7 +2525,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdBlockingRequest excludeFields() {
+        public APIusersIdBlockingRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2966,7 +2966,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdFollowersRequest excludeFields() {
+        public APIusersIdFollowersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -3224,7 +3224,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdFollowingRequest excludeFields() {
+        public APIusersIdFollowingRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -3665,7 +3665,7 @@ public class UsersApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdMutingRequest excludeFields() {
+        public APIusersIdMutingRequest excludeInputFields() {
           isExclude = true;
           return this;
         }

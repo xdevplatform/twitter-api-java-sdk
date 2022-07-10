@@ -80,9 +80,9 @@ public class ApiTweetTester extends ApiTester {
   }
 
   @Test
-  public void findTweetByIdExcludeFieldsTest() throws ApiException {
+  public void findTweetByIdExcludeInputFieldsTest() throws ApiException {
     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
-        .tweetFields(excludedTweetFields).excludeFields()
+        .tweetFields(excludedTweetFields).excludeInputFields()
         .execute();
     checkErrors(false, result.getErrors());
     checkTweetDataExclude(result.getData());
@@ -91,9 +91,9 @@ public class ApiTweetTester extends ApiTester {
   }
 
   @Test
-    public void findTweetByIdExcludeFieldsErrorTest() throws ApiException {
+    public void findTweetByIdExcludeInputFieldsErrorTest() throws ApiException {
     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
-        .excludeFields()
+        .excludeInputFields()
         .execute();
     checkErrors(true, result.getErrors());
     assertNull(result.getData());

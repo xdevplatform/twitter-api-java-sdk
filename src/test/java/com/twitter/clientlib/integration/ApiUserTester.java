@@ -78,8 +78,8 @@ public class ApiUserTester extends ApiTester {
   }
 
     @Test
-  public void findUserByIdExcludeFieldsTest() throws ApiException {
-    Get2UsersIdResponse result = apiInstance.users().findUserById(userId).excludeFields()
+  public void findUserByIdExcludeInputFieldsTest() throws ApiException {
+    Get2UsersIdResponse result = apiInstance.users().findUserById(userId).excludeInputFields()
         .userFields(excludedUserFields)
         .tweetFields(excludedTweetFields)
         .execute();

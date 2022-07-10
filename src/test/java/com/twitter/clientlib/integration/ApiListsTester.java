@@ -69,6 +69,18 @@ public class ApiListsTester extends ApiTester {
         .execute();
   }
 
+  private ListFollowedResponse listUserFollow(String iUserId, String iListId) throws ApiException {
+    ListFollowedRequest request = new ListFollowedRequest();
+    request.setListId(iListId);
+    return apiInstance.lists().listUserFollow(iUserId)
+        .listFollowedRequest(request)
+        .execute();
+  }
+
+  public ListFollowedResponse listUserUnfollow(String iUserId, String iListId) throws ApiException {
+     return apiInstance.lists().listUserUnfollow(userId, listId).execute();
+  }
+
   @BeforeAll
   public void init() {
     initApiInstance();
@@ -538,11 +550,7 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowTest() throws ApiException {
-    ListFollowedRequest request = new ListFollowedRequest();
-    request.setListId(listId);
-    ListFollowedResponse result = apiInstance.lists().listUserFollow(userId)
-        .listFollowedRequest(request)
-        .execute();
+    ListFollowedResponse result = listUserFollow(userId, listId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getFollowing());
@@ -550,12 +558,8 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowListNotFoundTest() throws ApiException {
-    ListFollowedRequest request = new ListFollowedRequest();
-    request.setListId(listIdNotFound);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserFollow(userId)
-          .listFollowedRequest(request)
-          .execute();
+      listUserFollow(userId, listIdNotFound);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "You cannot follow a List that does not exist.",
@@ -564,12 +568,8 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserFollowUserNotExistsTest() throws ApiException {
-    ListFollowedRequest request = new ListFollowedRequest();
-    request.setListId(listId);
     ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserFollow(userNotExists)
-          .listFollowedRequest(request)
-          .execute();
+      listUserFollow(userNotExists, listId);
     });
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
@@ -578,14 +578,14 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserPinTest() throws ApiException {
-    listUserFollowTest();
+    listUserFollow(userId, listId);
     ListPinnedRequest request = new ListPinnedRequest();
     request.setListId(listId);
     ListPinnedResponse result = apiInstance.lists().listUserPin(request, userId).execute();
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertTrue(result.getData().getPinned());
-    listUserUnfollowTest();
+    listUserUnfollow(userId, listId);
   }
 
   @Test
@@ -665,8 +665,7 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserUnfollowTest() throws ApiException {
-    ListFollowedResponse result = apiInstance.lists().listUserUnfollow(userId, listId)
-        .execute();
+    ListFollowedResponse result = listUserUnfollow(userId, listId);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertNotEquals(Boolean.TRUE, result.getData().getFollowing());
@@ -674,19 +673,15 @@ public class ApiListsTester extends ApiTester {
 
   @Test
   public void listUserUnfollowUserNotFoundTest() throws ApiException {
-    ApiException exception = assertThrows(ApiException.class, () -> {
-      apiInstance.lists().listUserUnfollow(userNotExists, listId)
-          .execute();
-    });
-    checkApiExceptionProblem(exception, InvalidRequestProblem.class,
-        "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user",
-        "Invalid Request", "One or more parameters to your request was invalid.");
+    ListFollowedResponse result = listUserUnfollow(userNotExists, listId);
+    checkErrors(false, result.getErrors());
+    assertNotNull(result.getData());
+    assertFalse(result.getData().getFollowing());
   }
 
   @Test
   public void listUserUnfollowListNotFoundTest() throws ApiException {
-    ListFollowedResponse result = apiInstance.lists().listUserUnfollow(userId, listIdNotFound)
-        .execute();
+    ListFollowedResponse result = listUserUnfollow(userId, listIdNotFound);
     checkErrors(false, result.getErrors());
     assertNotNull(result.getData());
     assertFalse(result.getData().getFollowing());

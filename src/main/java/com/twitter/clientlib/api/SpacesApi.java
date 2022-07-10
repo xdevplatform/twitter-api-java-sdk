@@ -158,7 +158,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindSpaceByIdRequest excludeFields() {
+        public APIfindSpaceByIdRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -406,7 +406,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindSpacesByCreatorIdsRequest excludeFields() {
+        public APIfindSpacesByCreatorIdsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -654,7 +654,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindSpacesByIdsRequest excludeFields() {
+        public APIfindSpacesByIdsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -912,7 +912,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIsearchSpacesRequest excludeFields() {
+        public APIsearchSpacesRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1181,7 +1181,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIspaceBuyersRequest excludeFields() {
+        public APIspaceBuyersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1452,7 +1452,7 @@ public class SpacesApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIspaceTweetsRequest excludeFields() {
+        public APIspaceTweetsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }

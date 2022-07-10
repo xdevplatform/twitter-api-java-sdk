@@ -231,7 +231,7 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 
 ```java
   int retries = 4;
-  streamResult = apiInstance.tweets()apiInstance.tweets().sampleStream()
+  streamResult = apiInstance.tweets().sampleStream()
                       .tweetFields(tweetFields)
                       .execute(retries);
 
@@ -246,8 +246,8 @@ Read more about Filtered stream and [rate limits](https://developer.twitter.com/
 The Twitter API v2 endpoints are equipped with a set of parameters called [fields](https://developer.twitter.com/en/docs/twitter-api/fields), which allows you to select just the data that you want from each of the objects in your endpoint response.
 
 When you need to get many fields in the response object it can be a bit gruelling to define all the needed fields.
-In order to make it easier, you can use the `excludeFields` approach. Instead of selecting the data that you want to get, you define which fields should be excluded from the response object.
-Using `excludeFields()` will change the behaviour of the execution, in this case all response fields will be returned besides the ones that were sent as input parameters.
+In order to make it easier, you can use the `excludeInputFields` approach. Instead of selecting the data that you want to get, you define which fields should be excluded from the response object.
+Using `excludeInputFields()` will change the behaviour of the execution, in this case all response fields will be returned besides the ones that were sent as input parameters.
 
 
 ```java
@@ -258,10 +258,10 @@ Using `excludeFields()` will change the behaviour of the execution, in this case
 
     // Get all available fields excluding Tweet Fields `non_public_metrics`, `promoted_metrics` & `organic_metrics`
     Get2TweetsIdResponse result = apiInstance.tweets().findTweetById("20")
-        .tweetFields(tweetFields).excludeFields().execute();
+        .tweetFields(tweetFields).excludeInputFields().execute();
 
     // Get all the response fields
-    Get2TweetsIdResponse result2 = apiInstance.tweets().findTweetById("20").excludeFields().execute();
+    Get2TweetsIdResponse result2 = apiInstance.tweets().findTweetById("20").excludeInputFields().execute();
 
 ```
 

@@ -309,7 +309,7 @@ public class ComplianceApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIgetBatchComplianceJobRequest excludeFields() {
+        public APIgetBatchComplianceJobRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -511,7 +511,7 @@ public class ComplianceApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistBatchComplianceJobsRequest excludeFields() {
+        public APIlistBatchComplianceJobsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }

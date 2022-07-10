@@ -196,20 +196,6 @@ public class ApiSpacesTester extends ApiTester {
     assertEquals(0, (int) result.getMeta().getResultCount());
   }
 
-// TODO for owner
-//  @Test
-//  public void spaceBuyersTest() throws ApiException {
-//    MultiUserLookupResponse result = apiInstance.spaces().spaceBuyers(spaceId, userFields);
-//    checkErrors(false, result.getErrors());
-//    if(result.getData() != null) {
-//      checkUserData(result.getData().get(0));
-//      assertNotNull(result.getIncludes());
-//      assertNotNull(result.getIncludes().getUsers());
-//    } else {
-//      assertNull(result.getIncludes());
-//    }
-//  }
-
   @Test
   public void spaceBuyersNotSpaceOwnerTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {

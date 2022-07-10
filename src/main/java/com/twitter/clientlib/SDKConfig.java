@@ -31,7 +31,7 @@ import java.util.Properties;
 
 public class SDKConfig {
   private static final Properties sdkProperties = new Properties();
-  private static final List<String> whiteListedExcludeFields;
+  private static final List<String> allowlistedExcludeInputFields;
 
   static {
     try {
@@ -39,12 +39,12 @@ public class SDKConfig {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    String sdkExcludeFields = sdkProperties.getProperty("sdk.exclude.fields");
-    sdkExcludeFields = sdkExcludeFields == null ? "" : sdkExcludeFields;
-    whiteListedExcludeFields = Collections.unmodifiableList(Arrays.asList(sdkExcludeFields.split("[, ]+")));
+    String sdkExcludeInputFields = sdkProperties.getProperty("sdk.exclude.fields");
+    sdkExcludeInputFields = sdkExcludeInputFields == null ? "" : sdkExcludeInputFields;
+    allowlistedExcludeInputFields = Collections.unmodifiableList(Arrays.asList(sdkExcludeInputFields.split("[, ]+")));
   }
 
-  public static boolean isFieldWhiteListed(String field ) {
-    return whiteListedExcludeFields.contains(field);
+  public static boolean isFieldAllowlisted(String field ) {
+    return allowlistedExcludeInputFields.contains(field);
   }
 }

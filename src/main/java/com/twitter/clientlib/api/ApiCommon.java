@@ -77,7 +77,7 @@ public class ApiCommon {
 
   Set<String> getFields(String fieldName, boolean isExclude, Set<String> fieldValues, Set<String> allFieldsValues) {
     Set<String> result = fieldValues;
-    if(isExclude && SDKConfig.isFieldWhiteListed(fieldName) && allFieldsValues != null) {
+    if(isExclude && SDKConfig.isFieldAllowlisted(fieldName) && allFieldsValues != null) {
       result = allFieldsValues.stream().filter(e -> !(fieldValues != null && fieldValues.contains(e))).collect(Collectors.toSet());
     }
     return result;

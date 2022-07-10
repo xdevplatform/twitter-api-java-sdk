@@ -724,7 +724,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindTweetByIdRequest excludeFields() {
+        public APIfindTweetByIdRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1006,7 +1006,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindTweetsByIdRequest excludeFields() {
+        public APIfindTweetsByIdRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1301,7 +1301,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIfindTweetsThatQuoteATweetRequest excludeFields() {
+        public APIfindTweetsThatQuoteATweetRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2012,7 +2012,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistsIdTweetsRequest excludeFields() {
+        public APIlistsIdTweetsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2309,7 +2309,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIsampleStreamRequest excludeFields() {
+        public APIsampleStreamRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2588,7 +2588,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIsearchStreamRequest excludeFields() {
+        public APIsearchStreamRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2861,7 +2861,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIspaceBuyersRequest excludeFields() {
+        public APIspaceBuyersRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -3132,7 +3132,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIspaceTweetsRequest excludeFields() {
+        public APIspaceTweetsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -3429,7 +3429,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetCountsFullArchiveSearchRequest excludeFields() {
+        public APItweetCountsFullArchiveSearchRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -3731,7 +3731,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetCountsRecentSearchRequest excludeFields() {
+        public APItweetCountsRecentSearchRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -4068,7 +4068,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetsFullarchiveSearchRequest excludeFields() {
+        public APItweetsFullarchiveSearchRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -4470,7 +4470,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APItweetsRecentSearchRequest excludeFields() {
+        public APItweetsRecentSearchRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -5022,7 +5022,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdLikedTweetsRequest excludeFields() {
+        public APIusersIdLikedTweetsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -5351,7 +5351,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdMentionsRequest excludeFields() {
+        public APIusersIdMentionsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -5909,7 +5909,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdTimelineRequest excludeFields() {
+        public APIusersIdTimelineRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -6295,7 +6295,7 @@ public class TweetsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIusersIdTweetsRequest excludeFields() {
+        public APIusersIdTweetsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }

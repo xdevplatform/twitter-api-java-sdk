@@ -173,7 +173,7 @@ public class ListsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIgetUserListMembershipsRequest excludeFields() {
+        public APIgetUserListMembershipsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -950,7 +950,7 @@ public class ListsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistIdGetRequest excludeFields() {
+        public APIlistIdGetRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -1735,7 +1735,7 @@ public class ListsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistUserOwnedListsRequest excludeFields() {
+        public APIlistUserOwnedListsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2163,7 +2163,7 @@ public class ListsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIlistUserPinnedListsRequest excludeFields() {
+        public APIlistUserPinnedListsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
@@ -2763,7 +2763,7 @@ public class ListsApi extends ApiCommon {
         
         private boolean isExclude = false;
 
-        public APIuserFollowedListsRequest excludeFields() {
+        public APIuserFollowedListsRequest excludeInputFields() {
           isExclude = true;
           return this;
         }
