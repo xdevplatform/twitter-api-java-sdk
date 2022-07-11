@@ -64,7 +64,7 @@ import com.twitter.clientlib.JSON;
 public class RulesLookupResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private List<Rule> data = new ArrayList<>();
+  private List<Rule> data = null;
 
   public static final String SERIALIZED_NAME_META = "meta";
   @SerializedName(SERIALIZED_NAME_META)
@@ -80,6 +80,9 @@ public class RulesLookupResponse {
   }
 
   public RulesLookupResponse addDataItem(Rule dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
     this.data.add(dataItem);
     return this;
   }
@@ -88,8 +91,8 @@ public class RulesLookupResponse {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<Rule> getData() {
     return data;
@@ -176,7 +179,6 @@ public class RulesLookupResponse {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("data");
     openapiRequiredFields.add("meta");
   }
 
