@@ -230,7 +230,7 @@ In order to use the retry mechanism call the APIs with an additional parameter `
 
 ```java
   int retries = 4;
-  streamResult = apiInstance.tweets()apiInstance.tweets().sampleStream()
+  streamResult = apiInstance.tweets().sampleStream()
                       .tweetFields(tweetFields)
                       .execute(retries);
 
