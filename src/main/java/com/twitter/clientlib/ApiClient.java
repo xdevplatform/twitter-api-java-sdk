@@ -225,7 +225,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("twitter-api-java-sdk/2.0.1");
+        setUserAgent("twitter-api-java-sdk/2.0.2");
 
         authentications = new HashMap<String, Authentication>();
     }
