@@ -58,6 +58,8 @@ import com.twitter.clientlib.model.UsersLikesDeleteResponse;
 import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
 import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
 import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
+import com.twitter.clientlib.query.StreamQueryParameters;
+import okio.BufferedSource;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -296,22 +298,7 @@ public class TweetsApiTest {
      */
     @Test
     public void sampleStreamTest() throws ApiException {
-        Integer backfillMinutes = null;
-        Set<String> tweetFields = null;
-        Set<String> expansions = null;
-        Set<String> mediaFields = null;
-        Set<String> pollFields = null;
-        Set<String> userFields = null;
-        Set<String> placeFields = null;
-                InputStream response = apiInstance.tweets().sampleStream()
-                .backfillMinutes(backfillMinutes)
-                .tweetFields(tweetFields)
-                .expansions(expansions)
-                .mediaFields(mediaFields)
-                .pollFields(pollFields)
-                .userFields(userFields)
-                .placeFields(placeFields)
-                .execute();
+        BufferedSource response = apiInstance.tweets().sampleStream().execute();
         // TODO: test validations
     }
 
@@ -325,22 +312,7 @@ public class TweetsApiTest {
      */
     @Test
     public void searchStreamTest() throws ApiException {
-        Integer backfillMinutes = null;
-        Set<String> tweetFields = null;
-        Set<String> expansions = null;
-        Set<String> mediaFields = null;
-        Set<String> pollFields = null;
-        Set<String> userFields = null;
-        Set<String> placeFields = null;
-                InputStream response = apiInstance.tweets().searchStream()
-                .backfillMinutes(backfillMinutes)
-                .tweetFields(tweetFields)
-                .expansions(expansions)
-                .mediaFields(mediaFields)
-                .pollFields(pollFields)
-                .userFields(userFields)
-                .placeFields(placeFields)
-                .execute();
+        BufferedSource response = apiInstance.tweets().searchStream().execute();
         // TODO: test validations
     }
 
