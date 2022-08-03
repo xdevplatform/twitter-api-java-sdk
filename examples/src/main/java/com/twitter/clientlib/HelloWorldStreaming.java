@@ -61,6 +61,18 @@ public class HelloWorldStreaming {
       tsle.addListener(responder);
       tsle.executeListeners();
 
+      while(tsle.getError() == null) {
+        try {
+          System.err.println("==> sleeping 5 ");
+          Thread.sleep(5000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+      tsle.shutdown();
+      if(tsle.getError() != null) {
+        System.err.println("==> Ended with error: " + tsle.getError());
+      }
 //      // Shutdown TweetsStreamListenersExecutor
 //      try {
 //        Thread.sleep(20000);
