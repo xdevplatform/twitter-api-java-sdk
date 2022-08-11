@@ -52,7 +52,7 @@ public class HelloWorldStreaming {
       }
 
       if(tsle.getError() != null) {
-        System.err.println("==> Finished " + tsle.getError());
+        System.err.println("==> Ended with error: " + tsle.getError());
       }
 
 //      // Shutdown TweetsStreamListenersExecutor

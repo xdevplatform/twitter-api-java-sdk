@@ -35,12 +35,14 @@ import java.util.concurrent.atomic.AtomicLong;
 public class TweetsStreamListenersExecutor {
   private final static int TIMEOUT_MILLIS = 60000;
   private final static int SLEEP_MILLIS = 100;
+  private final static int BACKOFF_SLEEP_INTERVAL_MILLIS = 5000;
   private TweetsQueuer tweetsQueuer;
   private ITweetsQueue tweetsQueue = new LinkedListTweetsQueue();
   private final AtomicBoolean isRunning = new AtomicBoolean(true);
   private final AtomicLong tweetStreamedTime = new AtomicLong(0);
   private Exception caughtException;
   private IStreamingHandler<?> streamingHandler;
+  private long reconnecting = 0;
 
   public StreamListenersExecutorBuilder stream() {
     return new StreamListenersExecutorBuilder();
@@ -75,8 +77,12 @@ public class TweetsStreamListenersExecutor {
 
   private void restartTweetsQueuer() {
     tweetsQueuer.shutdownQueuer();
+    if(reconnecting < 7) {
+      reconnecting++;
+    }
     try {
-      Thread.sleep(SLEEP_MILLIS); // Wait a bit before starting the TweetsQueuer and calling the API again.
+      System.out.println("sleeping " + BACKOFF_SLEEP_INTERVAL_MILLIS * reconnecting);
+      Thread.sleep(BACKOFF_SLEEP_INTERVAL_MILLIS * reconnecting); // Wait a bit before starting the TweetsQueuer and calling the API again.
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
