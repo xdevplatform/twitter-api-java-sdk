@@ -22,8 +22,19 @@ Do not edit the class manually.
 
 package com.twitter.clientlib;
 
-import com.twitter.clientlib.model.StreamingTweetResponse;
+import com.twitter.clientlib.api.TwitterApi;
 
-public interface TweetsStreamListener {
-  void actionOnTweetsStream(StreamingTweetResponse streamingTweet);
+public abstract class StreamingHandler<R> implements IStreamingHandler<R> {
+  protected final TwitterApi apiInstance;
+
+  public StreamingHandler(TwitterApi apiInstance) {
+    this.apiInstance = apiInstance;
+  }
+
+  @Override
+  public boolean processAndVerifyStreamingObject(String tweetString) throws Exception {
+    R tweet = getStreamingObject(tweetString);
+    actionOnStreamingObject(tweet);
+    return !hasReconnectErrors(tweet);
+  }
 }

@@ -26,60 +26,29 @@ package com.twitter.clientlib;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.io.InterruptedIOException;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.google.gson.reflect.TypeToken;
-
-import com.twitter.clientlib.model.StreamingTweetResponse;
-
 public class TweetsStreamListenersExecutor {
   private final static int TIMEOUT_MILLIS = 60000;
   private final static int SLEEP_MILLIS = 100;
-  private final ITweetsQueue tweetsQueue;
-  private final List<TweetsStreamListener> listeners = new ArrayList<>();
-  private final InputStream stream;
+  private TweetsQueuer tweetsQueuer;
+  private ITweetsQueue tweetsQueue = new LinkedListTweetsQueue();
   private final AtomicBoolean isRunning = new AtomicBoolean(true);
   private final AtomicLong tweetStreamedTime = new AtomicLong(0);
   private Exception caughtException;
+  private IStreamingHandler<?> streamingHandler;
 
-  public TweetsStreamListenersExecutor(InputStream stream) {
-    this.tweetsQueue = new LinkedListTweetsQueue();
-    this.stream = stream;
+  public StreamListenersExecutorBuilder stream() {
+    return new StreamListenersExecutorBuilder();
   }
 
-  public TweetsStreamListenersExecutor(ITweetsQueue tweetsQueue, InputStream stream) {
-    this.tweetsQueue = tweetsQueue;
-    this.stream = stream;
-  }
-
-  public void addListener(TweetsStreamListener toAdd) {
-    listeners.add(toAdd);
-  }
-
-  public void executeListeners() {
-    if (stream == null) {
-      System.out.println("Error: stream is null.");
-      return;
-    } else if (this.tweetsQueue == null) {
-      System.out.println("Error: tweetsQueue is null.");
-      return;
-    }
-
-    TweetsQueuer tweetsQueuer = new TweetsQueuer();
-    TweetsListenersExecutor tweetsListenersExecutor = new TweetsListenersExecutor();
-    StreamTimeoutChecker timeoutChecker = new StreamTimeoutChecker();
-    tweetsListenersExecutor.start();
-    tweetsQueuer.start();
-    timeoutChecker.start();
-  }
-
-  public void shutdown(Exception e) {
+  private void shutdown(Exception e) {
     caughtException = e;
+    e.printStackTrace();
     shutdown();
   }
 
@@ -92,12 +61,28 @@ public class TweetsStreamListenersExecutor {
     return caughtException;
   }
 
+  private InputStream connectStream() throws ApiException {
+    return streamingHandler.connectStream();
+  }
+
   private void resetTweetStreamedTime() {
     tweetStreamedTime.set(System.currentTimeMillis());
   }
 
   private boolean isTweetStreamedError() {
     return System.currentTimeMillis() - tweetStreamedTime.get() > TIMEOUT_MILLIS;
+  }
+
+  private void restartTweetsQueuer() {
+    tweetsQueuer.shutdownQueuer();
+    try {
+      Thread.sleep(SLEEP_MILLIS); // Wait a bit before starting the TweetsQueuer and calling the API again.
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    tweetsQueuer.interrupt();
+    tweetsQueuer = new TweetsQueuer();
+    tweetsQueuer.start();
   }
 
   private class TweetsListenersExecutor extends Thread {
@@ -107,7 +92,6 @@ public class TweetsStreamListenersExecutor {
     }
 
     private void processTweets() {
-      StreamingTweetResponse streamingTweet;
       String tweetString;
       try {
         while (isRunning.get()) {
@@ -117,41 +101,45 @@ public class TweetsStreamListenersExecutor {
             continue;
           }
           try {
-            streamingTweet = StreamingTweetResponse.fromJson(tweetString);
-            for (TweetsStreamListener listener : listeners) {
-              listener.actionOnTweetsStream(streamingTweet);
+            if(!streamingHandler.processAndVerifyStreamingObject(tweetString)) {
+              restartTweetsQueuer();
             }
           } catch (Exception interExcep) {
             interExcep.printStackTrace();
           }
         }
       } catch (Exception e) {
-        e.printStackTrace();
         shutdown(e);
       }
     }
   }
 
   private class TweetsQueuer extends Thread {
+    private boolean isReconnecting;
     @Override
     public void run() {
+      isReconnecting = false;
       queueTweets();
     }
 
-    public void queueTweets() {
-      String line = null;
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
-        while (isRunning.get()) {
+    public void shutdownQueuer() {
+      isReconnecting = true;
+    }
+    private void queueTweets() {
+      String line;
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(connectStream()))) {
+        while (isRunning.get() && !isReconnecting) {
           line = reader.readLine();
           resetTweetStreamedTime();
-          if(line == null || line.isEmpty()) {
+          if (line == null || line.isEmpty()) {
             Thread.sleep(SLEEP_MILLIS);
             continue;
           }
           tweetsQueue.add(line);
         }
-      } catch (Exception e) {
+      } catch (InterruptedIOException e) {
         e.printStackTrace();
+      } catch (Exception e) {
         shutdown(e);
       }
     }
@@ -175,6 +163,36 @@ public class TweetsStreamListenersExecutor {
           interExcep.printStackTrace();
         }
       }
+    }
+  }
+
+  public class StreamListenersExecutorBuilder {
+    public StreamListenersExecutorBuilder streamingHandler(IStreamingHandler<?> streamHandler) {
+      streamingHandler = streamHandler;
+      return this;
+    }
+
+    public StreamListenersExecutorBuilder tweetsQueue(ITweetsQueue queue) {
+      tweetsQueue = queue;
+      return this;
+    }
+
+    public void executeListeners() throws ApiException {
+      if (streamingHandler == null) {
+        throw new ApiException("Please set a streamingHandler");
+      } else if (tweetsQueue == null) {
+        System.out.println("Error: tweetsQueue is null.");
+        return;
+      }
+
+      TweetsListenersExecutor tweetsListenersExecutor;
+      StreamTimeoutChecker timeoutChecker;
+      tweetsQueuer = new TweetsQueuer();
+      tweetsListenersExecutor = new TweetsListenersExecutor();
+      timeoutChecker = new StreamTimeoutChecker();
+      tweetsListenersExecutor.start();
+      tweetsQueuer.start();
+      timeoutChecker.start();
     }
   }
 }
