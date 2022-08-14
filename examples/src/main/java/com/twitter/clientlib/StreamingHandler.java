@@ -34,7 +34,7 @@ public abstract class StreamingHandler<R> implements IStreamingHandler<R> {
   @Override
   public boolean processAndVerifyStreamingObject(String tweetString) throws Exception {
     R tweet = getStreamingObject(tweetString);
-    actionOnStreamingObject(tweet);
+      actionOnStreamingObject(tweet);
     return !hasReconnectErrors(tweet);
   }
 }
