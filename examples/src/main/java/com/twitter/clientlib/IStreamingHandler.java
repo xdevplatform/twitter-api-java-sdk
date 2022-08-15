@@ -24,10 +24,10 @@ package com.twitter.clientlib;
 
 import java.io.InputStream;
 
-public interface IStreamingHandler<R> {
+public interface IStreamingHandler<T> {
   InputStream connectStream() throws ApiException;
-  void actionOnStreamingObject(R streamingTweet) throws ApiException;
+  void actionOnStreamingObject(T streamingTweet) throws ApiException;
   boolean processAndVerifyStreamingObject(String tweetString) throws Exception;
-  R getStreamingObject(String tweetString) throws Exception;
-  boolean hasReconnectErrors(R streamingTweet);
+  T getStreamingObject(String tweetString) throws Exception;
+  boolean hasReconnectErrors(T streamingTweet);
 }

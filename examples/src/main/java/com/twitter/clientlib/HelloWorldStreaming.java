@@ -40,7 +40,7 @@ public class HelloWorldStreaming {
     try {
       TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor();
       tsle.stream()
-          .streamingHandler( new StreamingTweetHandlerImpl(apiInstance))
+          .streamingHandler(new StreamingTweetHandlerImpl(apiInstance))
           .executeListeners();
       while(tsle.getError() == null) {
         try {
