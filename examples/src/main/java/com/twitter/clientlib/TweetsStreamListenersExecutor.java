@@ -41,7 +41,7 @@ public class TweetsStreamListenersExecutor {
   private final AtomicBoolean isRunning = new AtomicBoolean(true);
   private final AtomicLong tweetStreamedTime = new AtomicLong(0);
   private Exception caughtException;
-  private IStreamingHandler<?> streamingHandler;
+  private StreamingHandler<?> streamingHandler;
   private long reconnecting = 0;
 
   public StreamListenersExecutorBuilder stream() {
@@ -173,7 +173,7 @@ public class TweetsStreamListenersExecutor {
   }
 
   public class StreamListenersExecutorBuilder {
-    public StreamListenersExecutorBuilder streamingHandler(IStreamingHandler<?> streamHandler) {
+    public StreamListenersExecutorBuilder streamingHandler(StreamingHandler<?> streamHandler) {
       streamingHandler = streamHandler;
       return this;
     }

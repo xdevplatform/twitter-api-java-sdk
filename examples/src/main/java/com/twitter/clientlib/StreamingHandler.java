@@ -22,16 +22,22 @@ Do not edit the class manually.
 
 package com.twitter.clientlib;
 
+import java.io.InputStream;
+
 import com.twitter.clientlib.api.TwitterApi;
 
-public abstract class StreamingHandler<T> implements IStreamingHandler<T> {
+public abstract class StreamingHandler<T> {
 protected final TwitterApi apiInstance;
 
   public StreamingHandler(TwitterApi apiInstance) {
     this.apiInstance = apiInstance;
   }
 
-  @Override
+  public abstract InputStream connectStream() throws ApiException;
+  public abstract void actionOnStreamingObject(T streamingTweet) throws ApiException;
+  public abstract T getStreamingObject(String tweetString) throws Exception;
+  public abstract boolean hasReconnectErrors(T streamingTweet);
+
   public boolean processAndVerifyStreamingObject(String tweetString) throws Exception {
     T tweet = getStreamingObject(tweetString);
     actionOnStreamingObject(tweet);

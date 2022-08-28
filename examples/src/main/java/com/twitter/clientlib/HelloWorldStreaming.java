@@ -44,7 +44,7 @@ public class HelloWorldStreaming {
           .executeListeners();
       while(tsle.getError() == null) {
         try {
-          System.err.println("==> sleeping 5 ");
+          System.out.println("==> sleeping 5 ");
           Thread.sleep(5000);
         } catch (InterruptedException e) {
           e.printStackTrace();
