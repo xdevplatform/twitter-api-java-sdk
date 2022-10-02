@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 
@@ -114,6 +115,8 @@ public class GeneralApi extends ApiCommon {
     }
 
     public class APIgetOpenApiSpecRequest {
+        
+        
 
         private APIgetOpenApiSpecRequest() {
         }
@@ -144,6 +147,7 @@ public class GeneralApi extends ApiCommon {
          </table>
          */
         public Object execute() throws ApiException {
+            
             ApiResponse<Object> localVarResp = getOpenApiSpecWithHttpInfo();
             return localVarResp.getData();
         }

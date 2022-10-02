@@ -36,6 +36,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
@@ -159,6 +160,8 @@ public class TweetsApi extends ApiCommon {
     public class APIaddOrDeleteRulesRequest {
         private final AddOrDeleteRulesRequest addOrDeleteRulesRequest;
         private Boolean dryRun;
+        
+        
 
         private APIaddOrDeleteRulesRequest(AddOrDeleteRulesRequest addOrDeleteRulesRequest) {
             this.addOrDeleteRulesRequest = addOrDeleteRulesRequest;
@@ -202,6 +205,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public AddOrDeleteRulesResponse execute() throws ApiException {
+            
             ApiResponse<AddOrDeleteRulesResponse> localVarResp = addOrDeleteRulesWithHttpInfo(addOrDeleteRulesRequest, dryRun);
             return localVarResp.getData();
         }
@@ -337,6 +341,8 @@ public class TweetsApi extends ApiCommon {
 
     public class APIcreateTweetRequest {
         private final TweetCreateRequest tweetCreateRequest;
+        
+        
 
         private APIcreateTweetRequest(TweetCreateRequest tweetCreateRequest) {
             this.tweetCreateRequest = tweetCreateRequest;
@@ -370,6 +376,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public TweetCreateResponse execute() throws ApiException {
+            
             ApiResponse<TweetCreateResponse> localVarResp = createTweetWithHttpInfo(tweetCreateRequest);
             return localVarResp.getData();
         }
@@ -506,6 +513,8 @@ public class TweetsApi extends ApiCommon {
 
     public class APIdeleteTweetByIdRequest {
         private final String id;
+        
+        
 
         private APIdeleteTweetByIdRequest(String id) {
             this.id = id;
@@ -539,6 +548,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public TweetDeleteResponse execute() throws ApiException {
+            
             ApiResponse<TweetDeleteResponse> localVarResp = deleteTweetByIdWithHttpInfo(id);
             return localVarResp.getData();
         }
@@ -705,6 +715,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIfindTweetByIdRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindTweetByIdRequest(String id) {
             this.id = id;
@@ -798,6 +821,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsIdResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2TweetsIdResponse> localVarResp = findTweetByIdWithHttpInfo(id, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -967,6 +997,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIfindTweetsByIdRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindTweetsByIdRequest(List<String> ids) {
             this.ids = ids;
@@ -1060,6 +1103,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2TweetsResponse> localVarResp = findTweetsByIdWithHttpInfo(ids, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -1241,6 +1291,20 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIfindTweetsThatQuoteATweetRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIfindTweetsThatQuoteATweetRequest(String id) {
             this.id = id;
@@ -1364,6 +1428,14 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsIdQuoteTweetsResponse execute() throws ApiException {
+            exclude = getFields("exclude", isExclude, exclude, excludeAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2TweetsIdQuoteTweetsResponse> localVarResp = findTweetsThatQuoteATweetWithHttpInfo(id, maxResults, paginationToken, exclude, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -1508,6 +1580,8 @@ public class TweetsApi extends ApiCommon {
         private List<String> ids;
         private Integer maxResults;
         private String paginationToken;
+        
+        
 
         private APIgetRulesRequest() {
         }
@@ -1570,6 +1644,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public RulesLookupResponse execute() throws ApiException {
+            
             ApiResponse<RulesLookupResponse> localVarResp = getRulesWithHttpInfo(ids, maxResults, paginationToken);
             return localVarResp.getData();
         }
@@ -1706,6 +1781,8 @@ public class TweetsApi extends ApiCommon {
     public class APIhideReplyByIdRequest {
         private final String tweetId;
         private TweetHideRequest tweetHideRequest;
+        
+        
 
         private APIhideReplyByIdRequest(String tweetId) {
             this.tweetId = tweetId;
@@ -1749,6 +1826,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public TweetHideResponse execute() throws ApiException {
+            
             ApiResponse<TweetHideResponse> localVarResp = hideReplyByIdWithHttpInfo(tweetHideRequest, tweetId);
             return localVarResp.getData();
         }
@@ -1925,6 +2003,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIlistsIdTweetsRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIlistsIdTweetsRequest(String id) {
             this.id = id;
@@ -2038,6 +2129,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2ListsIdTweetsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2ListsIdTweetsResponse> localVarResp = listsIdTweetsWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -2202,6 +2300,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIsampleStreamRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIsampleStreamRequest() {
         }
@@ -2468,6 +2579,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIsearchStreamRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIsearchStreamRequest() {
         }
@@ -2731,6 +2855,16 @@ public class TweetsApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> expansions;
         private Set<String> tweetFields;
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        
+        private boolean isExclude = false;
+
+        public APIspaceBuyersRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIspaceBuyersRequest(String id) {
             this.id = id;
@@ -2814,6 +2948,10 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2SpacesIdBuyersResponse execute() throws ApiException {
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            
             ApiResponse<Get2SpacesIdBuyersResponse> localVarResp = spaceBuyersWithHttpInfo(id, paginationToken, maxResults, userFields, expansions, tweetFields);
             return localVarResp.getData();
         }
@@ -2985,6 +3123,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIspaceTweetsRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIspaceTweetsRequest(String id) {
             this.id = id;
@@ -3088,6 +3239,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2SpacesIdTweetsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2SpacesIdTweetsResponse> localVarResp = spaceTweetsWithHttpInfo(id, maxResults, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -3267,6 +3425,14 @@ public class TweetsApi extends ApiCommon {
         private String paginationToken;
         private String granularity;
         private Set<String> searchCountFields;
+        private final Set<String> searchCountFieldsAll = new HashSet<>(Arrays.asList("end", "start", "tweet_count"));
+        
+        private boolean isExclude = false;
+
+        public APItweetCountsFullArchiveSearchRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetCountsFullArchiveSearchRequest(String query) {
             this.query = query;
@@ -3380,6 +3546,8 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsCountsAllResponse execute() throws ApiException {
+            searchCountFields = getFields("searchCountFields", isExclude, searchCountFields, searchCountFieldsAll);
+            
             ApiResponse<Get2TweetsCountsAllResponse> localVarResp = tweetCountsFullArchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
             return localVarResp.getData();
         }
@@ -3559,6 +3727,14 @@ public class TweetsApi extends ApiCommon {
         private String paginationToken;
         private String granularity;
         private Set<String> searchCountFields;
+        private final Set<String> searchCountFieldsAll = new HashSet<>(Arrays.asList("end", "start", "tweet_count"));
+        
+        private boolean isExclude = false;
+
+        public APItweetCountsRecentSearchRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetCountsRecentSearchRequest(String query) {
             this.query = query;
@@ -3672,6 +3848,8 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsCountsRecentResponse execute() throws ApiException {
+            searchCountFields = getFields("searchCountFields", isExclude, searchCountFields, searchCountFieldsAll);
+            
             ApiResponse<Get2TweetsCountsRecentResponse> localVarResp = tweetCountsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, nextToken, paginationToken, granularity, searchCountFields);
             return localVarResp.getData();
         }
@@ -3881,6 +4059,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APItweetsFullarchiveSearchRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetsFullarchiveSearchRequest(String query) {
             this.query = query;
@@ -4054,6 +4245,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsSearchAllResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2TweetsSearchAllResponse> localVarResp = tweetsFullarchiveSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -4263,6 +4461,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APItweetsRecentSearchRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APItweetsRecentSearchRequest(String query) {
             this.query = query;
@@ -4436,6 +4647,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2TweetsSearchRecentResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2TweetsSearchRecentResponse> localVarResp = tweetsRecentSearchWithHttpInfo(query, startTime, endTime, sinceId, untilId, maxResults, nextToken, paginationToken, sortOrder, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -4573,6 +4791,8 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdLikeRequest {
         private final String id;
         private UsersLikesCreateRequest usersLikesCreateRequest;
+        
+        
 
         private APIusersIdLikeRequest(String id) {
             this.id = id;
@@ -4616,6 +4836,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public UsersLikesCreateResponse execute() throws ApiException {
+            
             ApiResponse<UsersLikesCreateResponse> localVarResp = usersIdLikeWithHttpInfo(usersLikesCreateRequest, id);
             return localVarResp.getData();
         }
@@ -4792,6 +5013,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdLikedTweetsRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdLikedTweetsRequest(String id) {
             this.id = id;
@@ -4905,6 +5139,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdLikedTweetsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2UsersIdLikedTweetsResponse> localVarResp = usersIdLikedTweetsWithHttpInfo(id, maxResults, paginationToken, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -5101,6 +5342,19 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdMentionsRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdMentionsRequest(String id) {
             this.id = id;
@@ -5254,6 +5508,13 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdMentionsResponse execute() throws ApiException {
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2UsersIdMentionsResponse> localVarResp = usersIdMentionsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -5391,6 +5652,8 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdRetweetsRequest {
         private final String id;
         private UsersRetweetsCreateRequest usersRetweetsCreateRequest;
+        
+        
 
         private APIusersIdRetweetsRequest(String id) {
             this.id = id;
@@ -5434,6 +5697,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public UsersRetweetsCreateResponse execute() throws ApiException {
+            
             ApiResponse<UsersRetweetsCreateResponse> localVarResp = usersIdRetweetsWithHttpInfo(usersRetweetsCreateRequest, id);
             return localVarResp.getData();
         }
@@ -5635,6 +5899,20 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdTimelineRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdTimelineRequest(String id) {
             this.id = id;
@@ -5798,6 +6076,14 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdTimelinesReverseChronologicalResponse execute() throws ApiException {
+            exclude = getFields("exclude", isExclude, exclude, excludeAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2UsersIdTimelinesReverseChronologicalResponse> localVarResp = usersIdTimelineWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -5999,6 +6285,20 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
+        private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIusersIdTweetsRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
 
         private APIusersIdTweetsRequest(String id) {
             this.id = id;
@@ -6162,6 +6462,14 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public Get2UsersIdTweetsResponse execute() throws ApiException {
+            exclude = getFields("exclude", isExclude, exclude, excludeAll);
+            tweetFields = getFields("tweetFields", isExclude, tweetFields, tweetFieldsAll);
+            expansions = getFields("expansions", isExclude, expansions, expansionsAll);
+            mediaFields = getFields("mediaFields", isExclude, mediaFields, mediaFieldsAll);
+            pollFields = getFields("pollFields", isExclude, pollFields, pollFieldsAll);
+            userFields = getFields("userFields", isExclude, userFields, userFieldsAll);
+            placeFields = getFields("placeFields", isExclude, placeFields, placeFieldsAll);
+            
             ApiResponse<Get2UsersIdTweetsResponse> localVarResp = usersIdTweetsWithHttpInfo(id, sinceId, untilId, maxResults, paginationToken, exclude, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             return localVarResp.getData();
         }
@@ -6305,6 +6613,8 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdUnlikeRequest {
         private final String id;
         private final String tweetId;
+        
+        
 
         private APIusersIdUnlikeRequest(String id, String tweetId) {
             this.id = id;
@@ -6339,6 +6649,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public UsersLikesDeleteResponse execute() throws ApiException {
+            
             ApiResponse<UsersLikesDeleteResponse> localVarResp = usersIdUnlikeWithHttpInfo(id, tweetId);
             return localVarResp.getData();
         }
@@ -6483,6 +6794,8 @@ public class TweetsApi extends ApiCommon {
     public class APIusersIdUnretweetsRequest {
         private final String id;
         private final String sourceTweetId;
+        
+        
 
         private APIusersIdUnretweetsRequest(String id, String sourceTweetId) {
             this.id = id;
@@ -6517,6 +6830,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public UsersRetweetsDeleteResponse execute() throws ApiException {
+            
             ApiResponse<UsersRetweetsDeleteResponse> localVarResp = usersIdUnretweetsWithHttpInfo(id, sourceTweetId);
             return localVarResp.getData();
         }

@@ -72,16 +72,6 @@ public class ApiComplianceTester extends ApiTester {
         "Invalid Request", "One or more parameters to your request was invalid.");
   }
 
-// ComplianceJobStatus should have "expired value
-//  @Test
-//  public void listBatchComplianceJobsTest() throws ApiException {
-//    Get2ComplianceJobsResponse result = apiInstance.compliance().listBatchComplianceJobs(
-//        CreateComplianceJobRequest.TypeEnum.TWEETS.getValue()).execute();
-//    checkErrors(false, result.getErrors());
-//    assertNotNull(result.getData());
-//    checkComplianceJobData(result.getData().get(0));
-//  }
-
   @Test
   public void listBatchComplianceJobsErrorTest() throws ApiException {
     ApiException exception = assertThrows(ApiException.class, () -> {

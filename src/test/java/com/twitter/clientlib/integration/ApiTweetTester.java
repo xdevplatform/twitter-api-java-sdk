@@ -80,6 +80,28 @@ public class ApiTweetTester extends ApiTester {
   }
 
   @Test
+  public void findTweetByIdExcludeInputFieldsTest() throws ApiException {
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
+        .tweetFields(excludedTweetFields).excludeInputFields()
+        .execute();
+    checkErrors(false, result.getErrors());
+    checkTweetDataExclude(result.getData());
+    checkTweetIncludes(result.getIncludes());
+    checkUserData(result.getIncludes().getUsers().get(0));
+  }
+
+  @Test
+    public void findTweetByIdExcludeInputFieldsErrorTest() throws ApiException {
+    Get2TweetsIdResponse result = apiInstance.tweets().findTweetById(tweetId)
+        .excludeInputFields()
+        .execute();
+    checkErrors(true, result.getErrors());
+    assertNull(result.getData());
+    checkFieldUnauthorizedProblem(result.getErrors().get(0), "Field Authorization Error",
+        "non_public_metrics.impression_count");
+    }
+
+  @Test
   public void findTweetsByIdTest() throws ApiException {
     Get2TweetsResponse result = apiInstance.tweets().findTweetsById(tweetIds)
         .tweetFields(tweetFields)
