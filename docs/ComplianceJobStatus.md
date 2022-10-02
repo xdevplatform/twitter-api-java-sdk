@@ -13,5 +13,7 @@
 
 * `COMPLETE` (value: `"complete"`)
 
+* `EXPIRED` (value: `"expired"`)
+
 
 

@@ -340,9 +340,9 @@ public class UsersApiTest {
 
 
     /**
-     * Returns User objects that follow a List by the provided User ID
+     * Followers by User ID
      *
-     * Returns a list of Users that follow the provided User ID
+     * Returns a list of Users who are followers of the specified User ID.
      *
      * @throws ApiException if the Api call fails
      */

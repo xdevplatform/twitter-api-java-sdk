@@ -45,7 +45,9 @@ public enum ComplianceJobStatus {
   
   FAILED("failed"),
   
-  COMPLETE("complete");
+  COMPLETE("complete"),
+  
+  EXPIRED("expired");
 
   private String value;
 

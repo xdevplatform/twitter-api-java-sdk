@@ -36,6 +36,7 @@ import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
 import com.twitter.clientlib.model.Get2TweetsIdQuoteTweetsResponse;
 import com.twitter.clientlib.model.Get2TweetsIdResponse;
 import com.twitter.clientlib.model.Get2TweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsSample10StreamResponse;
 import com.twitter.clientlib.model.Get2TweetsSearchAllResponse;
 import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
 import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
@@ -238,6 +239,74 @@ public class TweetsApiTest {
 
 
     /**
+     * Firehose stream
+     *
+     * Streams 100% of public Tweets.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getTweetsFirehoseStreamTest() throws ApiException {
+        Integer backfillMinutes = null;
+        Integer partition = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+        Set<String> tweetFields = null;
+        Set<String> expansions = null;
+        Set<String> mediaFields = null;
+        Set<String> pollFields = null;
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                InputStream response = apiInstance.tweets().getTweetsFirehoseStream(partition)
+                .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
+        // TODO: test validations
+    }
+
+
+    /**
+     * Sample 10% stream
+     *
+     * Streams a deterministic 10% of public Tweets.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getTweetsSample10StreamTest() throws ApiException {
+        Integer backfillMinutes = null;
+        Integer partition = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+        Set<String> tweetFields = null;
+        Set<String> expansions = null;
+        Set<String> mediaFields = null;
+        Set<String> pollFields = null;
+        Set<String> userFields = null;
+        Set<String> placeFields = null;
+                InputStream response = apiInstance.tweets().getTweetsSample10Stream(partition)
+                .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
+                .tweetFields(tweetFields)
+                .expansions(expansions)
+                .mediaFields(mediaFields)
+                .pollFields(pollFields)
+                .userFields(userFields)
+                .placeFields(placeFields)
+                .execute();
+        // TODO: test validations
+    }
+
+
+    /**
      * Hide replies
      *
      * Hides or unhides a reply to an owned conversation.
@@ -326,6 +395,8 @@ public class TweetsApiTest {
     @Test
     public void searchStreamTest() throws ApiException {
         Integer backfillMinutes = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
         Set<String> tweetFields = null;
         Set<String> expansions = null;
         Set<String> mediaFields = null;
@@ -334,6 +405,8 @@ public class TweetsApiTest {
         Set<String> placeFields = null;
                 InputStream response = apiInstance.tweets().searchStream()
                 .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
                 .tweetFields(tweetFields)
                 .expansions(expansions)
                 .mediaFields(mediaFields)

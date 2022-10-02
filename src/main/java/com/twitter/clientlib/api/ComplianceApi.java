@@ -44,8 +44,11 @@ import com.twitter.clientlib.model.CreateComplianceJobResponse;
 import com.twitter.clientlib.model.Error;
 import com.twitter.clientlib.model.Get2ComplianceJobsIdResponse;
 import com.twitter.clientlib.model.Get2ComplianceJobsResponse;
+import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
+import com.twitter.clientlib.model.TweetComplianceStreamResponse;
+import com.twitter.clientlib.model.UserComplianceStreamResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -227,6 +230,8 @@ public class ComplianceApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs">Create compliance job Documentation</a>
      */
     public APIcreateBatchComplianceJobRequest createBatchComplianceJob(CreateComplianceJobRequest createComplianceJobRequest) {
         return new APIcreateBatchComplianceJobRequest(createComplianceJobRequest);
@@ -421,9 +426,451 @@ public class ComplianceApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id">Get Compliance Job Documentation</a>
      */
     public APIgetBatchComplianceJobRequest getBatchComplianceJob(String id) {
         return new APIgetBatchComplianceJobRequest(id);
+    }
+    private okhttp3.Call getTweetsComplianceStreamCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/tweets/compliance/stream";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (partition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("partition", partition));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTweetsComplianceStreamValidateBeforeCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'partition' is set
+        if (partition == null) {
+            throw new ApiException("Missing the required parameter 'partition' when calling getTweetsComplianceStream(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getTweetsComplianceStreamCall(backfillMinutes, partition, startTime, endTime, _callback);
+        return localVarCall;
+
+    }
+
+
+    private InputStream getTweetsComplianceStreamWithHttpInfo(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+        okhttp3.Call localVarCall = getTweetsComplianceStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, null);
+        try {
+            Type localVarReturnType = new TypeToken<TweetComplianceStreamResponse>(){}.getType();
+            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+    
+    private okhttp3.Call getTweetsComplianceStreamAsync(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<TweetComplianceStreamResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTweetsComplianceStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, _callback);
+        Type localVarReturnType = new TypeToken<TweetComplianceStreamResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetTweetsComplianceStreamRequest {
+        private final Integer partition;
+        private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
+        
+        
+
+        private APIgetTweetsComplianceStreamRequest(Integer partition) {
+            this.partition = partition;
+        }
+
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return APIgetTweetsComplianceStreamRequest
+         */
+        public APIgetTweetsComplianceStreamRequest backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweet Compliance events will be provided. (optional)
+         * @return APIgetTweetsComplianceStreamRequest
+         */
+        public APIgetTweetsComplianceStreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweet Compliance events will be provided. (optional)
+         * @return APIgetTweetsComplianceStreamRequest
+         */
+        public APIgetTweetsComplianceStreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        /**
+         * Build call for getTweetsComplianceStream
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getTweetsComplianceStreamCall(backfillMinutes, partition, startTime, endTime, _callback);
+        }
+
+        /**
+         * Execute getTweetsComplianceStream request
+         * @return TweetComplianceStreamResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public InputStream execute() throws ApiException {
+          return getTweetsComplianceStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime);
+        }
+
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public InputStream execute(Integer retries) throws ApiException {
+          InputStream localVarResp;
+          try{
+            localVarResp = execute();
+          }
+          catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getTweetsComplianceStream request with HTTP info returned
+         * @return ApiResponse&lt;TweetComplianceStreamResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public InputStream executeWithHttpInfo() throws ApiException {
+              return getTweetsComplianceStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime);
+            }
+        /**
+         * Execute getTweetsComplianceStream request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<TweetComplianceStreamResponse> _callback) throws ApiException {
+            return getTweetsComplianceStreamAsync(backfillMinutes, partition, startTime, endTime, _callback);
+        }
+    }
+
+    /**
+     * Tweets Compliance stream
+     * Streams 100% of compliance data for Tweets
+     * @param partition The partition number. (required)
+     * @return APIgetTweetsComplianceStreamRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetTweetsComplianceStreamRequest getTweetsComplianceStream(Integer partition) {
+        return new APIgetTweetsComplianceStreamRequest(partition);
+    }
+    private okhttp3.Call getUsersComplianceStreamCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/users/compliance/stream";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (partition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("partition", partition));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getUsersComplianceStreamValidateBeforeCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'partition' is set
+        if (partition == null) {
+            throw new ApiException("Missing the required parameter 'partition' when calling getUsersComplianceStream(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getUsersComplianceStreamCall(backfillMinutes, partition, startTime, endTime, _callback);
+        return localVarCall;
+
+    }
+
+
+    private InputStream getUsersComplianceStreamWithHttpInfo(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+        okhttp3.Call localVarCall = getUsersComplianceStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, null);
+        try {
+            Type localVarReturnType = new TypeToken<UserComplianceStreamResponse>(){}.getType();
+            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+    
+    private okhttp3.Call getUsersComplianceStreamAsync(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<UserComplianceStreamResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getUsersComplianceStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, _callback);
+        Type localVarReturnType = new TypeToken<UserComplianceStreamResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetUsersComplianceStreamRequest {
+        private final Integer partition;
+        private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
+        
+        
+
+        private APIgetUsersComplianceStreamRequest(Integer partition) {
+            this.partition = partition;
+        }
+
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return APIgetUsersComplianceStreamRequest
+         */
+        public APIgetUsersComplianceStreamRequest backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the User Compliance events will be provided. (optional)
+         * @return APIgetUsersComplianceStreamRequest
+         */
+        public APIgetUsersComplianceStreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp from which the User Compliance events will be provided. (optional)
+         * @return APIgetUsersComplianceStreamRequest
+         */
+        public APIgetUsersComplianceStreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        /**
+         * Build call for getUsersComplianceStream
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getUsersComplianceStreamCall(backfillMinutes, partition, startTime, endTime, _callback);
+        }
+
+        /**
+         * Execute getUsersComplianceStream request
+         * @return UserComplianceStreamResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public InputStream execute() throws ApiException {
+          return getUsersComplianceStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime);
+        }
+
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public InputStream execute(Integer retries) throws ApiException {
+          InputStream localVarResp;
+          try{
+            localVarResp = execute();
+          }
+          catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getUsersComplianceStream request with HTTP info returned
+         * @return ApiResponse&lt;UserComplianceStreamResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public InputStream executeWithHttpInfo() throws ApiException {
+              return getUsersComplianceStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime);
+            }
+        /**
+         * Execute getUsersComplianceStream request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<UserComplianceStreamResponse> _callback) throws ApiException {
+            return getUsersComplianceStreamAsync(backfillMinutes, partition, startTime, endTime, _callback);
+        }
+    }
+
+    /**
+     * Users Compliance stream
+     * Streams 100% of compliance data for Users
+     * @param partition The partition number. (required)
+     * @return APIgetUsersComplianceStreamRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetUsersComplianceStreamRequest getUsersComplianceStream(Integer partition) {
+        return new APIgetUsersComplianceStreamRequest(partition);
     }
     private okhttp3.Call listBatchComplianceJobsCall(String type, String status, Set<String> complianceJobFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -633,6 +1080,8 @@ public class ComplianceApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs">List Compliance Jobs Documentation</a>
      */
     public APIlistBatchComplianceJobsRequest listBatchComplianceJobs(String type) {
         return new APIlistBatchComplianceJobsRequest(type);

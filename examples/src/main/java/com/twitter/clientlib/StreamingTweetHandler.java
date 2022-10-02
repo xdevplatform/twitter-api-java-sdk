@@ -22,7 +22,6 @@ Do not edit the class manually.
 
 package com.twitter.clientlib;
 
-
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.*;
 

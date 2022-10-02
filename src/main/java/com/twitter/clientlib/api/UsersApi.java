@@ -155,7 +155,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -291,6 +291,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-me">User lookup me Documentation</a>
      */
     public APIfindMyUserRequest findMyUser() {
         return new APIfindMyUserRequest();
@@ -381,7 +383,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -519,6 +521,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id">User lookup by ID Documentation</a>
      */
     public APIfindUserByIdRequest findUserById(String id) {
         return new APIfindUserByIdRequest(id);
@@ -609,7 +613,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -747,6 +751,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username">User lookup by username Documentation</a>
      */
     public APIfindUserByUsernameRequest findUserByUsername(String username) {
         return new APIfindUserByUsernameRequest(username);
@@ -840,7 +846,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -978,6 +984,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users">User lookup by IDs Documentation</a>
      */
     public APIfindUsersByIdRequest findUsersById(List<String> ids) {
         return new APIfindUsersByIdRequest(ids);
@@ -1071,7 +1079,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -1209,6 +1217,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by">User lookup by usernames Documentation</a>
      */
     public APIfindUsersByUsernameRequest findUsersByUsername(List<String> usernames) {
         return new APIfindUsersByUsernameRequest(usernames);
@@ -1309,7 +1319,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -1467,6 +1477,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers">Returns User objects that follow a List by the provided List ID Documentation</a>
      */
     public APIlistGetFollowersRequest listGetFollowers(String id) {
         return new APIlistGetFollowersRequest(id);
@@ -1567,7 +1579,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -1725,6 +1737,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-users-id-list_memberships">Returns User objects that are members of a List by the provided List ID. Documentation</a>
      */
     public APIlistGetMembersRequest listGetMembers(String id) {
         return new APIlistGetMembersRequest(id);
@@ -1825,7 +1839,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -1983,6 +1997,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users">Returns User objects that have liked the provided Tweet ID Documentation</a>
      */
     public APItweetsIdLikingUsersRequest tweetsIdLikingUsers(String id) {
         return new APItweetsIdLikingUsersRequest(id);
@@ -2083,7 +2099,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -2241,6 +2257,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by">Returns User objects that have retweeted the provided Tweet ID Documentation</a>
      */
     public APItweetsIdRetweetingUsersRequest tweetsIdRetweetingUsers(String id) {
         return new APItweetsIdRetweetingUsersRequest(id);
@@ -2421,6 +2439,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking">Block User by User ID Documentation</a>
      */
     public APIusersIdBlockRequest usersIdBlock(BlockUserRequest blockUserRequest, String id) {
         return new APIusersIdBlockRequest(blockUserRequest, id);
@@ -2521,7 +2541,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -2679,6 +2699,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking">Returns User objects that are blocked by provided User ID Documentation</a>
      */
     public APIusersIdBlockingRequest usersIdBlocking(String id) {
         return new APIusersIdBlockingRequest(id);
@@ -2862,6 +2884,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following">Follow User Documentation</a>
      */
     public APIusersIdFollowRequest usersIdFollow(String id) {
         return new APIusersIdFollowRequest(id);
@@ -2962,7 +2986,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -3110,8 +3134,8 @@ public class UsersApi extends ApiCommon {
     }
 
     /**
-     * Returns User objects that follow a List by the provided User ID
-     * Returns a list of Users that follow the provided User ID
+     * Followers by User ID
+     * Returns a list of Users who are followers of the specified User ID.
      * @param id The ID of the User to lookup. (required)
      * @return APIusersIdFollowersRequest
      * @http.response.details
@@ -3120,6 +3144,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers">Followers by User ID Documentation</a>
      */
     public APIusersIdFollowersRequest usersIdFollowers(String id) {
         return new APIusersIdFollowersRequest(id);
@@ -3220,7 +3246,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -3378,6 +3404,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following">Following by User ID Documentation</a>
      */
     public APIusersIdFollowingRequest usersIdFollowing(String id) {
         return new APIusersIdFollowingRequest(id);
@@ -3561,6 +3589,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting">Mute User by User ID. Documentation</a>
      */
     public APIusersIdMuteRequest usersIdMute(String id) {
         return new APIusersIdMuteRequest(id);
@@ -3661,7 +3691,7 @@ public class UsersApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -3819,6 +3849,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting">Returns User objects that are muted by the provided User ID Documentation</a>
      */
     public APIusersIdMutingRequest usersIdMuting(String id) {
         return new APIusersIdMutingRequest(id);
@@ -4000,6 +4032,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking">Unblock User by User ID Documentation</a>
      */
     public APIusersIdUnblockRequest usersIdUnblock(String sourceUserId, String targetUserId) {
         return new APIusersIdUnblockRequest(sourceUserId, targetUserId);
@@ -4181,6 +4215,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following">Unfollow User Documentation</a>
      */
     public APIusersIdUnfollowRequest usersIdUnfollow(String sourceUserId, String targetUserId) {
         return new APIusersIdUnfollowRequest(sourceUserId, targetUserId);
@@ -4362,6 +4398,8 @@ public class UsersApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting">Unmute User by User ID Documentation</a>
      */
     public APIusersIdUnmuteRequest usersIdUnmute(String sourceUserId, String targetUserId) {
         return new APIusersIdUnmuteRequest(sourceUserId, targetUserId);

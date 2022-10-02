@@ -33,6 +33,7 @@ import com.twitter.clientlib.model.ContextAnnotation;
 import com.twitter.clientlib.model.FullTextEntities;
 import com.twitter.clientlib.model.ReplySettings;
 import com.twitter.clientlib.model.TweetAttachments;
+import com.twitter.clientlib.model.TweetEditControls;
 import com.twitter.clientlib.model.TweetGeo;
 import com.twitter.clientlib.model.TweetNonPublicMetrics;
 import com.twitter.clientlib.model.TweetOrganicMetrics;
@@ -91,6 +92,14 @@ public class Tweet {
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_EDIT_CONTROLS = "edit_controls";
+  @SerializedName(SERIALIZED_NAME_EDIT_CONTROLS)
+  private TweetEditControls editControls;
+
+  public static final String SERIALIZED_NAME_EDIT_HISTORY_TWEET_IDS = "edit_history_tweet_ids";
+  @SerializedName(SERIALIZED_NAME_EDIT_HISTORY_TWEET_IDS)
+  private List<String> editHistoryTweetIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ENTITIES = "entities";
   @SerializedName(SERIALIZED_NAME_ENTITIES)
@@ -275,6 +284,57 @@ public class Tweet {
 
   public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
+  }
+
+
+  public Tweet editControls(TweetEditControls editControls) {
+    
+    this.editControls = editControls;
+    return this;
+  }
+
+   /**
+   * Get editControls
+   * @return editControls
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public TweetEditControls getEditControls() {
+    return editControls;
+  }
+
+
+  public void setEditControls(TweetEditControls editControls) {
+    this.editControls = editControls;
+  }
+
+
+  public Tweet editHistoryTweetIds(List<String> editHistoryTweetIds) {
+    
+    this.editHistoryTweetIds = editHistoryTweetIds;
+    return this;
+  }
+
+  public Tweet addEditHistoryTweetIdsItem(String editHistoryTweetIdsItem) {
+    this.editHistoryTweetIds.add(editHistoryTweetIdsItem);
+    return this;
+  }
+
+   /**
+   * A list of Tweet Ids in this Tweet chain.
+   * @return editHistoryTweetIds
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "A list of Tweet Ids in this Tweet chain.")
+
+  public List<String> getEditHistoryTweetIds() {
+    return editHistoryTweetIds;
+  }
+
+
+  public void setEditHistoryTweetIds(List<String> editHistoryTweetIds) {
+    this.editHistoryTweetIds = editHistoryTweetIds;
   }
 
 
@@ -646,6 +706,8 @@ public class Tweet {
         Objects.equals(this.contextAnnotations, tweet.contextAnnotations) &&
         Objects.equals(this.conversationId, tweet.conversationId) &&
         Objects.equals(this.createdAt, tweet.createdAt) &&
+        Objects.equals(this.editControls, tweet.editControls) &&
+        Objects.equals(this.editHistoryTweetIds, tweet.editHistoryTweetIds) &&
         Objects.equals(this.entities, tweet.entities) &&
         Objects.equals(this.geo, tweet.geo) &&
         Objects.equals(this.id, tweet.id) &&
@@ -665,7 +727,7 @@ public class Tweet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attachments, authorId, contextAnnotations, conversationId, createdAt, entities, geo, id, inReplyToUserId, lang, nonPublicMetrics, organicMetrics, possiblySensitive, promotedMetrics, publicMetrics, referencedTweets, replySettings, source, text, withheld);
+    return Objects.hash(attachments, authorId, contextAnnotations, conversationId, createdAt, editControls, editHistoryTweetIds, entities, geo, id, inReplyToUserId, lang, nonPublicMetrics, organicMetrics, possiblySensitive, promotedMetrics, publicMetrics, referencedTweets, replySettings, source, text, withheld);
   }
 
   @Override
@@ -677,6 +739,8 @@ public class Tweet {
     sb.append("    contextAnnotations: ").append(toIndentedString(contextAnnotations)).append("\n");
     sb.append("    conversationId: ").append(toIndentedString(conversationId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    editControls: ").append(toIndentedString(editControls)).append("\n");
+    sb.append("    editHistoryTweetIds: ").append(toIndentedString(editHistoryTweetIds)).append("\n");
     sb.append("    entities: ").append(toIndentedString(entities)).append("\n");
     sb.append("    geo: ").append(toIndentedString(geo)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
@@ -719,6 +783,8 @@ public class Tweet {
     openapiFields.add("context_annotations");
     openapiFields.add("conversation_id");
     openapiFields.add("created_at");
+    openapiFields.add("edit_controls");
+    openapiFields.add("edit_history_tweet_ids");
     openapiFields.add("entities");
     openapiFields.add("geo");
     openapiFields.add("id");
@@ -737,6 +803,7 @@ public class Tweet {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("edit_history_tweet_ids");
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("text");
   }
@@ -784,6 +851,14 @@ public class Tweet {
       }
       if (jsonObj.get("conversation_id") != null && !jsonObj.get("conversation_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `conversation_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conversation_id").toString()));
+      }
+      // validate the optional field `edit_controls`
+      if (jsonObj.getAsJsonObject("edit_controls") != null) {
+        TweetEditControls.validateJsonObject(jsonObj.getAsJsonObject("edit_controls"));
+      }
+      // ensure the json data is an array
+      if (jsonObj.get("edit_history_tweet_ids") != null && !jsonObj.get("edit_history_tweet_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `edit_history_tweet_ids` to be an array in the JSON string but got `%s`", jsonObj.get("edit_history_tweet_ids").toString()));
       }
       // validate the optional field `entities`
       if (jsonObj.getAsJsonObject("entities") != null) {

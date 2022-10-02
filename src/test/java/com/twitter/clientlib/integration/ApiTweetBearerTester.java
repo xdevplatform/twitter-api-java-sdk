@@ -75,47 +75,18 @@ public class ApiTweetBearerTester extends ApiTester {
         .execute();
   }
 
-  private void deleteAllRules() throws ApiException {
-    RulesLookupResponse result = apiInstance.tweets().getRules().execute();
-    if(result.getData() != null) {
-      for(Rule rule : result.getData()) {
-        AddOrDeleteRulesRequest request = new AddOrDeleteRulesRequest();
-        DeleteRulesRequest dr = new DeleteRulesRequest();
-        DeleteRulesRequestDelete drd = new DeleteRulesRequestDelete();
-        drd.setValues(Arrays.asList(rule.getValue()));
-        dr.setDelete(drd);
-        request.setActualInstance(dr);
-        apiInstance.tweets().addOrDeleteRules(request).dryRun(false).execute();
-      }
-    }
-  }
 
-  @Test
+  /* @Test
   public void getRulesAllTest() throws ApiException {
-    try {
-      addRule(ruleValue);
-      RulesLookupResponse result = apiInstance.tweets().getRules().execute();
-      assertNotNull(result.getData());
-      assertNotNull(result.getData().get(0));
-      assertNotNull(result.getData().get(0).getValue());
-      assertNotNull(result.getData().get(0).getId());
-      assertNotNull(result.getMeta());
-      assertNotNull(result.getMeta().getSent());
-      assertTrue(result.getMeta().getResultCount() > 0);
-    } finally {
-      deleteRule(ruleValue);
-    }
-  }
-
-  @Test
-  public void getRulesNoRulesTest() throws ApiException {
-    deleteAllRules();
-    RulesLookupResponse result = apiInstance.tweets().getRules().execute();
-    assertNull(result.getData());
+    GetRulesResponse result = apiInstance.tweets().getRules(null, null, null);
+    assertNotNull(result.getData());
+    assertNotNull(result.getData().get(0));
+    assertNotNull(result.getData().get(0).getValue());
+    assertNotNull(result.getData().get(0).getId());
     assertNotNull(result.getMeta());
     assertNotNull(result.getMeta().getSent());
-    assertEquals(0, result.getMeta().getResultCount());
-  }
+    assertTrue(result.getMeta().getResultCount() > 0);
+  } */
 
   @Test
   public void addOrDeleteRulesAddTest() throws ApiException {

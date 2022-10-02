@@ -51,6 +51,7 @@ import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
 import com.twitter.clientlib.model.Get2TweetsIdQuoteTweetsResponse;
 import com.twitter.clientlib.model.Get2TweetsIdResponse;
 import com.twitter.clientlib.model.Get2TweetsResponse;
+import com.twitter.clientlib.model.Get2TweetsSample10StreamResponse;
 import com.twitter.clientlib.model.Get2TweetsSearchAllResponse;
 import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
 import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
@@ -269,6 +270,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules">Add/Delete rules Documentation</a>
      */
     public APIaddOrDeleteRulesRequest addOrDeleteRules(AddOrDeleteRulesRequest addOrDeleteRulesRequest) {
         return new APIaddOrDeleteRulesRequest(addOrDeleteRulesRequest);
@@ -440,6 +443,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 201 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets">Creation of a Tweet Documentation</a>
      */
     public APIcreateTweetRequest createTweet(TweetCreateRequest tweetCreateRequest) {
         return new APIcreateTweetRequest(tweetCreateRequest);
@@ -612,6 +617,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id">Tweet delete by Tweet ID Documentation</a>
      */
     public APIdeleteTweetByIdRequest deleteTweetById(String id) {
         return new APIdeleteTweetByIdRequest(id);
@@ -715,8 +722,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -891,6 +898,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id">Tweet lookup by Tweet ID Documentation</a>
      */
     public APIfindTweetByIdRequest findTweetById(String id) {
         return new APIfindTweetByIdRequest(id);
@@ -997,8 +1006,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -1173,6 +1182,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets">Tweet lookup by Tweet IDs Documentation</a>
      */
     public APIfindTweetsByIdRequest findTweetsById(List<String> ids) {
         return new APIfindTweetsByIdRequest(ids);
@@ -1292,8 +1303,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> placeFields;
         private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -1499,6 +1510,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets">Retrieve Tweets that quote a Tweet. Documentation</a>
      */
     public APIfindTweetsThatQuoteATweetRequest findTweetsThatQuoteATweet(String id) {
         return new APIfindTweetsThatQuoteATweetRequest(id);
@@ -1707,9 +1720,653 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules">Rules lookup Documentation</a>
      */
     public APIgetRulesRequest getRules() {
         return new APIgetRulesRequest();
+    }
+    private okhttp3.Call getTweetsFirehoseStreamCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/tweets/firehose/stream";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (partition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("partition", partition));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (mediaFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        }
+
+        if (pollFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTweetsFirehoseStreamValidateBeforeCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'partition' is set
+        if (partition == null) {
+            throw new ApiException("Missing the required parameter 'partition' when calling getTweetsFirehoseStream(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getTweetsFirehoseStreamCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        return localVarCall;
+
+    }
+
+
+    private InputStream getTweetsFirehoseStreamWithHttpInfo(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = getTweetsFirehoseStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
+        try {
+            Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
+            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+    
+    private okhttp3.Call getTweetsFirehoseStreamAsync(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<StreamingTweetResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTweetsFirehoseStreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<StreamingTweetResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetTweetsFirehoseStreamRequest {
+        private final Integer partition;
+        private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
+        private Set<String> tweetFields;
+        private Set<String> expansions;
+        private Set<String> mediaFields;
+        private Set<String> pollFields;
+        private Set<String> userFields;
+        private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIgetTweetsFirehoseStreamRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
+
+        private APIgetTweetsFirehoseStreamRequest(Integer partition) {
+            this.partition = partition;
+        }
+
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp to which the Tweets will be provided. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set mediaFields
+         * @param mediaFields A comma separated list of Media fields to display. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest mediaFields(Set<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        /**
+         * Set pollFields
+         * @param pollFields A comma separated list of Poll fields to display. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest pollFields(Set<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set placeFields
+         * @param placeFields A comma separated list of Place fields to display. (optional)
+         * @return APIgetTweetsFirehoseStreamRequest
+         */
+        public APIgetTweetsFirehoseStreamRequest placeFields(Set<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        /**
+         * Build call for getTweetsFirehoseStream
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getTweetsFirehoseStreamCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+
+        /**
+         * Execute getTweetsFirehoseStream request
+         * @return StreamingTweetResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public InputStream execute() throws ApiException {
+          return getTweetsFirehoseStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+        }
+
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public InputStream execute(Integer retries) throws ApiException {
+          InputStream localVarResp;
+          try{
+            localVarResp = execute();
+          }
+          catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getTweetsFirehoseStream request with HTTP info returned
+         * @return ApiResponse&lt;StreamingTweetResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public InputStream executeWithHttpInfo() throws ApiException {
+              return getTweetsFirehoseStreamWithHttpInfo(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+            }
+        /**
+         * Execute getTweetsFirehoseStream request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<StreamingTweetResponse> _callback) throws ApiException {
+            return getTweetsFirehoseStreamAsync(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+    }
+
+    /**
+     * Firehose stream
+     * Streams 100% of public Tweets.
+     * @param partition The partition number. (required)
+     * @return APIgetTweetsFirehoseStreamRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetTweetsFirehoseStreamRequest getTweetsFirehoseStream(Integer partition) {
+        return new APIgetTweetsFirehoseStreamRequest(partition);
+    }
+    private okhttp3.Call getTweetsSample10StreamCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/tweets/sample10/stream";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (partition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("partition", partition));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        if (tweetFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
+        }
+
+        if (expansions != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "expansions", expansions));
+        }
+
+        if (mediaFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "media.fields", mediaFields));
+        }
+
+        if (pollFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "poll.fields", pollFields));
+        }
+
+        if (userFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "user.fields", userFields));
+        }
+
+        if (placeFields != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTweetsSample10StreamValidateBeforeCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'partition' is set
+        if (partition == null) {
+            throw new ApiException("Missing the required parameter 'partition' when calling getTweetsSample10Stream(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getTweetsSample10StreamCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        return localVarCall;
+
+    }
+
+
+    private InputStream getTweetsSample10StreamWithHttpInfo(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = getTweetsSample10StreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
+        try {
+            Type localVarReturnType = new TypeToken<Get2TweetsSample10StreamResponse>(){}.getType();
+            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+    
+    private okhttp3.Call getTweetsSample10StreamAsync(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<Get2TweetsSample10StreamResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTweetsSample10StreamValidateBeforeCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        Type localVarReturnType = new TypeToken<Get2TweetsSample10StreamResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetTweetsSample10StreamRequest {
+        private final Integer partition;
+        private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
+        private Set<String> tweetFields;
+        private Set<String> expansions;
+        private Set<String> mediaFields;
+        private Set<String> pollFields;
+        private Set<String> userFields;
+        private Set<String> placeFields;
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
+        private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
+        private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
+        private final Set<String> placeFieldsAll = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "full_name", "geo", "id", "name", "place_type"));
+        
+        private boolean isExclude = false;
+
+        public APIgetTweetsSample10StreamRequest excludeInputFields() {
+          isExclude = true;
+          return this;
+        }
+
+        private APIgetTweetsSample10StreamRequest(Integer partition) {
+            this.partition = partition;
+        }
+
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp to which the Tweets will be provided. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        /**
+         * Set tweetFields
+         * @param tweetFields A comma separated list of Tweet fields to display. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest tweetFields(Set<String> tweetFields) {
+            this.tweetFields = tweetFields;
+            return this;
+        }
+
+        /**
+         * Set expansions
+         * @param expansions A comma separated list of fields to expand. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest expansions(Set<String> expansions) {
+            this.expansions = expansions;
+            return this;
+        }
+
+        /**
+         * Set mediaFields
+         * @param mediaFields A comma separated list of Media fields to display. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest mediaFields(Set<String> mediaFields) {
+            this.mediaFields = mediaFields;
+            return this;
+        }
+
+        /**
+         * Set pollFields
+         * @param pollFields A comma separated list of Poll fields to display. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest pollFields(Set<String> pollFields) {
+            this.pollFields = pollFields;
+            return this;
+        }
+
+        /**
+         * Set userFields
+         * @param userFields A comma separated list of User fields to display. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest userFields(Set<String> userFields) {
+            this.userFields = userFields;
+            return this;
+        }
+
+        /**
+         * Set placeFields
+         * @param placeFields A comma separated list of Place fields to display. (optional)
+         * @return APIgetTweetsSample10StreamRequest
+         */
+        public APIgetTweetsSample10StreamRequest placeFields(Set<String> placeFields) {
+            this.placeFields = placeFields;
+            return this;
+        }
+
+        /**
+         * Build call for getTweetsSample10Stream
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getTweetsSample10StreamCall(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+
+        /**
+         * Execute getTweetsSample10Stream request
+         * @return Get2TweetsSample10StreamResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public InputStream execute() throws ApiException {
+          return getTweetsSample10StreamWithHttpInfo(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+        }
+
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public InputStream execute(Integer retries) throws ApiException {
+          InputStream localVarResp;
+          try{
+            localVarResp = execute();
+          }
+          catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getTweetsSample10Stream request with HTTP info returned
+         * @return ApiResponse&lt;Get2TweetsSample10StreamResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public InputStream executeWithHttpInfo() throws ApiException {
+              return getTweetsSample10StreamWithHttpInfo(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+            }
+        /**
+         * Execute getTweetsSample10Stream request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Get2TweetsSample10StreamResponse> _callback) throws ApiException {
+            return getTweetsSample10StreamAsync(backfillMinutes, partition, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        }
+    }
+
+    /**
+     * Sample 10% stream
+     * Streams a deterministic 10% of public Tweets.
+     * @param partition The partition number. (required)
+     * @return APIgetTweetsSample10StreamRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetTweetsSample10StreamRequest getTweetsSample10Stream(Integer partition) {
+        return new APIgetTweetsSample10StreamRequest(partition);
     }
     private okhttp3.Call hideReplyByIdCall(TweetHideRequest tweetHideRequest, String tweetId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = tweetHideRequest;
@@ -1890,6 +2547,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden">Hide replies Documentation</a>
      */
     public APIhideReplyByIdRequest hideReplyById(String tweetId) {
         return new APIhideReplyByIdRequest(tweetId);
@@ -2003,8 +2662,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -2199,6 +2858,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets">List Tweets timeline by List ID. Documentation</a>
      */
     public APIlistsIdTweetsRequest listsIdTweets(String id) {
         return new APIlistsIdTweetsRequest(id);
@@ -2300,8 +2961,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -2478,11 +3139,13 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream">Sample stream Documentation</a>
      */
     public APIsampleStreamRequest sampleStream() {
         return new APIsampleStreamRequest();
     }
-    private okhttp3.Call searchStreamCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchStreamCall(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2496,6 +3159,14 @@ public class TweetsApi extends ApiCommon {
 
         if (backfillMinutes != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
         }
 
         if (tweetFields != null) {
@@ -2543,17 +3214,17 @@ public class TweetsApi extends ApiCommon {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchStreamValidateBeforeCall(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call searchStreamValidateBeforeCall(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = searchStreamCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        okhttp3.Call localVarCall = searchStreamCall(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         return localVarCall;
 
     }
 
 
-    private InputStream searchStreamWithHttpInfo(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
+    private InputStream searchStreamWithHttpInfo(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields) throws ApiException {
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, null);
         try {
             Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
             return localVarApiClient.executeStream(localVarCall, localVarReturnType);
@@ -2563,9 +3234,9 @@ public class TweetsApi extends ApiCommon {
         }
     }
     
-    private okhttp3.Call searchStreamAsync(Integer backfillMinutes, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<FilteredStreamingTweetResponse> _callback) throws ApiException {
+    private okhttp3.Call searchStreamAsync(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, final ApiCallback<FilteredStreamingTweetResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+        okhttp3.Call localVarCall = searchStreamValidateBeforeCall(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         Type localVarReturnType = new TypeToken<FilteredStreamingTweetResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2573,14 +3244,16 @@ public class TweetsApi extends ApiCommon {
 
     public class APIsearchStreamRequest {
         private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
         private Set<String> tweetFields;
         private Set<String> expansions;
         private Set<String> mediaFields;
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -2603,6 +3276,26 @@ public class TweetsApi extends ApiCommon {
          */
         public APIsearchStreamRequest backfillMinutes(Integer backfillMinutes) {
             this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweets will be provided. (optional)
+         * @return APIsearchStreamRequest
+         */
+        public APIsearchStreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp to which the Tweets will be provided. (optional)
+         * @return APIsearchStreamRequest
+         */
+        public APIsearchStreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
             return this;
         }
 
@@ -2679,7 +3372,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return searchStreamCall(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+            return searchStreamCall(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         }
 
         /**
@@ -2694,7 +3387,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public InputStream execute() throws ApiException {
-          return searchStreamWithHttpInfo(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+          return searchStreamWithHttpInfo(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
         }
 
         /**
@@ -2728,7 +3421,7 @@ public class TweetsApi extends ApiCommon {
          */
 
             public InputStream executeWithHttpInfo() throws ApiException {
-              return searchStreamWithHttpInfo(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
+              return searchStreamWithHttpInfo(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields);
             }
         /**
          * Execute searchStream request (asynchronously)
@@ -2743,7 +3436,7 @@ public class TweetsApi extends ApiCommon {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<FilteredStreamingTweetResponse> _callback) throws ApiException {
-            return searchStreamAsync(backfillMinutes, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
+            return searchStreamAsync(backfillMinutes, startTime, endTime, tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, _callback);
         }
     }
 
@@ -2757,6 +3450,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream">Filtered stream Documentation</a>
      */
     public APIsearchStreamRequest searchStream() {
         return new APIsearchStreamRequest();
@@ -2857,7 +3552,7 @@ public class TweetsApi extends ApiCommon {
         private Set<String> tweetFields;
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
         private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("pinned_tweet_id"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
         
         private boolean isExclude = false;
 
@@ -3015,6 +3710,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-buyers">Retrieve the list of Users who purchased a ticket to the given space Documentation</a>
      */
     public APIspaceBuyersRequest spaceBuyers(String id) {
         return new APIspaceBuyersRequest(id);
@@ -3123,8 +3820,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -3309,6 +4006,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets">Retrieve Tweets from a Space. Documentation</a>
      */
     public APIspaceTweetsRequest spaceTweets(String id) {
         return new APIspaceTweetsRequest(id);
@@ -3611,6 +4310,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all">Full archive search counts Documentation</a>
      */
     public APItweetCountsFullArchiveSearchRequest tweetCountsFullArchiveSearch(String query) {
         return new APItweetCountsFullArchiveSearchRequest(query);
@@ -3913,6 +4614,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent">Recent search counts Documentation</a>
      */
     public APItweetCountsRecentSearchRequest tweetCountsRecentSearch(String query) {
         return new APItweetCountsRecentSearchRequest(query);
@@ -4059,8 +4762,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -4315,6 +5018,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all">Full-archive search Documentation</a>
      */
     public APItweetsFullarchiveSearchRequest tweetsFullarchiveSearch(String query) {
         return new APItweetsFullarchiveSearchRequest(query);
@@ -4461,8 +5166,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -4717,6 +5422,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent">Recent search Documentation</a>
      */
     public APItweetsRecentSearchRequest tweetsRecentSearch(String query) {
         return new APItweetsRecentSearchRequest(query);
@@ -4900,6 +5607,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes">Causes the User (in the path) to like the specified Tweet Documentation</a>
      */
     public APIusersIdLikeRequest usersIdLike(String id) {
         return new APIusersIdLikeRequest(id);
@@ -5013,8 +5722,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -5209,6 +5918,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets">Returns Tweet objects liked by the provided User ID Documentation</a>
      */
     public APIusersIdLikedTweetsRequest usersIdLikedTweets(String id) {
         return new APIusersIdLikedTweetsRequest(id);
@@ -5342,8 +6053,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -5578,6 +6289,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions">User mention timeline by User ID Documentation</a>
      */
     public APIusersIdMentionsRequest usersIdMentions(String id) {
         return new APIusersIdMentionsRequest(id);
@@ -5761,6 +6474,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets">Causes the User (in the path) to retweet the specified Tweet. Documentation</a>
      */
     public APIusersIdRetweetsRequest usersIdRetweets(String id) {
         return new APIusersIdRetweetsRequest(id);
@@ -5900,8 +6615,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> placeFields;
         private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -6147,6 +6862,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-reverse-chronological">User home timeline by User ID Documentation</a>
      */
     public APIusersIdTimelineRequest usersIdTimeline(String id) {
         return new APIusersIdTimelineRequest(id);
@@ -6286,8 +7003,8 @@ public class TweetsApi extends ApiCommon {
         private Set<String> userFields;
         private Set<String> placeFields;
         private final Set<String> excludeAll = new HashSet<>(Arrays.asList("replies", "retweets"));
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -6533,6 +7250,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets">User Tweets timeline by User ID Documentation</a>
      */
     public APIusersIdTweetsRequest usersIdTweets(String id) {
         return new APIusersIdTweetsRequest(id);
@@ -6714,6 +7433,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id">Causes the User (in the path) to unlike the specified Tweet Documentation</a>
      */
     public APIusersIdUnlikeRequest usersIdUnlike(String id, String tweetId) {
         return new APIusersIdUnlikeRequest(id, tweetId);
@@ -6895,6 +7616,8 @@ public class TweetsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id">Causes the User (in the path) to unretweet the specified Tweet Documentation</a>
      */
     public APIusersIdUnretweetsRequest usersIdUnretweets(String id, String sourceTweetId) {
         return new APIusersIdUnretweetsRequest(id, sourceTweetId);
