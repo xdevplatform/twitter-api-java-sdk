@@ -23,13 +23,6 @@ Do not edit the class manually.
 package com.twitter.clientlib;
 
 
-import java.util.HashSet;
-import java.util.Set;
-import java.io.InputStream;
-
-import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.TwitterCredentialsBearer;
-import com.twitter.clientlib.TweetsStreamListenersExecutor;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.*;
 
@@ -44,22 +37,23 @@ public class HelloWorldStreaming {
      * to use the right credential object.
      */
     TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
-
-    Set<String> tweetFields = new HashSet<>();
-    tweetFields.add("author_id");
-    tweetFields.add("id");
-    tweetFields.add("created_at");
-
     try {
-      InputStream streamResult = apiInstance.tweets().sampleStream()
-        .backfillMinutes(0)
-        .tweetFields(tweetFields)
-        .execute();
-      // sampleStream with TweetsStreamListenersExecutor
-      Responder responder = new Responder();
-      TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor(streamResult);
-      tsle.addListener(responder);
-      tsle.executeListeners();
+      TweetsStreamListenersExecutor tsle = new TweetsStreamListenersExecutor();
+      tsle.stream()
+          .streamingHandler(new StreamingTweetHandlerImpl(apiInstance))
+          .executeListeners();
+      while(tsle.getError() == null) {
+        try {
+          System.out.println("==> sleeping 5 ");
+          Thread.sleep(5000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+
+      if(tsle.getError() != null) {
+        System.err.println("==> Ended with error: " + tsle.getError());
+      }
 
 //      // Shutdown TweetsStreamListenersExecutor
 //      try {
@@ -98,18 +92,3 @@ public class HelloWorldStreaming {
   }
 }
 
-class Responder implements com.twitter.clientlib.TweetsStreamListener {
-  @Override
-  public void actionOnTweetsStream(StreamingTweetResponse streamingTweet) {
-    if(streamingTweet == null) {
-      System.err.println("Error: actionOnTweetsStream - streamingTweet is null ");
-      return;
-    }
-
-    if(streamingTweet.getErrors() != null) {
-      streamingTweet.getErrors().forEach(System.out::println);
-    } else if (streamingTweet.getData() != null) {
-      System.out.println("New streaming tweet: " + streamingTweet.getData().getText());
-    }
-  }
-}

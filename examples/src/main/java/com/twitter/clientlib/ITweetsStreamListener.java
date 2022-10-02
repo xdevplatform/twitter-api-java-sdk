@@ -22,8 +22,6 @@ Do not edit the class manually.
 
 package com.twitter.clientlib;
 
-import com.twitter.clientlib.model.StreamingTweetResponse;
-
-public interface TweetsStreamListener {
-  void actionOnTweetsStream(StreamingTweetResponse streamingTweet);
+public interface ITweetsStreamListener<T> {
+  void actionOnStreamingObject(T streamingTweet)  throws ApiException;
 }
