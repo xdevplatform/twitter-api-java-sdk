@@ -168,8 +168,8 @@ public class BookmarksApi extends ApiCommon {
         private Set<String> pollFields;
         private Set<String> userFields;
         private Set<String> placeFields;
-        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
-        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
+        private final Set<String> tweetFieldsAll = new HashSet<>(Arrays.asList("attachments", "author_id", "context_annotations", "conversation_id", "created_at", "edit_controls", "edit_history_tweet_ids", "entities", "geo", "id", "in_reply_to_user_id", "lang", "non_public_metrics", "organic_metrics", "possibly_sensitive", "promoted_metrics", "public_metrics", "referenced_tweets", "reply_settings", "source", "text", "withheld"));
+        private final Set<String> expansionsAll = new HashSet<>(Arrays.asList("attachments.media_keys", "attachments.poll_ids", "author_id", "edit_history_tweet_ids", "entities.mentions.username", "geo.place_id", "in_reply_to_user_id", "referenced_tweets.id", "referenced_tweets.id.author_id"));
         private final Set<String> mediaFieldsAll = new HashSet<>(Arrays.asList("alt_text", "duration_ms", "height", "media_key", "non_public_metrics", "organic_metrics", "preview_image_url", "promoted_metrics", "public_metrics", "type", "url", "variants", "width"));
         private final Set<String> pollFieldsAll = new HashSet<>(Arrays.asList("duration_minutes", "end_datetime", "id", "options", "voting_status"));
         private final Set<String> userFieldsAll = new HashSet<>(Arrays.asList("created_at", "description", "entities", "id", "location", "name", "pinned_tweet_id", "profile_image_url", "protected", "public_metrics", "url", "username", "verified", "withheld"));
@@ -364,6 +364,8 @@ public class BookmarksApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks">Bookmarks by User Documentation</a>
      */
     public APIgetUsersIdBookmarksRequest getUsersIdBookmarks(String id) {
         return new APIgetUsersIdBookmarksRequest(id);
@@ -544,6 +546,8 @@ public class BookmarksApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks">Add Tweet to Bookmarks Documentation</a>
      */
     public APIpostUsersIdBookmarksRequest postUsersIdBookmarks(BookmarkAddRequest bookmarkAddRequest, String id) {
         return new APIpostUsersIdBookmarksRequest(bookmarkAddRequest, id);
@@ -725,6 +729,8 @@ public class BookmarksApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id">Remove a bookmarked Tweet Documentation</a>
      */
     public APIusersIdBookmarksDeleteRequest usersIdBookmarksDelete(String id, String tweetId) {
         return new APIusersIdBookmarksDeleteRequest(id, tweetId);

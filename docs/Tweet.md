@@ -12,6 +12,8 @@
 |**contextAnnotations** | [**List&lt;ContextAnnotation&gt;**](ContextAnnotation.md) |  |  [optional] |
 |**conversationId** | **String** | Unique identifier of this Tweet. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers. |  [optional] |
 |**createdAt** | **OffsetDateTime** | Creation time of the Tweet. |  [optional] |
+|**editControls** | [**TweetEditControls**](TweetEditControls.md) |  |  [optional] |
+|**editHistoryTweetIds** | **List&lt;String&gt;** | A list of Tweet Ids in this Tweet chain. |  |
 |**entities** | [**FullTextEntities**](FullTextEntities.md) |  |  [optional] |
 |**geo** | [**TweetGeo**](TweetGeo.md) |  |  [optional] |
 |**id** | **String** | Unique identifier of this Tweet. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers. |  |

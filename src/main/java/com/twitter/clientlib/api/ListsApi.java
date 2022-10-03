@@ -327,6 +327,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-users-id-list_memberships">Get a User&#39;s List Memberships Documentation</a>
      */
     public APIgetUserListMembershipsRequest getUserListMemberships(String id) {
         return new APIgetUserListMembershipsRequest(id);
@@ -510,6 +512,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members">Add a List member Documentation</a>
      */
     public APIlistAddMemberRequest listAddMember(String id) {
         return new APIlistAddMemberRequest(id);
@@ -684,6 +688,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists">Create List Documentation</a>
      */
     public APIlistIdCreateRequest listIdCreate() {
         return new APIlistIdCreateRequest();
@@ -856,6 +862,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id">Delete List Documentation</a>
      */
     public APIlistIdDeleteRequest listIdDelete(String id) {
         return new APIlistIdDeleteRequest(id);
@@ -1084,6 +1092,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-lists-id">List lookup by List ID. Documentation</a>
      */
     public APIlistIdGetRequest listIdGet(String id) {
         return new APIlistIdGetRequest(id);
@@ -1267,6 +1277,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/put-lists-id">Update List. Documentation</a>
      */
     public APIlistIdUpdateRequest listIdUpdate(String id) {
         return new APIlistIdUpdateRequest(id);
@@ -1448,6 +1460,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id">Remove a List member Documentation</a>
      */
     public APIlistRemoveMemberRequest listRemoveMember(String id, String userId) {
         return new APIlistRemoveMemberRequest(id, userId);
@@ -1631,6 +1645,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/post-users-id-followed-lists">Follow a List Documentation</a>
      */
     public APIlistUserFollowRequest listUserFollow(String id) {
         return new APIlistUserFollowRequest(id);
@@ -1889,6 +1905,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists">Get a User&#39;s Owned Lists. Documentation</a>
      */
     public APIlistUserOwnedListsRequest listUserOwnedLists(String id) {
         return new APIlistUserOwnedListsRequest(id);
@@ -2069,6 +2087,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists">Pin a List Documentation</a>
      */
     public APIlistUserPinRequest listUserPin(ListPinnedRequest listPinnedRequest, String id) {
         return new APIlistUserPinRequest(listPinnedRequest, id);
@@ -2297,6 +2317,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists">Get a User&#39;s Pinned Lists Documentation</a>
      */
     public APIlistUserPinnedListsRequest listUserPinnedLists(String id) {
         return new APIlistUserPinnedListsRequest(id);
@@ -2478,6 +2500,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/delete-users-id-followed-lists-list_id">Unfollow a List Documentation</a>
      */
     public APIlistUserUnfollowRequest listUserUnfollow(String id, String listId) {
         return new APIlistUserUnfollowRequest(id, listId);
@@ -2659,6 +2683,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id">Unpin a List Documentation</a>
      */
     public APIlistUserUnpinRequest listUserUnpin(String id, String listId) {
         return new APIlistUserUnpinRequest(id, listId);
@@ -2917,6 +2943,8 @@ public class ListsApi extends ApiCommon {
         <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
      </table>
+     * 
+     * @see <a href="https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists">Get User&#39;s Followed Lists Documentation</a>
      */
     public APIuserFollowedListsRequest userFollowedLists(String id) {
         return new APIuserFollowedListsRequest(id);

@@ -29,8 +29,11 @@ import com.twitter.clientlib.model.CreateComplianceJobResponse;
 import com.twitter.clientlib.model.Error;
 import com.twitter.clientlib.model.Get2ComplianceJobsIdResponse;
 import com.twitter.clientlib.model.Get2ComplianceJobsResponse;
+import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
+import com.twitter.clientlib.model.TweetComplianceStreamResponse;
+import com.twitter.clientlib.model.UserComplianceStreamResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +81,50 @@ public class ComplianceApiTest {
         Set<String> complianceJobFields = null;
                 Get2ComplianceJobsIdResponse response = apiInstance.compliance().getBatchComplianceJob(id)
                 .complianceJobFields(complianceJobFields)
+                .execute();
+        // TODO: test validations
+    }
+
+
+    /**
+     * Tweets Compliance stream
+     *
+     * Streams 100% of compliance data for Tweets
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getTweetsComplianceStreamTest() throws ApiException {
+        Integer backfillMinutes = null;
+        Integer partition = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+                InputStream response = apiInstance.compliance().getTweetsComplianceStream(partition)
+                .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
+                .execute();
+        // TODO: test validations
+    }
+
+
+    /**
+     * Users Compliance stream
+     *
+     * Streams 100% of compliance data for Users
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getUsersComplianceStreamTest() throws ApiException {
+        Integer backfillMinutes = null;
+        Integer partition = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+                InputStream response = apiInstance.compliance().getUsersComplianceStream(partition)
+                .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
                 .execute();
         // TODO: test validations
     }

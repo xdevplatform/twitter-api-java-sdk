@@ -6,7 +6,7 @@ You can find examples of using the SDK under the [examples/](examples/) director
 
 **Note: Only Twitter API V2 is supported**
 
-- API version: 2.45
+- API version: 2.51
 
 Twitter API v2 available endpoints
 
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>2.0.2</version>
+  <version>2.0.3</version>
 </dependency>
 ```
 
@@ -76,7 +76,7 @@ mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been publishe
 }
 
 dependencies {
-implementation "com.twitter:twitter-api-java-sdk:2.0.2"
+implementation "com.twitter:twitter-api-java-sdk:2.0.3"
 }
 ```
 
@@ -90,7 +90,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/twitter-api-java-sdk-2.0.2.jar`
+* `target/twitter-api-java-sdk-2.0.3.jar`
 * `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -277,6 +277,8 @@ Class | Method | HTTP request | Description
 *BookmarksApi* | [**usersIdBookmarksDelete**](docs/BookmarksApi.md#usersIdBookmarksDelete) | **DELETE** /2/users/{id}/bookmarks/{tweet_id} | Remove a bookmarked Tweet
 *ComplianceApi* | [**createBatchComplianceJob**](docs/ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job
 *ComplianceApi* | [**getBatchComplianceJob**](docs/ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get Compliance Job
+*ComplianceApi* | [**getTweetsComplianceStream**](docs/ComplianceApi.md#getTweetsComplianceStream) | **GET** /2/tweets/compliance/stream | Tweets Compliance stream
+*ComplianceApi* | [**getUsersComplianceStream**](docs/ComplianceApi.md#getUsersComplianceStream) | **GET** /2/users/compliance/stream | Users Compliance stream
 *ComplianceApi* | [**listBatchComplianceJobs**](docs/ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List Compliance Jobs
 *GeneralApi* | [**getOpenApiSpec**](docs/GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the OpenAPI Specification document.
 *ListsApi* | [**getUserListMemberships**](docs/ListsApi.md#getUserListMemberships) | **GET** /2/users/{id}/list_memberships | Get a User&#39;s List Memberships
@@ -306,6 +308,8 @@ Class | Method | HTTP request | Description
 *TweetsApi* | [**findTweetsById**](docs/TweetsApi.md#findTweetsById) | **GET** /2/tweets | Tweet lookup by Tweet IDs
 *TweetsApi* | [**findTweetsThatQuoteATweet**](docs/TweetsApi.md#findTweetsThatQuoteATweet) | **GET** /2/tweets/{id}/quote_tweets | Retrieve Tweets that quote a Tweet.
 *TweetsApi* | [**getRules**](docs/TweetsApi.md#getRules) | **GET** /2/tweets/search/stream/rules | Rules lookup
+*TweetsApi* | [**getTweetsFirehoseStream**](docs/TweetsApi.md#getTweetsFirehoseStream) | **GET** /2/tweets/firehose/stream | Firehose stream
+*TweetsApi* | [**getTweetsSample10Stream**](docs/TweetsApi.md#getTweetsSample10Stream) | **GET** /2/tweets/sample10/stream | Sample 10% stream
 *TweetsApi* | [**hideReplyById**](docs/TweetsApi.md#hideReplyById) | **PUT** /2/tweets/{tweet_id}/hidden | Hide replies
 *TweetsApi* | [**listsIdTweets**](docs/TweetsApi.md#listsIdTweets) | **GET** /2/lists/{id}/tweets | List Tweets timeline by List ID.
 *TweetsApi* | [**sampleStream**](docs/TweetsApi.md#sampleStream) | **GET** /2/tweets/sample/stream | Sample stream
@@ -336,7 +340,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**usersIdBlock**](docs/UsersApi.md#usersIdBlock) | **POST** /2/users/{id}/blocking | Block User by User ID
 *UsersApi* | [**usersIdBlocking**](docs/UsersApi.md#usersIdBlocking) | **GET** /2/users/{id}/blocking | Returns User objects that are blocked by provided User ID
 *UsersApi* | [**usersIdFollow**](docs/UsersApi.md#usersIdFollow) | **POST** /2/users/{id}/following | Follow User
-*UsersApi* | [**usersIdFollowers**](docs/UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Returns User objects that follow a List by the provided User ID
+*UsersApi* | [**usersIdFollowers**](docs/UsersApi.md#usersIdFollowers) | **GET** /2/users/{id}/followers | Followers by User ID
 *UsersApi* | [**usersIdFollowing**](docs/UsersApi.md#usersIdFollowing) | **GET** /2/users/{id}/following | Following by User ID
 *UsersApi* | [**usersIdMute**](docs/UsersApi.md#usersIdMute) | **POST** /2/users/{id}/muting | Mute User by User ID.
 *UsersApi* | [**usersIdMuting**](docs/UsersApi.md#usersIdMuting) | **GET** /2/users/{id}/muting | Returns User objects that are muted by the provided User ID
@@ -410,12 +414,14 @@ Class | Method | HTTP request | Description
  - [Get2TweetsCountsAllResponse](docs/Get2TweetsCountsAllResponse.md)
  - [Get2TweetsCountsAllResponseMeta](docs/Get2TweetsCountsAllResponseMeta.md)
  - [Get2TweetsCountsRecentResponse](docs/Get2TweetsCountsRecentResponse.md)
+ - [Get2TweetsFirehoseStreamResponse](docs/Get2TweetsFirehoseStreamResponse.md)
  - [Get2TweetsIdLikingUsersResponse](docs/Get2TweetsIdLikingUsersResponse.md)
  - [Get2TweetsIdQuoteTweetsResponse](docs/Get2TweetsIdQuoteTweetsResponse.md)
  - [Get2TweetsIdQuoteTweetsResponseMeta](docs/Get2TweetsIdQuoteTweetsResponseMeta.md)
  - [Get2TweetsIdResponse](docs/Get2TweetsIdResponse.md)
  - [Get2TweetsIdRetweetedByResponse](docs/Get2TweetsIdRetweetedByResponse.md)
  - [Get2TweetsResponse](docs/Get2TweetsResponse.md)
+ - [Get2TweetsSample10StreamResponse](docs/Get2TweetsSample10StreamResponse.md)
  - [Get2TweetsSampleStreamResponse](docs/Get2TweetsSampleStreamResponse.md)
  - [Get2TweetsSearchAllResponse](docs/Get2TweetsSearchAllResponse.md)
  - [Get2TweetsSearchAllResponseMeta](docs/Get2TweetsSearchAllResponseMeta.md)
@@ -509,6 +515,12 @@ Class | Method | HTTP request | Description
  - [Topic](docs/Topic.md)
  - [Tweet](docs/Tweet.md)
  - [TweetAttachments](docs/TweetAttachments.md)
+ - [TweetComplianceData](docs/TweetComplianceData.md)
+ - [TweetComplianceSchema](docs/TweetComplianceSchema.md)
+ - [TweetComplianceSchemaTweet](docs/TweetComplianceSchemaTweet.md)
+ - [TweetComplianceStreamResponse](docs/TweetComplianceStreamResponse.md)
+ - [TweetComplianceStreamResponseOneOf](docs/TweetComplianceStreamResponseOneOf.md)
+ - [TweetComplianceStreamResponseOneOf1](docs/TweetComplianceStreamResponseOneOf1.md)
  - [TweetCreateRequest](docs/TweetCreateRequest.md)
  - [TweetCreateRequestGeo](docs/TweetCreateRequestGeo.md)
  - [TweetCreateRequestMedia](docs/TweetCreateRequestMedia.md)
@@ -516,8 +528,14 @@ Class | Method | HTTP request | Description
  - [TweetCreateRequestReply](docs/TweetCreateRequestReply.md)
  - [TweetCreateResponse](docs/TweetCreateResponse.md)
  - [TweetCreateResponseData](docs/TweetCreateResponseData.md)
+ - [TweetDeleteComplianceSchema](docs/TweetDeleteComplianceSchema.md)
  - [TweetDeleteResponse](docs/TweetDeleteResponse.md)
  - [TweetDeleteResponseData](docs/TweetDeleteResponseData.md)
+ - [TweetDropComplianceSchema](docs/TweetDropComplianceSchema.md)
+ - [TweetEditComplianceObjectSchema](docs/TweetEditComplianceObjectSchema.md)
+ - [TweetEditComplianceObjectSchemaTweet](docs/TweetEditComplianceObjectSchemaTweet.md)
+ - [TweetEditComplianceSchema](docs/TweetEditComplianceSchema.md)
+ - [TweetEditControls](docs/TweetEditControls.md)
  - [TweetGeo](docs/TweetGeo.md)
  - [TweetHideRequest](docs/TweetHideRequest.md)
  - [TweetHideResponse](docs/TweetHideResponse.md)
@@ -527,7 +545,10 @@ Class | Method | HTTP request | Description
  - [TweetPromotedMetrics](docs/TweetPromotedMetrics.md)
  - [TweetPublicMetrics](docs/TweetPublicMetrics.md)
  - [TweetReferencedTweets](docs/TweetReferencedTweets.md)
+ - [TweetTakedownComplianceSchema](docs/TweetTakedownComplianceSchema.md)
+ - [TweetUndropComplianceSchema](docs/TweetUndropComplianceSchema.md)
  - [TweetWithheld](docs/TweetWithheld.md)
+ - [TweetWithheldComplianceSchema](docs/TweetWithheldComplianceSchema.md)
  - [UnsupportedAuthenticationProblem](docs/UnsupportedAuthenticationProblem.md)
  - [UrlEntity](docs/UrlEntity.md)
  - [UrlFields](docs/UrlFields.md)
@@ -535,10 +556,27 @@ Class | Method | HTTP request | Description
  - [UsageCapExceededProblem](docs/UsageCapExceededProblem.md)
  - [UsageCapExceededProblemAllOf](docs/UsageCapExceededProblemAllOf.md)
  - [User](docs/User.md)
+ - [UserComplianceData](docs/UserComplianceData.md)
+ - [UserComplianceSchema](docs/UserComplianceSchema.md)
+ - [UserComplianceSchemaUser](docs/UserComplianceSchemaUser.md)
+ - [UserComplianceStreamResponse](docs/UserComplianceStreamResponse.md)
+ - [UserComplianceStreamResponseOneOf](docs/UserComplianceStreamResponseOneOf.md)
+ - [UserDeleteComplianceSchema](docs/UserDeleteComplianceSchema.md)
  - [UserEntities](docs/UserEntities.md)
  - [UserEntitiesUrl](docs/UserEntitiesUrl.md)
+ - [UserProfileModificationComplianceSchema](docs/UserProfileModificationComplianceSchema.md)
+ - [UserProfileModificationObjectSchema](docs/UserProfileModificationObjectSchema.md)
+ - [UserProtectComplianceSchema](docs/UserProtectComplianceSchema.md)
  - [UserPublicMetrics](docs/UserPublicMetrics.md)
+ - [UserScrubGeoObjectSchema](docs/UserScrubGeoObjectSchema.md)
+ - [UserScrubGeoSchema](docs/UserScrubGeoSchema.md)
+ - [UserSuspendComplianceSchema](docs/UserSuspendComplianceSchema.md)
+ - [UserTakedownComplianceSchema](docs/UserTakedownComplianceSchema.md)
+ - [UserUndeleteComplianceSchema](docs/UserUndeleteComplianceSchema.md)
+ - [UserUnprotectComplianceSchema](docs/UserUnprotectComplianceSchema.md)
+ - [UserUnsuspendComplianceSchema](docs/UserUnsuspendComplianceSchema.md)
  - [UserWithheld](docs/UserWithheld.md)
+ - [UserWithheldComplianceSchema](docs/UserWithheldComplianceSchema.md)
  - [UsersFollowingCreateRequest](docs/UsersFollowingCreateRequest.md)
  - [UsersFollowingCreateResponse](docs/UsersFollowingCreateResponse.md)
  - [UsersFollowingCreateResponseData](docs/UsersFollowingCreateResponseData.md)

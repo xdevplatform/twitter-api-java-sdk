@@ -31,6 +31,7 @@ import com.twitter.clientlib.model.ContextAnnotation;
 import com.twitter.clientlib.model.FullTextEntities;
 import com.twitter.clientlib.model.ReplySettings;
 import com.twitter.clientlib.model.TweetAttachments;
+import com.twitter.clientlib.model.TweetEditControls;
 import com.twitter.clientlib.model.TweetGeo;
 import com.twitter.clientlib.model.TweetNonPublicMetrics;
 import com.twitter.clientlib.model.TweetOrganicMetrics;
@@ -100,6 +101,22 @@ public class TweetTest {
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
+    }
+
+    /**
+     * Test the property 'editControls'
+     */
+    @Test
+    public void editControlsTest() {
+        // TODO: test editControls
+    }
+
+    /**
+     * Test the property 'editHistoryTweetIds'
+     */
+    @Test
+    public void editHistoryTweetIdsTest() {
+        // TODO: test editHistoryTweetIds
     }
 
     /**
