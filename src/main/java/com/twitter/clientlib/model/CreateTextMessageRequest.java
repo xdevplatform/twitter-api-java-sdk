@@ -29,7 +29,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.Problem;
+import com.twitter.clientlib.model.DmMediaAttachment;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -57,42 +57,72 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * ProblemErrors
+ * CreateTextMessageRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ProblemErrors {
-  public static final String SERIALIZED_NAME_ERRORS = "errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<Problem> errors = new ArrayList<>();
+public class CreateTextMessageRequest {
+  public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
+  @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
+  private List<DmMediaAttachment> attachments = null;
 
-  public ProblemErrors() { 
+  public static final String SERIALIZED_NAME_TEXT = "text";
+  @SerializedName(SERIALIZED_NAME_TEXT)
+  private String text;
+
+  public CreateTextMessageRequest() { 
   }
 
-  public ProblemErrors errors(List<Problem> errors) {
+  public CreateTextMessageRequest attachments(List<DmMediaAttachment> attachments) {
     
-    this.errors = errors;
+    this.attachments = attachments;
     return this;
   }
 
-  public ProblemErrors addErrorsItem(Problem errorsItem) {
-    this.errors.add(errorsItem);
+  public CreateTextMessageRequest addAttachmentsItem(DmMediaAttachment attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
+    }
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
    /**
-   * Get errors
-   * @return errors
+   * Attachments to a DM Event.
+   * @return attachments
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Attachments to a DM Event.")
 
-  public List<Problem> getErrors() {
-    return errors;
+  public List<DmMediaAttachment> getAttachments() {
+    return attachments;
   }
 
 
-  public void setErrors(List<Problem> errors) {
-    this.errors = errors;
+  public void setAttachments(List<DmMediaAttachment> attachments) {
+    this.attachments = attachments;
+  }
+
+
+  public CreateTextMessageRequest text(String text) {
+    
+    this.text = text;
+    return this;
+  }
+
+   /**
+   * Text of the message.
+   * @return text
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Text of the message.")
+
+  public String getText() {
+    return text;
+  }
+
+
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -105,20 +135,22 @@ public class ProblemErrors {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProblemErrors problemErrors = (ProblemErrors) o;
-    return Objects.equals(this.errors, problemErrors.errors);
+    CreateTextMessageRequest createTextMessageRequest = (CreateTextMessageRequest) o;
+    return Objects.equals(this.attachments, createTextMessageRequest.attachments) &&
+        Objects.equals(this.text, createTextMessageRequest.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors);
+    return Objects.hash(attachments, text);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProblemErrors {\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("class CreateTextMessageRequest {\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -141,46 +173,50 @@ public class ProblemErrors {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("errors");
+    openapiFields.add("attachments");
+    openapiFields.add("text");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("errors");
+    openapiRequiredFields.add("text");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ProblemErrors
+  * @throws IOException if the JSON Object is invalid with respect to CreateTextMessageRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (ProblemErrors.openapiRequiredFields.isEmpty()) {
+     //   if (CreateTextMessageRequest.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ProblemErrors is not found in the empty JSON string", ProblemErrors.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in CreateTextMessageRequest is not found in the empty JSON string", CreateTextMessageRequest.openapiRequiredFields.toString()));
      //   }
      // }
 
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ProblemErrors.openapiRequiredFields) {
+      for (String requiredField : CreateTextMessageRequest.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      if (jsonArrayerrors != null) {
+      JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
+      if (jsonArrayattachments != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("errors").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+        if (!jsonObj.get("attachments").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
         }
 
-        // validate the optional field `errors` (array)
-        for (int i = 0; i < jsonArrayerrors.size(); i++) {
-          Problem.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
+        // validate the optional field `attachments` (array)
+        for (int i = 0; i < jsonArrayattachments.size(); i++) {
+          DmMediaAttachment.validateJsonObject(jsonArrayattachments.get(i).getAsJsonObject());
         };
+      }
+      if (jsonObj.get("text") != null && !jsonObj.get("text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
       }
   }
 
@@ -188,22 +224,22 @@ public class ProblemErrors {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ProblemErrors.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ProblemErrors' and its subtypes
+       if (!CreateTextMessageRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateTextMessageRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ProblemErrors> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ProblemErrors.class));
+       final TypeAdapter<CreateTextMessageRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateTextMessageRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ProblemErrors>() {
+       return (TypeAdapter<T>) new TypeAdapter<CreateTextMessageRequest>() {
            @Override
-           public void write(JsonWriter out, ProblemErrors value) throws IOException {
+           public void write(JsonWriter out, CreateTextMessageRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ProblemErrors read(JsonReader in) throws IOException {
+           public CreateTextMessageRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -214,18 +250,18 @@ public class ProblemErrors {
   }
 
  /**
-  * Create an instance of ProblemErrors given an JSON string
+  * Create an instance of CreateTextMessageRequest given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of ProblemErrors
-  * @throws IOException if the JSON string is invalid with respect to ProblemErrors
+  * @return An instance of CreateTextMessageRequest
+  * @throws IOException if the JSON string is invalid with respect to CreateTextMessageRequest
   */
-  public static ProblemErrors fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProblemErrors.class);
+  public static CreateTextMessageRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateTextMessageRequest.class);
   }
 
  /**
-  * Convert an instance of ProblemErrors to an JSON string
+  * Convert an instance of CreateTextMessageRequest to an JSON string
   *
   * @return JSON string
   */

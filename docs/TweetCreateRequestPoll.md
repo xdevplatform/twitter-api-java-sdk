@@ -2,7 +2,7 @@
 
 # TweetCreateRequestPoll
 
-Poll options for a Tweet with a poll. This is mutually exclusive from Media and Quote Tweet Id.
+Poll options for a Tweet with a poll. This is mutually exclusive from Media, Quote Tweet Id, and Card URI.
 
 ## Properties
 

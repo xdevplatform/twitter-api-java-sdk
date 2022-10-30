@@ -27,36 +27,33 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.Problem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for ProblemErrors
+ * Model tests for DmMediaAttachment
  */
-public class ProblemErrorsTest {
-    private final ProblemErrors model = new ProblemErrors();
+public class DmMediaAttachmentTest {
+    private final DmMediaAttachment model = new DmMediaAttachment();
 
     /**
-     * Model tests for ProblemErrors
+     * Model tests for DmMediaAttachment
      */
     @Test
-    public void testProblemErrors() {
-        // TODO: test ProblemErrors
+    public void testDmMediaAttachment() {
+        // TODO: test DmMediaAttachment
     }
 
     /**
-     * Test the property 'errors'
+     * Test the property 'mediaId'
      */
     @Test
-    public void errorsTest() {
-        // TODO: test errors
+    public void mediaIdTest() {
+        // TODO: test mediaId
     }
 
 }

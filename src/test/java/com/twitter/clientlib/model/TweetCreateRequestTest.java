@@ -53,6 +53,14 @@ public class TweetCreateRequestTest {
     }
 
     /**
+     * Test the property 'cardUri'
+     */
+    @Test
+    public void cardUriTest() {
+        // TODO: test cardUri
+    }
+
+    /**
      * Test the property 'directMessageDeepLink'
      */
     @Test
@@ -82,6 +90,14 @@ public class TweetCreateRequestTest {
     @Test
     public void mediaTest() {
         // TODO: test media
+    }
+
+    /**
+     * Test the property 'nullcast'
+     */
+    @Test
+    public void nullcastTest() {
+        // TODO: test nullcast
     }
 
     /**

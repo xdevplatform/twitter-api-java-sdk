@@ -62,6 +62,10 @@ import com.twitter.clientlib.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetCreateRequest {
+  public static final String SERIALIZED_NAME_CARD_URI = "card_uri";
+  @SerializedName(SERIALIZED_NAME_CARD_URI)
+  private String cardUri;
+
   public static final String SERIALIZED_NAME_DIRECT_MESSAGE_DEEP_LINK = "direct_message_deep_link";
   @SerializedName(SERIALIZED_NAME_DIRECT_MESSAGE_DEEP_LINK)
   private String directMessageDeepLink;
@@ -77,6 +81,10 @@ public class TweetCreateRequest {
   public static final String SERIALIZED_NAME_MEDIA = "media";
   @SerializedName(SERIALIZED_NAME_MEDIA)
   private TweetCreateRequestMedia media;
+
+  public static final String SERIALIZED_NAME_NULLCAST = "nullcast";
+  @SerializedName(SERIALIZED_NAME_NULLCAST)
+  private Boolean nullcast = false;
 
   public static final String SERIALIZED_NAME_POLL = "poll";
   @SerializedName(SERIALIZED_NAME_POLL)
@@ -147,6 +155,29 @@ public class TweetCreateRequest {
 
   public TweetCreateRequest() { 
   }
+
+  public TweetCreateRequest cardUri(String cardUri) {
+    
+    this.cardUri = cardUri;
+    return this;
+  }
+
+   /**
+   * Card Uri Parameter. This is mutually exclusive from Quote Tweet Id, Poll, Media, and Direct Message Deep Link.
+   * @return cardUri
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Card Uri Parameter. This is mutually exclusive from Quote Tweet Id, Poll, Media, and Direct Message Deep Link.")
+
+  public String getCardUri() {
+    return cardUri;
+  }
+
+
+  public void setCardUri(String cardUri) {
+    this.cardUri = cardUri;
+  }
+
 
   public TweetCreateRequest directMessageDeepLink(String directMessageDeepLink) {
     
@@ -237,6 +268,29 @@ public class TweetCreateRequest {
 
   public void setMedia(TweetCreateRequestMedia media) {
     this.media = media;
+  }
+
+
+  public TweetCreateRequest nullcast(Boolean nullcast) {
+    
+    this.nullcast = nullcast;
+    return this;
+  }
+
+   /**
+   * Nullcasted (promoted-only) Tweets do not appear in the public timeline and are not served to followers.
+   * @return nullcast
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Nullcasted (promoted-only) Tweets do not appear in the public timeline and are not served to followers.")
+
+  public Boolean getNullcast() {
+    return nullcast;
+  }
+
+
+  public void setNullcast(Boolean nullcast) {
+    this.nullcast = nullcast;
   }
 
 
@@ -365,10 +419,12 @@ public class TweetCreateRequest {
       return false;
     }
     TweetCreateRequest tweetCreateRequest = (TweetCreateRequest) o;
-    return Objects.equals(this.directMessageDeepLink, tweetCreateRequest.directMessageDeepLink) &&
+    return Objects.equals(this.cardUri, tweetCreateRequest.cardUri) &&
+        Objects.equals(this.directMessageDeepLink, tweetCreateRequest.directMessageDeepLink) &&
         Objects.equals(this.forSuperFollowersOnly, tweetCreateRequest.forSuperFollowersOnly) &&
         Objects.equals(this.geo, tweetCreateRequest.geo) &&
         Objects.equals(this.media, tweetCreateRequest.media) &&
+        Objects.equals(this.nullcast, tweetCreateRequest.nullcast) &&
         Objects.equals(this.poll, tweetCreateRequest.poll) &&
         Objects.equals(this.quoteTweetId, tweetCreateRequest.quoteTweetId) &&
         Objects.equals(this.reply, tweetCreateRequest.reply) &&
@@ -378,17 +434,19 @@ public class TweetCreateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(directMessageDeepLink, forSuperFollowersOnly, geo, media, poll, quoteTweetId, reply, replySettings, text);
+    return Objects.hash(cardUri, directMessageDeepLink, forSuperFollowersOnly, geo, media, nullcast, poll, quoteTweetId, reply, replySettings, text);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TweetCreateRequest {\n");
+    sb.append("    cardUri: ").append(toIndentedString(cardUri)).append("\n");
     sb.append("    directMessageDeepLink: ").append(toIndentedString(directMessageDeepLink)).append("\n");
     sb.append("    forSuperFollowersOnly: ").append(toIndentedString(forSuperFollowersOnly)).append("\n");
     sb.append("    geo: ").append(toIndentedString(geo)).append("\n");
     sb.append("    media: ").append(toIndentedString(media)).append("\n");
+    sb.append("    nullcast: ").append(toIndentedString(nullcast)).append("\n");
     sb.append("    poll: ").append(toIndentedString(poll)).append("\n");
     sb.append("    quoteTweetId: ").append(toIndentedString(quoteTweetId)).append("\n");
     sb.append("    reply: ").append(toIndentedString(reply)).append("\n");
@@ -416,10 +474,12 @@ public class TweetCreateRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("card_uri");
     openapiFields.add("direct_message_deep_link");
     openapiFields.add("for_super_followers_only");
     openapiFields.add("geo");
     openapiFields.add("media");
+    openapiFields.add("nullcast");
     openapiFields.add("poll");
     openapiFields.add("quote_tweet_id");
     openapiFields.add("reply");
@@ -445,6 +505,9 @@ public class TweetCreateRequest {
      //   }
      // }
 
+      if (jsonObj.get("card_uri") != null && !jsonObj.get("card_uri").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `card_uri` to be a primitive type in the JSON string but got `%s`", jsonObj.get("card_uri").toString()));
+      }
       if (jsonObj.get("direct_message_deep_link") != null && !jsonObj.get("direct_message_deep_link").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `direct_message_deep_link` to be a primitive type in the JSON string but got `%s`", jsonObj.get("direct_message_deep_link").toString()));
       }

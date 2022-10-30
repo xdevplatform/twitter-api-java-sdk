@@ -33,6 +33,7 @@ import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
 import com.twitter.clientlib.model.TweetComplianceStreamResponse;
+import com.twitter.clientlib.model.TweetLabelStreamResponse;
 import com.twitter.clientlib.model.UserComplianceStreamResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -100,6 +101,27 @@ public class ComplianceApiTest {
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
                 InputStream response = apiInstance.compliance().getTweetsComplianceStream(partition)
+                .backfillMinutes(backfillMinutes)
+                .startTime(startTime)
+                .endTime(endTime)
+                .execute();
+        // TODO: test validations
+    }
+
+
+    /**
+     * Tweets Label stream
+     *
+     * Streams 100% of labeling events applied to Tweets
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getTweetsLabelStreamTest() throws ApiException {
+        Integer backfillMinutes = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+                InputStream response = apiInstance.compliance().getTweetsLabelStream()
                 .backfillMinutes(backfillMinutes)
                 .startTime(startTime)
                 .endTime(endTime)

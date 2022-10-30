@@ -6,7 +6,7 @@ You can find examples of using the SDK under the [examples/](examples/) director
 
 **Note: Only Twitter API V2 is supported**
 
-- API version: 2.51
+- API version: 2.55
 
 Twitter API v2 available endpoints
 
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.twitter</groupId>
   <artifactId>twitter-api-java-sdk</artifactId>
-  <version>2.0.3</version>
+  <version>2.0.4</version>
 </dependency>
 ```
 
@@ -76,7 +76,7 @@ mavenLocal()       // Needed if the 'twitter-api-java-sdk' jar has been publishe
 }
 
 dependencies {
-implementation "com.twitter:twitter-api-java-sdk:2.0.3"
+implementation "com.twitter:twitter-api-java-sdk:2.0.4"
 }
 ```
 
@@ -90,7 +90,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/twitter-api-java-sdk-2.0.3.jar`
+* `target/twitter-api-java-sdk-2.0.4.jar`
 * `target/lib/*.jar`
 
 ## Twitter Credentials
@@ -278,8 +278,15 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**createBatchComplianceJob**](docs/ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job
 *ComplianceApi* | [**getBatchComplianceJob**](docs/ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get Compliance Job
 *ComplianceApi* | [**getTweetsComplianceStream**](docs/ComplianceApi.md#getTweetsComplianceStream) | **GET** /2/tweets/compliance/stream | Tweets Compliance stream
+*ComplianceApi* | [**getTweetsLabelStream**](docs/ComplianceApi.md#getTweetsLabelStream) | **GET** /2/tweets/label/stream | Tweets Label stream
 *ComplianceApi* | [**getUsersComplianceStream**](docs/ComplianceApi.md#getUsersComplianceStream) | **GET** /2/users/compliance/stream | Users Compliance stream
 *ComplianceApi* | [**listBatchComplianceJobs**](docs/ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List Compliance Jobs
+*DirectMessagesApi* | [**dmConversationByIdEventIdCreate**](docs/DirectMessagesApi.md#dmConversationByIdEventIdCreate) | **POST** /2/dm_conversations/{dm_conversation_id}/messages | Send a new message to a DM Conversation
+*DirectMessagesApi* | [**dmConversationIdCreate**](docs/DirectMessagesApi.md#dmConversationIdCreate) | **POST** /2/dm_conversations | Create a new DM Conversation
+*DirectMessagesApi* | [**dmConversationWithUserEventIdCreate**](docs/DirectMessagesApi.md#dmConversationWithUserEventIdCreate) | **POST** /2/dm_conversations/with/{participant_id}/messages | Send a new message to a user
+*DirectMessagesApi* | [**getDmConversationsIdDmEvents**](docs/DirectMessagesApi.md#getDmConversationsIdDmEvents) | **GET** /2/dm_conversations/{id}/dm_events | Get DM Events for a DM Conversation
+*DirectMessagesApi* | [**getDmConversationsWithParticipantIdDmEvents**](docs/DirectMessagesApi.md#getDmConversationsWithParticipantIdDmEvents) | **GET** /2/dm_conversations/with/{participant_id}/dm_events | Get DM Events for a DM Conversation
+*DirectMessagesApi* | [**getDmEvents**](docs/DirectMessagesApi.md#getDmEvents) | **GET** /2/dm_events | Get recent DM Events
 *GeneralApi* | [**getOpenApiSpec**](docs/GeneralApi.md#getOpenApiSpec) | **GET** /2/openapi.json | Returns the OpenAPI Specification document.
 *ListsApi* | [**getUserListMemberships**](docs/ListsApi.md#getUserListMemberships) | **GET** /2/users/{id}/list_memberships | Get a User&#39;s List Memberships
 *ListsApi* | [**listAddMember**](docs/ListsApi.md#listAddMember) | **POST** /2/lists/{id}/members | Add a List member
@@ -376,12 +383,21 @@ Class | Method | HTTP request | Description
  - [ContextAnnotation](docs/ContextAnnotation.md)
  - [ContextAnnotationDomainFields](docs/ContextAnnotationDomainFields.md)
  - [ContextAnnotationEntityFields](docs/ContextAnnotationEntityFields.md)
+ - [CreateAttachmentsMessageRequest](docs/CreateAttachmentsMessageRequest.md)
  - [CreateComplianceJobRequest](docs/CreateComplianceJobRequest.md)
  - [CreateComplianceJobResponse](docs/CreateComplianceJobResponse.md)
+ - [CreateDmConversationRequest](docs/CreateDmConversationRequest.md)
+ - [CreateDmEventResponse](docs/CreateDmEventResponse.md)
+ - [CreateDmEventResponseData](docs/CreateDmEventResponseData.md)
+ - [CreateMessageRequest](docs/CreateMessageRequest.md)
+ - [CreateTextMessageRequest](docs/CreateTextMessageRequest.md)
  - [DeleteRulesRequest](docs/DeleteRulesRequest.md)
  - [DeleteRulesRequestDelete](docs/DeleteRulesRequestDelete.md)
  - [DisallowedResourceProblem](docs/DisallowedResourceProblem.md)
  - [DisallowedResourceProblemAllOf](docs/DisallowedResourceProblemAllOf.md)
+ - [DmEvent](docs/DmEvent.md)
+ - [DmEventAttachments](docs/DmEventAttachments.md)
+ - [DmMediaAttachment](docs/DmMediaAttachment.md)
  - [DuplicateRuleProblem](docs/DuplicateRuleProblem.md)
  - [DuplicateRuleProblemAllOf](docs/DuplicateRuleProblemAllOf.md)
  - [EntityIndicesInclusiveExclusive](docs/EntityIndicesInclusiveExclusive.md)
@@ -400,6 +416,9 @@ Class | Method | HTTP request | Description
  - [Get2ComplianceJobsIdResponse](docs/Get2ComplianceJobsIdResponse.md)
  - [Get2ComplianceJobsResponse](docs/Get2ComplianceJobsResponse.md)
  - [Get2ComplianceJobsResponseMeta](docs/Get2ComplianceJobsResponseMeta.md)
+ - [Get2DmConversationsIdDmEventsResponse](docs/Get2DmConversationsIdDmEventsResponse.md)
+ - [Get2DmConversationsWithParticipantIdDmEventsResponse](docs/Get2DmConversationsWithParticipantIdDmEventsResponse.md)
+ - [Get2DmEventsResponse](docs/Get2DmEventsResponse.md)
  - [Get2ListsIdFollowersResponse](docs/Get2ListsIdFollowersResponse.md)
  - [Get2ListsIdFollowersResponseMeta](docs/Get2ListsIdFollowersResponseMeta.md)
  - [Get2ListsIdMembersResponse](docs/Get2ListsIdMembersResponse.md)
@@ -488,12 +507,8 @@ Class | Method | HTTP request | Description
  - [Poll](docs/Poll.md)
  - [PollOption](docs/PollOption.md)
  - [Problem](docs/Problem.md)
- - [ProblemErrors](docs/ProblemErrors.md)
  - [ProblemOrError](docs/ProblemOrError.md)
  - [ReplySettings](docs/ReplySettings.md)
- - [ReportUsersRequest](docs/ReportUsersRequest.md)
- - [ReportUsersResponse](docs/ReportUsersResponse.md)
- - [ReportUsersResponseData](docs/ReportUsersResponseData.md)
  - [ResourceNotFoundProblem](docs/ResourceNotFoundProblem.md)
  - [ResourceNotFoundProblemAllOf](docs/ResourceNotFoundProblemAllOf.md)
  - [ResourceUnauthorizedProblem](docs/ResourceUnauthorizedProblem.md)
@@ -540,13 +555,20 @@ Class | Method | HTTP request | Description
  - [TweetHideRequest](docs/TweetHideRequest.md)
  - [TweetHideResponse](docs/TweetHideResponse.md)
  - [TweetHideResponseData](docs/TweetHideResponseData.md)
+ - [TweetLabelData](docs/TweetLabelData.md)
+ - [TweetLabelStreamResponse](docs/TweetLabelStreamResponse.md)
+ - [TweetLabelStreamResponseOneOf](docs/TweetLabelStreamResponseOneOf.md)
  - [TweetNonPublicMetrics](docs/TweetNonPublicMetrics.md)
+ - [TweetNotice](docs/TweetNotice.md)
+ - [TweetNoticeSchema](docs/TweetNoticeSchema.md)
  - [TweetOrganicMetrics](docs/TweetOrganicMetrics.md)
  - [TweetPromotedMetrics](docs/TweetPromotedMetrics.md)
  - [TweetPublicMetrics](docs/TweetPublicMetrics.md)
  - [TweetReferencedTweets](docs/TweetReferencedTweets.md)
  - [TweetTakedownComplianceSchema](docs/TweetTakedownComplianceSchema.md)
  - [TweetUndropComplianceSchema](docs/TweetUndropComplianceSchema.md)
+ - [TweetUnviewable](docs/TweetUnviewable.md)
+ - [TweetUnviewableSchema](docs/TweetUnviewableSchema.md)
  - [TweetWithheld](docs/TweetWithheld.md)
  - [TweetWithheldComplianceSchema](docs/TweetWithheldComplianceSchema.md)
  - [UnsupportedAuthenticationProblem](docs/UnsupportedAuthenticationProblem.md)

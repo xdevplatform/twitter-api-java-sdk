@@ -7,6 +7,7 @@ All URIs are relative to *https://api.twitter.com*
 | [**createBatchComplianceJob**](ComplianceApi.md#createBatchComplianceJob) | **POST** /2/compliance/jobs | Create compliance job |
 | [**getBatchComplianceJob**](ComplianceApi.md#getBatchComplianceJob) | **GET** /2/compliance/jobs/{id} | Get Compliance Job |
 | [**getTweetsComplianceStream**](ComplianceApi.md#getTweetsComplianceStream) | **GET** /2/tweets/compliance/stream | Tweets Compliance stream |
+| [**getTweetsLabelStream**](ComplianceApi.md#getTweetsLabelStream) | **GET** /2/tweets/label/stream | Tweets Label stream |
 | [**getUsersComplianceStream**](ComplianceApi.md#getUsersComplianceStream) | **GET** /2/users/compliance/stream | Users Compliance stream |
 | [**listBatchComplianceJobs**](ComplianceApi.md#listBatchComplianceJobs) | **GET** /2/compliance/jobs | List Compliance Jobs |
 
@@ -273,6 +274,117 @@ public class Example {
 ### Return type
 
 [**TweetComplianceStreamResponse**](TweetComplianceStreamResponse.md)
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The request has succeeded. |  -  |
+| **0** | The request has failed. |  -  |
+
+<a name="getTweetsLabelStream"></a>
+# **getTweetsLabelStream**
+> TweetLabelStreamResponse getTweetsLabelStream().backfillMinutes(backfillMinutes).startTime(startTime).endTime(endTime).execute();
+
+Tweets Label stream
+
+Streams 100% of labeling events applied to Tweets
+
+### Example
+```java
+// Import classes:
+import com.twitter.clientlib.ApiClient;
+import com.twitter.clientlib.ApiException;
+import com.twitter.clientlib.Configuration;
+import com.twitter.clientlib.auth.*;
+import com.twitter.clientlib.model.*;
+import com.twitter.clientlib.TwitterCredentialsOAuth2;
+import com.twitter.clientlib.TwitterCredentialsBearer;
+import com.twitter.clientlib.api.TwitterApi;
+
+import com.twitter.clientlib.api.ComplianceApi;
+import java.io.InputStream;
+import com.google.common.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.time.OffsetDateTime;
+
+public class Example {
+  public static void main(String[] args) {
+    // Set the credentials based on the API's "security" tag values.
+    // Check the API definition in https://api.twitter.com/2/openapi.json
+    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+
+    // Uncomment and set the credentials configuration
+      
+    // Configure HTTP bearer authorization:
+    // TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN"));
+        TwitterApi apiInstance = new TwitterApi(credentials);
+
+    // Set the params values
+    Integer backfillMinutes = 56; // Integer | The number of minutes of backfill requested.
+    OffsetDateTime startTime = OffsetDateTime.parse("2021-02-01T18:40:40.000Z"); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweet labels will be provided.
+    OffsetDateTime endTime = OffsetDateTime.parse("2021-02-01T18:40:40.000Z"); // OffsetDateTime | YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp from which the Tweet labels will be provided.
+    try {
+            InputStream result = apiInstance.compliance().getTweetsLabelStream()
+             .backfillMinutes(backfillMinutes)
+             .startTime(startTime)
+             .endTime(endTime)
+                .execute();
+            try{
+               JSON json = new JSON();
+               Type localVarReturnType = new TypeToken<TweetLabelStreamResponse>(){}.getType();
+               BufferedReader reader = new BufferedReader(new InputStreamReader(result));
+               String line = reader.readLine();
+               while (line != null) {
+                 if(line.isEmpty()) {
+                   System.out.println("==> Empty line");
+                   line = reader.readLine();
+                   continue;
+                 }
+                 Object jsonObject = json.getGson().fromJson(line, localVarReturnType);
+                 System.out.println(jsonObject != null ? jsonObject.toString() : "Null object");
+                 line = reader.readLine();
+               }
+            }catch (Exception e) {
+              e.printStackTrace();
+              System.out.println(e);
+            }
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ComplianceApi#getTweetsLabelStream");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **backfillMinutes** | **Integer**| The number of minutes of backfill requested. | [optional] |
+| **startTime** | **OffsetDateTime**| YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweet labels will be provided. | [optional] |
+| **endTime** | **OffsetDateTime**| YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp from which the Tweet labels will be provided. | [optional] |
+
+### Return type
+
+[**TweetLabelStreamResponse**](TweetLabelStreamResponse.md)
 
 ### Authorization
 

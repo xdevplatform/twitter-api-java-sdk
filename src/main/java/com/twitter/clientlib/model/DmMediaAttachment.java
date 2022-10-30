@@ -29,7 +29,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.ReportUsersResponseData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -55,37 +54,37 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * ReportUsersResponse
+ * DmMediaAttachment
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ReportUsersResponse {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private ReportUsersResponseData data;
+public class DmMediaAttachment {
+  public static final String SERIALIZED_NAME_MEDIA_ID = "media_id";
+  @SerializedName(SERIALIZED_NAME_MEDIA_ID)
+  private String mediaId;
 
-  public ReportUsersResponse() { 
+  public DmMediaAttachment() { 
   }
 
-  public ReportUsersResponse data(ReportUsersResponseData data) {
+  public DmMediaAttachment mediaId(String mediaId) {
     
-    this.data = data;
+    this.mediaId = mediaId;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * The unique identifier of this Media.
+   * @return mediaId
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "1146654567674912769", required = true, value = "The unique identifier of this Media.")
 
-  public ReportUsersResponseData getData() {
-    return data;
+  public String getMediaId() {
+    return mediaId;
   }
 
 
-  public void setData(ReportUsersResponseData data) {
-    this.data = data;
+  public void setMediaId(String mediaId) {
+    this.mediaId = mediaId;
   }
 
 
@@ -98,20 +97,20 @@ public class ReportUsersResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReportUsersResponse reportUsersResponse = (ReportUsersResponse) o;
-    return Objects.equals(this.data, reportUsersResponse.data);
+    DmMediaAttachment dmMediaAttachment = (DmMediaAttachment) o;
+    return Objects.equals(this.mediaId, dmMediaAttachment.mediaId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(mediaId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReportUsersResponse {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class DmMediaAttachment {\n");
+    sb.append("    mediaId: ").append(toIndentedString(mediaId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -134,30 +133,37 @@ public class ReportUsersResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("data");
+    openapiFields.add("media_id");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("media_id");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ReportUsersResponse
+  * @throws IOException if the JSON Object is invalid with respect to DmMediaAttachment
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (ReportUsersResponse.openapiRequiredFields.isEmpty()) {
+     //   if (DmMediaAttachment.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ReportUsersResponse is not found in the empty JSON string", ReportUsersResponse.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in DmMediaAttachment is not found in the empty JSON string", DmMediaAttachment.openapiRequiredFields.toString()));
      //   }
      // }
 
-      // validate the optional field `data`
-      if (jsonObj.getAsJsonObject("data") != null) {
-        ReportUsersResponseData.validateJsonObject(jsonObj.getAsJsonObject("data"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DmMediaAttachment.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (jsonObj.get("media_id") != null && !jsonObj.get("media_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `media_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("media_id").toString()));
       }
   }
 
@@ -165,22 +171,22 @@ public class ReportUsersResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ReportUsersResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ReportUsersResponse' and its subtypes
+       if (!DmMediaAttachment.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DmMediaAttachment' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ReportUsersResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ReportUsersResponse.class));
+       final TypeAdapter<DmMediaAttachment> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DmMediaAttachment.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ReportUsersResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<DmMediaAttachment>() {
            @Override
-           public void write(JsonWriter out, ReportUsersResponse value) throws IOException {
+           public void write(JsonWriter out, DmMediaAttachment value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ReportUsersResponse read(JsonReader in) throws IOException {
+           public DmMediaAttachment read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -191,18 +197,18 @@ public class ReportUsersResponse {
   }
 
  /**
-  * Create an instance of ReportUsersResponse given an JSON string
+  * Create an instance of DmMediaAttachment given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of ReportUsersResponse
-  * @throws IOException if the JSON string is invalid with respect to ReportUsersResponse
+  * @return An instance of DmMediaAttachment
+  * @throws IOException if the JSON string is invalid with respect to DmMediaAttachment
   */
-  public static ReportUsersResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ReportUsersResponse.class);
+  public static DmMediaAttachment fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DmMediaAttachment.class);
   }
 
  /**
-  * Convert an instance of ReportUsersResponse to an JSON string
+  * Convert an instance of DmMediaAttachment to an JSON string
   *
   * @return JSON string
   */

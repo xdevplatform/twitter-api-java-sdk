@@ -27,43 +27,45 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.twitter.clientlib.model.TweetNotice;
+import com.twitter.clientlib.model.TweetNoticeSchema;
+import com.twitter.clientlib.model.TweetUnviewable;
+import com.twitter.clientlib.model.TweetUnviewableSchema;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for ReportUsersRequest
+ * Model tests for TweetLabelData
  */
-public class ReportUsersRequestTest {
-    private final ReportUsersRequest model = new ReportUsersRequest();
+public class TweetLabelDataTest {
+    private final TweetLabelData model = new TweetLabelData();
 
     /**
-     * Model tests for ReportUsersRequest
+     * Model tests for TweetLabelData
      */
     @Test
-    public void testReportUsersRequest() {
-        // TODO: test ReportUsersRequest
+    public void testTweetLabelData() {
+        // TODO: test TweetLabelData
     }
 
     /**
-     * Test the property 'description'
+     * Test the property 'publicTweetNotice'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
+    public void publicTweetNoticeTest() {
+        // TODO: test publicTweetNotice
     }
 
     /**
-     * Test the property 'userIds'
+     * Test the property 'publicTweetUnviewable'
      */
     @Test
-    public void userIdsTest() {
-        // TODO: test userIds
+    public void publicTweetUnviewableTest() {
+        // TODO: test publicTweetUnviewable
     }
 
 }
