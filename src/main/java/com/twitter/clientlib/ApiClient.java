@@ -1107,7 +1107,8 @@ public class ApiClient {
         try {
              Response response = call.execute();
              if (!response.isSuccessful()) {
-                 throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), null);
+                 throw new ApiException(response.message(), response.code(), response.headers().toMultimap(),
+                     response.body() != null ? response.body().string() : null);
              }
              if (response.body() == null) {
                  return null;
