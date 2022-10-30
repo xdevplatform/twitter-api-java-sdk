@@ -48,6 +48,7 @@ import java.time.OffsetDateTime;
 import com.twitter.clientlib.model.Problem;
 import java.util.Set;
 import com.twitter.clientlib.model.TweetComplianceStreamResponse;
+import com.twitter.clientlib.model.TweetLabelStreamResponse;
 import com.twitter.clientlib.model.UserComplianceStreamResponse;
 
 import java.lang.reflect.Type;
@@ -651,6 +652,214 @@ public class ComplianceApi extends ApiCommon {
      */
     public APIgetTweetsComplianceStreamRequest getTweetsComplianceStream(Integer partition) {
         return new APIgetTweetsComplianceStreamRequest(partition);
+    }
+    private okhttp3.Call getTweetsLabelStreamCall(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/2/tweets/label/stream";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (backfillMinutes != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("backfill_minutes", backfillMinutes));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "BearerToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTweetsLabelStreamValidateBeforeCall(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = getTweetsLabelStreamCall(backfillMinutes, startTime, endTime, _callback);
+        return localVarCall;
+
+    }
+
+
+    private InputStream getTweetsLabelStreamWithHttpInfo(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+        okhttp3.Call localVarCall = getTweetsLabelStreamValidateBeforeCall(backfillMinutes, startTime, endTime, null);
+        try {
+            Type localVarReturnType = new TypeToken<TweetLabelStreamResponse>(){}.getType();
+            return localVarApiClient.executeStream(localVarCall, localVarReturnType);
+        } catch (ApiException e) {
+            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+            throw e;
+        }
+    }
+    
+    private okhttp3.Call getTweetsLabelStreamAsync(Integer backfillMinutes, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<TweetLabelStreamResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTweetsLabelStreamValidateBeforeCall(backfillMinutes, startTime, endTime, _callback);
+        Type localVarReturnType = new TypeToken<TweetLabelStreamResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetTweetsLabelStreamRequest {
+        private Integer backfillMinutes;
+        private OffsetDateTime startTime;
+        private OffsetDateTime endTime;
+        
+        
+
+        private APIgetTweetsLabelStreamRequest() {
+        }
+
+        /**
+         * Set backfillMinutes
+         * @param backfillMinutes The number of minutes of backfill requested. (optional)
+         * @return APIgetTweetsLabelStreamRequest
+         */
+        public APIgetTweetsLabelStreamRequest backfillMinutes(Integer backfillMinutes) {
+            this.backfillMinutes = backfillMinutes;
+            return this;
+        }
+
+        /**
+         * Set startTime
+         * @param startTime YYYY-MM-DDTHH:mm:ssZ. The earliest UTC timestamp from which the Tweet labels will be provided. (optional)
+         * @return APIgetTweetsLabelStreamRequest
+         */
+        public APIgetTweetsLabelStreamRequest startTime(OffsetDateTime startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        /**
+         * Set endTime
+         * @param endTime YYYY-MM-DDTHH:mm:ssZ. The latest UTC timestamp from which the Tweet labels will be provided. (optional)
+         * @return APIgetTweetsLabelStreamRequest
+         */
+        public APIgetTweetsLabelStreamRequest endTime(OffsetDateTime endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        /**
+         * Build call for getTweetsLabelStream
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getTweetsLabelStreamCall(backfillMinutes, startTime, endTime, _callback);
+        }
+
+        /**
+         * Execute getTweetsLabelStream request
+         * @return TweetLabelStreamResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public InputStream execute() throws ApiException {
+          return getTweetsLabelStreamWithHttpInfo(backfillMinutes, startTime, endTime);
+        }
+
+        /**
+        * Calls the API using a retry mechanism to handle rate limits errors.
+        *
+        */
+        public InputStream execute(Integer retries) throws ApiException {
+          InputStream localVarResp;
+          try{
+            localVarResp = execute();
+          }
+          catch (ApiException e) {
+            if(handleRateLimit(e, retries)) {
+              return execute(retries - 1);
+            } else {
+              throw e;
+            }
+          }
+          return localVarResp;
+        }
+        /**
+         * Execute getTweetsLabelStream request with HTTP info returned
+         * @return ApiResponse&lt;TweetLabelStreamResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+
+            public InputStream executeWithHttpInfo() throws ApiException {
+              return getTweetsLabelStreamWithHttpInfo(backfillMinutes, startTime, endTime);
+            }
+        /**
+         * Execute getTweetsLabelStream request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<TweetLabelStreamResponse> _callback) throws ApiException {
+            return getTweetsLabelStreamAsync(backfillMinutes, startTime, endTime, _callback);
+        }
+    }
+
+    /**
+     * Tweets Label stream
+     * Streams 100% of labeling events applied to Tweets
+     * @return APIgetTweetsLabelStreamRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The request has succeeded. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> The request has failed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetTweetsLabelStreamRequest getTweetsLabelStream() {
+        return new APIgetTweetsLabelStreamRequest();
     }
     private okhttp3.Call getUsersComplianceStreamCall(Integer backfillMinutes, Integer partition, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;

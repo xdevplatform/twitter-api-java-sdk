@@ -29,11 +29,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.twitter.clientlib.model.TweetNotice;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,69 +55,37 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * ReportUsersRequest
+ * TweetNoticeSchema
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ReportUsersRequest {
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+public class TweetNoticeSchema {
+  public static final String SERIALIZED_NAME_PUBLIC_TWEET_NOTICE = "public_tweet_notice";
+  @SerializedName(SERIALIZED_NAME_PUBLIC_TWEET_NOTICE)
+  private TweetNotice publicTweetNotice;
 
-  public static final String SERIALIZED_NAME_USER_IDS = "user_ids";
-  @SerializedName(SERIALIZED_NAME_USER_IDS)
-  private List<String> userIds = new ArrayList<>();
-
-  public ReportUsersRequest() { 
+  public TweetNoticeSchema() { 
   }
 
-  public ReportUsersRequest description(String description) {
+  public TweetNoticeSchema publicTweetNotice(TweetNotice publicTweetNotice) {
     
-    this.description = description;
+    this.publicTweetNotice = publicTweetNotice;
     return this;
   }
 
    /**
-   * Get description
-   * @return description
+   * Get publicTweetNotice
+   * @return publicTweetNotice
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public String getDescription() {
-    return description;
+  public TweetNotice getPublicTweetNotice() {
+    return publicTweetNotice;
   }
 
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ReportUsersRequest userIds(List<String> userIds) {
-    
-    this.userIds = userIds;
-    return this;
-  }
-
-  public ReportUsersRequest addUserIdsItem(String userIdsItem) {
-    this.userIds.add(userIdsItem);
-    return this;
-  }
-
-   /**
-   * Get userIds
-   * @return userIds
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public List<String> getUserIds() {
-    return userIds;
-  }
-
-
-  public void setUserIds(List<String> userIds) {
-    this.userIds = userIds;
+  public void setPublicTweetNotice(TweetNotice publicTweetNotice) {
+    this.publicTweetNotice = publicTweetNotice;
   }
 
 
@@ -131,22 +98,20 @@ public class ReportUsersRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReportUsersRequest reportUsersRequest = (ReportUsersRequest) o;
-    return Objects.equals(this.description, reportUsersRequest.description) &&
-        Objects.equals(this.userIds, reportUsersRequest.userIds);
+    TweetNoticeSchema tweetNoticeSchema = (TweetNoticeSchema) o;
+    return Objects.equals(this.publicTweetNotice, tweetNoticeSchema.publicTweetNotice);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, userIds);
+    return Objects.hash(publicTweetNotice);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReportUsersRequest {\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    userIds: ").append(toIndentedString(userIds)).append("\n");
+    sb.append("class TweetNoticeSchema {\n");
+    sb.append("    publicTweetNotice: ").append(toIndentedString(publicTweetNotice)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -169,43 +134,38 @@ public class ReportUsersRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("description");
-    openapiFields.add("user_ids");
+    openapiFields.add("public_tweet_notice");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("description");
-    openapiRequiredFields.add("user_ids");
+    openapiRequiredFields.add("public_tweet_notice");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ReportUsersRequest
+  * @throws IOException if the JSON Object is invalid with respect to TweetNoticeSchema
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
      // if (jsonObj == null) {
-     //   if (ReportUsersRequest.openapiRequiredFields.isEmpty()) {
+     //   if (TweetNoticeSchema.openapiRequiredFields.isEmpty()) {
      //     return;
      //   } else { // has required fields
-     //     throw new IllegalArgumentException(String.format("The required field(s) %s in ReportUsersRequest is not found in the empty JSON string", ReportUsersRequest.openapiRequiredFields.toString()));
+     //     throw new IllegalArgumentException(String.format("The required field(s) %s in TweetNoticeSchema is not found in the empty JSON string", TweetNoticeSchema.openapiRequiredFields.toString()));
      //   }
      // }
 
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ReportUsersRequest.openapiRequiredFields) {
+      for (String requiredField : TweetNoticeSchema.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("description") != null && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      // ensure the json data is an array
-      if (jsonObj.get("user_ids") != null && !jsonObj.get("user_ids").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `user_ids` to be an array in the JSON string but got `%s`", jsonObj.get("user_ids").toString()));
+      // validate the optional field `public_tweet_notice`
+      if (jsonObj.getAsJsonObject("public_tweet_notice") != null) {
+        TweetNotice.validateJsonObject(jsonObj.getAsJsonObject("public_tweet_notice"));
       }
   }
 
@@ -213,22 +173,22 @@ public class ReportUsersRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ReportUsersRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ReportUsersRequest' and its subtypes
+       if (!TweetNoticeSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TweetNoticeSchema' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ReportUsersRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ReportUsersRequest.class));
+       final TypeAdapter<TweetNoticeSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TweetNoticeSchema.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ReportUsersRequest>() {
+       return (TypeAdapter<T>) new TypeAdapter<TweetNoticeSchema>() {
            @Override
-           public void write(JsonWriter out, ReportUsersRequest value) throws IOException {
+           public void write(JsonWriter out, TweetNoticeSchema value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ReportUsersRequest read(JsonReader in) throws IOException {
+           public TweetNoticeSchema read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -239,18 +199,18 @@ public class ReportUsersRequest {
   }
 
  /**
-  * Create an instance of ReportUsersRequest given an JSON string
+  * Create an instance of TweetNoticeSchema given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of ReportUsersRequest
-  * @throws IOException if the JSON string is invalid with respect to ReportUsersRequest
+  * @return An instance of TweetNoticeSchema
+  * @throws IOException if the JSON string is invalid with respect to TweetNoticeSchema
   */
-  public static ReportUsersRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ReportUsersRequest.class);
+  public static TweetNoticeSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TweetNoticeSchema.class);
   }
 
  /**
-  * Convert an instance of ReportUsersRequest to an JSON string
+  * Convert an instance of TweetNoticeSchema to an JSON string
   *
   * @return JSON string
   */

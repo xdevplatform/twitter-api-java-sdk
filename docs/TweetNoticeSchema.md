@@ -1,13 +1,13 @@
 
 
-# ReportUsersResponse
+# TweetNoticeSchema
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**data** | [**ReportUsersResponseData**](ReportUsersResponseData.md) |  |  [optional] |
+|**publicTweetNotice** | [**TweetNotice**](TweetNotice.md) |  |  |
 
 
 

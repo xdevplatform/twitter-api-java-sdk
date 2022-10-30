@@ -2,7 +2,7 @@
 
 # TweetCreateRequestMedia
 
-Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id and Poll.
+Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id, Poll, and Card URI.
 
 ## Properties
 

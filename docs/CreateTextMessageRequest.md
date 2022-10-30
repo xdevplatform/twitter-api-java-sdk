@@ -1,0 +1,14 @@
+
+
+# CreateTextMessageRequest
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**attachments** | [**List&lt;DmMediaAttachment&gt;**](DmMediaAttachment.md) | Attachments to a DM Event. |  [optional] |
+|**text** | **String** | Text of the message. |  |
+
+
+

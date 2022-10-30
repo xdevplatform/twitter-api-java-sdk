@@ -56,9 +56,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id and Poll.
+ * Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id, Poll, and Card URI.
  */
-@ApiModel(description = "Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id and Poll.")
+@ApiModel(description = "Media information being attached to created Tweet. This is mutually exclusive from Quote Tweet Id, Poll, and Card URI.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetCreateRequestMedia {
   public static final String SERIALIZED_NAME_MEDIA_IDS = "media_ids";

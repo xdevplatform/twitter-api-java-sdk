@@ -37,6 +37,7 @@ import com.twitter.clientlib.TwitterCredentialsOAuth2;
 public class TwitterApi {
   private final BookmarksApi bookmarks = new BookmarksApi();
   private final ComplianceApi compliance = new ComplianceApi();
+  private final DirectMessagesApi directMessages = new DirectMessagesApi();
   private final GeneralApi general = new GeneralApi();
   private final ListsApi lists = new ListsApi();
   private final SpacesApi spaces = new SpacesApi();
@@ -77,13 +78,14 @@ public class TwitterApi {
   }
 
   private void initApis() {
-    bookmarks.setClient(localVarApiClient);
-    compliance.setClient(localVarApiClient);
-    general.setClient(localVarApiClient);
-    lists.setClient(localVarApiClient);
-    spaces.setClient(localVarApiClient);
-    tweets.setClient(localVarApiClient);
-    users.setClient(localVarApiClient);
+   bookmarks.setClient(localVarApiClient);
+   compliance.setClient(localVarApiClient);
+   directMessages.setClient(localVarApiClient);
+   general.setClient(localVarApiClient);
+   lists.setClient(localVarApiClient);
+   spaces.setClient(localVarApiClient);
+   tweets.setClient(localVarApiClient);
+   users.setClient(localVarApiClient);
   }
 
   public BookmarksApi bookmarks() {
@@ -91,6 +93,9 @@ public class TwitterApi {
   }
   public ComplianceApi compliance() {
     return compliance;
+  }
+  public DirectMessagesApi directMessages() {
+    return directMessages;
   }
   public GeneralApi general() {
     return general;

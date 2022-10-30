@@ -27,33 +27,63 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.twitter.clientlib.model.DmEvent;
+import com.twitter.clientlib.model.Expansions;
+import com.twitter.clientlib.model.Get2ListsIdFollowersResponseMeta;
+import com.twitter.clientlib.model.Problem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for ReportUsersResponseData
+ * Model tests for Get2DmConversationsIdDmEventsResponse
  */
-public class ReportUsersResponseDataTest {
-    private final ReportUsersResponseData model = new ReportUsersResponseData();
+public class Get2DmConversationsIdDmEventsResponseTest {
+    private final Get2DmConversationsIdDmEventsResponse model = new Get2DmConversationsIdDmEventsResponse();
 
     /**
-     * Model tests for ReportUsersResponseData
+     * Model tests for Get2DmConversationsIdDmEventsResponse
      */
     @Test
-    public void testReportUsersResponseData() {
-        // TODO: test ReportUsersResponseData
+    public void testGet2DmConversationsIdDmEventsResponse() {
+        // TODO: test Get2DmConversationsIdDmEventsResponse
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'data'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void dataTest() {
+        // TODO: test data
+    }
+
+    /**
+     * Test the property 'errors'
+     */
+    @Test
+    public void errorsTest() {
+        // TODO: test errors
+    }
+
+    /**
+     * Test the property 'includes'
+     */
+    @Test
+    public void includesTest() {
+        // TODO: test includes
+    }
+
+    /**
+     * Test the property 'meta'
+     */
+    @Test
+    public void metaTest() {
+        // TODO: test meta
     }
 
 }

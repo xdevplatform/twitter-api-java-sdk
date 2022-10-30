@@ -1,13 +1,14 @@
 
 
-# ReportUsersResponseData
+# TweetLabelStreamResponseOneOf
 
+Tweet Label event.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
+|**data** | [**TweetLabelData**](TweetLabelData.md) |  |  |
 
 
 

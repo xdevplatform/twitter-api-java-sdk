@@ -56,9 +56,9 @@ import java.util.Set;
 import com.twitter.clientlib.JSON;
 
 /**
- * Poll options for a Tweet with a poll. This is mutually exclusive from Media and Quote Tweet Id.
+ * Poll options for a Tweet with a poll. This is mutually exclusive from Media, Quote Tweet Id, and Card URI.
  */
-@ApiModel(description = "Poll options for a Tweet with a poll. This is mutually exclusive from Media and Quote Tweet Id.")
+@ApiModel(description = "Poll options for a Tweet with a poll. This is mutually exclusive from Media, Quote Tweet Id, and Card URI.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetCreateRequestPoll {
   public static final String SERIALIZED_NAME_DURATION_MINUTES = "duration_minutes";

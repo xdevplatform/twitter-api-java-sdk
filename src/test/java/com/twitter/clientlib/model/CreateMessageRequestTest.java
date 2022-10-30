@@ -27,34 +27,46 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.ReportUsersResponseData;
+import com.twitter.clientlib.model.CreateAttachmentsMessageRequest;
+import com.twitter.clientlib.model.CreateTextMessageRequest;
+import com.twitter.clientlib.model.DmMediaAttachment;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for ReportUsersResponse
+ * Model tests for CreateMessageRequest
  */
-public class ReportUsersResponseTest {
-    private final ReportUsersResponse model = new ReportUsersResponse();
+public class CreateMessageRequestTest {
+    private final CreateMessageRequest model = new CreateMessageRequest();
 
     /**
-     * Model tests for ReportUsersResponse
+     * Model tests for CreateMessageRequest
      */
     @Test
-    public void testReportUsersResponse() {
-        // TODO: test ReportUsersResponse
+    public void testCreateMessageRequest() {
+        // TODO: test CreateMessageRequest
     }
 
     /**
-     * Test the property 'data'
+     * Test the property 'attachments'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void attachmentsTest() {
+        // TODO: test attachments
+    }
+
+    /**
+     * Test the property 'text'
+     */
+    @Test
+    public void textTest() {
+        // TODO: test text
     }
 
 }
