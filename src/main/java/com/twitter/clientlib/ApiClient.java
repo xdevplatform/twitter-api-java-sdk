@@ -56,6 +56,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import org.apache.commons.lang3.StringUtils;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
@@ -695,7 +696,11 @@ public class ApiClient {
     public String parameterToString(Object param) {
         if (param == null) {
             return "";
-        } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
+        } else if (param instanceof OffsetDateTime || param instanceof LocalDate) {
+            TemporalAccessor castParam = (TemporalAccessor) param;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+            return dtf.format(castParam);
+        } else if (param instanceof Date) {
             //Serialize to json string and remove the " enclosing characters
             String jsonStr = json.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
