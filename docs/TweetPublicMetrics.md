@@ -8,6 +8,7 @@ Engagement metrics for the Tweet at the time of the request.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**impressionsCount** | **Integer** | Number of times this Tweet has been viewed. |  |
 |**likeCount** | **Integer** | Number of times this Tweet has been liked. |  |
 |**quoteCount** | **Integer** | Number of times this Tweet has been quoted. |  [optional] |
 |**replyCount** | **Integer** | Number of times this Tweet has been replied to. |  |
