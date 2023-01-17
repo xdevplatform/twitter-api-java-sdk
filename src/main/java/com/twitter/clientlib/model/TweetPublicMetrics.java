@@ -59,6 +59,10 @@ import com.twitter.clientlib.JSON;
 @ApiModel(description = "Engagement metrics for the Tweet at the time of the request.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TweetPublicMetrics {
+  public static final String SERIALIZED_NAME_IMPRESSION_COUNT = "impression_count";
+  @SerializedName(SERIALIZED_NAME_IMPRESSION_COUNT)
+  private Integer impressionCount;
+
   public static final String SERIALIZED_NAME_LIKE_COUNT = "like_count";
   @SerializedName(SERIALIZED_NAME_LIKE_COUNT)
   private Integer likeCount;
@@ -77,6 +81,29 @@ public class TweetPublicMetrics {
 
   public TweetPublicMetrics() { 
   }
+
+  public TweetPublicMetrics impressionsCount(Integer impressionCount) {
+    
+    this.impressionCount = impressionCount;
+    return this;
+  }
+
+   /**
+   * Number of times this Tweet has been viewed.
+   * @return impressionCount
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Number of times this Tweet has been viewed.")
+
+  public Integer getImpressionCount() {
+    return impressionCount;
+  }
+
+
+  public void setImpressionCount(Integer impressionCount) {
+    this.impressionCount = impressionCount;
+  }
+
 
   public TweetPublicMetrics likeCount(Integer likeCount) {
     
@@ -180,7 +207,8 @@ public class TweetPublicMetrics {
       return false;
     }
     TweetPublicMetrics tweetPublicMetrics = (TweetPublicMetrics) o;
-    return Objects.equals(this.likeCount, tweetPublicMetrics.likeCount) &&
+    return Objects.equals(this.impressionCount, tweetPublicMetrics.impressionCount) &&
+        Objects.equals(this.likeCount, tweetPublicMetrics.likeCount) &&
         Objects.equals(this.quoteCount, tweetPublicMetrics.quoteCount) &&
         Objects.equals(this.replyCount, tweetPublicMetrics.replyCount) &&
         Objects.equals(this.retweetCount, tweetPublicMetrics.retweetCount);
@@ -195,6 +223,7 @@ public class TweetPublicMetrics {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TweetPublicMetrics {\n");
+    sb.append("    impressionCount: ").append(toIndentedString(impressionCount)).append("\n");
     sb.append("    likeCount: ").append(toIndentedString(likeCount)).append("\n");
     sb.append("    quoteCount: ").append(toIndentedString(quoteCount)).append("\n");
     sb.append("    replyCount: ").append(toIndentedString(replyCount)).append("\n");
@@ -221,6 +250,7 @@ public class TweetPublicMetrics {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("impression_count");
     openapiFields.add("like_count");
     openapiFields.add("quote_count");
     openapiFields.add("reply_count");
@@ -228,6 +258,7 @@ public class TweetPublicMetrics {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("impression_count");
     openapiRequiredFields.add("like_count");
     openapiRequiredFields.add("reply_count");
     openapiRequiredFields.add("retweet_count");
