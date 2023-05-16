@@ -24,6 +24,14 @@ public class DmEvent {
     @SerializedName("created_at")
     private OffsetDateTime createdAt;
 
+    public DmEvent() {
+
+    }
+
+    public DmEvent(String text) {
+        this.text = text;
+    }
+
     public String getId() {
         return id;
     }

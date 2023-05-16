@@ -5,7 +5,9 @@ import com.twitter.clientlib.ApiCallback;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.ApiResponse;
 import com.twitter.clientlib.Pair;
+import com.twitter.clientlib.model.DmEvent;
 import com.twitter.clientlib.model.Get2DmEventsResponse;
+import com.twitter.clientlib.model.ReplyToDmConversationResponse;
 import okhttp3.Call;
 
 import java.lang.reflect.Type;
@@ -197,4 +199,109 @@ public class DmApi extends ApiCommon {
     public APIfindDmEventsRequest findDmEvents() {
         return new APIfindDmEventsRequest();
     }
+
+    public APIreplyToDmConversationRequest replyToDmConversation(String conversationId, String text) {
+        return new APIreplyToDmConversationRequest(conversationId, text);
+    }
+
+    private Call replyToDmConversationValidateBeforeCall(String id, String text, ApiCallback _callback) throws ApiException {
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling replyToDmConversation(Async)");
+        }
+
+        if (text == null) {
+            throw new ApiException("Missing the required parameter 'text' when calling replyToDmConversation(Async)");
+        }
+
+        okhttp3.Call localVarCall = replyToDmConversationCall(id, text, _callback);
+        return localVarCall;
+    }
+
+    private ApiResponse<ReplyToDmConversationResponse> replyToDmConversationWithHttpInfo(String id, String text) throws ApiException {
+        okhttp3.Call localVarCall = replyToDmConversationValidateBeforeCall(id, text, null);
+        Type localVarReturnType = new TypeToken<ReplyToDmConversationResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private Call replyToDmConversationCallAsync(String id, String text, ApiCallback<ReplyToDmConversationResponse> callback) throws ApiException {
+        okhttp3.Call localVarCall = replyToDmConversationValidateBeforeCall(id, text, callback);
+        Type localVarReturnType = new TypeToken<ReplyToDmConversationResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, callback);
+        return localVarCall;
+    }
+
+    private Call replyToDmConversationCall(String id, String text, ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = new DmEvent(text);
+
+        String localVarPath = "/2/dm_conversations/{id}/messages"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken", "UserToken" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    public class APIreplyToDmConversationRequest {
+
+        private final String id;
+        private final String text;
+
+        public APIreplyToDmConversationRequest(String conversationId, String text) {
+            this.id = conversationId;
+            this.text = text;
+        }
+
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return replyToDmConversationCall(id, text, _callback);
+        }
+
+        public ReplyToDmConversationResponse execute() throws ApiException {
+            ApiResponse<ReplyToDmConversationResponse> localVarResp = replyToDmConversationWithHttpInfo(id, text);
+            return localVarResp.getData();
+        }
+
+        public ReplyToDmConversationResponse execute(Integer retries) throws ApiException {
+            ReplyToDmConversationResponse localVarResp;
+            try{
+                localVarResp = execute();
+            } catch (ApiException e) {
+                if(handleRateLimit(e, retries)) {
+                    return execute(retries - 1);
+                } else {
+                    throw e;
+                }
+            }
+            return localVarResp;
+        }
+
+        public ApiResponse<ReplyToDmConversationResponse> executeWithHttpInfo() throws ApiException {
+            return replyToDmConversationWithHttpInfo(id, text);
+        }
+
+        public okhttp3.Call executeAsync(final ApiCallback<ReplyToDmConversationResponse> _callback) throws ApiException {
+            return replyToDmConversationCallAsync(id, text, _callback);
+        }
+    }
+
 }
