@@ -44,7 +44,10 @@ public class ApiCommon {
 
   public boolean handleRateLimit(ApiException e, Integer retries) throws ApiException {
     boolean retryCall = false;
-    if (e.getCode() == 429 && retries > 0) {
+    boolean isRateLimitExceeded = (e.getCode() == 429);
+    boolean hasRetriesLeft = (retries > 0);
+
+    if (isRateLimitExceeded && hasRetriesLeft) {
       long timeToWait = getTimeToWait(e);
       try {
         Thread.sleep(timeToWait);
