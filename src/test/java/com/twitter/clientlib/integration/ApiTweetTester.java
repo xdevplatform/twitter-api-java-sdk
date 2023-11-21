@@ -25,6 +25,7 @@ package com.twitter.clientlib.integration;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -447,6 +448,13 @@ public class ApiTweetTester extends ApiTester {
     checkApiExceptionProblem(exception, InvalidRequestProblem.class,
         "The `id` query parameter value [" + userNotExists + "] must be the same as the authenticating user [" + userId + "]",
         "Invalid Request", "One or more parameters to your request was invalid.");
+  }
+
+  protected void checkFieldUnauthorizedProblem(Problem problem, String title, String field) {
+    Assertions.assertTrue(problem instanceof FieldUnauthorizedProblem);
+    FieldUnauthorizedProblem fieldUnauthorizedProblem = (FieldUnauthorizedProblem) problem;
+    Assertions.assertTrue(fieldUnauthorizedProblem.getTitle().equals(title));
+    Assertions.assertEquals(field, fieldUnauthorizedProblem.getField());
   }
 
   /* Does not work for now

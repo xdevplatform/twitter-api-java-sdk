@@ -204,10 +204,5 @@ abstract public class ApiTester {
     Assertions.assertEquals(value, duplicateProblem.getValue());
   }
 
-  protected void checkFieldUnauthorizedProblem(Problem problem, String title, String field) {
-    Assertions.assertTrue(problem instanceof FieldUnauthorizedProblem);
-    FieldUnauthorizedProblem fieldUnauthorizedProblem = (FieldUnauthorizedProblem) problem;
-    Assertions.assertTrue(fieldUnauthorizedProblem.getTitle().equals(title));
-    Assertions.assertEquals(field, fieldUnauthorizedProblem.getField());
-  }
+
 }
