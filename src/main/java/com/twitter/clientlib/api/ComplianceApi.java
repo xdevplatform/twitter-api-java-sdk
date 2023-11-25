@@ -288,16 +288,7 @@ public class ComplianceApi extends ApiCommon {
     }
 
 
-    private ApiResponse<Get2ComplianceJobsIdResponse> getBatchComplianceJobWithHttpInfo(String id, Set<String> complianceJobFields) throws ApiException {
-        okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, complianceJobFields, null);
-        try {
-            Type localVarReturnType = new TypeToken<Get2ComplianceJobsIdResponse>(){}.getType();
-            return localVarApiClient.execute(localVarCall, localVarReturnType);
-        } catch (ApiException e) {
-            e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
-            throw e;
-        }
-    }
+
 
     private okhttp3.Call getBatchComplianceJobAsync(String id, Set<String> complianceJobFields, final ApiCallback<Get2ComplianceJobsIdResponse> _callback) throws ApiException {
 
@@ -412,6 +403,17 @@ public class ComplianceApi extends ApiCommon {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Get2ComplianceJobsIdResponse> _callback) throws ApiException {
             return getBatchComplianceJobAsync(id, complianceJobFields, _callback);
+        }
+
+        private ApiResponse<Get2ComplianceJobsIdResponse> getBatchComplianceJobWithHttpInfo(String id, Set<String> complianceJobFields) throws ApiException {
+            okhttp3.Call localVarCall = getBatchComplianceJobValidateBeforeCall(id, complianceJobFields, null);
+            try {
+                Type localVarReturnType = new TypeToken<Get2ComplianceJobsIdResponse>(){}.getType();
+                return localVarApiClient.execute(localVarCall, localVarReturnType);
+            } catch (ApiException e) {
+                e.setErrorObject(localVarApiClient.getJSON().getGson().fromJson(e.getResponseBody(), new TypeToken<com.twitter.clientlib.model.ProblemOrError>(){}.getType()));
+                throw e;
+            }
         }
     }
 

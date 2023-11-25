@@ -27,7 +27,7 @@ public class ServerConfiguration {
      * @param variables A map between a variable name and its value.
      * @return Formatted URL.
      */
-    public String URL(Map<String, String> variables) {
+    public String formatUrl(Map<String, String> variables) {
         String url = this.URL;
 
         // go through variables and replace placeholders
@@ -52,7 +52,7 @@ public class ServerConfiguration {
      *
      * @return Formatted URL.
      */
-    public String URL() {
-        return URL(null);
+    public String formatUrl() {
+        return formatUrl(null);
     }
 }

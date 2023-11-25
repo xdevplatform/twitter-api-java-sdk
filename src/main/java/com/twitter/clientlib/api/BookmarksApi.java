@@ -72,14 +72,31 @@ public class BookmarksApi extends ApiCommon {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (maxResults != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
+        getLocalVarQueryParams(maxResults, paginationToken, localVarQueryParams);
+
+        getLocalVarCollectionQueryParams(tweetFields, expansions, mediaFields, pollFields, userFields, placeFields, localVarCollectionQueryParams);
+
+        final String[] localVarAccepts = {
+            "application/json", "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        if (paginationToken != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
+    }
+
+    private void getLocalVarCollectionQueryParams(Set<String> tweetFields, Set<String> expansions, Set<String> mediaFields, Set<String> pollFields, Set<String> userFields, Set<String> placeFields, List<Pair> localVarCollectionQueryParams) {
         if (tweetFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "tweet.fields", tweetFields));
         }
@@ -103,25 +120,16 @@ public class BookmarksApi extends ApiCommon {
         if (placeFields != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "place.fields", placeFields));
         }
+    }
 
-        final String[] localVarAccepts = {
-            "application/json", "application/problem+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
+    private void getLocalVarQueryParams(Integer maxResults, String paginationToken, List<Pair> localVarQueryParams) {
+        if (maxResults != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_results", maxResults));
         }
 
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (paginationToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pagination_token", paginationToken));
         }
-
-        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), _callback);
     }
 
     @SuppressWarnings("rawtypes")

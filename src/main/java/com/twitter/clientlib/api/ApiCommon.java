@@ -44,7 +44,10 @@ public class ApiCommon {
 
   public boolean handleRateLimit(ApiException e, Integer retries) throws ApiException {
     boolean retryCall = false;
-    if (e.getCode() == 429 && retries > 0) {
+    boolean isRateLimitExceeded = (e.getCode() == 429);
+    boolean hasRetriesLeft = (retries > 0);
+
+    if (isRateLimitExceeded && hasRetriesLeft) {
       long timeToWait = getTimeToWait(e);
       try {
         Thread.sleep(timeToWait);
@@ -63,7 +66,7 @@ public class ApiCommon {
       List<String> xRateLimitReset = e.getResponseHeaders().get("x-rate-limit-reset");
       if (xRateLimitReset != null && xRateLimitReset.get(0) != null) {
         timeToWait = Long.parseLong(
-            xRateLimitReset.get(0)) * 1000 - Calendar.getInstance().getTimeInMillis();
+                xRateLimitReset.get(0)) * 1000 - Calendar.getInstance().getTimeInMillis();
       }
     }
     return timeToWait;
@@ -72,13 +75,15 @@ public class ApiCommon {
   boolean isRateLimitRemaining(ApiException e) {
     List<String> xRateLimitRemaining = e.getResponseHeaders().get("x-rate-limit-remaining");
     return xRateLimitRemaining != null && xRateLimitRemaining.get(0) != null
-        && Long.parseLong(xRateLimitRemaining.get(0)) == 0;
+            && Long.parseLong(xRateLimitRemaining.get(0)) == 0;
   }
 
   Set<String> getFields(String fieldName, boolean isExclude, Set<String> fieldValues, Set<String> allFieldsValues) {
     Set<String> result = fieldValues;
-    if(isExclude && SDKConfig.isFieldAllowlisted(fieldName) && allFieldsValues != null) {
-      result = allFieldsValues.stream().filter(e -> !(fieldValues != null && fieldValues.contains(e))).collect(Collectors.toSet());
+    if (isExclude && SDKConfig.isFieldAllowlisted(fieldName)) {
+      if (allFieldsValues != null) {
+        result = allFieldsValues.stream().filter(e -> !(fieldValues != null && fieldValues.contains(e))).collect(Collectors.toSet());
+      }
     }
     return result;
   }
