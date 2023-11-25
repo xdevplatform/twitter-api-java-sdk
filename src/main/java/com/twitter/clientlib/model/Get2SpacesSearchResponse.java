@@ -23,39 +23,24 @@ Do not edit the class manually.
 package com.twitter.clientlib.model;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.twitter.clientlib.model.Expansions;
-import com.twitter.clientlib.model.Get2ComplianceJobsResponseMeta;
-import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.Space;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.twitter.clientlib.JSON;
 
@@ -65,7 +50,8 @@ import com.twitter.clientlib.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Get2SpacesSearchResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
+    private final StringOperation stringOperation = new StringOperation(this);
+    @SerializedName(SERIALIZED_NAME_DATA)
   private List<Space> data = null;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
@@ -194,34 +180,17 @@ public class Get2SpacesSearchResponse {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Get2SpacesSearchResponse get2SpacesSearchResponse = (Get2SpacesSearchResponse) o;
-    return Objects.equals(this.data, get2SpacesSearchResponse.data) &&
-        Objects.equals(this.errors, get2SpacesSearchResponse.errors) &&
-        Objects.equals(this.includes, get2SpacesSearchResponse.includes) &&
-        Objects.equals(this.meta, get2SpacesSearchResponse.meta);
+      return stringOperation.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, errors, includes, meta);
+      return stringOperation.hashCode();
   }
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Get2SpacesSearchResponse {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    includes: ").append(toIndentedString(includes)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
-    sb.append("}");
-    return sb.toString();
+      return stringOperation.toString();
   }
 
   /**
@@ -229,10 +198,7 @@ public class Get2SpacesSearchResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+      return stringOperation.toIndentedString(o);
   }
 
 
@@ -346,7 +312,67 @@ public class Get2SpacesSearchResponse {
   * @return JSON string
   */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return stringOperation.toJson();
   }
+
+    public static class StringOperation {
+        private final Get2SpacesSearchResponse get2SpacesSearchResponse;
+
+        public StringOperation(Get2SpacesSearchResponse get2SpacesSearchResponse) {
+            this.get2SpacesSearchResponse = get2SpacesSearchResponse;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (get2SpacesSearchResponse == o) {
+                return true;
+            }
+            if (o == null || get2SpacesSearchResponse.getClass() != o.getClass()) {
+                return false;
+            }
+            Get2SpacesSearchResponse get2SpacesSearchResponse = (Get2SpacesSearchResponse) o;
+            return Objects.equals(get2SpacesSearchResponse.getData(), get2SpacesSearchResponse.data) &&
+                    Objects.equals(get2SpacesSearchResponse.getErrors(), get2SpacesSearchResponse.errors) &&
+                    Objects.equals(get2SpacesSearchResponse.getIncludes(), get2SpacesSearchResponse.includes) &&
+                    Objects.equals(get2SpacesSearchResponse.getMeta(), get2SpacesSearchResponse.meta);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(get2SpacesSearchResponse.getData(), get2SpacesSearchResponse.getErrors(), get2SpacesSearchResponse.getIncludes(), get2SpacesSearchResponse.getMeta());
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("class Get2SpacesSearchResponse {\n");
+            sb.append("    data: ").append(toIndentedString(get2SpacesSearchResponse.getData())).append("\n");
+            sb.append("    errors: ").append(toIndentedString(get2SpacesSearchResponse.getErrors())).append("\n");
+            sb.append("    includes: ").append(toIndentedString(get2SpacesSearchResponse.getIncludes())).append("\n");
+            sb.append("    meta: ").append(toIndentedString(get2SpacesSearchResponse.getMeta())).append("\n");
+            sb.append("}");
+            return sb.toString();
+        }
+
+        /**
+         * Convert the given object to string with each line indented by 4 spaces
+         * (except the first line).
+         */
+        private String toIndentedString(Object o) {
+            if (o == null) {
+                return "null";
+            }
+            return o.toString().replace("\n", "\n    ");
+        }
+
+        /**
+         * Convert an instance of Get2SpacesSearchResponse to an JSON string
+         *
+         * @return JSON string
+         */
+        public String toJson() {
+            return JSON.getGson().toJson(get2SpacesSearchResponse);
+        }
+    }
 }
 
