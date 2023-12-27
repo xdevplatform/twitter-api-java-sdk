@@ -1,10 +1,7 @@
 package com.twitter.clientlib.api;
 
 import com.google.gson.reflect.TypeToken;
-import com.twitter.clientlib.ApiCallback;
-import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.ApiResponse;
-import com.twitter.clientlib.Pair;
+import com.twitter.clientlib.*;
 import com.twitter.clientlib.model.DmEvent;
 import com.twitter.clientlib.model.Get2DmEventsResponse;
 import com.twitter.clientlib.model.ReplyToDmConversationResponse;
@@ -168,7 +165,7 @@ public class DmApi extends ApiCommon {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken", "UserToken" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), callback);
     }
 
