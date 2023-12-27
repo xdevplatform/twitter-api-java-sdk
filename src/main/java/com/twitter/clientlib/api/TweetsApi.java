@@ -22,69 +22,17 @@ Do not edit the class manually.
 
 package com.twitter.clientlib.api;
 
+import com.google.gson.reflect.TypeToken;
 import com.twitter.clientlib.ApiCallback;
-import com.twitter.clientlib.ApiClient;
-import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.ApiResponse;
-import com.twitter.clientlib.Configuration;
 import com.twitter.clientlib.Pair;
-import com.twitter.clientlib.ProgressRequestBody;
-import com.twitter.clientlib.ProgressResponseBody;
+import com.twitter.clientlib.model.*;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.util.HashSet;
-
-
-import com.twitter.clientlib.model.AddOrDeleteRulesRequest;
-import com.twitter.clientlib.model.AddOrDeleteRulesResponse;
-import com.twitter.clientlib.model.Error;
-import com.twitter.clientlib.model.FilteredStreamingTweetResponse;
-import com.twitter.clientlib.model.Get2ListsIdTweetsResponse;
-import com.twitter.clientlib.model.Get2SpacesIdBuyersResponse;
-import com.twitter.clientlib.model.Get2SpacesIdTweetsResponse;
-import com.twitter.clientlib.model.Get2TweetsCountsAllResponse;
-import com.twitter.clientlib.model.Get2TweetsCountsRecentResponse;
-import com.twitter.clientlib.model.Get2TweetsIdQuoteTweetsResponse;
-import com.twitter.clientlib.model.Get2TweetsIdResponse;
-import com.twitter.clientlib.model.Get2TweetsResponse;
-import com.twitter.clientlib.model.Get2TweetsSample10StreamResponse;
-import com.twitter.clientlib.model.Get2TweetsSearchAllResponse;
-import com.twitter.clientlib.model.Get2TweetsSearchRecentResponse;
-import com.twitter.clientlib.model.Get2UsersIdLikedTweetsResponse;
-import com.twitter.clientlib.model.Get2UsersIdMentionsResponse;
-import com.twitter.clientlib.model.Get2UsersIdTimelinesReverseChronologicalResponse;
-import com.twitter.clientlib.model.Get2UsersIdTweetsResponse;
-import java.time.OffsetDateTime;
-import com.twitter.clientlib.model.Problem;
-import com.twitter.clientlib.model.RulesLookupResponse;
-import java.util.Set;
-import com.twitter.clientlib.model.StreamingTweetResponse;
-import com.twitter.clientlib.model.TweetCreateRequest;
-import com.twitter.clientlib.model.TweetCreateResponse;
-import com.twitter.clientlib.model.TweetDeleteResponse;
-import com.twitter.clientlib.model.TweetHideRequest;
-import com.twitter.clientlib.model.TweetHideResponse;
-import com.twitter.clientlib.model.UsersLikesCreateRequest;
-import com.twitter.clientlib.model.UsersLikesCreateResponse;
-import com.twitter.clientlib.model.UsersLikesDeleteResponse;
-import com.twitter.clientlib.model.UsersRetweetsCreateRequest;
-import com.twitter.clientlib.model.UsersRetweetsCreateResponse;
-import com.twitter.clientlib.model.UsersRetweetsDeleteResponse;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Arrays;
 import java.io.InputStream;
-import javax.ws.rs.core.GenericType;
-
-import org.apache.commons.lang3.StringUtils;
+import java.lang.reflect.Type;
+import java.time.OffsetDateTime;
+import java.util.*;
 
 public class TweetsApi extends ApiCommon {
 
