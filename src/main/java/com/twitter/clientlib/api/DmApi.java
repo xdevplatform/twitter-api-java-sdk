@@ -168,7 +168,7 @@ public class DmApi extends ApiCommon {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        String[] localVarAuthNames = new String[] { "BearerToken", "OAuth2UserToken", "UserToken" };
+        String[] localVarAuthNames = new String[] { "OAuth2UserToken" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, reduceAuthNames(localVarAuthNames), callback);
     }
 
