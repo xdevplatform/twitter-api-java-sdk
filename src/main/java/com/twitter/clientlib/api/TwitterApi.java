@@ -41,6 +41,7 @@ public class TwitterApi {
   private final ListsApi lists = new ListsApi();
   private final SpacesApi spaces = new SpacesApi();
   private final TweetsApi tweets = new TweetsApi();
+  private final LikesApi likes = new LikesApi();
   private final UsersApi users = new UsersApi();
   private ApiClient localVarApiClient = new ApiClient();
 
@@ -83,6 +84,7 @@ public class TwitterApi {
     lists.setClient(localVarApiClient);
     spaces.setClient(localVarApiClient);
     tweets.setClient(localVarApiClient);
+    likes.setClient(localVarApiClient);
     users.setClient(localVarApiClient);
   }
 
@@ -106,6 +108,9 @@ public class TwitterApi {
   }
   public UsersApi users() {
     return users;
+  }
+  public LikesApi likes() {
+    return likes;
   }
 
   public OAuth2AccessToken refreshToken() throws ApiException {
