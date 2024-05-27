@@ -33,7 +33,6 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.time.OffsetDateTime;
 import java.util.*;
-// TODO: Adjust
 public class LikesApi extends ApiCommon {
 
 

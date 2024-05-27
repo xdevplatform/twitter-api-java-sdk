@@ -40,7 +40,6 @@ import java.util.Set;
 public class LikesApiTest {
 
     private final TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
-    // TODO set credentials
 
     /**
      * Firehose stream
